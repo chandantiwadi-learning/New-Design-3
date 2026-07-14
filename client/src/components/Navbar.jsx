@@ -52,7 +52,7 @@ const Navbar = () => {
 
         {/* Start logo */}
         <Link className="logo f_left" to="/" title="Hex India Fasteners">
-          <img src="/images/logo1-2.png" alt="Hex India Fasteners" />
+          <img src="/images/hex-india-logo.png" alt="Hex India Fasteners" />
         </Link>
         {/* End logo */}
 
@@ -61,7 +61,7 @@ const Navbar = () => {
           className="menu_button clearfix" 
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <img className="r_logo" src="/images/logo1-2-copy.png" alt="Logo" />
+          <img className="r_logo" src="/images/hex-india-logo.png" alt="Logo" />
           <img className="r_button" src="/images/r_menu_button.png" alt="Menu button" />
         </button>
 

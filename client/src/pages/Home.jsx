@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [searchQuery, setSearchQuery] = useState('');
-  const navigate = useNavigate();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -12,13 +10,6 @@ const Home = () => {
     }, 6000);
     return () => clearInterval(timer);
   }, []);
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      navigate(`/products?search=${encodeURIComponent(searchQuery)}`);
-    }
-  };
 
   const slides = [
     {
@@ -76,18 +67,18 @@ const Home = () => {
                 <h1 className="text-3xl md:text-5xl font-extrabold text-white leading-tight tracking-tight uppercase">
                   {slide.title}
                 </h1>
-                <p className="text-sm md:text-base text-gray-200 font-light leading-relaxed">
+                <p className="text-sm md:text-base text-white/95 font-light leading-relaxed">
                   {slide.subtitle}
                 </p>
                 <div className="h-0.5 w-20 bg-accent my-4"></div>
-                <p className="text-xs md:text-sm text-accent font-bold tracking-wide">
+                <p className="text-xs md:text-sm text-[#e0f2fe] font-bold tracking-wide">
                   {slide.callout}
                 </p>
                 <div className="flex gap-4 pt-4">
-                  <Link to="/contact" className="px-6 py-3 bg-accent hover:bg-white text-brand-dark hover:text-primary font-bold text-xs uppercase tracking-wider rounded-sm shadow-md transition-all duration-300">
+                  <Link to="/contact" className="px-6 py-3 bg-[#0D8BC5] border border-[#0D8BC5] hover:bg-[#0878AA] hover:border-[#0878AA] hover:shadow-[0_4px_12px_rgba(13,139,197,0.3)] text-white font-bold text-xs uppercase tracking-wider rounded-sm shadow-md transition-all duration-300">
                     Get In Touch
                   </Link>
-                  <Link to="/products" className="px-6 py-3 border-2 border-white hover:border-accent text-white hover:text-accent font-bold text-xs uppercase tracking-wider rounded-sm transition-all duration-300">
+                  <Link to="/products" className="px-6 py-3 border-2 border-white bg-transparent hover:bg-white text-white hover:text-[#0878AA] font-bold text-xs uppercase tracking-wider rounded-sm transition-all duration-300">
                     Our Products
                   </Link>
                 </div>
@@ -111,28 +102,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Search Catalog Bar (Exactly matching GEBO catalog bar aesthetic) */}
-      <div className="max-w-6xl mx-auto px-4 relative z-30 -mt-10">
-        <form onSubmit={handleSearchSubmit} className="bg-white rounded-lg shadow-xl overflow-hidden flex flex-col md:flex-row items-center border border-gray-100">
-          <div className="flex-grow w-full flex items-center px-6 py-4 md:py-0">
-            <i className="icon-search text-gray-400 text-lg mr-4"></i>
-            <input
-              type="text"
-              placeholder="SEARCH IN OUR CATALOG..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full text-xs font-bold uppercase tracking-wider placeholder-gray-400 text-gray-700 bg-transparent border-none outline-none py-5 focus:ring-0"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full md:w-auto bg-primary hover:bg-primary-dark text-white px-10 py-5 h-full flex items-center justify-center font-bold text-xs tracking-wider uppercase transition-all duration-300 cursor-pointer shadow-md"
-          >
-            Search
-          </button>
-        </form>
-      </div>
-
       {/* Product Categories Grid (GEBO card style redesign) */}
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
@@ -150,19 +119,22 @@ const Home = () => {
             <Link
               to={prod.path}
               key={idx}
-              className="group aspect-[4/3] relative rounded-lg overflow-hidden shadow-md border border-gray-100 hover:shadow-xl transition-all duration-300 block"
+              className="group aspect-[4/3] relative rounded-lg overflow-hidden shadow-md border border-gray-100 hover:border-[#0D8BC5] hover:shadow-[0_8px_24px_rgba(13,139,197,0.25)] transition-all duration-300 block"
             >
               {/* Product Image */}
               <div
-                className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-500"
+                className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-300 z-0"
                 style={{ backgroundImage: `url('${prod.img}')` }}
               ></div>
-              {/* Vignette Overlay (Teal/Dark Gradient) */}
-              <div className="absolute inset-0 bg-gradient-to-t from-primary-dark/85 via-black/30 to-black/10 group-hover:from-primary-dark/95 transition-all duration-300"></div>
+              {/* Gradient Overlay for Text Readability (Default shadow) */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10 pointer-events-none"></div>
+              
+              {/* Brand Blue Hover Overlay */}
+              <div className="absolute inset-0 bg-[#0D8BC5]/28 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none"></div>
 
-              {/* Notched Corner Label */}
-              <div className="absolute bottom-4 left-4 z-20">
-                <div className="notch-tag border border-white text-white font-bold text-[10px] uppercase px-5 py-2 group-hover:bg-primary group-hover:border-primary transition-all duration-300">
+              {/* Hexagon Label */}
+              <div className="absolute bottom-4 left-4 z-30">
+                <div className="hexagon-tag bg-gray-500/80 text-white font-bold text-[10px] uppercase px-7 py-2 group-hover:bg-[#0D8BC5] transition-colors duration-300 backdrop-blur-sm shadow-md">
                   {prod.name}
                 </div>
               </div>
@@ -179,15 +151,15 @@ const Home = () => {
             <div className="p-8 bg-bg-light rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
               <div className="flex items-center space-x-4 mb-4">
-                <div className="w-10 h-10 bg-primary text-white rounded-lg flex items-center justify-center shadow-md">
-                  <i className="icon-eye-open text-lg"></i>
+                <div className="w-10 h-10 bg-white border border-[#eaf6fc] text-[#0D8BC5] rounded-lg flex items-center justify-center shadow-sm transition-all duration-300 group-hover:bg-[#0D8BC5] group-hover:text-white group-hover:shadow-md">
+                  <i className="icon-eye-open text-lg transition-colors duration-300"></i>
                 </div>
-                <h3 className="text-sm font-bold uppercase tracking-wider text-primary">Vision</h3>
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#0D8BC5]">Vision</h3>
               </div>
               <p className="text-xs leading-relaxed text-gray-600">
                 Uncompromising commitment to quality and engineering precision. We ensure every fastener complies with rigorous global certification standards.
               </p>
-              <div className="mt-6 flex items-baseline space-x-2 text-primary">
+              <div className="mt-6 flex items-baseline space-x-2 text-[#0D8BC5]">
                 <span className="text-2xl font-extrabold">12+</span>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Years Experience</span>
               </div>
@@ -197,15 +169,15 @@ const Home = () => {
             <div className="p-8 bg-bg-light rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
               <div className="flex items-center space-x-4 mb-4">
-                <div className="w-10 h-10 bg-primary text-white rounded-lg flex items-center justify-center shadow-md">
-                  <i className="icon-fighter-jet text-lg"></i>
+                <div className="w-10 h-10 bg-white border border-[#eaf6fc] text-[#0D8BC5] rounded-lg flex items-center justify-center shadow-sm transition-all duration-300 group-hover:bg-[#0D8BC5] group-hover:text-white group-hover:shadow-md">
+                  <i className="icon-fighter-jet text-lg transition-colors duration-300"></i>
                 </div>
-                <h3 className="text-sm font-bold uppercase tracking-wider text-primary">Mission</h3>
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#0D8BC5]">Mission</h3>
               </div>
               <p className="text-xs leading-relaxed text-gray-600">
                 Fostering long-term customer partnerships through technical expertise, exceptional client services, and flexible, customizable production runs.
               </p>
-              <div className="mt-6 flex items-baseline space-x-2 text-primary">
+              <div className="mt-6 flex items-baseline space-x-2 text-[#0D8BC5]">
                 <span className="text-2xl font-extrabold">250+</span>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Happy Clients</span>
               </div>
@@ -215,15 +187,15 @@ const Home = () => {
             <div className="p-8 bg-bg-light rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
               <div className="flex items-center space-x-4 mb-4">
-                <div className="w-10 h-10 bg-primary text-white rounded-lg flex items-center justify-center shadow-md">
-                  <i className="icon-ok text-lg"></i>
+                <div className="w-10 h-10 bg-white border border-[#eaf6fc] text-[#0D8BC5] rounded-lg flex items-center justify-center shadow-sm transition-all duration-300 group-hover:bg-[#0D8BC5] group-hover:text-white group-hover:shadow-md">
+                  <i className="icon-ok text-lg transition-colors duration-300"></i>
                 </div>
-                <h3 className="text-sm font-bold uppercase tracking-wider text-primary">High Quality</h3>
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#0D8BC5]">High Quality</h3>
               </div>
               <p className="text-xs leading-relaxed text-gray-600">
                 Continuous optimization of our machining processes to guarantee high tensile strengths, corrosion-resistant platings, and long-term durability.
               </p>
-              <div className="mt-6 flex items-baseline space-x-2 text-primary">
+              <div className="mt-6 flex items-baseline space-x-2 text-[#0D8BC5]">
                 <span className="text-2xl font-extrabold">100%</span>
                 <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Inspection Done</span>
               </div>
@@ -310,13 +282,13 @@ const Home = () => {
       </section>
 
       {/* Action Banner */}
-      <section className="py-16 bg-brand-dark text-center border-t border-gray-800">
+      <section className="py-16 text-center border-t border-white/10" style={{ background: 'linear-gradient(135deg, #0D8BC5, #0878AA)' }}>
         <div className="max-w-5xl mx-auto px-4">
           <h2 className="text-lg md:text-xl font-bold text-white tracking-wide leading-relaxed">
             Providing Precision-Build Fastening Solutions For Industrial Applications Worldwide.
           </h2>
           <div className="mt-8">
-            <Link to="/about-us" className="px-8 py-3.5 bg-primary hover:bg-primary-dark text-white font-bold text-xs uppercase tracking-wider rounded-sm transition-all duration-300 inline-block shadow-md">
+            <Link to="/about-us" className="px-8 py-3.5 bg-white text-[#0D8BC5] border border-white hover:bg-transparent hover:text-white font-bold text-xs uppercase tracking-wider rounded-sm transition-all duration-300 inline-block shadow-md">
               Learn More About Us
             </Link>
           </div>

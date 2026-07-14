@@ -2,8 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Preloader from './components/Preloader';
-
+// Preloader removed
 // Scroll to top on route change to match standard web behavior
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -66,7 +65,6 @@ const App = () => {
   return (
     <Router>
       <ScrollToTop />
-      <Preloader />
       <div className="flex flex-col min-h-screen bg-white">
         <Navbar />
         {/* Main Content Area - Adding padding top to prevent content overlap with fixed Navbar */}
@@ -74,7 +72,7 @@ const App = () => {
           <Suspense
             fallback={
               <div className="h-[400px] flex items-center justify-center">
-                <img src="/images/load.gif" alt="Loading..." className="h-[50px]" />
+                <span className="text-gray-400 font-bold uppercase tracking-wider text-xs">Loading...</span>
               </div>
             }
           >

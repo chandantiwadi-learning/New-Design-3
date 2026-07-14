@@ -5,13 +5,12 @@
 @import "./font-awesome.css";
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
-@theme {
-  --color-primary: #006054;
-  --color-primary-dark: #004d43;
-  --color-accent: #00a896;
-  --color-bg-light: #f3f7f6;
-  --color-brand-dark: #111827;
-  --font-sans: 'Plus Jakarta Sans', sans-serif;
+:root {
+  --color-primary: #0d8bc5;
+  --color-primary-dark: #086a98;
+  --color-accent: #38aee4;
+  --color-bg-light: #f6fafd;
+  --color-brand-dark: #0b2d42;
 }
 
 body {
@@ -25,33 +24,15 @@ body {
   clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 0 100%);
 }
 
+.hexagon-tag {
+  clip-path: polygon(15px 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 15px 100%, 0 50%);
+}
+
 
 /* Custom Selection */
 ::selection {
   background: #0d8bc5;
   color: #fff;
-}
-
-/* Preloader styling */
-#preloader {
-  width: 100%;
-  height: 100%;
-  position: fixed;
-  background: rgba(0, 0, 0, 1);
-  text-align: center;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-#preloader > img {
-  transform: scale(0.5);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -75px 0 0 -125px;
 }
 
 /* Hexagon Shapes - The Heart of the Layout */
@@ -62,16 +43,16 @@ body {
   border-radius: 2px;
 }
 
-.hex_elem_rounded > span,
-.hex_elem_rounded > div,
-.hex_elem_rounded > i,
-.hex_elem_rounded > img {
+.hex_elem_rounded>span,
+.hex_elem_rounded>div,
+.hex_elem_rounded>i,
+.hex_elem_rounded>img {
   display: block;
   transform: rotate(30deg);
 }
 
 /* Main Menu Hexagons */
-.main_menu > li > a > .hex_elem_rounded {
+.main_menu>li>a>.hex_elem_rounded {
   position: relative;
   display: block;
   width: 19px;
@@ -88,13 +69,13 @@ body {
   transition: border-color 0.4s ease;
 }
 
-.main_menu > li:hover > a > .hex_elem_rounded,
-.main_menu > .current_item > a > .hex_elem_rounded {
+.main_menu>li:hover>a>.hex_elem_rounded,
+.main_menu>.current_item>a>.hex_elem_rounded {
   border-top-color: #fff;
   border-bottom-color: #fff;
 }
 
-.main_menu > li > a > .hex_elem_rounded > i {
+.main_menu>li>a>.hex_elem_rounded>i {
   display: inline-block;
   line-height: 30px;
   width: 19px;
@@ -104,8 +85,8 @@ body {
   transition: color 0.4s ease;
 }
 
-.main_menu > li:hover > a > .hex_elem_rounded > i,
-.main_menu > .current_item > a > .hex_elem_rounded > i {
+.main_menu>li:hover>a>.hex_elem_rounded>i,
+.main_menu>.current_item>a>.hex_elem_rounded>i {
   color: #fff;
 }
 
@@ -117,7 +98,7 @@ body {
   border-radius: 8px;
 }
 
-.hex_elem_rounded_type_2 > .h_el_01 {
+.hex_elem_rounded_type_2>.h_el_01 {
   width: inherit;
   height: inherit;
   border: inherit;
@@ -132,7 +113,7 @@ body {
   transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
-.hex_elem_rounded_type_2 > .h_el_02 {
+.hex_elem_rounded_type_2>.h_el_02 {
   width: inherit;
   height: inherit;
   border: inherit;
@@ -192,7 +173,7 @@ body {
 }
 
 /* First Letter Hexagon Dropcap */
-.first_letter > .hex_elem_rounded {
+.first_letter>.hex_elem_rounded {
   float: left;
   width: 40px;
   height: 55px;
@@ -202,7 +183,7 @@ body {
   background: #0d8bc5;
 }
 
-.first_letter > .hex_elem_rounded > span {
+.first_letter>.hex_elem_rounded>span {
   position: absolute;
   color: #fff;
   font-weight: 700;
@@ -236,23 +217,23 @@ body {
   text-transform: uppercase;
 }
 
-.categories_list > li {
+.categories_list>li {
   border-bottom: 1px solid #e5e5e5;
 }
 
-.categories_list > li > a {
+.categories_list>li>a {
   display: block;
   padding: 10px 0;
   color: #444;
   transition: all 0.3s ease;
 }
 
-.categories_list > li > a:hover {
+.categories_list>li>a:hover {
   color: #0d8bc5;
   padding-left: 10px;
 }
 
-.categories_list > li > a > span {
+.categories_list>li>a>span {
   margin-right: 10px;
 }
 
@@ -293,7 +274,7 @@ textarea:focus {
 .tp-bullets .bullet {
   width: 12px;
   height: 12px;
-  background: rgba(255,255,255,0.4);
+  background: rgba(255, 255, 255, 0.4);
   border-radius: 50%;
   cursor: pointer;
   transition: background 0.3s;
@@ -316,33 +297,50 @@ textarea:focus {
   right: 0 !important;
   opacity: 1 !important;
 }
+
 .slide-to-right {
   left: 0 !important;
   opacity: 1 !important;
 }
-.fade-to-bottom, .fade-to-top, .fast-fade-to-top {
+
+.fade-to-bottom,
+.fade-to-top,
+.fast-fade-to-top {
   top: 0 !important;
   opacity: 1 !important;
   visibility: visible !important;
 }
-.fade-to-left, .fast-fade-to-left {
+
+.fade-to-left,
+.fast-fade-to-left {
   left: 0 !important;
   opacity: 1 !important;
   visibility: visible !important;
 }
-.fade-to-right, .fast-fade-to-right {
+
+.fade-to-right,
+.fast-fade-to-right {
   right: 0 !important;
   opacity: 1 !important;
   visibility: visible !important;
 }
+
 .fade {
   opacity: 1 !important;
   visibility: visible !important;
 }
-.skew-to-left, .center-to-left, .center-to-right, 
-.center-to-left-second, .center-to-right-second, 
-.center-to-ls1, .center-to-ls2, .center-to-ls3, .center-to-ls4, 
-.size-jump, .second-size-jump {
+
+.skew-to-left,
+.center-to-left,
+.center-to-right,
+.center-to-left-second,
+.center-to-right-second,
+.center-to-ls1,
+.center-to-ls2,
+.center-to-ls3,
+.center-to-ls4,
+.size-jump,
+.second-size-jump {
   opacity: 1 !important;
   visibility: visible !important;
   transform: none !important;
@@ -362,13 +360,14 @@ textarea:focus {
   list-style: none !important;
 }
 
-.recent_projects > li {
+.recent_projects>li {
   flex: 0 0 calc(16.66% - 15px) !important;
   max-width: 190px !important;
   box-sizing: border-box !important;
 }
 
-.our_clients_first, .our_clients {
+.our_clients_first,
+.our_clients {
   display: flex !important;
   flex-direction: row !important;
   flex-wrap: nowrap !important;
@@ -387,35 +386,49 @@ textarea:focus {
   animation: scrollClientsRight 15s linear infinite;
 }
 
-.our_clients_first:hover, .our_clients:hover {
+.our_clients_first:hover,
+.our_clients:hover {
   animation-play-state: paused;
 }
 
 @keyframes scrollClientsLeft {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 @keyframes scrollClientsRight {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
-.our_clients_first > li, .our_clients > li {
+.our_clients_first>li,
+.our_clients>li {
   float: none !important;
   padding: 0 25px !important;
   margin: 0 !important;
   flex: 0 0 auto !important;
 }
 
-.our_clients_first img, .our_clients img {
+.our_clients_first img,
+.our_clients img {
   max-width: 110px !important;
   height: auto !important;
   opacity: 0.7;
   transition: opacity 0.3s;
 }
 
-.our_clients_first img:hover, .our_clients img:hover {
+.our_clients_first img:hover,
+.our_clients img:hover {
   opacity: 1;
 }
 
@@ -425,21 +438,21 @@ textarea:focus {
 
 
 @media (max-width: 1024px) {
-  .recent_projects > li {
+  .recent_projects>li {
     flex: 0 0 calc(33.33% - 15px) !important;
     max-width: calc(33.33% - 15px) !important;
   }
 }
 
 @media (max-width: 767px) {
-  .recent_projects > li {
+  .recent_projects>li {
     flex: 0 0 calc(50% - 15px) !important;
     max-width: calc(50% - 15px) !important;
   }
 }
 
 @media (max-width: 480px) {
-  .recent_projects > li {
+  .recent_projects>li {
     flex: 0 0 100% !important;
     max-width: 100% !important;
   }
@@ -447,7 +460,7 @@ textarea:focus {
 
 /* Contact page hexagon background overrides to make text readable */
 .hex_elem_rounded_type_2.contact_info,
-.hex_elem_rounded_type_2.contact_info > span {
+.hex_elem_rounded_type_2.contact_info>span {
   background: transparent !important;
 }
 
@@ -455,30 +468,94 @@ textarea:focus {
   color: #747474 !important;
 }
 
-/* Custom Menu Color Overrides to match new Forest Green branding */
+/* Custom Menu Item States to match branding (Normal, Hover, and Active) */
+.main_menu > li > a {
+  background-color: #ffffff !important;
+  color: #4b5563 !important; /* Medium/dark gray */
+  transition: background-color 250ms ease-in-out, color 250ms ease-in-out !important;
+}
+
+/* Hexagon outline in normal state (subtle gray) */
+.main_menu > li > a > .hex_elem_rounded {
+  border-top-color: #d1d5db !important; /* subtle gray */
+  border-bottom-color: #d1d5db !important;
+  background-color: transparent !important;
+  transition: border-color 250ms ease-in-out, background-color 250ms ease-in-out !important;
+}
+
+/* Ensure pseudo-elements inherit borders */
+.main_menu > li > a > .hex_elem_rounded:before,
+.main_menu > li > a > .hex_elem_rounded:after {
+  border-top-color: inherit !important;
+  border-bottom-color: inherit !important;
+  transition: border-color 250ms ease-in-out !important;
+}
+
+/* Icon in normal state (brand blue) */
+.main_menu > li > a > .hex_elem_rounded > i {
+  color: #0d8bc5 !important;
+  transition: color 250ms ease-in-out !important;
+}
+
+/* Hover and Active states (transitioned together) */
 .main_menu > li:hover > a,
+.main_menu > li.current_item > a,
 .main_menu > .current_item > a {
-  color: var(--color-primary) !important;
+  background-color: #0d8bc5 !important; /* Brand blue background */
+  color: #ffffff !important; /* White label */
 }
 
+/* Hexagon outline becomes white on hover/active to remain clearly visible */
 .main_menu > li:hover > a > .hex_elem_rounded,
+.main_menu > li.current_item > a > .hex_elem_rounded,
 .main_menu > .current_item > a > .hex_elem_rounded {
-  border-top-color: var(--color-primary) !important;
-  border-bottom-color: var(--color-primary) !important;
+  border-top-color: #ffffff !important;
+  border-bottom-color: #ffffff !important;
+  background-color: transparent !important; /* Keep background transparent to see menu background */
 }
 
+/* Icon becomes white on hover/active */
 .main_menu > li:hover > a > .hex_elem_rounded > i,
+.main_menu > li.current_item > a > .hex_elem_rounded > i,
 .main_menu > .current_item > a > .hex_elem_rounded > i {
-  color: var(--color-primary) !important;
+  color: #ffffff !important;
 }
 
 /* Submenu Hover Style Overrides */
-.main_menu > li > ul > li > a:hover {
+.main_menu>li>ul>li>a:hover {
   background-color: var(--color-primary) !important;
   color: #fff !important;
 }
 
+/* Logo Sizing Constraints */
+.logo img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
 
+@media (min-width: 768px) {
+  .logo img {
+    height: 60px;
+  }
+}
 
+.menu_button .r_logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
 
+/* Stacking Context & Navbar Opaque Background Fixes */
+.header {
+  z-index: 1000 !important;
+  background-color: #ffffff !important;
+}
 
+.header.header-small {
+  z-index: 1000 !important;
+  background-color: #ffffff !important;
+  background: #ffffff !important;
+}

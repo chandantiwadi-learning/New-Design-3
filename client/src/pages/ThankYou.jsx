@@ -27,7 +27,7 @@ const ThankYou = () => {
             <p className="text-sm leading-6 text-themeGrey max-w-[500px]">
               We have received your message. Our representative will contact you shortly to process your inquiry and provide matching options.
             </p>
-            <Link to="/" className="bg-[#0d8bc5] hover:bg-themeTeal text-white font-bold text-xs uppercase px-6 py-3 rounded transition-all duration-300">
+            <Link to="/" className="bg-[#0d8bc5] hover:bg-primary-dark text-white font-bold text-xs uppercase px-6 py-3 rounded transition-all duration-300">
               Return Home
             </Link>
           </div>

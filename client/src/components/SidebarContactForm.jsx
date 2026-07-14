@@ -191,7 +191,7 @@ const SidebarContactForm = () => {
           </div>
           <button
             type="submit"
-            className="bg-themeBlue text-white hover:bg-themeTeal transition-all duration-300 font-bold uppercase py-3 w-full text-center cursor-pointer text-[13px]"
+            className="bg-themeBlue text-white hover:bg-themeBlueDark transition-all duration-300 font-bold uppercase py-3 w-full text-center cursor-pointer text-[13px]"
           >
             Send Message
           </button>

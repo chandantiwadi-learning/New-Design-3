@@ -8,10 +8,11 @@ export default {
     extend: {
       colors: {
         themeBlue: "#0d8bc5",
-        themeTeal: "#3eb5b1",
-        themeOrange: "#ef5f3b",
-        themeGrey: "#747474",
-        themeDarkGrey: "#444444",
+        themeBlueDark: "#086a98",
+        themeBlueLight: "#eaf6fc",
+        themeNavy: "#0b2d42",
+        themeGrey: "#64748b",
+        themeDarkGrey: "#1f2937",
       },
       fontFamily: {
         sans: ["Raleway", "sans-serif"],
@@ -20,3 +21,4 @@ export default {
   },
   plugins: [],
 }
+
