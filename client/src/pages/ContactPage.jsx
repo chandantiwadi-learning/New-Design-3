@@ -143,22 +143,28 @@ const ContactPage = () => {
               
               {/* Start contact info hexagon left */}
               <div className="hex_elem_rounded_type_2 contact_info f_left">
-                <div>
-                  <div className="hex_elem_rounded_type_2 c_icon_m">
+                <a 
+                  href="https://maps.app.goo.gl/ZrMkbSf1CoCujsF67" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="group block cursor-pointer"
+                  style={{ textDecoration: 'none' }}
+                >
+                  <div className="hex_elem_rounded_type_2 c_icon_m transition-transform duration-300 group-hover:scale-105">
                     <span className="h_el_01"></span>
                     <span className="h_el_02"></span>
                     <span className="ic"></span>
                   </div>
-                  <h5>Main Branch</h5>
-                  <p>
+                  <h5 className="transition-colors duration-200">Main Branch</h5>
+                  <p className="transition-colors duration-200 leading-relaxed">
                     107/111, Matka Building, <br />
-                    Office No. 4, Gr. Floor,<br />
+                    Office No. 4, Ground Floor,<br />
                     Dr. M. G. Mahimtura Marg,<br />
                     3rd Kumbharwada, <br />
-                    Mumbai – 400 004 <br />
+                    Mumbai – 400 004,<br />
                     Maharashtra, India.
                   </p>
-                </div>
+                </a>
                 <span className="h_el_01"></span>
                 <span className="h_el_02"></span>
               </div>

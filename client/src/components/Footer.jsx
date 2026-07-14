@@ -56,9 +56,18 @@ const Footer = () => {
               Contact Info
             </h5>
             <ul className="space-y-3 text-xs text-[#4B5563]">
-              <li className="flex items-start gap-2">
-                <i className="icon-map-marker text-[#0D8BC5] text-sm mt-0.5"></i>
-                <span className="leading-relaxed">107/111, Matka Building, Office No. 4, Gr. Floor, Dr. M. G. Mahimtura Marg, 3rd Kumbharwada, Mumbai – 400 004 Maharashtra, India.</span>
+              <li className="flex items-start">
+                <a 
+                  href="https://maps.app.goo.gl/ZrMkbSf1CoCujsF67" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-start gap-2 group cursor-pointer"
+                >
+                  <i className="icon-map-marker text-[#0D8BC5] text-sm mt-0.5 transition-colors duration-200"></i>
+                  <span className="leading-relaxed text-[#4B5563] group-hover:text-[#0D8BC5] transition-colors duration-200">
+                    107/111, Matka Building, Office No. 4, Ground Floor, Dr. M. G. Mahimtura Marg, 3rd Kumbharwada, Mumbai – 400 004, Maharashtra, India
+                  </span>
+                </a>
               </li>
               <li className="flex items-center gap-2">
                 <i className="icon-phone text-[#0D8BC5]"></i>
@@ -81,7 +90,7 @@ const Footer = () => {
         {/* Location Map */}
         <div className="w-full rounded-xl overflow-hidden shadow-2xl border border-gray-200 mb-12">
           <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15093.452223730259!2d72.827307!3d18.959567!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf0a4490654a6349e!2sECO+STEEL+ENGINEERING!5e0!3m2!1sen!2sin!4v1507702132063" 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.802188164344!2d72.8508902148972!3d18.989516087130456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce160773bc7d%3A0x3c8bbc1bad985f97!2sHEX+INDIA!5e0!3m2!1sen!2sin!4v1700000000000" 
             width="100%" 
             height="320" 
             style={{ border: 0 }} 

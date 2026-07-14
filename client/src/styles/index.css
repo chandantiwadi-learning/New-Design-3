@@ -465,7 +465,17 @@ textarea:focus {
 }
 
 .hex_elem_rounded_type_2.contact_info p {
-  color: #747474 !important;
+  color: #747474;
+}
+
+.hex_elem_rounded_type_2.contact_info a {
+  text-decoration: none !important;
+}
+
+.hex_elem_rounded_type_2.contact_info a:hover p,
+.hex_elem_rounded_type_2.contact_info a:hover h5 {
+  color: #0D8BC5 !important;
+  transition: color 200ms ease !important;
 }
 
 /* Custom Menu Item States to match branding (Normal, Hover, and Active) */
@@ -527,17 +537,52 @@ textarea:focus {
   color: #fff !important;
 }
 
-/* Logo Sizing Constraints */
-.logo img {
-  height: 48px;
-  width: auto;
-  object-fit: contain;
-  display: block;
+/* Hex India Logo Sizing & Centering Constraints (constant size/position on scroll) */
+.logo,
+.header.header-small .logo {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  transform: scale(1) !important;
+  -webkit-transform: scale(1) !important;
+  transition: height 0.4s ease !important;
+  -webkit-transition: height 0.4s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  height: 96px !important; /* Vertically centering the container inside default header */
 }
 
-@media (min-width: 768px) {
+.header.header-small .logo {
+  height: 88px !important; /* Vertically centering the container inside scrolled header */
+}
+
+.logo img {
+  width: 260px !important; /* Modern desktop logo width */
+  height: auto !important;
+  max-height: 52px !important; /* Safely fit within both header states without touching edges */
+  object-fit: contain !important;
+  display: block !important;
+  transform: none !important;
+  -webkit-transform: none !important;
+  transition: none !important;
+}
+
+@media (max-width: 1024px) {
+  .logo {
+    height: 80px !important;
+  }
+  .header.header-small .logo {
+    height: 80px !important;
+  }
   .logo img {
-    height: 60px;
+    width: 210px !important;
+    max-height: 42px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .header .logo,
+  .header.header-small .logo {
+    display: none !important; /* Hidden on mobile where mobile menu r_logo renders */
   }
 }
 
