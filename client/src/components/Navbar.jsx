@@ -10,7 +10,7 @@ const Navbar = () => {
   // Scroll listener to toggle header-small class behavior exactly like the original waypoints
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
+      if (window.scrollY > 100) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -57,17 +57,17 @@ const Navbar = () => {
         {/* End logo */}
 
         {/* Start main menu toggle button */}
-        <button 
-          className="menu_button clearfix" 
+        <button
+          className="menu_button clearfix"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <img className="r_logo" src="/images/hex-india-logo.png" alt="Logo" />
+          <img className="r_logo" src="\images\Hex India Logo Final.png" alt="Logo" />
           <img className="r_button" src="/images/r_menu_button.png" alt="Menu button" />
         </button>
 
         {/* Start main menu */}
-        <ul 
-          className="f_right main_menu" 
+        <ul
+          className="f_right main_menu"
           style={{ display: isMobileMenuOpen ? 'block' : '' }}
         >
           <li className={isActive('/') && location.pathname === '/' ? 'current_item' : ''}>
@@ -76,7 +76,7 @@ const Navbar = () => {
               Home
             </Link>
           </li>
-          
+
           <li className={`has-submenu ${isActive('/about-us') || isActive('/factory-tour') ? 'current_item' : ''}`}>
             <Link to="/about-us" onClick={(e) => toggleMobileSubmenu('about', e)}>
               <span className="hex_elem_rounded"><i className="icon-cog"></i></span>
@@ -103,15 +103,14 @@ const Navbar = () => {
             </ul>
           </li>
 
-          <li className={`has-submenu ${
-            location.pathname === '/material' ||
-            isActive('/stainless-steel') || isActive('/carbon-steel') || isActive('/alloy-steel') || 
-            isActive('/duplex-steel') || isActive('/super-duplex-steel') || isActive('/nickel-alloy') || 
-            isActive('/monel') || isActive('/inconel') || isActive('/incoloy') || isActive('/hastelloy') || 
-            isActive('/copper-nickel') || isActive('/titanium') || isActive('/silicon-bronze') || 
-            isActive('/phosphor-bronze') || isActive('/aluminium-bronze') || isActive('/brass') || 
+          <li className={`has-submenu ${location.pathname === '/material' ||
+            isActive('/stainless-steel') || isActive('/carbon-steel') || isActive('/alloy-steel') ||
+            isActive('/duplex-steel') || isActive('/super-duplex-steel') || isActive('/nickel-alloy') ||
+            isActive('/monel') || isActive('/inconel') || isActive('/incoloy') || isActive('/hastelloy') ||
+            isActive('/copper-nickel') || isActive('/titanium') || isActive('/silicon-bronze') ||
+            isActive('/phosphor-bronze') || isActive('/aluminium-bronze') || isActive('/brass') ||
             isActive('/tantalum') || isActive('/zirconium') ? 'current_item' : ''
-          }`}>
+            }`}>
             <Link to="/material" onClick={(e) => toggleMobileSubmenu('materials', e)}>
               <span className="hex_elem_rounded"><i className="icon-picture"></i></span>
               Material
@@ -139,12 +138,11 @@ const Navbar = () => {
             </ul>
           </li>
 
-          <li className={`has-submenu ${
-            location.pathname === '/standard' ||
-            isActive('/asme-standards') || isActive('/din-standards') || isActive('/sae-standards') || 
-            isActive('/iso-standards') || isActive('/bs-standards') || isActive('/bis-standards') || 
+          <li className={`has-submenu ${location.pathname === '/standard' ||
+            isActive('/asme-standards') || isActive('/din-standards') || isActive('/sae-standards') ||
+            isActive('/iso-standards') || isActive('/bs-standards') || isActive('/bis-standards') ||
             isActive('/uni-standards') ? 'current_item' : ''
-          }`}>
+            }`}>
             <Link to="/standard" onClick={(e) => toggleMobileSubmenu('standards', e)}>
               <span className="hex_elem_rounded"><i className="icon-flag"></i></span>
               Standard

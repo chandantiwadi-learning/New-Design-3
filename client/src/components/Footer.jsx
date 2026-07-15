@@ -35,7 +35,7 @@ const Footer = () => {
           {/* Social Icons & Logo */}
           <div className="flex flex-col items-center justify-center space-y-6">
             <div className="p-4 bg-gray-50 border border-gray-100 rounded-lg shadow-sm">
-              <img src="/images/logo1-2.png" alt="Hex India Fasteners" className="h-10 object-contain" />
+              <img src="\images\Hex India Logo Final.png" alt="Hex India Fasteners" className="h-10 object-contain" />
             </div>
             <div className="flex space-x-4">
               <a href="#" onClick={(e) => e.preventDefault()} aria-label="Twitter" className="w-10 h-10 rounded-full bg-gray-100 hover:bg-[#0D8BC5] text-[#4B5563] hover:text-white flex items-center justify-center transition-colors shadow-sm">
@@ -57,10 +57,10 @@ const Footer = () => {
             </h5>
             <ul className="space-y-3 text-xs text-[#4B5563]">
               <li className="flex items-start">
-                <a 
-                  href="https://maps.app.goo.gl/ZrMkbSf1CoCujsF67" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="https://maps.app.goo.gl/ZrMkbSf1CoCujsF67"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex items-start gap-2 group cursor-pointer"
                 >
                   <i className="icon-map-marker text-[#0D8BC5] text-sm mt-0.5 transition-colors duration-200"></i>
@@ -89,12 +89,12 @@ const Footer = () => {
 
         {/* Location Map */}
         <div className="w-full rounded-xl overflow-hidden shadow-2xl border border-gray-200 mb-12">
-          <iframe 
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.802188164344!2d72.8508902148972!3d18.989516087130456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce160773bc7d%3A0x3c8bbc1bad985f97!2sHEX+INDIA!5e0!3m2!1sen!2sin!4v1700000000000" 
-            width="100%" 
-            height="320" 
-            style={{ border: 0 }} 
-            allowFullScreen 
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.802188164344!2d72.8508902148972!3d18.989516087130456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7ce160773bc7d%3A0x3c8bbc1bad985f97!2sHEX+INDIA!5e0!3m2!1sen!2sin!4v1700000000000"
+            width="100%"
+            height="320"
+            style={{ border: 0 }}
+            allowFullScreen
             title="Location Map"
           ></iframe>
         </div>
@@ -110,8 +110,8 @@ const Footer = () => {
 
       {/* Scroll to Top */}
       {showScrollTop && (
-        <button 
-          onClick={scrollToTop} 
+        <button
+          onClick={scrollToTop}
           className="fixed bottom-6 right-6 w-11 h-11 bg-themeBlue text-white hover:bg-[#0878AA] rounded-full flex items-center justify-center shadow-[0_4px_16px_rgba(13,139,197,0.30)] hover:shadow-[0_6px_20px_rgba(13,139,197,0.40)] transition-all duration-200 transform hover:-translate-y-[2px] z-50 cursor-pointer border-none outline-none"
           title="Scroll to Top"
         >

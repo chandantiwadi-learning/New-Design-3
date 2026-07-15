@@ -479,55 +479,60 @@ textarea:focus {
 }
 
 /* Custom Menu Item States to match branding (Normal, Hover, and Active) */
-.main_menu > li > a {
+.main_menu>li>a {
   background-color: #ffffff !important;
-  color: #4b5563 !important; /* Medium/dark gray */
+  color: #4b5563 !important;
+  /* Medium/dark gray */
   transition: background-color 250ms ease-in-out, color 250ms ease-in-out !important;
 }
 
 /* Hexagon outline in normal state (subtle gray) */
-.main_menu > li > a > .hex_elem_rounded {
-  border-top-color: #d1d5db !important; /* subtle gray */
+.main_menu>li>a>.hex_elem_rounded {
+  border-top-color: #d1d5db !important;
+  /* subtle gray */
   border-bottom-color: #d1d5db !important;
   background-color: transparent !important;
   transition: border-color 250ms ease-in-out, background-color 250ms ease-in-out !important;
 }
 
 /* Ensure pseudo-elements inherit borders */
-.main_menu > li > a > .hex_elem_rounded:before,
-.main_menu > li > a > .hex_elem_rounded:after {
+.main_menu>li>a>.hex_elem_rounded:before,
+.main_menu>li>a>.hex_elem_rounded:after {
   border-top-color: inherit !important;
   border-bottom-color: inherit !important;
   transition: border-color 250ms ease-in-out !important;
 }
 
 /* Icon in normal state (brand blue) */
-.main_menu > li > a > .hex_elem_rounded > i {
+.main_menu>li>a>.hex_elem_rounded>i {
   color: #0d8bc5 !important;
   transition: color 250ms ease-in-out !important;
 }
 
 /* Hover and Active states (transitioned together) */
-.main_menu > li:hover > a,
-.main_menu > li.current_item > a,
-.main_menu > .current_item > a {
-  background-color: #0d8bc5 !important; /* Brand blue background */
-  color: #ffffff !important; /* White label */
+.main_menu>li:hover>a,
+.main_menu>li.current_item>a,
+.main_menu>.current_item>a {
+  background-color: #0d8bc5 !important;
+  /* Brand blue background */
+  color: #ffffff !important;
+  /* White label */
 }
 
 /* Hexagon outline becomes white on hover/active to remain clearly visible */
-.main_menu > li:hover > a > .hex_elem_rounded,
-.main_menu > li.current_item > a > .hex_elem_rounded,
-.main_menu > .current_item > a > .hex_elem_rounded {
+.main_menu>li:hover>a>.hex_elem_rounded,
+.main_menu>li.current_item>a>.hex_elem_rounded,
+.main_menu>.current_item>a>.hex_elem_rounded {
   border-top-color: #ffffff !important;
   border-bottom-color: #ffffff !important;
-  background-color: transparent !important; /* Keep background transparent to see menu background */
+  background-color: transparent !important;
+  /* Keep background transparent to see menu background */
 }
 
 /* Icon becomes white on hover/active */
-.main_menu > li:hover > a > .hex_elem_rounded > i,
-.main_menu > li.current_item > a > .hex_elem_rounded > i,
-.main_menu > .current_item > a > .hex_elem_rounded > i {
+.main_menu>li:hover>a>.hex_elem_rounded>i,
+.main_menu>li.current_item>a>.hex_elem_rounded>i,
+.main_menu>.current_item>a>.hex_elem_rounded>i {
   color: #ffffff !important;
 }
 
@@ -548,17 +553,20 @@ textarea:focus {
   -webkit-transition: height 0.4s ease !important;
   display: flex !important;
   align-items: center !important;
-  height: 96px !important; /* Vertically centering the container inside default header */
+  height: 96px !important;
+  /* Reduced from 96px */
 }
 
 .header.header-small .logo {
-  height: 88px !important; /* Vertically centering the container inside scrolled header */
+  height: 100px !important;
 }
 
 .logo img {
-  width: 260px !important; /* Modern desktop logo width */
+  width: 350px !important;
+  /* Modern desktop logo width */
   height: auto !important;
-  max-height: 52px !important; /* Safely fit within both header states without touching edges */
+  max-height: 80px !important;
+  /* Safely fit within both header states without touching edges */
   object-fit: contain !important;
   display: block !important;
   transform: none !important;
@@ -568,11 +576,13 @@ textarea:focus {
 
 @media (max-width: 1024px) {
   .logo {
-    height: 80px !important;
+    height: 90px !important;
   }
+
   .header.header-small .logo {
-    height: 80px !important;
+    height: 90px !important;
   }
+
   .logo img {
     width: 210px !important;
     max-height: 42px !important;
@@ -580,9 +590,11 @@ textarea:focus {
 }
 
 @media (max-width: 767px) {
+
   .header .logo,
   .header.header-small .logo {
-    display: none !important; /* Hidden on mobile where mobile menu r_logo renders */
+    display: none !important;
+    /* Hidden on mobile where mobile menu r_logo renders */
   }
 }
 
@@ -597,10 +609,20 @@ textarea:focus {
 .header {
   z-index: 1000 !important;
   background-color: #ffffff !important;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .header.header-small {
   z-index: 1000 !important;
   background-color: #ffffff !important;
   background: #ffffff !important;
+  position: fixed !important;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }

@@ -50,20 +50,16 @@ const Home = () => {
         {slides.map((slide, idx) => (
           <div
             key={idx}
-            className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 transform ${
-              currentSlide === idx ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'
-            }`}
+            className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 transform ${currentSlide === idx ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'
+              }`}
             style={{ backgroundImage: `url('${slide.img}')` }}
           >
             {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/85 to-black/60"></div>
-            
+
             {/* Slider Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center relative z-20">
               <div className="max-w-3xl space-y-6 animate-fadeIn">
-                <span className="inline-block px-3 py-1 bg-accent text-brand-dark font-extrabold text-[10px] uppercase tracking-widest rounded-sm shadow-sm">
-                  HEX INDIA FASTENERS
-                </span>
                 <h1 className="text-3xl md:text-5xl font-extrabold text-white leading-tight tracking-tight uppercase">
                   {slide.title}
                 </h1>
@@ -93,9 +89,8 @@ const Home = () => {
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                currentSlide === idx ? 'bg-accent w-8' : 'bg-white/40 hover:bg-white/80'
-              }`}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === idx ? 'bg-accent w-8' : 'bg-white/40 hover:bg-white/80'
+                }`}
               aria-label={`Slide ${idx + 1}`}
             ></button>
           ))}
@@ -105,7 +100,7 @@ const Home = () => {
       {/* Product Categories Grid (GEBO card style redesign) */}
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-2xl font-extrabold uppercase tracking-wider text-primary">
+          <h2 className="text-2xl font-extrabold uppercase tracking-wider text-[#0D8BC5]">
             Our Fastener Catalog
           </h2>
           <div className="h-1 w-16 bg-accent mx-auto mt-2 rounded-full"></div>
@@ -128,7 +123,7 @@ const Home = () => {
               ></div>
               {/* Gradient Overlay for Text Readability (Default shadow) */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10 pointer-events-none"></div>
-              
+
               {/* Brand Blue Hover Overlay */}
               <div className="absolute inset-0 bg-[#0D8BC5]/28 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none"></div>
 
@@ -148,56 +143,80 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Vision Card */}
-            <div className="p-8 bg-bg-light rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="w-10 h-10 bg-white border border-[#eaf6fc] text-[#0D8BC5] rounded-lg flex items-center justify-center shadow-sm transition-all duration-300 group-hover:bg-[#0D8BC5] group-hover:text-white group-hover:shadow-md">
-                  <i className="icon-eye-open text-lg transition-colors duration-300"></i>
-                </div>
-                <h3 className="text-sm font-bold uppercase tracking-wider text-[#0D8BC5]">Vision</h3>
+            <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(13,139,197,0.25)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group z-10 flex flex-col h-full">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#0D8BC5]/10 to-transparent rounded-bl-[100px] -z-10 group-hover:scale-125 transition-transform duration-700"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#0D8BC5] to-[#38aee4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+              
+              <div className="w-14 h-14 mb-6 bg-gradient-to-br from-[#eaf6fc] to-white border border-[#0D8BC5]/20 text-[#0D8BC5] rounded-xl flex items-center justify-center shadow-inner transition-all duration-500 group-hover:bg-[#0D8BC5] group-hover:text-white group-hover:rotate-6 group-hover:scale-110">
+                <i className="icon-eye-open text-2xl"></i>
               </div>
-              <p className="text-xs leading-relaxed text-gray-600">
+              
+              <h3 className="text-lg font-extrabold tracking-wide text-gray-800 group-hover:text-[#0D8BC5] transition-colors duration-300 mb-3">VISION</h3>
+              
+              <p className="text-sm leading-relaxed text-gray-500 flex-grow">
                 Uncompromising commitment to quality and engineering precision. We ensure every fastener complies with rigorous global certification standards.
               </p>
-              <div className="mt-6 flex items-baseline space-x-2 text-[#0D8BC5]">
-                <span className="text-2xl font-extrabold">12+</span>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Years Experience</span>
+              
+              <div className="mt-8 pt-6 border-t border-gray-100 flex items-end justify-between">
+                <div>
+                  <span className="block text-4xl font-black text-[#0D8BC5] leading-none mb-1">12+</span>
+                  <span className="block text-[10px] font-bold uppercase tracking-widest text-gray-400">Years Experience</span>
+                </div>
+                <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-[#eaf6fc] transition-colors duration-300">
+                  <i className="icon-angle-right text-[#0D8BC5]"></i>
+                </div>
               </div>
             </div>
 
             {/* Mission Card */}
-            <div className="p-8 bg-bg-light rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="w-10 h-10 bg-white border border-[#eaf6fc] text-[#0D8BC5] rounded-lg flex items-center justify-center shadow-sm transition-all duration-300 group-hover:bg-[#0D8BC5] group-hover:text-white group-hover:shadow-md">
-                  <i className="icon-fighter-jet text-lg transition-colors duration-300"></i>
-                </div>
-                <h3 className="text-sm font-bold uppercase tracking-wider text-[#0D8BC5]">Mission</h3>
+            <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(13,139,197,0.25)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group z-10 flex flex-col h-full">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#0D8BC5]/10 to-transparent rounded-bl-[100px] -z-10 group-hover:scale-125 transition-transform duration-700"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#0D8BC5] to-[#38aee4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+              
+              <div className="w-14 h-14 mb-6 bg-gradient-to-br from-[#eaf6fc] to-white border border-[#0D8BC5]/20 text-[#0D8BC5] rounded-xl flex items-center justify-center shadow-inner transition-all duration-500 group-hover:bg-[#0D8BC5] group-hover:text-white group-hover:-rotate-6 group-hover:scale-110">
+                <i className="icon-fighter-jet text-2xl"></i>
               </div>
-              <p className="text-xs leading-relaxed text-gray-600">
+              
+              <h3 className="text-lg font-extrabold tracking-wide text-gray-800 group-hover:text-[#0D8BC5] transition-colors duration-300 mb-3">MISSION</h3>
+              
+              <p className="text-sm leading-relaxed text-gray-500 flex-grow">
                 Fostering long-term customer partnerships through technical expertise, exceptional client services, and flexible, customizable production runs.
               </p>
-              <div className="mt-6 flex items-baseline space-x-2 text-[#0D8BC5]">
-                <span className="text-2xl font-extrabold">250+</span>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Happy Clients</span>
+              
+              <div className="mt-8 pt-6 border-t border-gray-100 flex items-end justify-between">
+                <div>
+                  <span className="block text-4xl font-black text-[#0D8BC5] leading-none mb-1">250+</span>
+                  <span className="block text-[10px] font-bold uppercase tracking-widest text-gray-400">Happy Clients</span>
+                </div>
+                <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-[#eaf6fc] transition-colors duration-300">
+                  <i className="icon-angle-right text-[#0D8BC5]"></i>
+                </div>
               </div>
             </div>
 
             {/* Quality Card */}
-            <div className="p-8 bg-bg-light rounded-lg border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full -z-10 group-hover:scale-110 transition-transform"></div>
-              <div className="flex items-center space-x-4 mb-4">
-                <div className="w-10 h-10 bg-white border border-[#eaf6fc] text-[#0D8BC5] rounded-lg flex items-center justify-center shadow-sm transition-all duration-300 group-hover:bg-[#0D8BC5] group-hover:text-white group-hover:shadow-md">
-                  <i className="icon-ok text-lg transition-colors duration-300"></i>
-                </div>
-                <h3 className="text-sm font-bold uppercase tracking-wider text-[#0D8BC5]">High Quality</h3>
+            <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(13,139,197,0.25)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group z-10 flex flex-col h-full">
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#0D8BC5]/10 to-transparent rounded-bl-[100px] -z-10 group-hover:scale-125 transition-transform duration-700"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#0D8BC5] to-[#38aee4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+              
+              <div className="w-14 h-14 mb-6 bg-gradient-to-br from-[#eaf6fc] to-white border border-[#0D8BC5]/20 text-[#0D8BC5] rounded-xl flex items-center justify-center shadow-inner transition-all duration-500 group-hover:bg-[#0D8BC5] group-hover:text-white group-hover:rotate-6 group-hover:scale-110">
+                <i className="icon-ok text-2xl"></i>
               </div>
-              <p className="text-xs leading-relaxed text-gray-600">
+              
+              <h3 className="text-lg font-extrabold tracking-wide text-gray-800 group-hover:text-[#0D8BC5] transition-colors duration-300 mb-3">HIGH QUALITY</h3>
+              
+              <p className="text-sm leading-relaxed text-gray-500 flex-grow">
                 Continuous optimization of our machining processes to guarantee high tensile strengths, corrosion-resistant platings, and long-term durability.
               </p>
-              <div className="mt-6 flex items-baseline space-x-2 text-[#0D8BC5]">
-                <span className="text-2xl font-extrabold">100%</span>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-gray-500">Inspection Done</span>
+              
+              <div className="mt-8 pt-6 border-t border-gray-100 flex items-end justify-between">
+                <div>
+                  <span className="block text-4xl font-black text-[#0D8BC5] leading-none mb-1">100%</span>
+                  <span className="block text-[10px] font-bold uppercase tracking-widest text-gray-400">Inspection Done</span>
+                </div>
+                <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-[#eaf6fc] transition-colors duration-300">
+                  <i className="icon-angle-right text-[#0D8BC5]"></i>
+                </div>
               </div>
             </div>
           </div>
@@ -237,7 +256,7 @@ const Home = () => {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-2xl font-extrabold uppercase tracking-wider text-primary">
+            <h2 className="text-2xl font-extrabold uppercase tracking-wider text-[#0D8BC5]">
               What Our Customers Say
             </h2>
             <div className="h-1 w-16 bg-accent mx-auto mt-2 rounded-full"></div>
