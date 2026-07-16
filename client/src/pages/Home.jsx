@@ -61,6 +61,7 @@ const Home = () => {
     <div className="home-page select-none bg-[#f9fafd] text-gray-800">
       {/* Slider Banner Section */}
       <div className="relative h-[520px] md:h-[600px] overflow-hidden bg-brand-dark">
+
         {slides.map((slide, idx) => (
           <div
             key={idx}
@@ -68,8 +69,9 @@ const Home = () => {
               }`}
             style={{ backgroundImage: `url('${slide.img}')` }}
           >
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0a192f]/90 to-black/50 z-10"></div>
+            {/* Gradient Overlay & Blur */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent z-10 pointer-events-none"></div>
+            <div className="absolute inset-0 backdrop-blur-md z-10 pointer-events-none" style={{ WebkitMaskImage: 'linear-gradient(to right, black 0%, transparent 50%)', maskImage: 'linear-gradient(to right, black 0%, transparent 50%)' }}></div>
 
             {/* Slider Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center relative z-20">
@@ -102,6 +104,76 @@ const Home = () => {
             </div>
           </div>
         ))}
+
+        {/* Custom HUD Animations */}
+        <style>{`
+          @keyframes floatLogo {
+            0%, 100% { transform: translateY(0) translateZ(0); }
+            50% { transform: translateY(-5px) translateZ(0); }
+          }
+          @keyframes pulseOpacity {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+          }
+          @keyframes spinOuter {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(360deg) translateZ(0); }
+          }
+          @keyframes spinMiddle {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(-360deg) translateZ(0); }
+          }
+          @keyframes spinInner {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(360deg) translateZ(0); }
+          }
+          @keyframes hudEnter {
+            from { opacity: 0; transform: scale(0.9) translateZ(0); }
+            to { opacity: 1; transform: scale(1) translateZ(0); }
+          }
+          .logo-hud-enter {
+            animation: hudEnter 900ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          }
+          .logo-hud-container {
+            animation: floatLogo 5s ease-in-out infinite;
+            will-change: transform;
+            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.5)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.3));
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+          }
+          .logo-hud-container:hover {
+            transform: scale(1.05) translateZ(0) !important;
+            filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.7)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.5));
+          }
+          .ring-outer {
+            animation: spinOuter 24s linear infinite, pulseOpacity 4s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+          }
+          .ring-middle {
+            animation: spinMiddle 16s linear infinite, pulseOpacity 3.5s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+          }
+          .ring-inner {
+            animation: spinInner 30s linear infinite, pulseOpacity 4.5s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+          }
+        `}</style>
+
+        {/* Animated HUD Logo at Top Right */}
+        <div
+          key={`hud-${currentSlide}`}
+          className="absolute top-6 right-6 z-50 w-[150px] h-[150px] md:w-[160px] md:h-[160px] logo-hud-enter"
+        >
+          <div className="relative w-full h-full logo-hud-container">
+            <img src="/images/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer" alt="" />
+            <img src="/images/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle" alt="" />
+            <img src="/images/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner" alt="" />
+            <img src="/images/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[55%] h-[50%] object-contain z-10" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="" />
+          </div>
+        </div>
 
         {/* Slide indicators */}
         <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
