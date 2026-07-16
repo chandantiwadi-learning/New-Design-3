@@ -65,14 +65,14 @@ const Footer = () => {
                 >
                   <i className="icon-map-marker text-[#0D8BC5] text-sm mt-0.5 transition-colors duration-200"></i>
                   <span className="leading-relaxed text-[#4B5563] group-hover:text-[#0D8BC5] transition-colors duration-200">
-                    107/111, Matka Building, Office No. 4, Ground Floor, Dr. M. G. Mahimtura Marg, 3rd Kumbharwada, Mumbai – 400 004, Maharashtra, India
+                    Plot No. G4, Forsberry Rd, East, Sewri, Mumbai, Maharashtra 400015, India
                   </span>
                 </a>
               </li>
               <li className="flex items-center gap-2">
                 <i className="icon-phone text-[#0D8BC5]"></i>
                 <span>
-                  <a href="tel:02266518841" className="text-[#0D8BC5] hover:text-[#0878AA] font-medium transition-colors">+91 22 6651 8841</a> / <a href="tel:02266363268" className="text-[#0D8BC5] hover:text-[#0878AA] font-medium transition-colors">22 6636 3268</a>
+                  <a href="tel:+912235346200" className="text-[#0D8BC5] hover:text-[#0878AA] font-medium transition-colors">+91 22 3534 6200</a>
                 </span>
               </li>
               <li className="flex items-center gap-2">

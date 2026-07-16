@@ -13,22 +13,36 @@ const Home = () => {
 
   const slides = [
     {
-      img: '/images/slider2.jpg',
-      title: 'The Right Supplier for Your Applications',
-      subtitle: 'Providing high quality fasteners to various core global industries.',
-      callout: 'Get a custom quote on your project: sales@hexindiafasteners.com or use our enquiry form.'
+      img: '/images/homePage/1.png',
+      title: 'Engineering Strong Connections',
+      subtitle: 'Premium stainless steel fasteners engineered for strength, precision, and long-term performance across global industries.',
+      callout: 'Trusted manufacturing partner delivering reliable fastening solutions with uncompromising quality and international standards.',
+      btn1: 'GET IN TOUCH',
+      btn2: 'OUR PRODUCTS'
     },
     {
-      img: '/images/slider1.jpg',
-      title: 'Delivering Excellence in Fastening Systems',
-      subtitle: 'Specializing in Stainless Steel, High Tensile, Duplex, & Nickel Alloys.',
-      callout: 'Meeting the extreme demands of quality-critical industrial environments.'
+      img: '/images/homePage/2.png',
+      title: 'Precision in Every Component',
+      subtitle: 'Manufacturing high-quality washers that ensure secure fastening, superior load distribution, and long-lasting durability.',
+      callout: 'Designed for demanding industrial environments where consistency and precision matter most.',
+      btn1: 'GET IN TOUCH',
+      btn2: 'OUR PRODUCTS'
     },
     {
-      img: '/images/slider3.jpg',
-      title: 'Precision Engineered Fastening Solutions',
-      subtitle: 'Customized high-integrity fasteners designed for high pressure applications.',
-      callout: 'Exceptional service, quality assurance, and on-time international delivery.'
+      img: '/images/homePage/3.png',
+      title: 'Built for Industrial Performance',
+      subtitle: 'Reliable industrial nuts engineered for maximum strength, dimensional accuracy, and dependable performance.',
+      callout: 'Supporting engineering excellence with products manufactured to meet international quality standards.',
+      btn1: 'GET IN TOUCH',
+      btn2: 'OUR PRODUCTS'
+    },
+    {
+      img: '/images/homePage/4.png',
+      title: 'Your Trusted Fastener Partner',
+      subtitle: 'Complete fastening solutions for construction, infrastructure, heavy engineering, energy, and manufacturing industries.',
+      callout: 'Delivering premium industrial fasteners with precision manufacturing, reliable quality, and worldwide supply capabilities.',
+      btn1: 'GET IN TOUCH',
+      btn2: 'OUR PRODUCTS'
     }
   ];
 
@@ -50,32 +64,38 @@ const Home = () => {
         {slides.map((slide, idx) => (
           <div
             key={idx}
-            className={`absolute inset-0 bg-cover bg-center transition-all duration-1000 transform ${currentSlide === idx ? 'opacity-100 scale-100 z-10' : 'opacity-0 scale-105 z-0'
+            className={`absolute inset-0 bg-cover bg-center transition-all duration-[900ms] ease-out ${currentSlide === idx ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-12 z-0 pointer-events-none'
               }`}
             style={{ backgroundImage: `url('${slide.img}')` }}
           >
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-primary-dark/85 to-black/60"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0a192f]/90 to-black/50 z-10"></div>
 
             {/* Slider Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center relative z-20">
-              <div className="max-w-3xl space-y-6 animate-fadeIn">
-                <h1 className="text-3xl md:text-5xl font-extrabold text-white leading-tight tracking-tight uppercase">
+              <div className="max-w-3xl space-y-6">
+                <h1 className={`text-3xl md:text-5xl font-extrabold text-white leading-tight tracking-tight uppercase transform transition-all duration-[600ms] delay-[200ms] ${currentSlide === idx ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                  }`}>
                   {slide.title}
                 </h1>
-                <p className="text-sm md:text-base text-white/95 font-light leading-relaxed">
+                <p className={`text-sm md:text-base text-white/95 font-light leading-relaxed transform transition-all duration-[600ms] delay-[300ms] ${currentSlide === idx ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                  }`}>
                   {slide.subtitle}
                 </p>
-                <div className="h-0.5 w-20 bg-accent my-4"></div>
-                <p className="text-xs md:text-sm text-[#e0f2fe] font-bold tracking-wide">
+                <div className={`h-0.5 w-20 bg-accent my-4 transform transition-all duration-[600ms] delay-[400ms] ${currentSlide === idx ? 'scale-x-100 opacity-100' : 'scale-x-0 opacity-0'
+                  } origin-left`}></div>
+                <p className={`text-xs md:text-sm text-[#e0f2fe] font-bold tracking-wide transform transition-all duration-[600ms] delay-[500ms] ${currentSlide === idx ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                  }`}>
                   {slide.callout}
                 </p>
-                <div className="flex gap-4 pt-4">
-                  <Link to="/contact" className="px-6 py-3 bg-[#0D8BC5] border border-[#0D8BC5] hover:bg-[#0878AA] hover:border-[#0878AA] hover:shadow-[0_4px_12px_rgba(13,139,197,0.3)] text-white font-bold text-xs uppercase tracking-wider rounded-sm shadow-md transition-all duration-300">
-                    Get In Touch
+                <div className="flex gap-4 pt-4 overflow-hidden">
+                  <Link to="/contact" className={`px-6 py-3 bg-[#0D8BC5] border border-[#0D8BC5] hover:bg-[#0878AA] hover:border-[#0878AA] hover:shadow-[0_4px_12px_rgba(13,139,197,0.3)] text-white font-bold text-xs uppercase tracking-wider rounded-sm shadow-md transform transition-all duration-[600ms] delay-[600ms] ${currentSlide === idx ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+                    }`}>
+                    {slide.btn1}
                   </Link>
-                  <Link to="/products" className="px-6 py-3 border-2 border-white bg-transparent hover:bg-white text-white hover:text-[#0878AA] font-bold text-xs uppercase tracking-wider rounded-sm transition-all duration-300">
-                    Our Products
+                  <Link to="/products" className={`px-6 py-3 border-2 border-white bg-transparent hover:bg-white text-white hover:text-[#0878AA] font-bold text-xs uppercase tracking-wider rounded-sm transform transition-all duration-[600ms] delay-[700ms] ${currentSlide === idx ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+                    }`}>
+                    {slide.btn2}
                   </Link>
                 </div>
               </div>
@@ -100,9 +120,9 @@ const Home = () => {
       {/* Product Categories Grid (GEBO card style redesign) */}
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-2xl font-extrabold uppercase tracking-wider text-[#0D8BC5]">
+          <h1 className="text-2xl font-extrabold uppercase tracking-wider text-[#0D8BC5]">
             Our Fastener Catalog
-          </h2>
+          </h1>
           <div className="h-1 w-16 bg-accent mx-auto mt-2 rounded-full"></div>
           <p className="text-xs text-gray-500 mt-4 max-w-md mx-auto">
             Browse through our wide range of premium industrial fasteners engineered for critical environments.
@@ -143,21 +163,21 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Vision Card */}
-            <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(13,139,197,0.25)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group z-10 flex flex-col h-full">
+            <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(13,139,197,0.25)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group z-10 flex flex-col h-full">
               <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#0D8BC5]/10 to-transparent rounded-bl-[100px] -z-10 group-hover:scale-125 transition-transform duration-700"></div>
               <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#0D8BC5] to-[#38aee4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-              
+
               <div className="w-14 h-14 mb-6 bg-gradient-to-br from-[#eaf6fc] to-white border border-[#0D8BC5]/20 text-[#0D8BC5] rounded-xl flex items-center justify-center shadow-inner transition-all duration-500 group-hover:bg-[#0D8BC5] group-hover:text-white group-hover:rotate-6 group-hover:scale-110">
                 <i className="icon-eye-open text-2xl"></i>
               </div>
-              
+
               <h3 className="text-lg font-extrabold tracking-wide text-gray-800 group-hover:text-[#0D8BC5] transition-colors duration-300 mb-3">VISION</h3>
-              
-              <p className="text-sm leading-relaxed text-gray-500 flex-grow">
+
+              <p className="text-sm leading-relaxed text-gray-500 min-h-[95px]">
                 Uncompromising commitment to quality and engineering precision. We ensure every fastener complies with rigorous global certification standards.
               </p>
-              
-              <div className="mt-8 pt-6 border-t border-gray-100 flex items-end justify-between">
+
+              <div className="mt-5 pt-4 border-t border-gray-100 flex items-end justify-between">
                 <div>
                   <span className="block text-4xl font-black text-[#0D8BC5] leading-none mb-1">12+</span>
                   <span className="block text-[10px] font-bold uppercase tracking-widest text-gray-400">Years Experience</span>
@@ -169,21 +189,21 @@ const Home = () => {
             </div>
 
             {/* Mission Card */}
-            <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(13,139,197,0.25)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group z-10 flex flex-col h-full">
+            <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(13,139,197,0.25)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group z-10 flex flex-col h-full">
               <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#0D8BC5]/10 to-transparent rounded-bl-[100px] -z-10 group-hover:scale-125 transition-transform duration-700"></div>
               <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#0D8BC5] to-[#38aee4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-              
+
               <div className="w-14 h-14 mb-6 bg-gradient-to-br from-[#eaf6fc] to-white border border-[#0D8BC5]/20 text-[#0D8BC5] rounded-xl flex items-center justify-center shadow-inner transition-all duration-500 group-hover:bg-[#0D8BC5] group-hover:text-white group-hover:-rotate-6 group-hover:scale-110">
                 <i className="icon-fighter-jet text-2xl"></i>
               </div>
-              
+
               <h3 className="text-lg font-extrabold tracking-wide text-gray-800 group-hover:text-[#0D8BC5] transition-colors duration-300 mb-3">MISSION</h3>
-              
-              <p className="text-sm leading-relaxed text-gray-500 flex-grow">
+
+              <p className="text-sm leading-relaxed text-gray-500 min-h-[95px]">
                 Fostering long-term customer partnerships through technical expertise, exceptional client services, and flexible, customizable production runs.
               </p>
-              
-              <div className="mt-8 pt-6 border-t border-gray-100 flex items-end justify-between">
+
+              <div className="mt-5 pt-4 border-t border-gray-100 flex items-end justify-between">
                 <div>
                   <span className="block text-4xl font-black text-[#0D8BC5] leading-none mb-1">250+</span>
                   <span className="block text-[10px] font-bold uppercase tracking-widest text-gray-400">Happy Clients</span>
@@ -195,21 +215,21 @@ const Home = () => {
             </div>
 
             {/* Quality Card */}
-            <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(13,139,197,0.25)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group z-10 flex flex-col h-full">
+            <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(13,139,197,0.25)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group z-10 flex flex-col h-full">
               <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#0D8BC5]/10 to-transparent rounded-bl-[100px] -z-10 group-hover:scale-125 transition-transform duration-700"></div>
               <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#0D8BC5] to-[#38aee4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-              
+
               <div className="w-14 h-14 mb-6 bg-gradient-to-br from-[#eaf6fc] to-white border border-[#0D8BC5]/20 text-[#0D8BC5] rounded-xl flex items-center justify-center shadow-inner transition-all duration-500 group-hover:bg-[#0D8BC5] group-hover:text-white group-hover:rotate-6 group-hover:scale-110">
                 <i className="icon-ok text-2xl"></i>
               </div>
-              
+
               <h3 className="text-lg font-extrabold tracking-wide text-gray-800 group-hover:text-[#0D8BC5] transition-colors duration-300 mb-3">HIGH QUALITY</h3>
-              
-              <p className="text-sm leading-relaxed text-gray-500 flex-grow">
+
+              <p className="text-sm leading-relaxed text-gray-500 min-h-[95px]">
                 Continuous optimization of our machining processes to guarantee high tensile strengths, corrosion-resistant platings, and long-term durability.
               </p>
-              
-              <div className="mt-8 pt-6 border-t border-gray-100 flex items-end justify-between">
+
+              <div className="mt-5 pt-4 border-t border-gray-100 flex items-end justify-between">
                 <div>
                   <span className="block text-4xl font-black text-[#0D8BC5] leading-none mb-1">100%</span>
                   <span className="block text-[10px] font-bold uppercase tracking-widest text-gray-400">Inspection Done</span>

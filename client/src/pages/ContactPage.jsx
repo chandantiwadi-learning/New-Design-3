@@ -123,7 +123,7 @@ const ContactPage = () => {
   return (
     <div className="contact-page-legacy select-none">
       <section className="main secondary_page" data-animate-up="header-static" data-animate-down="header-small">
-        
+
         {/* Start title container */}
         <div className="title_container t_align_center type_3">
           <div className="container">
@@ -140,13 +140,13 @@ const ContactPage = () => {
           {/* Start contact hexagons */}
           <section className="contact_hexagons">
             <div className="container">
-              
+
               {/* Start contact info hexagon left */}
               <div className="hex_elem_rounded_type_2 contact_info f_left">
-                <a 
-                  href="https://maps.app.goo.gl/ZrMkbSf1CoCujsF67" 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
+                <a
+                  href="https://maps.app.goo.gl/ZrMkbSf1CoCujsF67"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group block cursor-pointer"
                   style={{ textDecoration: 'none' }}
                 >
@@ -157,12 +157,9 @@ const ContactPage = () => {
                   </div>
                   <h5 className="transition-colors duration-200">Main Branch</h5>
                   <p className="transition-colors duration-200 leading-relaxed">
-                    107/111, Matka Building, <br />
-                    Office No. 4, Ground Floor,<br />
-                    Dr. M. G. Mahimtura Marg,<br />
-                    3rd Kumbharwada, <br />
-                    Mumbai – 400 004,<br />
-                    Maharashtra, India.
+                    Plot No. G4, Forsberry Rd, East, Sewri, <br />
+                    Mumbai, Maharashtra 400015, <br />
+                    India.
                   </p>
                 </a>
                 <span className="h_el_01"></span>
@@ -181,8 +178,7 @@ const ContactPage = () => {
                   <h5>Contact Details</h5>
                   <ul>
                     <li>
-                      Phone: <a href="tel:02266518841" style={{ color: '#747474' }}>+91 22 6651 8841 </a> /<br /> 
-                      <a href="tel:02266363268" style={{ color: '#747474' }}>+91 22 6636 3268</a>
+                      Phone: <a href="tel:+912235346200" style={{ color: '#747474' }}>+91 22 3534 6200</a>
                     </li>
                     <li>Email: <a href="mailto:sales@hexindiafasteners.com" style={{ color: '#747474' }}>sales@hexindiafasteners.com</a></li>
                     <li>Website: <a href="http://hexindiafasteners.com" target="_blank" rel="noreferrer" style={{ color: '#747474' }}>www.hexindiafasteners.com</a></li>
@@ -222,18 +218,18 @@ const ContactPage = () => {
                   onChange={handleChange}
                   className={errors.phone ? 'border-red-500' : ''}
                 />
-                
+
                 {/* Dynamic Captcha Area */}
                 <div style={{ display: 'block', marginBottom: '10px', marginTop: '10px' }}>
-                  <img 
-                    src={captchaUrl} 
-                    onClick={refreshCaptcha} 
-                    style={{ cursor: 'pointer', border: '1px solid #ddd', height: '60px', width: '200px', display: 'block' }} 
+                  <img
+                    src={captchaUrl}
+                    onClick={refreshCaptcha}
+                    style={{ cursor: 'pointer', border: '1px solid #ddd', height: '60px', width: '200px', display: 'block' }}
                     title="Click to refresh security code"
                     alt="Captcha code"
                   />
                 </div>
-                
+
                 <input
                   id="security_code"
                   name="securityCode"
@@ -244,7 +240,7 @@ const ContactPage = () => {
                   className={errors.securityCode ? 'border-red-500' : ''}
                   style={{ height: 'auto' }}
                 />
-                
+
                 <textarea
                   name="message"
                   id="message"
@@ -254,7 +250,7 @@ const ContactPage = () => {
                   onChange={handleChange}
                   className={errors.message ? 'border-red-500' : ''}
                 ></textarea>
-                
+
                 <input
                   type="submit"
                   value="Send"

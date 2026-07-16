@@ -3,18 +3,31 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState('up');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeMobileSubmenu, setActiveMobileSubmenu] = useState(null);
   const location = useLocation();
 
-  // Scroll listener to toggle header-small class behavior exactly like the original waypoints
+  // Scroll listener to toggle header-small class behavior and smart sticky effect
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      if (window.scrollY > 100) {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > 100) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
       }
+
+      if (currentScrollY > lastScrollY && currentScrollY > 150) {
+        setScrollDirection('down');
+      } else if (currentScrollY < lastScrollY) {
+        setScrollDirection('up');
+      }
+      
+      lastScrollY = currentScrollY > 0 ? currentScrollY : 0;
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -41,8 +54,8 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`header ${isScrolled ? 'header-small' : ''}`}>
-      <div className="container relative">
+    <header className={`header sticky top-0 w-full z-50 transition-transform duration-300 bg-white ${isScrolled ? 'header-small shadow-md' : ''} ${scrollDirection === 'down' ? '-translate-y-full' : 'translate-y-0'}`}>
+      <div className="container relative flex items-center justify-between">
         {/* Mock Language switch for GEBO style */}
         <div className="absolute top-2 right-4 text-[10px] text-gray-500 font-bold hidden md:block">
           <span className="text-primary hover:underline cursor-pointer">EN</span>
@@ -51,24 +64,24 @@ const Navbar = () => {
         </div>
 
         {/* Start logo */}
-        <Link className="logo f_left" to="/" title="Hex India Fasteners">
+        <Link className="logo" to="/" title="Hex India Fasteners">
           <img src="/images/hex-india-logo.png" alt="Hex India Fasteners" />
         </Link>
         {/* End logo */}
 
         {/* Start main menu toggle button */}
         <button
-          className="menu_button clearfix"
+          className="menu_button md:hidden"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <img className="r_logo" src="\images\Hex India Logo Final.png" alt="Logo" />
+          <img className="r_logo" src="/images/Hex India Logo Final.png" alt="Logo" />
           <img className="r_button" src="/images/r_menu_button.png" alt="Menu button" />
         </button>
 
         {/* Start main menu */}
         <ul
-          className="f_right main_menu"
-          style={{ display: isMobileMenuOpen ? 'block' : '' }}
+          className="main_menu flex items-center"
+          style={{ display: window.innerWidth > 767 ? 'flex' : (isMobileMenuOpen ? 'block' : 'none') }}
         >
           <li className={isActive('/') && location.pathname === '/' ? 'current_item' : ''}>
             <Link to="/">
