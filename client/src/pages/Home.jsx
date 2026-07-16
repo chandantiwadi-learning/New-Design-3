@@ -3,12 +3,38 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [aboutSlide, setAboutSlide] = useState(0);
+  const [isAboutVisible, setIsAboutVisible] = useState(false);
+  const aboutSectionRef = React.useRef(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % 3);
+      setCurrentSlide((prev) => (prev + 1) % 4);
     }, 6000);
     return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const aboutTimer = setInterval(() => {
+      setAboutSlide((prev) => (prev + 1) % 4);
+    }, 3000);
+    return () => clearInterval(aboutTimer);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsAboutVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (aboutSectionRef.current) {
+      observer.observe(aboutSectionRef.current);
+    }
+    return () => observer.disconnect();
   }, []);
 
   const slides = [
@@ -168,10 +194,10 @@ const Home = () => {
           className="absolute top-6 right-6 z-50 w-[150px] h-[150px] md:w-[160px] md:h-[160px] logo-hud-enter"
         >
           <div className="relative w-full h-full logo-hud-container">
-            <img src="/images/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer" alt="" />
-            <img src="/images/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle" alt="" />
-            <img src="/images/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner" alt="" />
-            <img src="/images/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[55%] h-[50%] object-contain z-10" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="" />
+            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer" alt="" />
+            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle" alt="" />
+            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner" alt="" />
+            <img src="/images/homePage/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[55%] h-[50%] object-contain z-10" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="" />
           </div>
         </div>
 
@@ -315,28 +341,92 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Company Overview Section (Cleaned parallax look) */}
-      <section className="py-20 bg-cover bg-center relative" style={{ backgroundImage: "url('/images/about_parallax_bg.jpg')", backgroundAttachment: 'fixed' }}>
-        <div className="absolute inset-0 bg-primary-dark/85"></div>
+      {/* Company Overview Section */}
+      <section
+        ref={aboutSectionRef}
+        className="py-24 relative overflow-hidden bg-brand-dark"
+      >
+        {/* Animated Background Image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center z-0 animate-[ping_60s_linear_infinite]"
+          style={{
+            backgroundImage: "url('/images/homePage/About%20Company/bg.png')",
+            animation: 'slowBgZoom 30s alternate infinite ease-in-out'
+          }}
+        ></div>
+        <style>{`
+          @keyframes slowBgZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+          }
+        `}</style>
+
+        <div className="absolute inset-0 bg-[#0a192f]/80 backdrop-blur-[2px] z-0"></div>
+        <div className="absolute inset-0 bg-black/40 z-0 mix-blend-multiply"></div>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="rounded-xl overflow-hidden shadow-2xl border-4 border-white/20">
-              <img src="/images/home_blog_img_01.jpg" alt="HEX INDIA Overview" className="w-full h-auto object-cover" />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+            {/* Left Side: Image Showcase */}
+            <div className="order-1 lg:order-1 relative aspect-[4/3] rounded-[20px] overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.5)] border border-[#0D8BC5]/30 group">
+              {[1, 2, 3, 4].map((num, idx) => (
+                <div
+                  key={`about-slide-${idx}`}
+                  className={`absolute inset-0 transition-all duration-1000 ease-in-out ${aboutSlide === idx
+                    ? 'opacity-100 scale-100 z-10'
+                    : 'opacity-0 scale-105 z-0'
+                    }`}
+                >
+                  <img
+                    src={`/images/homePage/About%20Company/main${idx === 0 ? '' : idx + 1}.png`}
+                    alt="Company Facility"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                </div>
+              ))}
+              <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[20px] z-20 pointer-events-none transition-all duration-500 group-hover:shadow-[inset_0_0_20px_rgba(13,139,197,0.3)] group-hover:border-[#0D8BC5]/50 border border-transparent"></div>
             </div>
-            <div className="space-y-6 text-white text-justify">
-              <span className="inline-block px-3 py-1 bg-accent text-brand-dark font-extrabold text-[10px] uppercase tracking-widest rounded-sm">
-                About Our Enterprise
-              </span>
-              <h2 className="text-2xl font-extrabold uppercase tracking-wide text-white">Company Overview</h2>
-              <p className="text-xs leading-relaxed text-gray-200">
-                Hex India Fasteners is a professionally managed enterprise established by a team of dynamic young entrepreneurs. Over the years, we have emerged as a prominent Exporter, Manufacturer & Stockist of Stainless Steel, Inconel, Monel, Hastelloy, Titanium, Nickel Alloys, Carbon Steel, Duplex & Super Duplex Steel fasteners.
-              </p>
-              <p className="text-xs leading-relaxed text-gray-200">
-                We design and manufacture standard fasteners as well as bespoke configurations tailored to custom engineering designs, supplying clients across petro-chemical, energy, heavy industrial and shipping platforms globally.
-              </p>
-              <div className="pt-4">
-                <Link to="/about-us" className="px-6 py-3 bg-accent hover:bg-white text-brand-dark hover:text-primary font-bold text-xs uppercase tracking-wider rounded-sm transition-all duration-300 inline-block shadow-md">
-                  Read More
+
+            {/* Right Side: Professional Content */}
+            <div className="order-2 lg:order-2 space-y-8 text-white">
+              <div className="space-y-4">
+                <span className={`inline-block text-[#0D8BC5] font-bold text-xs uppercase tracking-[0.2em] transform transition-all duration-700 ${isAboutVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+                  ABOUT HEX INDIA
+                </span>
+                <h2 className={`text-3xl md:text-5xl font-extrabold text-white leading-tight transition-all duration-700 delay-100 ${isAboutVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+                  Engineering Excellence.<br />
+                  <span className="text-gray-300">Trusted Worldwide.</span>
+                </h2>
+              </div>
+
+              <div className="space-y-6">
+                <p className={`text-sm leading-relaxed text-gray-300 font-light transition-all duration-700 delay-200 ${isAboutVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+                  HEX India Fasteners is a trusted manufacturer and exporter of premium industrial fasteners engineered for critical industrial applications. With years of manufacturing expertise, advanced production capabilities, and strict quality control, we deliver fastening solutions that meet international standards across energy, construction, petrochemical, marine, infrastructure, and heavy engineering industries.
+                </p>
+                <p className={`text-sm leading-relaxed text-gray-300 font-light transition-all duration-700 delay-300 ${isAboutVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+                  From standard fasteners to fully customized manufacturing solutions, we combine engineering precision, innovation, and customer-focused service to provide reliable products that perform in the world's most demanding environments.
+                </p>
+              </div>
+
+              {/* Feature Badges */}
+              <div className={`grid grid-cols-2 gap-4 transition-all duration-700 delay-400 ${isAboutVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+                {['Premium Quality', 'Custom Manufacturing', 'Global Supply', 'ISO Standards'].map((feature, idx) => (
+                  <div key={idx} className="flex items-center space-x-3 bg-white/5 border border-white/10 rounded-lg p-3 backdrop-blur-sm hover:bg-[#0D8BC5]/10 hover:border-[#0D8BC5]/30 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-[0_4px_15px_rgba(13,139,197,0.2)]">
+                    <div className="w-6 h-6 rounded-full bg-[#0D8BC5]/20 flex items-center justify-center text-[#0D8BC5]">
+                      <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg>
+                    </div>
+                    <span className="text-xs font-semibold text-gray-100 tracking-wide">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA Button */}
+              <div className={`pt-4 transition-all duration-700 delay-500 ${isAboutVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
+                <Link to="/about-us" className="group relative inline-flex items-center px-8 py-4 bg-[#0D8BC5] text-white font-bold text-xs uppercase tracking-wider rounded-sm overflow-hidden transition-all duration-300 hover:bg-[#06425e] shadow-[0_4px_14px_rgba(13,139,197,0.4)]">
+                  <span className="relative z-10 flex items-center">
+                    Explore Company
+                    <svg className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  </span>
                 </Link>
               </div>
             </div>
