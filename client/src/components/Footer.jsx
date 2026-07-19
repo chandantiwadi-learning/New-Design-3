@@ -1,30 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
 const Footer = () => {
-  const [showScrollTop, setShowScrollTop] = useState(false);
-
-  useEffect(() => {
-    const checkScrollTop = () => {
-      setShowScrollTop(window.scrollY > 300);
-    };
-    window.addEventListener('scroll', checkScrollTop);
-    return () => window.removeEventListener('scroll', checkScrollTop);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
   return (
     <footer className="bg-white text-[#4B5563] pt-16 pb-8 border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           {/* Company Intro */}
           <div className="flex flex-col space-y-4">
-            <h5 className="text-sm font-bold text-[#1F2937] tracking-wider uppercase border-b-2 border-[#0D8BC5] pb-2 w-max">
+            <h5 className="text-sm font-bold text-[#1F2937] tracking-wider uppercase border-b-2 border-[#0D8BC5] pb-1 w-max">
               HEX INDIA FASTENERS
             </h5>
             <p className="text-xs leading-relaxed text-justify text-[#4B5563]">
@@ -35,7 +18,7 @@ const Footer = () => {
           {/* Social Icons & Logo */}
           <div className="flex flex-col items-center justify-center space-y-6">
             <div className="p-4 bg-gray-50 border border-gray-100 rounded-lg shadow-sm">
-              <img src="\images\Hex India Logo Final.png" alt="Hex India Fasteners" className="h-10 object-contain" />
+              <img src="\images\homePage\ImageAnimation\logo.png" alt="Hex India Fasteners" className="h-10 object-contain" />
             </div>
             <div className="flex space-x-4">
               <a href="#" onClick={(e) => e.preventDefault()} aria-label="Twitter" className="w-10 h-10 rounded-full bg-gray-100 hover:bg-[#0D8BC5] text-[#4B5563] hover:text-white flex items-center justify-center transition-colors shadow-sm">
@@ -52,7 +35,7 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="flex flex-col space-y-4">
-            <h5 className="text-sm font-bold text-[#1F2937] tracking-wider uppercase border-b-2 border-[#0D8BC5] pb-2 w-max">
+            <h5 className="text-sm font-bold text-[#1F2937] tracking-wider uppercase border-b-2 border-[#0D8BC5] pb-1 w-max">
               Contact Info
             </h5>
             <ul className="space-y-3 text-xs text-[#4B5563]">
@@ -65,7 +48,7 @@ const Footer = () => {
                 >
                   <i className="icon-map-marker text-[#0D8BC5] text-sm mt-0.5 transition-colors duration-200"></i>
                   <span className="leading-relaxed text-[#4B5563] group-hover:text-[#0D8BC5] transition-colors duration-200">
-                    Plot No. G4, Forsberry Rd, East, Sewri, Mumbai, Maharashtra 400015, India
+                    Plot No. G4, Forsberry Rd, Sewri East, Mumbai, Maharashtra 400015, India
                   </span>
                 </a>
               </li>
@@ -107,17 +90,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-
-      {/* Scroll to Top */}
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 w-11 h-11 bg-themeBlue text-white hover:bg-[#0878AA] rounded-full flex items-center justify-center shadow-[0_4px_16px_rgba(13,139,197,0.30)] hover:shadow-[0_6px_20px_rgba(13,139,197,0.40)] transition-all duration-200 transform hover:-translate-y-[2px] z-50 cursor-pointer border-none outline-none"
-          title="Scroll to Top"
-        >
-          <i className="icon-chevron-up text-lg text-white"></i>
-        </button>
-      )}
     </footer>
   );
 };

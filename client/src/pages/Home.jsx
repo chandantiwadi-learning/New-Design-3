@@ -39,7 +39,7 @@ const Home = () => {
 
   const slides = [
     {
-      img: '/images/homePage/1.png',
+      img: '/images/homePage/1.jpg',
       title: 'Engineering Strong Connections',
       subtitle: 'Premium stainless steel fasteners engineered for strength, precision, and long-term performance across global industries.',
       callout: 'Trusted manufacturing partner delivering reliable fastening solutions with uncompromising quality and international standards.',
@@ -47,7 +47,7 @@ const Home = () => {
       btn2: 'OUR PRODUCTS'
     },
     {
-      img: '/images/homePage/2.png',
+      img: '/images/homePage/2.jpg',
       title: 'Precision in Every Component',
       subtitle: 'Manufacturing high-quality washers that ensure secure fastening, superior load distribution, and long-lasting durability.',
       callout: 'Designed for demanding industrial environments where consistency and precision matter most.',
@@ -55,7 +55,7 @@ const Home = () => {
       btn2: 'OUR PRODUCTS'
     },
     {
-      img: '/images/homePage/3.png',
+      img: '/images/homePage/3.jpg',
       title: 'Built for Industrial Performance',
       subtitle: 'Reliable industrial nuts engineered for maximum strength, dimensional accuracy, and dependable performance.',
       callout: 'Supporting engineering excellence with products manufactured to meet international quality standards.',
@@ -63,7 +63,7 @@ const Home = () => {
       btn2: 'OUR PRODUCTS'
     },
     {
-      img: '/images/homePage/4.png',
+      img: '/images/homePage/4.jpg',
       title: 'Your Trusted Fastener Partner',
       subtitle: 'Complete fastening solutions for construction, infrastructure, heavy engineering, energy, and manufacturing industries.',
       callout: 'Delivering premium industrial fasteners with precision manufacturing, reliable quality, and worldwide supply capabilities.',
@@ -218,11 +218,11 @@ const Home = () => {
       {/* Product Categories Grid (GEBO card style redesign) */}
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-2xl font-extrabold uppercase tracking-wider text-[#0D8BC5]">
+          <h1 className="text-3xl font-extrabold uppercase text-[#0D8BC5]">
             Our Fastener Catalog
           </h1>
           <div className="h-1 w-16 bg-accent mx-auto mt-2 rounded-full"></div>
-          <p className="text-xs text-gray-500 mt-4 max-w-md mx-auto">
+          <p className="text-xs text-gray-500 mt-4 max-w mx-auto">
             Browse through our wide range of premium industrial fasteners engineered for critical environments.
           </p>
         </div>
@@ -256,87 +256,197 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Vision, Mission, & High Quality Section (Redesigned core values) */}
-      <section className="py-16 bg-white border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Vision Card */}
-            <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(13,139,197,0.25)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group z-10 flex flex-col h-full">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#0D8BC5]/10 to-transparent rounded-bl-[100px] -z-10 group-hover:scale-125 transition-transform duration-700"></div>
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#0D8BC5] to-[#38aee4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+      {/* Premium Vision, Mission, & High Quality Section */}
+      <section className="py-24 bg-white relative">
+        <style>{`
+          @keyframes hex-glow {
+            0% { stroke-dashoffset: 200; }
+            100% { stroke-dashoffset: 0; }
+          }
+          @keyframes shine-sweep {
+            0% { transform: translateX(-150%) skewX(-15deg); }
+            100% { transform: translateX(200%) skewX(-15deg); }
+          }
+        `}</style>
+        
+        {/* Subtle Background Pattern */}
+        <div className="absolute inset-0 bg-[radial-gradient(#0D8BC5_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.02]"></div>
 
-              <div className="w-14 h-14 mb-6 bg-gradient-to-br from-[#eaf6fc] to-white border border-[#0D8BC5]/20 text-[#0D8BC5] rounded-xl flex items-center justify-center shadow-inner transition-all duration-500 group-hover:bg-[#0D8BC5] group-hover:text-white group-hover:rotate-6 group-hover:scale-110">
-                <i className="icon-eye-open text-2xl"></i>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr] gap-8 lg:gap-4 items-center relative">
+            
+            {/* Horizontal Connecting Line (Desktop) */}
+            <div className="hidden lg:block absolute top-[72px] left-[10%] right-[10%] h-[1px] bg-gradient-to-r from-transparent via-[#0D8BC5]/20 to-transparent z-0"></div>
+
+            {/* Vision Card */}
+            <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-[400ms] ease-out hover:-translate-y-[10px] hover:scale-[1.02] hover:border-[#0D8BC5]/30 hover:shadow-[0_20px_40px_rgba(13,139,197,0.12)] relative overflow-hidden group flex flex-col h-full will-change-transform transform-gpu z-10">
+              <div className="absolute inset-0 bg-gradient-to-b from-[#0D8BC5]/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-[400ms]"></div>
+              <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden">
+                <div className="absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-white/80 to-transparent skew-x-[-15deg] -translate-x-[150%] group-hover:animate-[shine-sweep_1.2s_ease-out]"></div>
               </div>
 
-              <h3 className="text-lg font-extrabold tracking-wide text-gray-800 group-hover:text-[#0D8BC5] transition-colors duration-300 mb-3">VISION</h3>
+              {/* Connecting Line (Mobile) */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-4 bg-[#0D8BC5]/20 lg:hidden"></div>
 
-              <p className="text-sm leading-relaxed text-gray-500 min-h-[95px]">
+              {/* Hexagon Wrapper */}
+              <div className="relative w-28 h-28 mx-auto mb-8 flex items-center justify-center">
+                {/* Behind Hexagon 1 */}
+                <svg viewBox="0 0 100 100" className="absolute inset-[-10%] w-[120%] h-[120%] text-[#0D8BC5] opacity-[0.03] group-hover:opacity-10 group-hover:scale-105 transition-all duration-[400ms] will-change-transform transform-gpu">
+                  <polygon points="50 2, 91.5 26, 91.5 74, 50 98, 8.5 74, 8.5 26" fill="none" stroke="currentColor" strokeWidth="2"/>
+                </svg>
+                {/* Behind Hexagon 2 - Rotated */}
+                <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full text-[#0D8BC5] opacity-5 group-hover:opacity-0 group-hover:rotate-[15deg] group-hover:scale-110 transition-all duration-[400ms] will-change-transform transform-gpu">
+                  <polygon points="50 2, 91.5 26, 91.5 74, 50 98, 8.5 74, 8.5 26" fill="none" stroke="currentColor" strokeWidth="1"/>
+                </svg>
+                {/* Main Hexagon */}
+                <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full text-[#0D8BC5] transition-transform duration-[400ms] group-hover:scale-[1.05] will-change-transform transform-gpu">
+                  <polygon points="50 2, 91.5 26, 91.5 74, 50 98, 8.5 74, 8.5 26" fill="white" stroke="currentColor" strokeWidth="1.5"/>
+                  <polygon 
+                    points="50 2, 91.5 26, 91.5 74, 50 98, 8.5 74, 8.5 26" 
+                    fill="none" stroke="#38aee4" strokeWidth="3" 
+                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-[400ms]"
+                    style={{ strokeDasharray: '50 150', animation: 'hex-glow 1.5s linear infinite' }} 
+                  />
+                </svg>
+                {/* Icon */}
+                <i className="icon-eye-open text-[28px] text-[#0D8BC5] relative z-10 transition-transform duration-[400ms] group-hover:scale-110 will-change-transform transform-gpu"></i>
+              </div>
+
+              <h3 className="text-xl font-extrabold tracking-widest text-center text-gray-800 uppercase mb-4 group-hover:text-[#0D8BC5] transition-colors duration-[400ms]">VISION</h3>
+              <p className="text-base leading-relaxed text-gray-600 text-center flex-grow">
                 Uncompromising commitment to quality and engineering precision. We ensure every fastener complies with rigorous global certification standards.
               </p>
 
-              <div className="mt-5 pt-4 border-t border-gray-100 flex items-end justify-between">
-                <div>
+              <div className="mt-6 pt-5 border-t border-gray-100 flex items-end justify-between relative z-10">
+                <div className="text-left">
                   <span className="block text-4xl font-black text-[#0D8BC5] leading-none mb-1">12+</span>
                   <span className="block text-[10px] font-bold uppercase tracking-widest text-gray-400">Years Experience</span>
                 </div>
-                <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-[#eaf6fc] transition-colors duration-300">
-                  <i className="icon-angle-right text-[#0D8BC5]"></i>
+                <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-[#0D8BC5] group-hover:text-white transition-all duration-[400ms]">
+                  <i className="icon-angle-right"></i>
                 </div>
               </div>
+            </div>
+
+            {/* Separator Logo 1 */}
+            <div className="flex flex-col items-center justify-center relative z-20 py-4 lg:py-0">
+              <div className="w-[1px] h-8 bg-[#0D8BC5]/20 lg:hidden mb-4"></div>
+              <div className="w-16 h-16 bg-white rounded-full p-2.5 shadow-sm border border-gray-100 flex items-center justify-center relative group">
+                <img src="/images/homePage/ImageAnimation/logo.png" alt="Hex India Logo" className="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+              <div className="w-[1px] h-8 bg-[#0D8BC5]/20 lg:hidden mt-4"></div>
             </div>
 
             {/* Mission Card */}
-            <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(13,139,197,0.25)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group z-10 flex flex-col h-full">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#0D8BC5]/10 to-transparent rounded-bl-[100px] -z-10 group-hover:scale-125 transition-transform duration-700"></div>
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#0D8BC5] to-[#38aee4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-
-              <div className="w-14 h-14 mb-6 bg-gradient-to-br from-[#eaf6fc] to-white border border-[#0D8BC5]/20 text-[#0D8BC5] rounded-xl flex items-center justify-center shadow-inner transition-all duration-500 group-hover:bg-[#0D8BC5] group-hover:text-white group-hover:-rotate-6 group-hover:scale-110">
-                <i className="icon-fighter-jet text-2xl"></i>
+            <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-[400ms] ease-out hover:-translate-y-[10px] hover:scale-[1.02] hover:border-[#0D8BC5]/30 hover:shadow-[0_20px_40px_rgba(13,139,197,0.12)] relative overflow-hidden group flex flex-col h-full will-change-transform transform-gpu z-10">
+              <div className="absolute inset-0 bg-gradient-to-b from-[#0D8BC5]/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-[400ms]"></div>
+              <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden">
+                <div className="absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-white/80 to-transparent skew-x-[-15deg] -translate-x-[150%] group-hover:animate-[shine-sweep_1.2s_ease-out]"></div>
               </div>
 
-              <h3 className="text-lg font-extrabold tracking-wide text-gray-800 group-hover:text-[#0D8BC5] transition-colors duration-300 mb-3">MISSION</h3>
+              {/* Connecting Line (Mobile) */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-4 bg-[#0D8BC5]/20 lg:hidden"></div>
 
-              <p className="text-sm leading-relaxed text-gray-500 min-h-[95px]">
+              {/* Hexagon Wrapper */}
+              <div className="relative w-28 h-28 mx-auto mb-8 flex items-center justify-center">
+                {/* Behind Hexagon 1 */}
+                <svg viewBox="0 0 100 100" className="absolute inset-[-10%] w-[120%] h-[120%] text-[#0D8BC5] opacity-[0.03] group-hover:opacity-10 group-hover:scale-105 transition-all duration-[400ms] will-change-transform transform-gpu">
+                  <polygon points="50 2, 91.5 26, 91.5 74, 50 98, 8.5 74, 8.5 26" fill="none" stroke="currentColor" strokeWidth="2"/>
+                </svg>
+                {/* Behind Hexagon 2 - Rotated */}
+                <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full text-[#0D8BC5] opacity-5 group-hover:opacity-0 group-hover:rotate-[15deg] group-hover:scale-110 transition-all duration-[400ms] will-change-transform transform-gpu">
+                  <polygon points="50 2, 91.5 26, 91.5 74, 50 98, 8.5 74, 8.5 26" fill="none" stroke="currentColor" strokeWidth="1"/>
+                </svg>
+                {/* Main Hexagon */}
+                <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full text-[#0D8BC5] transition-transform duration-[400ms] group-hover:scale-[1.05] will-change-transform transform-gpu">
+                  <polygon points="50 2, 91.5 26, 91.5 74, 50 98, 8.5 74, 8.5 26" fill="white" stroke="currentColor" strokeWidth="1.5"/>
+                  <polygon 
+                    points="50 2, 91.5 26, 91.5 74, 50 98, 8.5 74, 8.5 26" 
+                    fill="none" stroke="#38aee4" strokeWidth="3" 
+                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-[400ms]"
+                    style={{ strokeDasharray: '50 150', animation: 'hex-glow 1.5s linear infinite' }} 
+                  />
+                </svg>
+                {/* Icon */}
+                <i className="icon-fighter-jet text-[28px] text-[#0D8BC5] relative z-10 transition-transform duration-[400ms] group-hover:scale-110 will-change-transform transform-gpu"></i>
+              </div>
+
+              <h3 className="text-xl font-extrabold tracking-widest text-center text-gray-800 uppercase mb-4 group-hover:text-[#0D8BC5] transition-colors duration-[400ms]">MISSION</h3>
+              <p className="text-base leading-relaxed text-gray-600 text-center flex-grow">
                 Fostering long-term customer partnerships through technical expertise, exceptional client services, and flexible, customizable production runs.
               </p>
 
-              <div className="mt-5 pt-4 border-t border-gray-100 flex items-end justify-between">
-                <div>
+              <div className="mt-6 pt-5 border-t border-gray-100 flex items-end justify-between relative z-10">
+                <div className="text-left">
                   <span className="block text-4xl font-black text-[#0D8BC5] leading-none mb-1">250+</span>
                   <span className="block text-[10px] font-bold uppercase tracking-widest text-gray-400">Happy Clients</span>
                 </div>
-                <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-[#eaf6fc] transition-colors duration-300">
-                  <i className="icon-angle-right text-[#0D8BC5]"></i>
+                <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-[#0D8BC5] group-hover:text-white transition-all duration-[400ms]">
+                  <i className="icon-angle-right"></i>
                 </div>
               </div>
+            </div>
+
+            {/* Separator Logo 2 */}
+            <div className="flex flex-col items-center justify-center relative z-20 py-4 lg:py-0">
+              <div className="w-[1px] h-8 bg-[#0D8BC5]/20 lg:hidden mb-4"></div>
+              <div className="w-16 h-16 bg-white rounded-full p-2.5 shadow-sm border border-gray-100 flex items-center justify-center relative group">
+                <img src="/images/homePage/ImageAnimation/logo.png" alt="Hex India Logo" className="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+              <div className="w-[1px] h-8 bg-[#0D8BC5]/20 lg:hidden mt-4"></div>
             </div>
 
             {/* Quality Card */}
-            <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_-15px_rgba(13,139,197,0.25)] hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group z-10 flex flex-col h-full">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-[#0D8BC5]/10 to-transparent rounded-bl-[100px] -z-10 group-hover:scale-125 transition-transform duration-700"></div>
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[#0D8BC5] to-[#38aee4] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-
-              <div className="w-14 h-14 mb-6 bg-gradient-to-br from-[#eaf6fc] to-white border border-[#0D8BC5]/20 text-[#0D8BC5] rounded-xl flex items-center justify-center shadow-inner transition-all duration-500 group-hover:bg-[#0D8BC5] group-hover:text-white group-hover:rotate-6 group-hover:scale-110">
-                <i className="icon-ok text-2xl"></i>
+            <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] transition-all duration-[400ms] ease-out hover:-translate-y-[10px] hover:scale-[1.02] hover:border-[#0D8BC5]/30 hover:shadow-[0_20px_40px_rgba(13,139,197,0.12)] relative overflow-hidden group flex flex-col h-full will-change-transform transform-gpu z-10">
+              <div className="absolute inset-0 bg-gradient-to-b from-[#0D8BC5]/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-[400ms]"></div>
+              <div className="absolute inset-0 z-20 pointer-events-none overflow-hidden">
+                <div className="absolute inset-y-0 w-1/2 bg-gradient-to-r from-transparent via-white/80 to-transparent skew-x-[-15deg] -translate-x-[150%] group-hover:animate-[shine-sweep_1.2s_ease-out]"></div>
               </div>
 
-              <h3 className="text-lg font-extrabold tracking-wide text-gray-800 group-hover:text-[#0D8BC5] transition-colors duration-300 mb-3">HIGH QUALITY</h3>
+              {/* Connecting Line (Mobile) */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-4 bg-[#0D8BC5]/20 lg:hidden"></div>
 
-              <p className="text-sm leading-relaxed text-gray-500 min-h-[95px]">
+              {/* Hexagon Wrapper */}
+              <div className="relative w-28 h-28 mx-auto mb-8 flex items-center justify-center">
+                {/* Behind Hexagon 1 */}
+                <svg viewBox="0 0 100 100" className="absolute inset-[-10%] w-[120%] h-[120%] text-[#0D8BC5] opacity-[0.03] group-hover:opacity-10 group-hover:scale-105 transition-all duration-[400ms] will-change-transform transform-gpu">
+                  <polygon points="50 2, 91.5 26, 91.5 74, 50 98, 8.5 74, 8.5 26" fill="none" stroke="currentColor" strokeWidth="2"/>
+                </svg>
+                {/* Behind Hexagon 2 - Rotated */}
+                <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full text-[#0D8BC5] opacity-5 group-hover:opacity-0 group-hover:rotate-[15deg] group-hover:scale-110 transition-all duration-[400ms] will-change-transform transform-gpu">
+                  <polygon points="50 2, 91.5 26, 91.5 74, 50 98, 8.5 74, 8.5 26" fill="none" stroke="currentColor" strokeWidth="1"/>
+                </svg>
+                {/* Main Hexagon */}
+                <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full text-[#0D8BC5] transition-transform duration-[400ms] group-hover:scale-[1.05] will-change-transform transform-gpu">
+                  <polygon points="50 2, 91.5 26, 91.5 74, 50 98, 8.5 74, 8.5 26" fill="white" stroke="currentColor" strokeWidth="1.5"/>
+                  <polygon 
+                    points="50 2, 91.5 26, 91.5 74, 50 98, 8.5 74, 8.5 26" 
+                    fill="none" stroke="#38aee4" strokeWidth="3" 
+                    className="opacity-0 group-hover:opacity-100 transition-opacity duration-[400ms]"
+                    style={{ strokeDasharray: '50 150', animation: 'hex-glow 1.5s linear infinite' }} 
+                  />
+                </svg>
+                {/* Icon */}
+                <i className="icon-ok text-[28px] text-[#0D8BC5] relative z-10 transition-transform duration-[400ms] group-hover:scale-110 will-change-transform transform-gpu"></i>
+              </div>
+
+              <h3 className="text-xl font-extrabold tracking-widest text-center text-gray-800 uppercase mb-4 group-hover:text-[#0D8BC5] transition-colors duration-[400ms]">HIGH QUALITY</h3>
+              <p className="text-base leading-relaxed text-gray-600 text-center flex-grow">
                 Continuous optimization of our machining processes to guarantee high tensile strengths, corrosion-resistant platings, and long-term durability.
               </p>
 
-              <div className="mt-5 pt-4 border-t border-gray-100 flex items-end justify-between">
-                <div>
+              <div className="mt-6 pt-5 border-t border-gray-100 flex items-end justify-between relative z-10">
+                <div className="text-left">
                   <span className="block text-4xl font-black text-[#0D8BC5] leading-none mb-1">100%</span>
                   <span className="block text-[10px] font-bold uppercase tracking-widest text-gray-400">Inspection Done</span>
                 </div>
-                <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-[#eaf6fc] transition-colors duration-300">
-                  <i className="icon-angle-right text-[#0D8BC5]"></i>
+                <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-[#0D8BC5] group-hover:text-white transition-all duration-[400ms]">
+                  <i className="icon-angle-right"></i>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -350,7 +460,7 @@ const Home = () => {
         <div
           className="absolute inset-0 bg-cover bg-center z-0 animate-[ping_60s_linear_infinite]"
           style={{
-            backgroundImage: "url('/images/homePage/About%20Company/bg.png')",
+            backgroundImage: "url('/images/homePage/About%20Company/bg.jpg')",
             animation: 'slowBgZoom 30s alternate infinite ease-in-out'
           }}
         ></div>
@@ -378,7 +488,7 @@ const Home = () => {
                     }`}
                 >
                   <img
-                    src={`/images/homePage/About%20Company/main${idx === 0 ? '' : idx + 1}.png`}
+                    src={`/images/homePage/About%20Company/main${idx === 0 ? '' : idx + 1}.jpg`}
                     alt="Company Facility"
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />

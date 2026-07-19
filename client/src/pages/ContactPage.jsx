@@ -157,7 +157,7 @@ const ContactPage = () => {
                   </div>
                   <h5 className="transition-colors duration-200">Main Branch</h5>
                   <p className="transition-colors duration-200 leading-relaxed">
-                    Plot No. G4, Forsberry Rd, East, Sewri, <br />
+                    Plot No. G4, Forsberry Rd, Sewri East, <br />
                     Mumbai, Maharashtra 400015, <br />
                     India.
                   </p>
