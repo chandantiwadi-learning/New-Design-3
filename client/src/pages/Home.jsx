@@ -44,7 +44,8 @@ const Home = () => {
       subtitle: 'Premium stainless steel fasteners engineered for strength, precision, and long-term performance across global industries.',
       callout: 'Trusted manufacturing partner delivering reliable fastening solutions with uncompromising quality and international standards.',
       btn1: 'GET IN TOUCH',
-      btn2: 'OUR PRODUCTS'
+      btn2: 'OUR PRODUCTS',
+      imgClasses: 'object-[80%_center] md:object-[75%_center] lg:object-center'
     },
     {
       img: '/images/homePage/2.jpg',
@@ -52,7 +53,8 @@ const Home = () => {
       subtitle: 'Manufacturing high-quality washers that ensure secure fastening, superior load distribution, and long-lasting durability.',
       callout: 'Designed for demanding industrial environments where consistency and precision matter most.',
       btn1: 'GET IN TOUCH',
-      btn2: 'OUR PRODUCTS'
+      btn2: 'OUR PRODUCTS',
+      imgClasses: 'object-[90%_center] md:object-[80%_center] lg:object-[center_center]'
     },
     {
       img: '/images/homePage/3.jpg',
@@ -60,7 +62,8 @@ const Home = () => {
       subtitle: 'Reliable industrial nuts engineered for maximum strength, dimensional accuracy, and dependable performance.',
       callout: 'Supporting engineering excellence with products manufactured to meet international quality standards.',
       btn1: 'GET IN TOUCH',
-      btn2: 'OUR PRODUCTS'
+      btn2: 'OUR PRODUCTS',
+      imgClasses: 'object-[75%_center] md:object-[70%_center] lg:object-center'
     },
     {
       img: '/images/homePage/4.jpg',
@@ -68,7 +71,8 @@ const Home = () => {
       subtitle: 'Complete fastening solutions for construction, infrastructure, heavy engineering, energy, and manufacturing industries.',
       callout: 'Delivering premium industrial fasteners with precision manufacturing, reliable quality, and worldwide supply capabilities.',
       btn1: 'GET IN TOUCH',
-      btn2: 'OUR PRODUCTS'
+      btn2: 'OUR PRODUCTS',
+      imgClasses: 'object-[85%_center] md:object-[75%_center] lg:object-center'
     }
   ];
 
@@ -91,17 +95,25 @@ const Home = () => {
         {slides.map((slide, idx) => (
           <div
             key={idx}
-            className={`absolute inset-0 bg-cover bg-center transition-all duration-[900ms] ease-out ${currentSlide === idx ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-12 z-0 pointer-events-none'
+            className={`absolute inset-0 transition-all duration-[900ms] ease-out ${currentSlide === idx ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-12 z-0 pointer-events-none'
               }`}
-            style={{ backgroundImage: `url('${slide.img}')` }}
           >
-            {/* Gradient Overlay & Blur */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute inset-0 backdrop-blur-md z-10 pointer-events-none" style={{ WebkitMaskImage: 'linear-gradient(to right, black 0%, transparent 50%)', maskImage: 'linear-gradient(to right, black 0%, transparent 50%)' }}></div>
+            {/* Optimized Responsive Image */}
+            <img 
+              src={slide.img} 
+              alt={slide.title}
+              className={`absolute inset-0 w-full h-full object-cover ${slide.imgClasses} will-change-transform transform-gpu`}
+              loading={idx === 0 ? "eager" : "lazy"}
+              decoding="async"
+              fetchPriority={idx === 0 ? "high" : "auto"}
+            />
+            {/* Gradient Overlay & Blur adjusted for mobile readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 md:from-black/60 via-black/40 md:via-black/20 to-transparent lg:to-transparent/10 z-10 pointer-events-none"></div>
+            <div className="absolute inset-0 backdrop-blur-md z-10 pointer-events-none" style={{ WebkitMaskImage: 'linear-gradient(to right, black 0%, transparent 55%)', maskImage: 'linear-gradient(to right, black 0%, transparent 55%)' }}></div>
 
             {/* Slider Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center relative z-20">
-              <div className="max-w-3xl space-y-6">
+              <div className="max-w-[85%] md:max-w-2xl lg:max-w-3xl space-y-5 md:space-y-6 pt-10 md:pt-0">
                 <h1 className={`text-3xl md:text-5xl font-extrabold text-white leading-tight tracking-tight uppercase transform transition-all duration-[600ms] delay-[200ms] ${currentSlide === idx ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                   }`}>
                   {slide.title}
@@ -234,11 +246,14 @@ const Home = () => {
               key={idx}
               className="group aspect-[4/3] relative rounded-lg overflow-hidden shadow-md border border-gray-100 hover:border-[#0D8BC5] hover:shadow-[0_8px_24px_rgba(13,139,197,0.25)] transition-all duration-300 block"
             >
-              {/* Product Image */}
-              <div
-                className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-300 z-0"
-                style={{ backgroundImage: `url('${prod.img}')` }}
-              ></div>
+              {/* Optimized Responsive Product Image */}
+              <img
+                src={prod.img}
+                alt={prod.name}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 will-change-transform transform-gpu z-0"
+                loading="lazy"
+                decoding="async"
+              />
               {/* Gradient Overlay for Text Readability (Default shadow) */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10 pointer-events-none"></div>
 
@@ -490,7 +505,9 @@ const Home = () => {
                   <img
                     src={`/images/homePage/About%20Company/main${idx === 0 ? '' : idx + 1}.jpg`}
                     alt="Company Facility"
-                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                    className="w-full h-full object-cover object-center md:object-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform transform-gpu"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               ))}
