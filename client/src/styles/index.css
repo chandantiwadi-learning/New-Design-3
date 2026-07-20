@@ -590,12 +590,7 @@ textarea:focus {
 }
 
 @media (max-width: 767px) {
-
-  .header .logo,
-  .header.header-small .logo {
-    display: none !important;
-    /* Hidden on mobile where mobile menu r_logo renders */
-  }
+  /* Logo visibility on mobile is now handled by Tailwind classes in Navbar.jsx */
 }
 
 .menu_button .r_logo {
