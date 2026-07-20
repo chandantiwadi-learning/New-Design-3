@@ -47,6 +47,10 @@ const EngineeringCard = ({ title, description, value, subtitle, icon, delay, isV
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [aboutSlide, setAboutSlide] = useState(0);
+  const [isAboutVisible, setIsAboutVisible] = useState(false);
+  const aboutSectionRef = React.useRef(null);
+
   const [isPaused, setIsPaused] = useState(false);
   const touchStartX = React.useRef(null);
   const touchEndX = React.useRef(null);
@@ -593,7 +597,7 @@ const Home = () => {
       <section className="py-16 text-center border-t border-white/10" style={{ background: 'linear-gradient(135deg, #0D8BC5, #0878AA)' }}>
         <div className="max-w-5xl mx-auto px-4">
           <h1 className="text-lg md:text-xl font-bold text-white leading-relaxed">
-            <h2 style={{ color: 'white' }}>Providing Precision-Build Fastening Solutions For Industrial Applications Worldwide.</h2>
+            Providing Precision-Build Fastening Solutions For Industrial Applications Worldwide.
           </h1>
           <div className="mt-8">
             <Link to="/about-us" className="px-8 py-3.5 bg-white text-[#0D8BC5] border border-white hover:bg-transparent hover:text-white font-bold text-xs uppercase tracking-wider rounded-sm transition-all duration-300 inline-block shadow-md">
