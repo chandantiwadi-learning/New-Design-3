@@ -19,6 +19,43 @@ body {
   background-color: #ffffff !important;
   overflow-x: hidden !important;
 }
+@keyframes scanHex {
+  0% {
+    stroke-dashoffset: 300;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.hex-animated-path {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+}
+
+.group:hover .hex-animated-path {
+  animation: scanHex 0.4s ease-in-out infinite;
+}
+
+.hex-travel-line {
+  stroke-dasharray: 60 240;
+  stroke-dashoffset: 300;
+  opacity: 0;
+}
+
+.group:hover .hex-travel-line {
+  animation: travelHex 0.4s ease-in-out infinite;
+  opacity: 1;
+}
+
+@keyframes travelHex {
+  0% {
+    stroke-dashoffset: 300;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
 
 .notch-tag {
   clip-path: polygon(0 0, calc(100% - 15px) 0, 100% 50%, calc(100% - 15px) 100%, 0 100%);

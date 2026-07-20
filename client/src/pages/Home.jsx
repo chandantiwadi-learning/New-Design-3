@@ -4,45 +4,43 @@ import { Link } from 'react-router-dom';
 const EngineeringCard = ({ title, description, value, subtitle, icon, delay, isVisible }) => {
   return (
     <div
-      className={`group relative bg-gradient-to-br from-white to-gray-50 rounded-[20px] p-8 border border-gray-200 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(30,136,229,0.15)] transition-all duration-300 ease-out hover:-translate-y-2 z-10 opacity-0 translate-y-8`}
+      className={`group relative bg-white rounded-[20px] p-8 border border-gray-200 shadow-[0_8px_30px_rgba(0,0,0,0.04)] h-full flex flex-col z-10`}
       style={{
         animation: isVisible ? `fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s forwards` : 'none',
+        opacity: 0,
       }}
     >
-      {/* Blueprint Grid Texture */}
-      <div className="absolute inset-0 rounded-[20px] bg-[linear-gradient(rgba(30,136,229,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(30,136,229,0.04)_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none overflow-hidden"></div>
+      <div className="flex justify-between items-start mb-10">
+        {/* Icon & Hexagon */}
+        <div className="relative w-20 h-20 flex items-center justify-center group-hover:scale-[1.08] transition-transform duration-[400ms] ease-in-out">
+          <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full text-[#1E88E5] opacity-[0.7] group-hover:opacity-100 transition-opacity duration-[400ms]">
+            <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="currentColor" strokeWidth="2.5" className="group-hover:drop-shadow-[0_0_8px_rgba(30,136,229,0.6)] transition-all duration-[400ms]" />
+            <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="currentColor" strokeWidth="3" className="opacity-0 group-hover:opacity-100 hex-animated-path" />
+            <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="#64B5F6" strokeWidth="3.5" className="opacity-0 group-hover:opacity-100 hex-travel-line" />
+          </svg>
 
-      {/* Vertical Guide Line */}
-      <div className="absolute top-0 bottom-0 left-[68px] w-[1px] bg-gradient-to-b from-transparent via-[#1E88E5]/20 to-transparent pointer-events-none"></div>
-
-      {/* Animated Border Highlight on Hover */}
-      <div className="absolute inset-0 rounded-[20px] border-2 border-transparent group-hover:border-[#1E88E5]/30 transition-colors duration-300 pointer-events-none"></div>
-
-      <div className="relative z-10 flex flex-col h-full">
-        <div className="flex justify-between items-start mb-10">
-          {/* Icon & Hexagon */}
-          <div className="relative w-20 h-20 flex items-center justify-center">
-            <svg viewBox="0 0 100 100" className="absolute inset-0 w-[140%] h-[140%] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-[#1E88E5] opacity-[0.15] group-hover:opacity-40 transition-opacity duration-300">
-              <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="currentColor" strokeWidth="1.5" className="group-hover:drop-shadow-[0_0_8px_rgba(30,136,229,0.5)] transition-all duration-300" />
-            </svg>
-            <i className={`${icon} text-[32px] text-[#1E88E5] group-hover:rotate-[6deg] transition-transform duration-300 relative z-10`}></i>
-          </div>
-
-          {/* Floating Hexagon Badge */}
-          <div className="relative w-24 h-[105px] flex flex-col items-center justify-center group-hover:scale-105 transition-transform duration-300 mt-[-10px] mr-[-10px]">
-            <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full text-[#1E88E5]">
-              <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="white" stroke="currentColor" strokeWidth="1.5" className="group-hover:stroke-2 transition-all duration-300 drop-shadow-sm" />
-            </svg>
-            <span className="relative z-10 text-[26px] font-black text-[#1E88E5] leading-none mb-1">{value}</span>
-            <span className="relative z-10 text-[9px] font-bold uppercase tracking-widest text-gray-500 text-center px-3 leading-tight">{subtitle}</span>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <i className={`${icon} text-[32px] text-[#1E88E5] group-hover:scale-110 transition-transform duration-[400ms] ease-in-out`}></i>
           </div>
         </div>
 
-        <h3 className="text-xl font-bold tracking-[0.2em] uppercase text-gray-900 mb-4 group-hover:text-[#1E88E5] transition-colors duration-300">{title}</h3>
-        <p className="text-[16px] text-gray-600 leading-[1.8] flex-grow font-medium">
-          {description}
-        </p>
+        {/* Floating Hexagon Badge */}
+        <div className="relative w-24 h-[105px] flex flex-col items-center justify-center mt-[-10px] mr-[-10px]">
+          <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full text-[#1E88E5] opacity-[0.7]">
+            <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="currentColor" strokeWidth="2.5" />
+          </svg>
+
+          <div className="relative z-10 flex flex-col items-center justify-center h-full w-full">
+            <span className="text-[26px] font-black text-[#1E88E5] leading-none mb-1">{value}</span>
+            <span className="text-[9px] font-bold uppercase tracking-widest text-gray-500 text-center px-3 leading-tight">{subtitle}</span>
+          </div>
+        </div>
       </div>
+
+      <h3 className="text-xl font-bold tracking-[0.2em] uppercase text-gray-900 mb-4">{title}</h3>
+      <p className="text-[16px] text-gray-600 leading-[1.8] flex-grow font-medium">
+        {description}
+      </p>
     </div>
   );
 };
@@ -268,13 +266,13 @@ const Home = () => {
         {/* Animated HUD Logo at Top Right */}
         <div
           key={`hud-${currentSlide}`}
-          className="absolute top-6 right-6 z-50 w-[100px] h-[100px] md:w-[100px] md:h-[100px] logo-hud-enter"
+          className="absolute top-6 right-6 z-50 w-[100px] h-[100px] md:w-[150px] md:h-[150px] logo-hud-enter"
         >
           <div className="relative w-full h-full logo-hud-container">
             <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer" alt="" />
             <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle" alt="" />
             <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner" alt="" />
-            <img src="/images/homePage/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[55%] h-[50%] object-contain z-10" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="" />
+            <img src="/images/homePage/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[45%] h-[45%] object-contain z-10" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="" />
           </div>
         </div>
 
@@ -322,15 +320,12 @@ const Home = () => {
                 loading="lazy"
                 decoding="async"
               />
-              {/* Gradient Overlay for Text Readability (Default shadow) */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10 pointer-events-none"></div>
-
               {/* Brand Blue Hover Overlay */}
               <div className="absolute inset-0 bg-[#0D8BC5]/28 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none"></div>
 
               {/* Hexagon Label */}
               <div className="absolute bottom-4 left-4 z-30">
-                <div className="hexagon-tag bg-gray-500/80 text-white font-bold text-[10px] uppercase px-7 py-2 group-hover:bg-[#0D8BC5] transition-colors duration-300 backdrop-blur-sm shadow-md">
+                <div className="hexagon-tag bg-[#0D8BC5] text-white font-bold text-[10px] uppercase px-7 py-2 transition-colors duration-300 shadow-md">
                   {prod.name}
                 </div>
               </div>
@@ -348,15 +343,9 @@ const Home = () => {
           }
         `}</style>
 
-        {/* Subtle Blueprint Grid Texture for Section */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(30,136,229,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(30,136,229,0.03)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none z-0"></div>
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr] gap-8 lg:gap-6 items-stretch relative">
-
-            {/* Horizontal Connecting Line (Desktop) */}
-            <div className="hidden lg:block absolute top-[110px] left-[15%] right-[15%] h-[1px] bg-gradient-to-r from-transparent via-[#1E88E5]/30 to-transparent z-0"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch relative">
 
             {/* Vision Card */}
             <EngineeringCard
@@ -369,13 +358,6 @@ const Home = () => {
               isVisible={isEngSectionVisible}
             />
 
-            {/* Connector Node 1 */}
-            <div className={`hidden lg:flex flex-col items-center justify-start pt-[94px] relative z-20 opacity-0 transition-opacity duration-700 ${isEngSectionVisible ? 'opacity-100' : ''}`} style={{ transitionDelay: '0.2s' }}>
-              <div className="w-8 h-8 bg-white rounded-lg shadow-sm border border-[#1E88E5]/20 flex items-center justify-center transform rotate-45 group">
-                <div className="w-3 h-3 bg-[#1E88E5]/40 rounded-sm group-hover:bg-[#1E88E5] transition-colors duration-300"></div>
-              </div>
-            </div>
-
             {/* Mission Card */}
             <EngineeringCard
               title="MISSION"
@@ -386,13 +368,6 @@ const Home = () => {
               delay={0.15}
               isVisible={isEngSectionVisible}
             />
-
-            {/* Connector Node 2 */}
-            <div className={`hidden lg:flex flex-col items-center justify-start pt-[94px] relative z-20 opacity-0 transition-opacity duration-700 ${isEngSectionVisible ? 'opacity-100' : ''}`} style={{ transitionDelay: '0.35s' }}>
-              <div className="w-8 h-8 bg-white rounded-lg shadow-sm border border-[#1E88E5]/20 flex items-center justify-center transform rotate-45 group">
-                <div className="w-3 h-3 bg-[#1E88E5]/40 rounded-sm group-hover:bg-[#1E88E5] transition-colors duration-300"></div>
-              </div>
-            </div>
 
             {/* Quality Card */}
             <EngineeringCard
@@ -555,17 +530,17 @@ const Home = () => {
       {/* Action Banner */}
       <section className="py-16 text-center border-t border-white/10" style={{ background: 'linear-gradient(135deg, #0D8BC5, #0878AA)' }}>
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-lg md:text-xl font-bold text-white tracking-wide leading-relaxed">
-            Providing Precision-Build Fastening Solutions For Industrial Applications Worldwide.
-          </h2>
+          <h1 className="text-lg md:text-xl font-bold text-white leading-relaxed">
+            <h2 style={{ color: 'white' }}>Providing Precision-Build Fastening Solutions For Industrial Applications Worldwide.</h2>
+          </h1>
           <div className="mt-8">
             <Link to="/about-us" className="px-8 py-3.5 bg-white text-[#0D8BC5] border border-white hover:bg-transparent hover:text-white font-bold text-xs uppercase tracking-wider rounded-sm transition-all duration-300 inline-block shadow-md">
               Learn More About Us
             </Link>
           </div>
         </div>
-      </section>
-    </div>
+      </section >
+    </div >
   );
 };
 
