@@ -124,112 +124,149 @@ const Navbar = () => {
   ];
 
   return (
-    <header className={`header sticky top-0 w-full z-[100] transition-transform duration-300 bg-white ${isScrolled ? 'header-small shadow-md' : ''} ${scrollDirection === 'down' ? '-translate-y-full' : 'translate-y-0'}`}>
-      <div className="container relative flex items-center justify-between h-full px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-        {/* Mock Language switch for GEBO style */}
-        <div className="absolute top-2 right-4 text-[10px] text-gray-500 font-bold hidden md:block">
-          <span className="text-[#0D8BC5] hover:underline cursor-pointer">EN</span>
-          <span className="mx-1.5">|</span>
-          <span className="text-gray-400 hover:underline cursor-pointer">NL</span>
+    <>
+      <header className={`header sticky top-0 w-full z-50 transition-transform duration-300 bg-white ${isScrolled ? 'header-small shadow-md' : ''} ${scrollDirection === 'down' ? '-translate-y-full' : 'translate-y-0'}`}>
+        <div className="container relative flex items-center justify-between">
+          {/* Mock Language switch for GEBO style */}
+          <div className="absolute top-2 right-4 text-[10px] text-gray-500 font-bold hidden md:block">
+            <span className="text-primary hover:underline cursor-pointer">EN</span>
+            <span className="mx-1.5">|</span>
+            <span className="text-gray-400 hover:underline cursor-pointer">NL</span>
+          </div>
+
+          {/* Start logo */}
+          <Link className="logo" to="/" title="Hex India Fasteners">
+            <img src="/images/hex-india-logo.png" alt="Hex India Fasteners" />
+          </Link>
+          {/* End logo */}
+
+          {/* Mobile Hamburger Toggle */}
+          <button
+            className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-md hover:bg-gray-50 transition-colors z-[60] mr-4 relative"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            <span className={`bg-[#0D8BC5] block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : '-translate-y-1'}`}></span>
+            <span className={`bg-[#0D8BC5] block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
+            <span className={`bg-[#0D8BC5] block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : 'translate-y-1'}`}></span>
+          </button>
+
+          {/* Start main menu (Desktop) */}
+          <ul
+            className="main_menu flex items-center"
+            style={{ display: window.innerWidth > 767 ? 'flex' : 'none' }}
+          >
+            <li className={isActive('/') && location.pathname === '/' ? 'current_item' : ''}>
+              <Link to="/">
+                <span className="hex_elem_rounded"><i className="icon-home"></i></span>
+                Home
+              </Link>
+            </li>
+
+            <li className={`has-submenu ${isActive('/about-us') || isActive('/factory-tour') ? 'current_item' : ''}`}>
+              <Link to="/about-us">
+                <span className="hex_elem_rounded"><i className="icon-cog"></i></span>
+                About Us
+              </Link>
+              <ul>
+                <li><Link to="/factory-tour">Factory Tour</Link></li>
+              </ul>
+            </li>
+
+            <li className={`has-submenu ${location.pathname === '/products' || isActive('/bolts') || isActive('/screw') || isActive('/stud-bolts') || isActive('/nuts') || isActive('/washers') || isActive('/accessories') ? 'current_item' : ''}`}>
+              <Link to="/products">
+                <span className="hex_elem_rounded"><i className="icon-tasks"></i></span>
+                Products
+              </Link>
+              <ul>
+                <li><Link to="/bolts">Bolts</Link></li>
+                <li><Link to="/screw">Screws</Link></li>
+                <li><Link to="/stud-bolts">Stud Bolts</Link></li>
+                <li><Link to="/nuts">Nuts</Link></li>
+                <li><Link to="/washers">Washers</Link></li>
+                <li><Link to="/accessories">Accessories</Link></li>
+              </ul>
+            </li>
+
+            <li className={`has-submenu ${location.pathname === '/material' ||
+              isActive('/stainless-steel') || isActive('/carbon-steel') || isActive('/alloy-steel') ||
+              isActive('/duplex-steel') || isActive('/super-duplex-steel') || isActive('/nickel-alloy') ||
+              isActive('/monel') || isActive('/inconel') || isActive('/incoloy') || isActive('/hastelloy') ||
+              isActive('/copper-nickel') || isActive('/titanium') || isActive('/silicon-bronze') ||
+              isActive('/phosphor-bronze') || isActive('/aluminium-bronze') || isActive('/brass') ||
+              isActive('/tantalum') || isActive('/zirconium') ? 'current_item' : ''
+              }`}>
+              <Link to="/material">
+                <span className="hex_elem_rounded"><i className="icon-picture"></i></span>
+                Material
+              </Link>
+              <ul>
+                <li><Link to="/stainless-steel">Stainless Steel</Link></li>
+                <li><Link to="/carbon-steel">Carbon Steel</Link></li>
+                <li><Link to="/alloy-steel">Alloy Steel</Link></li>
+                <li><Link to="/duplex-steel">Duplex Steel</Link></li>
+                <li><Link to="/super-duplex-steel">Super Duplex Steel</Link></li>
+                <li><Link to="/nickel-alloy">Nickel</Link></li>
+                <li><Link to="/monel">Monel</Link></li>
+                <li><Link to="/inconel">Inconel</Link></li>
+                <li><Link to="/incoloy">Incoloy</Link></li>
+                <li><Link to="/hastelloy">Hastelloy</Link></li>
+                <li><Link to="/copper-nickel">Copper Nickel</Link></li>
+                <li><Link to="/titanium">Titanium</Link></li>
+                <li><Link to="/silicon-bronze">Silicon Bronze</Link></li>
+                <li><Link to="/phosphor-bronze">Phosphor Bronze</Link></li>
+                <li><Link to="/aluminium-bronze">Aluminum Bronze</Link></li>
+                <li><Link to="/brass">Brass</Link></li>
+                <li><Link to="/tantalum">Tantalum</Link></li>
+                <li><Link to="/zirconium">Zirconium</Link></li>
+              </ul>
+            </li>
+
+            <li className={`has-submenu ${location.pathname === '/standard' ||
+              isActive('/asme-standards') || isActive('/din-standards') || isActive('/sae-standards') ||
+              isActive('/iso-standards') || isActive('/bs-standards') || isActive('/bis-standards') ||
+              isActive('/uni-standards') ? 'current_item' : ''
+              }`}>
+              <Link to="/standard">
+                <span className="hex_elem_rounded"><i className="icon-flag"></i></span>
+                Standard
+              </Link>
+              <ul>
+                <li><Link to="/asme-standards">ASME</Link></li>
+                <li><Link to="/din-standards">DIN</Link></li>
+                <li><Link to="/sae-standards">SAE</Link></li>
+                <li><Link to="/iso-standards">ISO</Link></li>
+                <li><Link to="/bs-standards">BS</Link></li>
+                <li><Link to="/bis-standards">BIS</Link></li>
+                <li><Link to="/uni-standards">UNI</Link></li>
+              </ul>
+            </li>
+
+            <li className={isActive('/contact') ? 'current_item' : ''}>
+              <Link to="/contact">
+                <span className="hex_elem_rounded"><i className="icon-envelope"></i></span>
+                Contact Us
+              </Link>
+            </li>
+
+            <li className={isActive('/blog') ? 'current_item' : ''}>
+              <Link to="/blog">
+                <span className="hex_elem_rounded"><i className="icon-plane"></i></span>
+                Blog
+              </Link>
+            </li>
+          </ul>
+          {/* End main menu */}
         </div>
+      </header>
 
-        {/* Logo - Always visible with proper padding */}
-        <Link className="logo flex-shrink-0 flex items-center py-2 relative z-50" to="/" title="Hex India Fasteners">
-          <img src="/images/hex-india-logo.png" alt="Hex India Fasteners" className="w-[180px] sm:w-[220px] md:w-[260px] h-auto object-contain" />
-        </Link>
-
-        {/* Mobile Hamburger Toggle */}
-        <button
-          className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-md hover:bg-gray-50 transition-colors z-50"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          aria-label="Toggle Menu"
-        >
-          <span className={`bg-[#0D8BC5] block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : '-translate-y-1'}`}></span>
-          <span className={`bg-[#0D8BC5] block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm my-0.5 ${isMobileMenuOpen ? 'opacity-0' : 'opacity-100'}`}></span>
-          <span className={`bg-[#0D8BC5] block transition-all duration-300 ease-out h-0.5 w-6 rounded-sm ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : 'translate-y-1'}`}></span>
-        </button>
-
-        {/* Desktop Main Menu - Hidden on Mobile */}
-        <ul className="main_menu hidden md:flex items-center">
-          <li className={isActive('/') && location.pathname === '/' ? 'current_item' : ''}>
-            <Link to="/">
-              <span className="hex_elem_rounded"><i className="icon-home"></i></span>
-              Home
-            </Link>
-          </li>
-
-          <li className={`has-submenu ${isActive('/about-us') || isActive('/factory-tour') ? 'current_item' : ''}`}>
-            <Link to="/about-us">
-              <span className="hex_elem_rounded"><i className="icon-cog"></i></span>
-              About Us
-            </Link>
-            <ul>
-              <li><Link to="/factory-tour">Factory Tour</Link></li>
-            </ul>
-          </li>
-
-          <li className={`has-submenu ${location.pathname === '/products' || isActive('/bolts') || isActive('/screw') || isActive('/stud-bolts') || isActive('/nuts') || isActive('/washers') || isActive('/accessories') ? 'current_item' : ''}`}>
-            <Link to="/products">
-              <span className="hex_elem_rounded"><i className="icon-tasks"></i></span>
-              Products
-            </Link>
-            <ul>
-              <li><Link to="/bolts">Bolts</Link></li>
-              <li><Link to="/screw">Screws</Link></li>
-              <li><Link to="/stud-bolts">Stud Bolts</Link></li>
-              <li><Link to="/nuts">Nuts</Link></li>
-              <li><Link to="/washers">Washers</Link></li>
-              <li><Link to="/accessories">Accessories</Link></li>
-            </ul>
-          </li>
-
-          <li className={`has-submenu ${location.pathname === '/material' || navLinks[3].submenu.some(s => isActive(s.path)) ? 'current_item' : ''}`}>
-            <Link to="/material">
-              <span className="hex_elem_rounded"><i className="icon-picture"></i></span>
-              Material
-            </Link>
-            <ul>
-              {navLinks[3].submenu.map((item, idx) => (
-                <li key={idx}><Link to={item.path}>{item.name}</Link></li>
-              ))}
-            </ul>
-          </li>
-
-          <li className={`has-submenu ${location.pathname === '/standard' || navLinks[4].submenu.some(s => isActive(s.path)) ? 'current_item' : ''}`}>
-            <Link to="/standard">
-              <span className="hex_elem_rounded"><i className="icon-flag"></i></span>
-              Standard
-            </Link>
-            <ul>
-              {navLinks[4].submenu.map((item, idx) => (
-                <li key={idx}><Link to={item.path}>{item.name}</Link></li>
-              ))}
-            </ul>
-          </li>
-
-          <li className={isActive('/contact') ? 'current_item' : ''}>
-            <Link to="/contact">
-              <span className="hex_elem_rounded"><i className="icon-envelope"></i></span>
-              Contact Us
-            </Link>
-          </li>
-
-          <li className={isActive('/blog') ? 'current_item' : ''}>
-            <Link to="/blog">
-              <span className="hex_elem_rounded"><i className="icon-plane"></i></span>
-              Blog
-            </Link>
-          </li>
-        </ul>
-      </div>
-
-      {/* Mobile Slide-in Drawer */}
+      {/* Mobile Slide-in Drawer - MUST BE OUTSIDE HEADER to prevent transform containment clipping */}
       <div 
-        className={`fixed inset-0 z-40 bg-gray-900/40 backdrop-blur-sm transition-opacity duration-300 md:hidden ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
+        className={`fixed inset-0 z-[110] bg-gray-900/40 backdrop-blur-sm transition-opacity duration-300 md:hidden ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
         onClick={() => setIsMobileMenuOpen(false)}
       ></div>
 
-      <div className={`fixed inset-y-0 right-0 z-50 w-[85%] max-w-sm bg-white shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden flex flex-col h-full ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+      <div className={`fixed top-0 bottom-0 right-0 z-[120] w-[85%] max-w-sm bg-white shadow-2xl transform transition-transform duration-300 ease-in-out md:hidden flex flex-col h-[100dvh] ${isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
         {/* Mobile Drawer Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-100 h-[80px] shrink-0">
           <span className="font-bold text-gray-900 uppercase tracking-widest text-sm">Navigation</span>
@@ -242,8 +279,8 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Drawer Content */}
-        <div className="flex-1 overflow-y-auto py-4 px-4">
-          <ul className="space-y-1">
+        <div className="flex-1 overflow-y-auto py-4 px-4 bg-white">
+          <ul className="space-y-1 pb-8">
             {navLinks.map((link, idx) => {
               const isCurrent = link.exact ? location.pathname === link.path : isActive(link.path);
               const hasSubmenu = link.submenu && link.submenu.length > 0;
@@ -302,7 +339,7 @@ const Navbar = () => {
           </a>
         </div>
       </div>
-    </header>
+    </>
   );
 };
 
