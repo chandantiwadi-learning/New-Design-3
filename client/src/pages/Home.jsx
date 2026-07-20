@@ -47,16 +47,52 @@ const EngineeringCard = ({ title, description, value, subtitle, icon, delay, isV
 
 const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [aboutSlide, setAboutSlide] = useState(0);
-  const [isAboutVisible, setIsAboutVisible] = useState(false);
-  const aboutSectionRef = React.useRef(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const touchStartX = React.useRef(null);
+  const touchEndX = React.useRef(null);
+
+  const numSlides = 4; // Length of slides array below
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % numSlides);
+  const prevSlide = () => setCurrentSlide((prev) => (prev === 0 ? numSlides - 1 : prev - 1));
 
   useEffect(() => {
+    if (isPaused) return;
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % 4);
-    }, 6000);
+      nextSlide();
+    }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [isPaused, currentSlide]);
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowLeft') prevSlide();
+    else if (e.key === 'ArrowRight') nextSlide();
+    else if (e.key === 'Home') setCurrentSlide(0);
+    else if (e.key === 'End') setCurrentSlide(numSlides - 1);
+  };
+
+  const handleTouchStart = (e) => {
+    setIsPaused(true);
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+  
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+  
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) {
+      setIsPaused(false);
+      return;
+    }
+    const distance = touchStartX.current - touchEndX.current;
+    if (distance > 50) nextSlide();
+    else if (distance < -50) prevSlide();
+    
+    touchStartX.current = null;
+    touchEndX.current = null;
+    setIsPaused(false);
+  };
 
   useEffect(() => {
     const aboutTimer = setInterval(() => {
@@ -153,12 +189,22 @@ const Home = () => {
   return (
     <div className="home-page select-none bg-[#f9fafd] text-gray-800">
       {/* Slider Banner Section */}
-      <div className="relative h-[520px] md:h-[600px] overflow-hidden bg-brand-dark">
+      <div 
+        className="relative h-[520px] md:h-[600px] overflow-hidden bg-brand-dark group outline-none focus:outline-none"
+        tabIndex="0"
+        onKeyDown={handleKeyDown}
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        aria-label="Hero Carousel"
+      >
 
         {slides.map((slide, idx) => (
           <div
             key={idx}
-            className={`absolute inset-0 transition-all duration-[900ms] ease-out ${currentSlide === idx ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-12 z-0 pointer-events-none'
+            className={`absolute inset-0 transition-all duration-[700ms] ease-in-out ${currentSlide === idx ? 'opacity-100 translate-x-0 z-10' : 'opacity-0 translate-x-8 z-0 pointer-events-none'
               }`}
           >
             {/* Optimized Responsive Image */}
@@ -205,6 +251,22 @@ const Home = () => {
             </div>
           </div>
         ))}
+        
+        {/* Desktop Navigation Arrows */}
+        <button 
+          onClick={(e) => { e.preventDefault(); prevSlide(); }}
+          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/20 text-white opacity-0 group-hover:opacity-100 hover:bg-[#0D8BC5] transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_16px_rgba(13,139,197,0.4)] z-30 hidden md:flex cursor-pointer"
+          aria-label="Previous Slide"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7"></path></svg>
+        </button>
+        <button 
+          onClick={(e) => { e.preventDefault(); nextSlide(); }}
+          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/20 text-white opacity-0 group-hover:opacity-100 hover:bg-[#0D8BC5] transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_16px_rgba(13,139,197,0.4)] z-30 hidden md:flex cursor-pointer"
+          aria-label="Next Slide"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"></path></svg>
+        </button>
 
         {/* Custom HUD Animations */}
         <style>{`
@@ -282,9 +344,9 @@ const Home = () => {
             <button
               key={idx}
               onClick={() => setCurrentSlide(idx)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === idx ? 'bg-accent w-8' : 'bg-white/40 hover:bg-white/80'
+              className={`h-3 rounded-full transition-all duration-300 ${currentSlide === idx ? 'bg-[#0D8BC5] w-8' : 'bg-white/40 hover:bg-white/80 w-3'
                 }`}
-              aria-label={`Slide ${idx + 1}`}
+              aria-label={`Go to slide ${idx + 1}`}
             ></button>
           ))}
         </div>
