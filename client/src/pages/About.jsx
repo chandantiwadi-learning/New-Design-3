@@ -551,46 +551,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* 8. Vision Mission Values */}
-      <section className="py-24 md:py-32 bg-[#f9fafd] border-t border-gray-100 overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-10"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-          >
-            {[
-              { title: 'Our Vision', icon: 'fa-eye', desc: 'To be the globally recognized leader in providing high-integrity fastening solutions, driving industrial progress with unparalleled precision.' },
-              { title: 'Our Mission', icon: 'fa-bullseye', desc: 'To consistently manufacture and supply premium quality fasteners, exceeding customer expectations through continuous innovation and excellence.' },
-              { title: 'Core Values', icon: 'fa-star', desc: 'Uncompromising Quality, Integrity, Customer Centricity, and Sustainable Manufacturing Practices form the foundation of Hex India.' },
-            ].map((item, idx) => (
-              <ParallaxCard key={idx}>
-                <motion.div
-                  variants={fadeUp}
-                  className="bg-white/80 backdrop-blur-xl p-12 border border-gray-100 hover:border-[#0D8BC5]/30 hover:shadow-[0_20px_40px_rgba(13,139,197,0.1)] transition-all duration-500 rounded-3xl text-center group h-full relative overflow-hidden"
-                >
-                  {/* Subtle Background Pattern */}
-                  <div className="absolute inset-0 opacity-[0.03] bg-[url('/images/parallax_bg_04.png')] bg-cover mix-blend-multiply pointer-events-none group-hover:scale-110 transition-transform duration-1000"></div>
-
-                  <div className="w-20 h-20 mx-auto relative flex items-center justify-center mb-8">
-                    {/* Rotating Background Circle */}
-                    <div className="absolute inset-0 border-2 border-dashed border-[#0D8BC5]/30 rounded-full group-hover:animate-[spin_10s_linear_infinite]"></div>
-                    <div className="absolute inset-2 bg-[#f9fafd] rounded-full shadow-inner"></div>
-                    <i className={`fas ${item.icon} text-[#0D8BC5] text-3xl relative z-10 group-hover:scale-110 transition-transform duration-300 drop-shadow-md`}></i>
-                  </div>
-
-                  <h3 className="text-3xl font-bold text-gray-900 mb-6 group-hover:text-[#0D8BC5] transition-colors">{item.title}</h3>
-                  <p className="text-gray-600 font-medium leading-relaxed">{item.desc}</p>
-                </motion.div>
-              </ParallaxCard>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 9. Call To Action */}
+      {/* 8. Call To Action */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[#0D8BC5] to-[#0878AA]"></div>
         <motion.div

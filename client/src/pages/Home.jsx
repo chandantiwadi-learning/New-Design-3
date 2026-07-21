@@ -4,43 +4,55 @@ import { Link } from 'react-router-dom';
 const EngineeringCard = ({ title, description, value, subtitle, icon, delay, isVisible }) => {
   return (
     <div
-      className={`group relative bg-white rounded-[20px] p-8 border border-gray-200 shadow-[0_8px_30px_rgba(0,0,0,0.04)] h-full flex flex-col z-10`}
+      className="group h-full p-8 md:p-10 bg-white/40 backdrop-blur-xl border border-gray-100 rounded-2xl hover:shadow-[0_20px_40px_rgba(13,139,197,0.15)] hover:border-[#0D8BC5]/50 transition-all duration-500 relative overflow-hidden flex flex-col z-10"
       style={{
         animation: isVisible ? `fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s forwards` : 'none',
         opacity: 0,
       }}
     >
-      <div className="flex justify-between items-start mb-10">
-        {/* Icon & Hexagon */}
-        <div className="relative w-20 h-20 flex items-center justify-center group-hover:scale-[1.08] transition-transform duration-[400ms] ease-in-out">
-          <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full text-[#1E88E5] opacity-[0.7] group-hover:opacity-100 transition-opacity duration-[400ms]">
-            <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="currentColor" strokeWidth="2.5" className="group-hover:drop-shadow-[0_0_8px_rgba(30,136,229,0.6)] transition-all duration-[400ms]" />
-            <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="currentColor" strokeWidth="3" className="opacity-0 group-hover:opacity-100 hex-animated-path" />
-            <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="#64B5F6" strokeWidth="3.5" className="opacity-0 group-hover:opacity-100 hex-travel-line" />
-          </svg>
+      {/* Glowing background blob on hover */}
+      <div className="absolute -inset-4 bg-gradient-to-r from-[#0D8BC5]/0 via-[#0D8BC5]/5 to-[#0D8BC5]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-2xl rounded-full translate-y-full group-hover:translate-y-0 pointer-events-none"></div>
 
-          <div className="absolute inset-0 flex items-center justify-center">
-            <i className={`${icon} text-[32px] text-[#1E88E5] group-hover:scale-110 transition-transform duration-[400ms] ease-in-out`}></i>
+      {/* Top Border Animation */}
+      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#0D8BC5] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center"></div>
+
+      <div className="relative z-10 flex flex-col h-full">
+        <div className="flex justify-between items-start mb-10">
+          {/* Icon & Hexagon */}
+          <div className="relative w-20 h-20 flex items-center justify-center group-hover:scale-[1.15] group-hover:rotate-6 transition-transform duration-[400ms] ease-in-out">
+            <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full text-[#0D8BC5] opacity-[0.7] group-hover:opacity-100 transition-opacity duration-[400ms]">
+              <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="currentColor" strokeWidth="2.5" className="group-hover:drop-shadow-[0_0_8px_rgba(13,139,197,0.6)] transition-all duration-[400ms]" />
+              <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="currentColor" strokeWidth="3" className="opacity-0 group-hover:opacity-100 hex-animated-path" />
+              <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="#64B5F6" strokeWidth="3.5" className="opacity-0 group-hover:opacity-100 hex-travel-line" />
+            </svg>
+
+            <div className="absolute inset-0 flex items-center justify-center">
+              <i className={`${icon} text-[32px] text-[#0D8BC5] group-hover:scale-110 transition-transform duration-[400ms] ease-in-out`}></i>
+            </div>
+          </div>
+
+          {/* Floating Hexagon Badge */}
+          <div className="relative w-24 h-[105px] flex flex-col items-center justify-center mt-[-10px] mr-[-10px]">
+            <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full text-[#0D8BC5] opacity-[0.7]">
+              <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="currentColor" strokeWidth="2.5" />
+            </svg>
+
+            <div className="relative z-10 flex flex-col items-center justify-center h-full w-full">
+              <span className="text-[26px] font-black text-[#0D8BC5] leading-none mb-1 group-hover:scale-110 transition-transform duration-300">{value}</span>
+              <span className="text-[9px] font-bold uppercase tracking-widest text-gray-500 text-center px-3 leading-tight group-hover:text-gray-700 transition-colors duration-300">{subtitle}</span>
+            </div>
           </div>
         </div>
 
-        {/* Floating Hexagon Badge */}
-        <div className="relative w-24 h-[105px] flex flex-col items-center justify-center mt-[-10px] mr-[-10px]">
-          <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full text-[#1E88E5] opacity-[0.7]">
-            <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="currentColor" strokeWidth="2.5" />
-          </svg>
-
-          <div className="relative z-10 flex flex-col items-center justify-center h-full w-full">
-            <span className="text-[26px] font-black text-[#1E88E5] leading-none mb-1">{value}</span>
-            <span className="text-[9px] font-bold uppercase tracking-widest text-gray-500 text-center px-3 leading-tight">{subtitle}</span>
-          </div>
+        <div className="overflow-hidden mb-4">
+          <h3 className="text-xl font-bold tracking-[0.2em] uppercase text-gray-900 group-hover:-translate-y-1 transition-transform duration-300">{title}</h3>
+        </div>
+        <div className="overflow-hidden flex-grow">
+          <p className="text-[16px] text-gray-600 leading-[1.8] font-medium group-hover:-translate-y-1 transition-transform duration-300 delay-75">
+            {description}
+          </p>
         </div>
       </div>
-
-      <h3 className="text-xl font-bold tracking-[0.2em] uppercase text-gray-900 mb-4">{title}</h3>
-      <p className="text-[16px] text-gray-600 leading-[1.8] flex-grow font-medium">
-        {description}
-      </p>
     </div>
   );
 };
@@ -139,6 +151,26 @@ const Home = () => {
     }
     return () => observer.disconnect();
   }, []);
+
+  const [isAboutPreviewVisible, setIsAboutPreviewVisible] = useState(false);
+  const aboutPreviewRef = React.useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsAboutPreviewVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (aboutPreviewRef.current) {
+      observer.observe(aboutPreviewRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
 
   const slides = [
     {
@@ -397,6 +429,96 @@ const Home = () => {
               </div>
             </Link>
           ))}
+        </div>
+      </section>
+
+      {/* About Us Preview Section */}
+      <section ref={aboutPreviewRef} className="py-24 bg-white relative overflow-hidden border-t border-gray-100">
+        {/* Background Decorative Elements */}
+        <div className="absolute inset-0 pointer-events-none z-0" style={{ backgroundImage: 'linear-gradient(rgba(13,139,197, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(13,139,197, 0.03) 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+        <div className="absolute top-0 right-0 opacity-[0.03] text-[#0D8BC5] pointer-events-none -translate-y-1/4 translate-x-1/4 w-[400px] h-[400px]">
+          <svg viewBox="0 0 100 100"><polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="currentColor" strokeWidth="1" /></svg>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            
+            {/* Left Column: Animated Logo */}
+            <div className={`w-full lg:w-5/12 flex justify-center transition-all duration-1000 transform ${isAboutPreviewVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
+              <div className="relative w-full max-w-[340px] flex items-center justify-center">
+                <style>{`
+                  @keyframes floatIdle {
+                    0%, 100% { transform: translateY(0px) rotateY(0deg) rotateX(0deg); }
+                    25% { transform: translateY(-8px) rotateY(4deg) rotateX(2deg); }
+                    75% { transform: translateY(-4px) rotateY(-4deg) rotateX(-2deg); }
+                  }
+                  @keyframes shadowPulse {
+                    0%, 100% { transform: scale(1); opacity: 0.2; }
+                    50% { transform: scale(0.85); opacity: 0.1; }
+                  }
+                `}</style>
+                <div className="absolute bottom-[10%] w-[160px] h-[10px] bg-black blur-md rounded-[50%]" style={{ animation: 'shadowPulse 6s ease-in-out infinite' }}></div>
+                <div className="relative w-[90%] flex items-center justify-center transform-gpu" style={{ animation: 'floatIdle 8s ease-in-out infinite' }}>
+                  <img src="/images/about us/logo.png" alt="HEX India Engineering" className="w-full h-auto object-contain drop-shadow-[0_15px_30px_rgba(13,139,197,0.15)]" />
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Content */}
+            <div className={`w-full lg:w-7/12 space-y-8 transition-all duration-1000 delay-300 transform ${isAboutPreviewVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
+              
+              <div className="space-y-4">
+                <div className="flex items-center gap-4">
+                  <h3 className="text-[#0D8BC5] font-bold text-xs uppercase tracking-[0.2em]">Who We Are</h3>
+                  <div className="h-[1px] w-12 bg-[#0D8BC5]/30"></div>
+                </div>
+                <h2 className="text-3xl md:text-5xl font-extrabold text-[#0a192f] leading-tight">
+                  Engineering <br />
+                  <span className="text-[#0D8BC5]">Strong Connections</span> <br />
+                  Since Inception
+                </h2>
+              </div>
+
+              <div className="space-y-7 text-gray-500 font-medium leading-[1.85] text-[15px]">
+                <p>
+                  <span className="font-bold text-[#1E88E5]">HEX India Fasteners</span> is a trusted <strong className="font-semibold text-gray-800">manufacturer</strong>, <strong className="font-semibold text-gray-800">exporter</strong>, and <strong className="font-semibold text-gray-800">stockist</strong> of <strong className="font-semibold text-[#1E88E5]">premium industrial fasteners</strong>, delivering <strong className="font-semibold text-gray-800">precision engineering</strong> solutions for <strong className="font-semibold text-gray-800">construction</strong>, <strong className="font-semibold text-gray-800">infrastructure</strong>, <strong className="font-semibold text-gray-800">energy</strong>, <strong className="font-semibold text-gray-800">marine</strong>, <strong className="font-semibold text-gray-800">oil & gas</strong>, and <strong className="font-semibold text-gray-800">heavy engineering</strong> industries. With years of expertise, stringent <strong className="font-semibold text-gray-800">quality assurance</strong>, and <strong className="font-semibold text-[#1E88E5]">custom manufacturing</strong>, we provide <strong className="font-semibold text-gray-800">reliable solutions</strong> that meet <strong className="font-bold text-[#1E88E5]">international standards</strong> and perform in demanding industrial environments.
+                </p>
+                <p>
+                  Our extensive product range includes <strong className="font-bold text-[#1E88E5]">Stainless Steel</strong>, <strong className="font-semibold text-gray-800">Duplex</strong>, <strong className="font-semibold text-gray-800">Carbon Steel</strong>, <strong className="font-semibold text-gray-800">Alloy Steel</strong>, <strong className="font-bold text-[#1E88E5]">Titanium</strong>, <strong className="font-bold text-[#1E88E5]">Inconel</strong>, <strong className="font-semibold text-gray-800">Monel</strong>, <strong className="font-semibold text-gray-800">Hastelloy</strong>, <strong className="font-semibold text-gray-800">Nickel Alloys</strong>, and custom-engineered fastening solutions. Every product is manufactured with precision, tested for <strong className="font-semibold text-[#1E88E5]">long-term durability</strong>, and designed to ensure <strong className="font-semibold text-gray-800">high tensile strength</strong>, safety, and <strong className="font-semibold text-[#1E88E5]">corrosion resistance</strong> for industrial applications worldwide, demonstrating our commitment to <strong className="font-bold text-[#1E88E5]">engineering excellence</strong> and <strong className="font-semibold text-gray-800">global supply</strong>.
+                </p>
+              </div>
+
+              {/* Feature Highlights Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 pt-4">
+                {[
+                  'Precision Engineering',
+                  'Premium Manufacturing',
+                  'International Quality Standards',
+                  'Global Export Capability',
+                  'Custom Fastener Solutions',
+                  'Reliable Customer Support'
+                ].map((feature, idx) => (
+                  <div key={idx} className="flex items-center gap-3 group">
+                    <div className="w-5 h-5 rounded-full bg-[#0D8BC5]/10 flex items-center justify-center group-hover:bg-[#0D8BC5] transition-colors duration-300">
+                      <svg className="w-3 h-3 text-[#0D8BC5] group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <span className="text-sm font-bold text-gray-800 group-hover:text-[#0D8BC5] transition-colors duration-300">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Call to Action */}
+              <div className="pt-6">
+                <Link to="/about-us" className="group relative inline-flex items-center px-8 py-4 bg-[#0a192f] text-white font-bold text-xs uppercase tracking-wider overflow-hidden transition-all duration-300 hover:bg-[#0D8BC5] hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(13,139,197,0.3)]">
+                  <span className="relative z-10 flex items-center">
+                    Explore About Us 
+                    <svg className="w-4 h-4 ml-2 transform transition-transform duration-300 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                  </span>
+                </Link>
+              </div>
+
+            </div>
+          </div>
         </div>
       </section>
 
