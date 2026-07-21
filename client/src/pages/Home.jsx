@@ -79,11 +79,11 @@ const Home = () => {
     setIsPaused(true);
     touchStartX.current = e.targetTouches[0].clientX;
   };
-  
+
   const handleTouchMove = (e) => {
     touchEndX.current = e.targetTouches[0].clientX;
   };
-  
+
   const handleTouchEnd = () => {
     if (!touchStartX.current || !touchEndX.current) {
       setIsPaused(false);
@@ -92,7 +92,7 @@ const Home = () => {
     const distance = touchStartX.current - touchEndX.current;
     if (distance > 50) nextSlide();
     else if (distance < -50) prevSlide();
-    
+
     touchStartX.current = null;
     touchEndX.current = null;
     setIsPaused(false);
@@ -180,20 +180,20 @@ const Home = () => {
   ];
 
   const products = [
-    { name: 'Bolts', path: '/bolts', img: '/images/bolts-nuts.jpg' },
-    { name: 'Screws', path: '/screw', img: '/images/screw.png' },
-    { name: 'Stud Bolts', path: '/stud-bolts', img: '/images/stud-bolts.jpg' },
-    { name: 'Nuts', path: '/nuts', img: '/images/nuts.jpg' },
-    { name: 'Washers', path: '/washers', img: '/images/washers.jpg' },
-    { name: 'Accessories', path: '/accessories', img: '/images/accesories.jpg' },
-    { name: 'Materials', path: '/material', img: '/images/alloy-steel.jpg' },
-    { name: 'Custom Made', path: '/contact', img: '/images/about-us.jpg' }
+    { name: 'Bolts', path: '/bolts', img: '/images/homePage/our products/new/bolts-nuts.png' },
+    { name: 'Screws', path: '/screw', img: '/images/homePage/our products/new/screws.png' },
+    { name: 'Stud Bolts', path: '/stud-bolts', img: '/images/homePage/our products/new/stud-bolts.png' },
+    { name: 'Nuts', path: '/nuts', img: '/images/homePage/our products/new/nuts.png' },
+    { name: 'Washers', path: '/washers', img: '/images/homePage/our products/new/washers.png' },
+    { name: 'Accessories', path: '/accessories', img: '/images/homePage/our products/new/ublots.png' },
+    { name: 'Materials', path: '/material', img: '/images/homePage/our products/new/materials.png' },
+    { name: 'Custom Made', path: '/contact', img: '/images/homePage/our products/new/about-us.png' }
   ];
 
   return (
     <div className="home-page select-none bg-[#f9fafd] text-gray-800">
       {/* Slider Banner Section */}
-      <div 
+      <div
         className="relative h-[520px] md:h-[600px] overflow-hidden bg-brand-dark group outline-none focus:outline-none"
         tabIndex="0"
         onKeyDown={handleKeyDown}
@@ -255,16 +255,16 @@ const Home = () => {
             </div>
           </div>
         ))}
-        
+
         {/* Desktop Navigation Arrows */}
-        <button 
+        <button
           onClick={(e) => { e.preventDefault(); prevSlide(); }}
           className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/20 text-white opacity-0 group-hover:opacity-100 hover:bg-[#0D8BC5] transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_16px_rgba(13,139,197,0.4)] z-30 hidden md:flex cursor-pointer"
           aria-label="Previous Slide"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7"></path></svg>
         </button>
-        <button 
+        <button
           onClick={(e) => { e.preventDefault(); nextSlide(); }}
           className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/20 text-white opacity-0 group-hover:opacity-100 hover:bg-[#0D8BC5] transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_16px_rgba(13,139,197,0.4)] z-30 hidden md:flex cursor-pointer"
           aria-label="Next Slide"
