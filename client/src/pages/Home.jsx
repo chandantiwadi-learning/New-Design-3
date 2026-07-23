@@ -434,62 +434,107 @@ const Home = () => {
 
       {/* About Us Preview Section */}
       <section ref={aboutPreviewRef} className="py-24 bg-white relative overflow-hidden border-t border-gray-100">
-        {/* Background Decorative Elements */}
-        <div className="absolute inset-0 pointer-events-none z-0" style={{ backgroundImage: 'linear-gradient(rgba(13,139,197, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(13,139,197, 0.03) 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
-        <div className="absolute top-0 right-0 opacity-[0.03] text-[#0D8BC5] pointer-events-none -translate-y-1/4 translate-x-1/4 w-[400px] h-[400px]">
-          <svg viewBox="0 0 100 100"><polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="currentColor" strokeWidth="1" /></svg>
+
+        <style>{`
+          @keyframes floatLogo {
+            0%, 100% { transform: translateY(0) translateZ(0); }
+            50% { transform: translateY(-5px) translateZ(0); }
+          }
+          @keyframes pulseOpacity {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+          }
+          @keyframes spinOuter {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(360deg) translateZ(0); }
+          }
+          @keyframes spinMiddle {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(-360deg) translateZ(0); }
+          }
+          @keyframes spinInner {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(360deg) translateZ(0); }
+          }
+          @keyframes hudEnter {
+            from { opacity: 0; transform: scale(0.9) translateZ(0); }
+            to { opacity: 1; transform: scale(1) translateZ(0); }
+          }
+          .logo-hud-enter {
+            animation: hudEnter 900ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          }
+          .logo-hud-container {
+            animation: floatLogo 5s ease-in-out infinite;
+            will-change: transform;
+            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.5)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.3));
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+          }
+          .logo-hud-container:hover {
+            transform: scale(1.05) translateZ(0) !important;
+            filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.7)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.5));
+          }
+          .ring-outer {
+            animation: spinOuter 24s linear infinite, pulseOpacity 4s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+          }
+          .ring-middle {
+            animation: spinMiddle 16s linear infinite, pulseOpacity 3.5s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+          }
+          .ring-inner {
+            animation: spinInner 30s linear infinite, pulseOpacity 4.5s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+          }
+        `}</style>
+
+        {/* Animated HUD Logo at Top Right */}
+        <div
+          className="relative lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:left-[max(2rem,calc(50%-38rem))] lg:w-[calc((min(100%,80rem)-4rem)*5/12)] lg:h-[380px] lg:mb-0 mx-auto w-[280px] h-[280px] md:w-[340px] md:h-[340px] mb-12 flex justify-center items-center z-50 logo-hud-enter"
+        >
+          <div className="relative w-full h-full logo-hud-container">
+            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer" alt="" />
+            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle" alt="" />
+            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner" alt="" />
+            <img src="/images/homePage/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[45%] h-[45%] object-contain z-10" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="" />
+          </div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16">
-            
-            {/* Left Column: Animated Logo */}
+
+
             <div className={`w-full lg:w-5/12 flex justify-center transition-all duration-1000 transform ${isAboutPreviewVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
-              <div className="relative w-full max-w-[340px] flex items-center justify-center">
-                <style>{`
-                  @keyframes floatIdle {
-                    0%, 100% { transform: translateY(0px) rotateY(0deg) rotateX(0deg); }
-                    25% { transform: translateY(-8px) rotateY(4deg) rotateX(2deg); }
-                    75% { transform: translateY(-4px) rotateY(-4deg) rotateX(-2deg); }
-                  }
-                  @keyframes shadowPulse {
-                    0%, 100% { transform: scale(1); opacity: 0.2; }
-                    50% { transform: scale(0.85); opacity: 0.1; }
-                  }
-                `}</style>
-                <div className="absolute bottom-[10%] w-[160px] h-[10px] bg-black blur-md rounded-[50%]" style={{ animation: 'shadowPulse 6s ease-in-out infinite' }}></div>
-                <div className="relative w-[90%] flex items-center justify-center transform-gpu" style={{ animation: 'floatIdle 8s ease-in-out infinite' }}>
-                  <img src="/images/about us/logo.png" alt="HEX India Engineering" className="w-full h-auto object-contain drop-shadow-[0_15px_30px_rgba(13,139,197,0.15)]" />
-                </div>
+              <div className="relative w-[220px] h-[220px] md:w-[260px] md:h-[260px] flex items-center justify-center">
+
               </div>
             </div>
 
-            {/* Right Column: Content */}
-            <div className={`w-full lg:w-7/12 space-y-8 transition-all duration-1000 delay-300 transform ${isAboutPreviewVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
-              
-              <div className="space-y-4">
+            {/* Right Column: Content Teaser */}
+            <div className={`w-full lg:w-7/12 space-y-6 transition-all duration-1000 delay-300 transform ${isAboutPreviewVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
+
+              <div className="space-y-3">
                 <div className="flex items-center gap-4">
                   <h3 className="text-[#0D8BC5] font-bold text-xs uppercase tracking-[0.2em]">Who We Are</h3>
                   <div className="h-[1px] w-12 bg-[#0D8BC5]/30"></div>
                 </div>
-                <h2 className="text-3xl md:text-5xl font-extrabold text-[#0a192f] leading-tight">
-                  Engineering <br />
-                  <span className="text-[#0D8BC5]">Strong Connections</span> <br />
-                  Since Inception
+                <h2 className="text-3xl md:text-4xl font-extrabold text-[#0a192f] leading-tight">
+                  Engineering <span className="text-[#0D8BC5]">Strong Connections</span> Since Inception
                 </h2>
               </div>
 
-              <div className="space-y-7 text-gray-500 font-medium leading-[1.85] text-[15px]">
+              {/* Concise 3-line Teaser Content */}
+              <div className="text-gray-600 font-medium leading-[1.85] text-base md:text-lg">
                 <p>
-                  <span className="font-bold text-[#1E88E5]">HEX India Fasteners</span> is a trusted <strong className="font-semibold text-gray-800">manufacturer</strong>, <strong className="font-semibold text-gray-800">exporter</strong>, and <strong className="font-semibold text-gray-800">stockist</strong> of <strong className="font-semibold text-[#1E88E5]">premium industrial fasteners</strong>, delivering <strong className="font-semibold text-gray-800">precision engineering</strong> solutions for <strong className="font-semibold text-gray-800">construction</strong>, <strong className="font-semibold text-gray-800">infrastructure</strong>, <strong className="font-semibold text-gray-800">energy</strong>, <strong className="font-semibold text-gray-800">marine</strong>, <strong className="font-semibold text-gray-800">oil & gas</strong>, and <strong className="font-semibold text-gray-800">heavy engineering</strong> industries. With years of expertise, stringent <strong className="font-semibold text-gray-800">quality assurance</strong>, and <strong className="font-semibold text-[#1E88E5]">custom manufacturing</strong>, we provide <strong className="font-semibold text-gray-800">reliable solutions</strong> that meet <strong className="font-bold text-[#1E88E5]">international standards</strong> and perform in demanding industrial environments.
-                </p>
-                <p>
-                  Our extensive product range includes <strong className="font-bold text-[#1E88E5]">Stainless Steel</strong>, <strong className="font-semibold text-gray-800">Duplex</strong>, <strong className="font-semibold text-gray-800">Carbon Steel</strong>, <strong className="font-semibold text-gray-800">Alloy Steel</strong>, <strong className="font-bold text-[#1E88E5]">Titanium</strong>, <strong className="font-bold text-[#1E88E5]">Inconel</strong>, <strong className="font-semibold text-gray-800">Monel</strong>, <strong className="font-semibold text-gray-800">Hastelloy</strong>, <strong className="font-semibold text-gray-800">Nickel Alloys</strong>, and custom-engineered fastening solutions. Every product is manufactured with precision, tested for <strong className="font-semibold text-[#1E88E5]">long-term durability</strong>, and designed to ensure <strong className="font-semibold text-gray-800">high tensile strength</strong>, safety, and <strong className="font-semibold text-[#1E88E5]">corrosion resistance</strong> for industrial applications worldwide, demonstrating our commitment to <strong className="font-bold text-[#1E88E5]">engineering excellence</strong> and <strong className="font-semibold text-gray-800">global supply</strong>.
+                  Engineering is more than manufacturing—it is the promise of strength, structural integrity, and unyielding trust in critical connections. At <span className="font-bold text-[#0D8BC5]">HEX INDIA FASTENERS</span>, every component reflects decades of <strong className="font-semibold text-gray-900">Precision Engineering</strong>, <strong className="font-bold text-[#0D8BC5]">Quality Assurance</strong>, and compliance with <strong className="font-bold text-[#0D8BC5]">International Standards</strong> designed to power heavy industries worldwide.
                 </p>
               </div>
 
               {/* Feature Highlights Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 pt-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-8 pt-2">
                 {[
                   'Precision Engineering',
                   'Premium Manufacturing',
@@ -511,7 +556,7 @@ const Home = () => {
               <div className="pt-6">
                 <Link to="/about-us" className="group relative inline-flex items-center px-8 py-4 bg-[#0a192f] text-white font-bold text-xs uppercase tracking-wider overflow-hidden transition-all duration-300 hover:bg-[#0D8BC5] hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(13,139,197,0.3)]">
                   <span className="relative z-10 flex items-center">
-                    Explore About Us 
+                    Explore About Us
                     <svg className="w-4 h-4 ml-2 transform transition-transform duration-300 group-hover:translate-x-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                   </span>
                 </Link>

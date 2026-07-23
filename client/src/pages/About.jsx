@@ -197,111 +197,91 @@ const About = () => {
         <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#0D8BC5]/5 rounded-full blur-[100px] pointer-events-none"></div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Animated 3D Logo Presentation */}
+
+          {/* Visual Composition: HUD Engineering Emblem */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={fadeLeft}
-            className="relative w-full h-[500px] flex flex-col items-center justify-center group [perspective:1200px]"
+            className="relative w-full h-[450px] flex flex-col items-center justify-center group"
           >
+            {/* Custom HUD Animations */}
             <style>{`
-              @keyframes floatY {
-                0%, 100% { transform: translateY(0px); }
-                50% { transform: translateY(-8px); }
-              }
-              @keyframes floatRotate {
-                0%, 100% { transform: rotateY(-8deg) rotateX(-2deg); }
-                50% { transform: rotateY(8deg) rotateX(2deg); }
-              }
-              @keyframes pulseGlow {
-                0%, 100% { filter: drop-shadow(0 0 10px rgba(13,139,197,0.1)); }
-                50% { filter: drop-shadow(0 0 25px rgba(13,139,197,0.3)); }
-              }
-              @keyframes shadowPulse {
-                0%, 100% { transform: scale(1); opacity: 0.25; }
-                50% { transform: scale(0.85); opacity: 0.15; }
-              }
-              @keyframes autoSweep {
-                0%, 15% { left: -100%; opacity: 0; }
-                16% { left: -100%; opacity: 1; }
-                30% { left: 200%; opacity: 1; }
-                31%, 100% { left: 200%; opacity: 0; }
-              }
-              @keyframes hoverSweep {
-                0% { left: -100%; opacity: 1; }
-                100% { left: 200%; opacity: 1; }
-              }
-              @keyframes spinSlow {
-                100% { transform: rotate(360deg); }
-              }
-              @keyframes spinSlowRev {
-                100% { transform: rotate(-360deg); }
-              }
+          @keyframes floatLogo {
+            0%, 100% { transform: translateY(0) translateZ(0); }
+            50% { transform: translateY(-5px) translateZ(0); }
+          }
+          @keyframes pulseOpacity {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+          }
+          @keyframes spinOuter {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(360deg) translateZ(0); }
+          }
+          @keyframes spinMiddle {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(-360deg) translateZ(0); }
+          }
+          @keyframes spinInner {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(360deg) translateZ(0); }
+          }
+          @keyframes hudEnter {
+            from { opacity: 0; transform: scale(0.9) translateZ(0); }
+            to { opacity: 1; transform: scale(1) translateZ(0); }
+          }
+          .logo-hud-enter {
+            animation: hudEnter 900ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          }
+          .logo-hud-container {
+            animation: floatLogo 5s ease-in-out infinite;
+            will-change: transform;
+            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.5)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.3));
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+          }
+          .logo-hud-container:hover {
+            transform: scale(1.05) translateZ(0) !important;
+            filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.7)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.5));
+          }
+          .ring-outer {
+            animation: spinOuter 24s linear infinite, pulseOpacity 4s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+          }
+          .ring-middle {
+            animation: spinMiddle 16s linear infinite, pulseOpacity 3.5s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+          }
+          .ring-inner {
+            animation: spinInner 30s linear infinite, pulseOpacity 4.5s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+          }
+        `}</style>
 
-            `}</style>
-
-
-
-            {/* Background Hexagons (Large, outlined, low opacity) */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <svg viewBox="0 0 100 100" className="w-[85%] max-w-[380px] absolute opacity-[0.03] text-[#0D8BC5]" style={{ animation: 'spinSlow 60s linear infinite' }}>
-                <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="currentColor" strokeWidth="1" />
-              </svg>
-              <svg viewBox="0 0 100 100" className="w-[70%] max-w-[300px] absolute opacity-[0.04] text-[#0D8BC5]" style={{ animation: 'spinSlowRev 45s linear infinite' }}>
-                <polygon points="50 3, 91 25, 91 75, 50 97, 9 75, 9 25" fill="none" stroke="currentColor" strokeWidth="0.5" />
-              </svg>
-            </div>
-
-            {/* Engineering rings */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-[320px] h-[320px] border border-[#0D8BC5]/10 rounded-full border-dashed" style={{ animation: 'spinSlow 35s linear infinite' }}></div>
-              <div className="w-[360px] h-[360px] border border-[#0D8BC5]/5 rounded-full absolute" style={{ animation: 'spinSlowRev 40s linear infinite' }}>
-                {/* Orbiting dots */}
-                <div className="w-1.5 h-1.5 bg-[#0D8BC5]/50 rounded-full absolute -top-[3px] left-1/2 -translate-x-1/2 shadow-[0_0_8px_rgba(13,139,197,0.6)]"></div>
-                <div className="w-1 h-1 bg-[#0D8BC5]/40 rounded-full absolute -bottom-[2px] left-1/4 shadow-[0_0_5px_rgba(13,139,197,0.5)]"></div>
-              </div>
-            </div>
-
-            {/* Expand/Contract Shadow beneath logo */}
-            <div
-              className="absolute bottom-[12%] w-[180px] h-[12px] bg-black/20 blur-md rounded-[50%]"
-              style={{ animation: 'shadowPulse 5s ease-in-out infinite' }}
-            ></div>
-
-            {/* 3D Floating Logo Layers */}
-            <div className="relative z-10 w-full max-w-[340px] flex items-center justify-center" style={{ animation: 'floatY 5s ease-in-out infinite' }}>
-              <div className="relative w-full flex items-center justify-center [transform-style:preserve-3d]" style={{ animation: 'floatRotate 9s ease-in-out infinite' }}>
-                <div className="relative w-full flex items-center justify-center" style={{ animation: 'pulseGlow 4s ease-in-out infinite' }}>
-
-                  {/* Hover Interaction Wrapper */}
-                  <div className="relative w-[90%] flex items-center justify-center transition-all duration-700 ease-out group-hover:scale-[1.05] group-hover:[transform:rotateY(10deg)_rotateX(4deg)] group-hover:[filter:drop-shadow(0_0_40px_rgba(13,139,197,0.4))]">
-
-                    {/* The Logo Mask */}
-                    <div className="relative w-full overflow-hidden flex items-center justify-center p-4">
-                      <img
-                        src="/images/about us/logo.png"
-                        alt="HEX India Engineering Emblem"
-                        className="w-full h-auto object-contain transform-gpu"
-                      />
-
-                      {/* Idle Light Sweep (Runs every 6s) */}
-                      <div
-                        className="absolute top-0 bottom-0 w-[60%] bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-25deg] mix-blend-overlay pointer-events-none group-hover:hidden"
-                        style={{ animation: 'autoSweep 6s ease-in-out infinite' }}
-                      ></div>
-
-                      {/* Hover Light Sweep (Runs once on hover) */}
-                      <div className="absolute top-0 bottom-0 w-[60%] left-[-100%] bg-gradient-to-r from-transparent via-white/70 to-transparent skew-x-[-25deg] mix-blend-overlay pointer-events-none hidden group-hover:block group-hover:animate-[hoverSweep_1s_ease-out_forwards]"></div>
-                    </div>
-
-                  </div>
+            <div className="relative w-[300px] h-[300px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] flex items-center justify-center" style={{ animation: 'hudPulse 6s ease-in-out infinite' }}>
+              {/* Animated HUD Logo at Top Right */}
+              <div
+                className="relative z-50 w-[110%] h-[110%] md:w-[115%] md:h-[115%] flex justify-center items-center logo-hud-enter mx-auto"
+              >
+                <div className="relative w-full h-full logo-hud-container">
+                  <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer" alt="" />
+                  <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle" alt="" />
+                  <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner" alt="" />
+                  <img src="/images/homePage/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[45%] h-[45%] object-contain z-10" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="" />
                 </div>
               </div>
             </div>
 
+
+
           </motion.div>
 
+          {/* Right Column: Premium Text & Typography */}
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -313,36 +293,29 @@ const About = () => {
               Who We Are
             </span>
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-8 leading-tight tracking-tight">
-              Engineering <span className="text-[#0D8BC5]">Strong Connections</span> Since Inception
+              Engineering <span className="text-[#0D8BC5]">Strong Connections</span> Worldwide
             </h2>
-            <div className="space-y-6 text-gray-600 font-medium leading-[1.9] text-lg max-w-[700px]">
+            <div className="space-y-6 text-gray-600 font-medium leading-[1.9] text-base md:text-lg max-w-[700px]">
               <p>
-                Hex India Fasteners is one of the prominent Exporter, Manufacturer & Stockist of <Highlight>Stainless Steel</Highlight>, Inconel, Monel, Hastelloy, Titanium, Nickel & Nickel alloys, and all types of other premium grade steel.
+                Headquartered in Mumbai, <span className="font-bold text-[#0D8BC5]">HEX INDIA FASTENERS</span> is a premier <strong className="font-semibold text-gray-900">Manufacturer</strong>, <strong className="font-semibold text-gray-900">Exporter</strong>, and <strong className="font-semibold text-gray-900">Stockist</strong> of high-integrity <strong className="font-bold text-[#0D8BC5]">Industrial Fasteners</strong>. Driven by <strong className="font-bold text-[#0D8BC5]">Engineering Excellence</strong>, we manufacture precision components in <strong className="font-semibold text-[#0D8BC5]">Stainless Steel</strong>, <strong className="font-semibold text-gray-900">Duplex</strong>, <strong className="font-semibold text-gray-900">Super Duplex</strong>, <strong className="font-semibold text-gray-900">Titanium</strong>, <strong className="font-semibold text-[#0D8BC5]">Inconel</strong>, <strong className="font-semibold text-gray-900">Monel</strong>, <strong className="font-semibold text-gray-900">Hastelloy</strong>, and nickel alloys.
               </p>
               <p>
-                We specialize in <Highlight>manufacturing</Highlight> and exporting various types of <Highlight>industrial fasteners</Highlight> of Ferrous and Non-Ferrous Metals. Having established ourselves in the heart of India's commercial center, Mumbai, we have built up adequate stock levels of all essential items within our scope of supply and are positioned to offer immediate deliveries globally.
+                Our state-of-the-art facilities adhere strictly to <strong className="font-bold text-[#0D8BC5]">International Quality Standards</strong> including <strong className="font-semibold text-gray-900">DIN</strong>, <strong className="font-semibold text-gray-900">ISO</strong>, <strong className="font-semibold text-gray-900">ASTM</strong>, and <strong className="font-semibold text-gray-900">BS specifications</strong>. From specialized <strong className="font-bold text-[#0D8BC5]">Custom Manufacturing</strong> to large-scale <strong className="font-semibold text-gray-900">Global Supply</strong> networks, every fastener delivers extreme <strong className="font-semibold text-gray-900">High Tensile Strength</strong> and superior <strong className="font-semibold text-[#0D8BC5]">Corrosion Resistance</strong> for critical applications worldwide.
               </p>
             </div>
-            <div className="mt-12">
+            <div className="mt-10">
               <Link
                 to="/products"
                 className="group relative inline-flex items-center justify-center p-[2px] overflow-hidden font-bold text-sm uppercase tracking-wider"
                 style={{ clipPath: 'polygon(15px 0, calc(100% - 15px) 0, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px), 0 15px)' }}
               >
-                {/* The blue border simulation via parent background */}
                 <span className="absolute inset-0 w-full h-full bg-[#0D8BC5]"></span>
-
-                {/* Inner button surface (transparent to the page background) */}
                 <span
                   className="relative flex items-center justify-center px-10 py-4 w-full h-full bg-[#f9fafd] group-hover:shadow-[0_4px_15px_rgba(13,139,197,0.3)] transition-all duration-300"
                   style={{ clipPath: 'polygon(14px 0, calc(100% - 14px) 0, 100% 14px, 100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%, 0 calc(100% - 14px), 0 14px)' }}
                 >
-                  {/* The hover fill animation - EXACTLY as requested */}
                   <span className="absolute inset-0 w-full h-full transition-all duration-500 ease-out transform translate-x-full bg-[#0D8BC5] group-hover:translate-x-0"></span>
-
-                  {/* Subtle metallic sweep on hover */}
                   <span className="absolute inset-0 -translate-x-full group-hover:animate-[sweep_1.5s_ease-in-out] bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 pointer-events-none"></span>
-
                   <span className="relative flex items-center gap-3 text-[#0D8BC5] group-hover:text-white transition-colors duration-300">
                     Explore Our Products
                     <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300 opacity-0 group-hover:opacity-100 absolute -right-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
@@ -357,7 +330,7 @@ const About = () => {
       {/* 3. Our Legacy (Interactive Timeline) */}
       <section className="py-24 md:py-32 bg-[#f9fafd] border-t border-gray-100 relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <SectionHeading subtitle="Our Legacy" title="A Journey of Excellence" />
+          <SectionHeading subtitle="Our Journey" title="Our Journey of Excellence" />
 
           <div className="relative mt-20">
             {/* Animated Center Line */}
@@ -369,9 +342,10 @@ const About = () => {
 
             <div className="space-y-24">
               {[
-                { year: 'Experience', title: 'Decades of Mastery', desc: 'Over two decades of continuous innovation and refining our manufacturing processes to meet global industrial demands.', img: '/images/slider3.jpg' },
-                { year: 'Excellence', title: 'Uncompromising Quality', desc: 'Zero-defect manufacturing policies backed by rigorous testing, international certifications, and advanced metallurgy.', img: '/images/home_img_20.jpg' },
-                { year: 'Trust', title: 'Global Recognition', desc: 'A vast portfolio of satisfied Fortune 500 clients across multiple continents relying on our fastening solutions.', img: '/images/slider1.jpg' },
+                { year: 'PRECISION', title: 'Precision Engineering & Metallurgy', desc: 'Established state-of-the-art forging and machining facilities in Mumbai focused on high-tensile alloys and strict dimensional tolerances.', img: '/images/homePage/our products/new/materials.png' },
+                { year: 'QUALITY', title: 'International Quality Assurance', desc: 'Achieved complete ISO, DIN, ASTM, and BS quality certifications, enforcing 100% ultrasonic and mechanical testing across all output.', img: '/images/home_img_20.jpg' },
+                { year: 'INNOVATION', title: 'Custom Fastener Engineering', desc: 'Expanded production capabilities to engineer bespoke super-alloy fasteners tailored for high-pressure, extreme-temperature environments.', img: '/images/homePage/our products/new/stud-bolts.png' },
+                { year: 'GLOBAL', title: 'Worldwide Supply Network', desc: 'Established global logistics infrastructure exporting high-integrity fasteners to energy, marine, and construction projects in over 40 countries.', img: '/images/slider1.jpg' },
               ].map((item, idx) => {
                 const isEven = idx % 2 === 0;
                 return (
@@ -392,14 +366,15 @@ const About = () => {
                     {/* Content Card */}
                     <div className={`w-full md:w-[45%] p-8 bg-white rounded-2xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-[#0D8BC5]/30 transition-all duration-500 group relative overflow-hidden ${isEven ? 'md:text-left' : 'md:text-right'}`}>
                       <div className="absolute top-0 left-0 w-full h-1 bg-[#0D8BC5] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+                      <span className="text-[#0D8BC5] font-bold text-xs uppercase tracking-widest mb-2 block">{item.year}</span>
                       <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-[#0D8BC5] transition-colors">{item.title}</h3>
                       <p className="text-gray-600 font-medium leading-relaxed">{item.desc}</p>
                     </div>
 
                     {/* Image Card */}
-                    <div className="w-full md:w-[45%] h-[250px] mt-8 md:mt-0 rounded-2xl overflow-hidden shadow-lg relative group">
+                    <div className="w-full md:w-[45%] h-[250px] mt-8 md:mt-0 rounded-2xl overflow-hidden shadow-lg relative group border border-gray-100">
                       <img src={item.img} alt={item.title} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:bg-black/40 transition-colors duration-500"></div>
                     </div>
                   </motion.div>
                 );
@@ -425,12 +400,12 @@ const About = () => {
             variants={staggerContainer}
           >
             {[
-              { icon: 'icon_quality.png', title: 'Premium Quality', desc: 'Manufactured strictly to international standards using top-grade raw materials.' },
-              { icon: 'icon_globe.png', title: 'Global Standards', desc: 'Compliance with DIN, ISO, ASTM, and BS specifications for global acceptance.' },
-              { icon: 'icon_delivery.png', title: 'On-Time Delivery', desc: 'Strategic inventory management ensures fast processing and dispatch.' },
-              { icon: 'icon_manufacturing.png', title: 'Custom Manufacturing', desc: 'Tailored fastening solutions engineered for specialized industrial needs.' },
-              { icon: 'icon_team.png', title: 'Expert Team', desc: 'Highly qualified engineers and technicians driving manufacturing excellence.' },
-              { icon: 'icon_clients.png', title: 'Trusted Clients', desc: 'A long legacy of serving Fortune 500 companies across diverse sectors.' },
+              { icon: 'icon_quality.png', title: 'Uncompromising Quality', desc: 'Engineered with flawless precision using premium-grade alloys to guarantee maximum structural integrity and resilience.' },
+              { icon: 'icon_globe.png', title: 'International Compliance', desc: 'Strictly adhering to DIN, ISO, ASTM, and BS specifications, ensuring absolute reliability for mission-critical applications globally.' },
+              { icon: 'icon_delivery.png', title: 'Accelerated Logistics', desc: 'Driven by an intelligent supply chain and robust inventory network to guarantee rapid, on-time global fulfillment.' },
+              { icon: 'icon_manufacturing.png', title: 'Precision Engineering', desc: 'Delivering bespoke, high-tolerance fastening solutions custom-manufactured for highly specialized and complex industrial environments.' },
+              { icon: 'icon_team.png', title: 'Engineering Excellence', desc: 'Backed by a seasoned team of metallurgical experts and technicians dedicated to advancing manufacturing innovation.' },
+              { icon: 'icon_clients.png', title: 'Industry Proven Trust', desc: 'A distinguished legacy of engineering partnerships, empowering Fortune 500 companies and critical infrastructure projects worldwide.' },
             ].map((feature, idx) => (
               <ParallaxCard key={idx}>
                 <motion.div
@@ -522,28 +497,30 @@ const About = () => {
             variants={staggerContainer}
           >
             {[
-              { name: 'Oil & Gas', img: '/images/parallax_img_01.jpg', icon: 'fa-oil-can', desc: 'High-pressure fastening for pipelines and rigs.' },
-              { name: 'Power', img: '/images/parallax_bg_01.png', icon: 'fa-bolt', desc: 'Critical components for power generation plants.' },
-              { name: 'Infrastructure', img: '/images/home_img_20.jpg', icon: 'fa-building', desc: 'Structural fasteners for heavy construction.' },
-              { name: 'Marine', img: '/images/slider4.jpg', icon: 'fa-ship', desc: 'Corrosion-resistant marine grade hardware.' },
+              { name: 'Oil & Gas', img: '/images/industry_oil_gas.png', icon: 'fa-oil-can', desc: 'High-pressure, corrosion-resistant alloy fasteners engineered for offshore drilling rigs, subsea pipelines, and refinery processing units.' },
+              { name: 'Power Generation', img: '/images/industry_power.png', icon: 'fa-bolt', desc: 'Thermal-resistant stud bolts and specialized hardware manufactured for power generation turbines, nuclear plants, and substations.' },
+              { name: 'Infrastructure', img: '/images/industry_infra.png', icon: 'fa-building', desc: 'Structural high-tensile fasteners built for skyscrapers, mega-suspension bridges, metro rail networks, and heavy commercial developments.' },
+              { name: 'Marine & Naval', img: '/images/industry_marine.png', icon: 'fa-ship', desc: 'Marine-grade stainless steel and Monel hardware delivering total saltwater corrosion immunity for shipyards and commercial vessels.' },
             ].map((industry, idx) => (
               <motion.div
                 key={idx}
                 variants={fadeUp}
                 className="group relative h-[380px] overflow-hidden rounded-2xl cursor-pointer border border-transparent hover:border-[#0D8BC5]/30 shadow-lg hover:shadow-[0_20px_40px_rgba(13,139,197,0.2)] transition-all duration-500"
               >
-                <img src={industry.img} alt={industry.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/60 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500"></div>
+                <img src={industry.img} alt={industry.name} className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 filter brightness-[0.85] contrast-[1.05]" />
+                {/* Dark Overlay & Blue Glow */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f] via-gray-900/60 to-transparent opacity-85 group-hover:opacity-70 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-[#0D8BC5]/15 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
                 {/* Diagonal Light Sweep */}
                 <div className="absolute inset-0 -translate-x-full group-hover:animate-[sweep_1.5s_ease-in-out] bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 pointer-events-none"></div>
 
-                <div className="absolute inset-0 p-8 flex flex-col justify-end translate-y-12 group-hover:translate-y-0 transition-transform duration-500 ease-out">
-                  <div className="w-12 h-12 bg-[#0D8BC5] rounded-full flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500 shadow-lg">
+                <div className="absolute inset-0 p-8 flex flex-col justify-end translate-y-10 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                  <div className="w-12 h-12 bg-[#0D8BC5] rounded-full flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500 shadow-lg shadow-[#0D8BC5]/30">
                     <i className={`fas ${industry.icon} text-xl text-white`}></i>
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-2">{industry.name}</h3>
-                  <p className="text-gray-300 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">{industry.desc}</p>
+                  <p className="text-gray-200 text-sm font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">{industry.desc}</p>
                 </div>
               </motion.div>
             ))}
