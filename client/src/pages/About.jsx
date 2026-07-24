@@ -155,6 +155,76 @@ const About = () => {
 
       {/* --- Sidebar Client Logos (Floating) --- REMOVED AS IT WAS MOVED TO FULL WIDTH SECTION */}      {/* 1. Hero Banner */}
       <section className="relative h-[520px] md:h-[600px] flex items-center justify-center overflow-hidden bg-gray-900">
+        
+        {/* Custom HUD Animations for Hero */}
+        <style>{`
+          @keyframes floatLogo {
+            0%, 100% { transform: translateY(0) translateZ(0); }
+            50% { transform: translateY(-5px) translateZ(0); }
+          }
+          @keyframes pulseOpacity {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+          }
+          @keyframes spinOuter {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(360deg) translateZ(0); }
+          }
+          @keyframes spinMiddle {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(-360deg) translateZ(0); }
+          }
+          @keyframes spinInner {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(360deg) translateZ(0); }
+          }
+          @keyframes hudEnter {
+            from { opacity: 0; transform: scale(0.9) translateZ(0); }
+            to { opacity: 1; transform: scale(1) translateZ(0); }
+          }
+          .logo-hud-enter {
+            animation: hudEnter 900ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          }
+          .logo-hud-container {
+            animation: floatLogo 5s ease-in-out infinite;
+            will-change: transform;
+            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.5)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.3));
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+          }
+          .logo-hud-container:hover {
+            transform: scale(1.05) translateZ(0) !important;
+            filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.7)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.5));
+          }
+          .ring-outer {
+            animation: spinOuter 24s linear infinite, pulseOpacity 4s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+          }
+          .ring-middle {
+            animation: spinMiddle 16s linear infinite, pulseOpacity 3.5s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+          }
+          .ring-inner {
+            animation: spinInner 30s linear infinite, pulseOpacity 4.5s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+          }
+        `}</style>
+
+        {/* Animated HUD Logo at Top Right */}
+        <div
+          className="absolute top-6 right-6 z-50 w-[100px] h-[100px] md:w-[150px] md:h-[150px] logo-hud-enter"
+        >
+          <div className="relative w-full h-full logo-hud-container">
+            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer" alt="" />
+            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle" alt="" />
+            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner" alt="" />
+            <img src="/images/homePage/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[45%] h-[45%] object-contain z-10" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="" />
+          </div>
+        </div>
+
         <motion.div
           className="absolute inset-0 z-0"
           initial={{ scale: 1.1 }}
@@ -162,7 +232,9 @@ const About = () => {
           transition={{ duration: 2, ease: "easeOut" }}
         >
           <img src="/images/parallax_bg_04.png" alt="Industrial Fasteners" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+          {/* Gradient Overlay & Blur adjusted for clarity on right side */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 md:from-black/60 via-black/40 md:via-black/20 to-transparent lg:to-transparent/10 z-10 pointer-events-none"></div>
+          <div className="absolute inset-0 backdrop-blur-md z-10 pointer-events-none" style={{ WebkitMaskImage: 'linear-gradient(to right, black 0%, transparent 55%)', maskImage: 'linear-gradient(to right, black 0%, transparent 55%)' }}></div>
         </motion.div>
 
         <div className="relative z-10 text-left px-4 max-w-7xl w-full mx-auto mt-20">
