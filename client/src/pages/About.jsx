@@ -237,9 +237,9 @@ const About = () => {
           <div className="absolute inset-0 backdrop-blur-md z-10 pointer-events-none" style={{ WebkitMaskImage: 'linear-gradient(to right, black 0%, transparent 55%)', maskImage: 'linear-gradient(to right, black 0%, transparent 55%)' }}></div>
         </motion.div>
 
-        <div className="relative z-10 text-left px-4 max-w-7xl w-full mx-auto mt-20">
+        <div className="relative z-10 text-left px-4 max-w-7xl w-full mx-auto mt-20 group cursor-default">
           <motion.h1
-            className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-6 uppercase tracking-tight"
+            className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-6 uppercase tracking-tight group-hover:scale-105 group-hover:text-[#0D8BC5] transition-all duration-300 origin-left"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -247,7 +247,7 @@ const About = () => {
             About Hex India
           </motion.h1>
           <motion.p
-            className="text-lg md:text-xl lg:text-2xl text-gray-200 font-light leading-relaxed max-w-2xl"
+            className="text-lg md:text-xl lg:text-2xl text-gray-200 font-light leading-relaxed max-w-2xl group-hover:scale-105 group-hover:text-[#0D8BC5] transition-all duration-300 origin-left"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}

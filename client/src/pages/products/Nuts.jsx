@@ -1,34 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProductSidebar from '../../components/ProductSidebar';
 
-const Nuts = () => {
-  const nutTypesCol1 = [
-    'Hex Nuts',
-    'Heavy Hex Nuts',
-    'Jam Nuts',
-    'Coupling Nuts',
-    'Hex Cap Nuts',
-    'Hex Flange Nuts',
-    'Hex Weld Nuts',
-    'Square Nuts',
-    'Square Weld Nuts',
-    'Square Thin Nuts',
-    'Acorn Nuts',
-  ];
+const nutData = [
+  { name: 'Hex Nuts', desc: 'The most common type of nut, featuring a six-sided shape that allows for easy wrenching from multiple angles. Ideal for standard industrial fastening.', img: '/images/products/nuts.png' },
+  { name: 'Heavy Hex Nuts', desc: 'Thicker and wider than standard hex nuts, providing a larger bearing surface and increased tensile strength for heavy-duty structural applications.', img: '/images/products/nuts.png' },
+  { name: 'Jam Nuts', desc: 'A low-profile hex nut, typically half the thickness of a standard nut. Used as a lock nut by jamming it up against a standard nut to prevent loosening.', img: '/images/products/nuts.png' },
+  { name: 'Coupling Nuts', desc: 'Elongated hex nuts used to connect two pieces of threaded rod or pipe together, providing a continuous threaded assembly.', img: '/images/products/nuts.png' },
+  { name: 'Hex Cap Nuts', desc: 'Also known as acorn nuts, these feature a domed top that covers the exposed threads of a bolt, providing a finished look and protecting the threads.', img: '/images/products/nuts.png' },
+  { name: 'Hex Flange Nuts', desc: 'Featuring an integrated washer-like flange at the base. This distributes the clamping load over a wider area, reducing damage to the mating surface.', img: '/images/products/nuts.png' },
+  { name: 'Hex Weld Nuts', desc: 'Designed with small projections (bosses) that melt during welding, permanently fusing the nut to a metal substrate for a captive fastening point.', img: '/images/products/nuts.png' },
+  { name: 'Square Nuts', desc: 'Four-sided nuts that provide a larger surface area in contact with the part being fastened, increasing resistance to loosening.', img: '/images/products/nuts.png' },
+  { name: 'Square Weld Nuts', desc: 'Square-shaped weld nuts designed for permanent attachment to sheet metal or structural components where a hex shape isn’t required.', img: '/images/products/nuts.png' },
+  { name: 'Square Thin Nuts', desc: 'A lower-profile version of the square nut, designed for applications with limited vertical clearance.', img: '/images/products/nuts.png' },
+  { name: 'Acorn Nuts', desc: 'A specialized type of cap nut with a high, rounded dome that completely conceals the end of the male fastener for safety and aesthetics.', img: '/images/products/nuts.png' },
+  { name: 'T-Slot Nuts', desc: 'Designed to slide into the T-slots of aluminum extrusion profiles or machine tables, providing an adjustable threaded anchor point.', img: '/images/products/nuts.png' },
+  { name: 'Nylock Nuts', desc: 'Hex nuts featuring a nylon collar insert that deforms over the bolt threads, providing a strong, vibration-resistant friction lock.', img: '/images/products/nuts.png' },
+  { name: 'Nylock Jam Nuts', desc: 'A low-profile version of the Nylock nut, combining the space-saving design of a jam nut with the locking capability of a nylon insert.', img: '/images/products/nuts.png' },
+  { name: 'K Lock Nuts', desc: 'Also known as Kep nuts, these feature an attached, free-spinning external tooth lock washer, eliminating the need to handle a separate washer.', img: '/images/products/nuts.png' },
+  { name: '2 Way Lock Nuts', desc: 'Reversible lock nuts that are distorted in the middle of the threads, allowing them to lock in place regardless of which side is threaded first.', img: '/images/products/nuts.png' },
+  { name: 'All Metal Lock', desc: 'Lock nuts that rely on a deformed thread profile rather than a nylon insert, making them suitable for high-temperature applications.', img: '/images/products/nuts.png' },
+  { name: 'Slotted Castle', desc: 'Nuts featuring slots cut into the top. Used with a cotter pin placed through a drilled hole in the bolt to mechanically lock the nut in place.', img: '/images/products/nuts.png' },
+  { name: '12 Point Flange', desc: 'High-strength nuts requiring a 12-point socket. The flange base and 12-point design allow for high torque application in tight spaces.', img: '/images/products/nuts.png' },
+  { name: 'Lifting Eye Nuts', desc: 'Threaded nuts with a looped head, designed to be screwed onto threaded rod or studs to provide a secure lifting point for rigging.', img: '/images/products/nuts.png' },
+  { name: 'Wing Nuts', desc: 'Nuts featuring two large metal "wings," allowing them to be easily tightened or loosened by hand without the need for a wrench.', img: '/images/products/nuts.png' }
+];
 
-  const nutTypesCol2 = [
-    'T-Slot Nuts',
-    'Nylock Nuts',
-    'Nylock Jam Nuts',
-    'K Lock Nuts',
-    '2 Way Lock Nuts',
-    'All Metal Lock',
-    'Slotted Castle',
-    '12 Point Flange',
-    'Lifting Eye Nuts',
-    'Wing Nuts',
-  ];
+const Nuts = () => {
+  const [selectedNut, setSelectedNut] = useState(nutData[0]);
 
   return (
     <div className="nuts-page bg-white text-gray-700 select-none">
@@ -60,22 +59,27 @@ const Nuts = () => {
             
             <div className="flex flex-col md:flex-row gap-8 items-start">
               {/* Product Photo */}
-              <div className="w-full md:w-48 flex-shrink-0">
+              <div className="w-full md:w-64 flex-shrink-0">
                 <img 
-                  src="/images/nuts.jpg" 
-                  alt="Industrial Nuts" 
-                  className="w-full h-auto object-cover rounded-xl shadow-md border border-gray-100"
+                  src={selectedNut.img} 
+                  alt={selectedNut.name} 
+                  className="w-full h-auto object-cover rounded-xl shadow-md border border-gray-100 transition-opacity duration-300"
                 />
               </div>
               
               {/* Intro paragraphs */}
-              <div className="text-xs leading-relaxed text-justify text-gray-600 space-y-4">
+              <div className="text-sm leading-relaxed text-justify text-gray-600 space-y-4">
                 <p>
                   Nuts are female-threaded fasteners that serve as the mating partner to bolts or other externally threaded components. Standard joints are clamped by the friction of matching thread profiles and the clamping tension of the assembly.
                 </p>
                 <p>
                   Nuts can be hot forged or cold formed in stainless steel and high-nickel alloys with metric or imperial threading. They can also be machined from bar stock for custom engineering dimensions and quick lead times.
                 </p>
+
+                <div className="mt-8 p-6 bg-[#f8fbfe] border-l-4 border-[#0D8BC5] rounded-r-xl shadow-sm">
+                  <h4 className="text-lg font-extrabold text-[#0D8BC5] mb-2">{selectedNut.name}</h4>
+                  <p className="text-gray-700 font-medium text-sm leading-relaxed">{selectedNut.desc}</p>
+                </div>
               </div>
             </div>
 
@@ -84,30 +88,19 @@ const Nuts = () => {
               <h4 className="text-sm font-extrabold text-gray-800 uppercase tracking-wider">
                 Available Types of Nuts (Fasteners)
               </h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {/* Column 1 */}
-                <ul className="space-y-3">
-                  {nutTypesCol1.map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-3">
-                      <span className="flex-shrink-0 w-5 h-5 bg-primary/10 text-primary rounded-full flex items-center justify-center">
-                        <i className="icon-angle-right text-[10px] font-bold"></i>
-                      </span>
-                      <span className="text-xs font-bold text-gray-600">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                {/* Column 2 */}
-                <ul className="space-y-3">
-                  {nutTypesCol2.map((item, idx) => (
-                    <li key={idx} className="flex items-center gap-3">
-                      <span className="flex-shrink-0 w-5 h-5 bg-primary/10 text-primary rounded-full flex items-center justify-center">
-                        <i className="icon-angle-right text-[10px] font-bold"></i>
-                      </span>
-                      <span className="text-xs font-bold text-gray-600">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {nutData.map((item, idx) => (
+                  <div 
+                    key={idx} 
+                    onClick={() => setSelectedNut(item)}
+                    className={`group flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all duration-300 border ${selectedNut.name === item.name ? 'bg-white border-[#0D8BC5] shadow-md transform -translate-y-1' : 'bg-white border-gray-100 hover:bg-gray-50 hover:border-[#0D8BC5]/50'}`}
+                  >
+                    <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-colors ${selectedNut.name === item.name ? 'bg-[#0D8BC5] text-white' : 'bg-primary/10 text-primary group-hover:bg-[#0D8BC5] group-hover:text-white'}`}>
+                      <i className="icon-angle-right text-[12px] font-bold"></i>
+                    </span>
+                    <span className={`text-xs font-bold transition-colors group-hover:underline group-hover:decoration-[#0D8BC5] group-hover:underline-offset-4 ${selectedNut.name === item.name ? 'text-[#0D8BC5]' : 'text-gray-600'}`}>{item.name}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </main>

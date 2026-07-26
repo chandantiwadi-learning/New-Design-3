@@ -258,12 +258,12 @@ const Home = () => {
 
             {/* Slider Content */}
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex flex-col justify-center relative z-20">
-              <div className="max-w-[85%] md:max-w-2xl lg:max-w-3xl space-y-5 md:space-y-6 pt-10 md:pt-0">
-                <h1 className={`text-3xl md:text-5xl font-extrabold text-white leading-tight tracking-tight uppercase transform transition-all duration-[600ms] delay-[200ms] ${currentSlide === idx ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+              <div className="max-w-[85%] md:max-w-2xl lg:max-w-3xl space-y-5 md:space-y-6 pt-10 md:pt-0 group">
+                <h1 className={`text-3xl md:text-5xl font-extrabold text-white leading-tight tracking-tight uppercase transform transition-all duration-[600ms] delay-[200ms] group-hover:scale-105 group-hover:text-[#0D8BC5] origin-left ${currentSlide === idx ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                   }`}>
                   {slide.title}
                 </h1>
-                <p className={`text-sm md:text-base text-white/95 font-light leading-relaxed transform transition-all duration-[600ms] delay-[300ms] ${currentSlide === idx ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                <p className={`text-sm md:text-base text-white/95 font-light leading-relaxed transform transition-all duration-[600ms] delay-[300ms] group-hover:scale-105 group-hover:text-[#0D8BC5] origin-left ${currentSlide === idx ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
                   }`}>
                   {slide.subtitle}
                 </p>

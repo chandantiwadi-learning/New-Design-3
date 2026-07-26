@@ -116,7 +116,7 @@ const Material = () => {
           <div className="absolute inset-0 backdrop-blur-md z-10 pointer-events-none" style={{ WebkitMaskImage: 'linear-gradient(to right, black 0%, transparent 55%)', maskImage: 'linear-gradient(to right, black 0%, transparent 55%)' }}></div>
         </motion.div>
 
-        <div className="relative z-10 text-left px-4 max-w-7xl w-full mx-auto mt-20">
+        <div className="relative z-10 text-left px-4 max-w-7xl w-full mx-auto mt-20 group cursor-default">
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -129,12 +129,12 @@ const Material = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white tracking-tight uppercase mb-6"
+            className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white tracking-tight uppercase mb-6 group-hover:scale-105 group-hover:text-[#0D8BC5] transition-all duration-300 origin-left"
           >
             Material
           </motion.h1>
           <motion.p
-            className="text-lg md:text-xl lg:text-2xl text-gray-200 font-light leading-relaxed max-w-2xl"
+            className="text-lg md:text-xl lg:text-2xl text-gray-200 font-light leading-relaxed max-w-2xl group-hover:scale-105 group-hover:text-[#0D8BC5] transition-all duration-300 origin-left"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
@@ -179,22 +179,22 @@ const Material = () => {
               whileInView="show"
               viewport={{ once: true, margin: "-100px" }}
               variants={fadeLeft}
-              className="bg-white border border-gray-100 p-8 md:p-10 rounded-2xl relative shadow-[0_10px_40px_rgba(0,0,0,0.04)] overflow-hidden group"
+              className="bg-[#f8fbfe] border-l-4 border-[#0D8BC5] p-6 md:p-10 rounded-r-2xl relative shadow-sm"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#0D8BC5]/10 to-transparent rounded-bl-full -z-0"></div>
-              <i className="icon-quote-left text-[#0D8BC5]/10 text-6xl absolute top-6 left-6 -z-0"></i>
-              
-              <blockquote className="space-y-6 relative z-10 pt-2 pl-4 md:pl-8">
-                <p className="text-lg md:text-xl text-gray-700 italic leading-relaxed font-medium">
-                  "Chemical composure and mechanical testing are paramount. Our metallurgical checks verify pitting index ratings, yield strength limits, and hardness thresholds before materials are released for production."
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-[#0D8BC5]/10 flex items-center justify-center">
-                    <i className="icon-flask text-[#0D8BC5] text-xl"></i>
+              <blockquote className="space-y-6 relative z-10">
+                <div className="flex gap-4 md:gap-6">
+                  <i className="icon-quote-left text-[#0D8BC5] text-4xl opacity-40 flex-shrink-0 mt-1"></i>
+                  <p className="text-base md:text-xl text-gray-700 italic leading-relaxed font-medium text-justify">
+                    Chemical composure and mechanical testing are paramount. Our metallurgical checks verify pitting index ratings, yield strength limits, and hardness thresholds before materials are released for production.
+                  </p>
+                </div>
+                <div className="flex items-center gap-4 md:pl-14 pl-12">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center border border-[#0D8BC5]/20 shadow-sm flex-shrink-0">
+                    <i className="icon-flask text-[#0D8BC5] text-lg md:text-xl"></i>
                   </div>
                   <div>
-                    <div className="font-extrabold text-gray-900 text-sm md:text-base tracking-wide">QUALITY ASSURANCE DEPT</div>
-                    <div className="text-[#0D8BC5] text-xs font-bold uppercase tracking-[0.2em] mt-1">Hex India Fasteners</div>
+                    <div className="font-extrabold text-gray-900 text-sm md:text-base tracking-wide uppercase">QUALITY ASSURANCE DEPT</div>
+                    <div className="text-[#0D8BC5] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mt-1">Hex India Fasteners</div>
                   </div>
                 </div>
               </blockquote>

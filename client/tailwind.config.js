@@ -13,6 +13,8 @@ export default {
         themeNavy: "#0b2d42",
         themeGrey: "#64748b",
         themeDarkGrey: "#1f2937",
+        primary: "#0d8bc5",
+        "primary-dark": "#086a98",
       },
       fontFamily: {
         sans: ["Raleway", "sans-serif"],

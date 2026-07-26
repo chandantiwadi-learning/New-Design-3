@@ -69,8 +69,7 @@ const Navbar = () => {
     { 
       name: 'About Us', 
       path: '/about-us',
-      icon: 'icon-cog',
-      submenu: [{ name: 'Factory Tour', path: '/factory-tour' }]
+      icon: 'icon-cog'
     },
     { 
       name: 'Products', 
@@ -169,14 +168,11 @@ const Navbar = () => {
               </Link>
             </li>
 
-            <li className={`has-submenu group relative ${isActive('/about-us') || isActive('/factory-tour') ? 'current_item' : ''}`}>
+            <li className={`group relative ${isActive('/about-us') || isActive('/factory-tour') ? 'current_item' : ''}`}>
               <Link to="/about-us">
                 <span className="hex_elem_rounded"><i className="icon-cog"></i></span>
                 About Us
               </Link>
-              <ul className="absolute left-0 top-[100%] mt-2 w-56 bg-white border border-gray-100 shadow-2xl rounded-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] flex flex-col">
-                <li><Link to="/factory-tour" className="block px-5 py-2.5 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors">Factory Tour</Link></li>
-              </ul>
             </li>
 
             <li className={`has-submenu group relative ${location.pathname === '/products' || isActive('/bolts') || isActive('/screw') || isActive('/stud-bolts') || isActive('/nuts') || isActive('/washers') || isActive('/accessories') ? 'current_item' : ''}`}>
@@ -184,13 +180,13 @@ const Navbar = () => {
                 <span className="hex_elem_rounded"><i className="icon-tasks"></i></span>
                 Products
               </Link>
-              <ul className="absolute left-0 top-[100%] mt-2 w-56 bg-white border border-gray-100 shadow-2xl rounded-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] flex flex-col">
-                <li><Link to="/bolts" className="block px-5 py-2.5 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors">Bolts</Link></li>
-                <li><Link to="/screw" className="block px-5 py-2.5 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors">Screws</Link></li>
-                <li><Link to="/stud-bolts" className="block px-5 py-2.5 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors">Stud Bolts</Link></li>
-                <li><Link to="/nuts" className="block px-5 py-2.5 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors">Nuts</Link></li>
-                <li><Link to="/washers" className="block px-5 py-2.5 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors">Washers</Link></li>
-                <li><Link to="/accessories" className="block px-5 py-2.5 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors">Accessories</Link></li>
+              <ul className="absolute left-0 top-[100%] mt-0 w-56 bg-[#0D8BC5] shadow-2xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] flex flex-col">
+                <li><Link to="/bolts" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Bolts</Link></li>
+                <li><Link to="/screw" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Screws</Link></li>
+                <li><Link to="/stud-bolts" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Stud Bolts</Link></li>
+                <li><Link to="/nuts" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Nuts</Link></li>
+                <li><Link to="/washers" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Washers</Link></li>
+                <li><Link to="/accessories" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Accessories</Link></li>
               </ul>
             </li>
 
@@ -206,25 +202,25 @@ const Navbar = () => {
                 <span className="hex_elem_rounded"><i className="icon-picture"></i></span>
                 Material
               </Link>
-              <ul className="absolute left-0 top-[100%] mt-2 w-[500px] grid grid-cols-2 bg-white border border-gray-100 shadow-2xl rounded-lg py-4 px-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] gap-1">
-                <li><Link to="/stainless-steel" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Stainless Steel</Link></li>
-                <li><Link to="/carbon-steel" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Carbon Steel</Link></li>
-                <li><Link to="/alloy-steel" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Alloy Steel</Link></li>
-                <li><Link to="/duplex-steel" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Duplex Steel</Link></li>
-                <li><Link to="/super-duplex-steel" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Super Duplex Steel</Link></li>
-                <li><Link to="/nickel-alloy" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Nickel</Link></li>
-                <li><Link to="/monel" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Monel</Link></li>
-                <li><Link to="/inconel" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Inconel</Link></li>
-                <li><Link to="/incoloy" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Incoloy</Link></li>
-                <li><Link to="/hastelloy" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Hastelloy</Link></li>
-                <li><Link to="/copper-nickel" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Copper Nickel</Link></li>
-                <li><Link to="/titanium" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Titanium</Link></li>
-                <li><Link to="/silicon-bronze" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Silicon Bronze</Link></li>
-                <li><Link to="/phosphor-bronze" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Phosphor Bronze</Link></li>
-                <li><Link to="/aluminium-bronze" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Aluminum Bronze</Link></li>
-                <li><Link to="/brass" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Brass</Link></li>
-                <li><Link to="/tantalum" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Tantalum</Link></li>
-                <li><Link to="/zirconium" className="block px-5 py-2 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors rounded-md">Zirconium</Link></li>
+              <ul className="absolute left-0 top-[100%] mt-0 w-[500px] grid grid-cols-2 bg-[#0D8BC5] shadow-2xl py-4 px-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] gap-0">
+                <li><Link to="/stainless-steel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Stainless Steel</Link></li>
+                <li><Link to="/carbon-steel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Carbon Steel</Link></li>
+                <li><Link to="/alloy-steel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Alloy Steel</Link></li>
+                <li><Link to="/duplex-steel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Duplex Steel</Link></li>
+                <li><Link to="/super-duplex-steel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Super Duplex Steel</Link></li>
+                <li><Link to="/nickel-alloy" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Nickel</Link></li>
+                <li><Link to="/monel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Monel</Link></li>
+                <li><Link to="/inconel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Inconel</Link></li>
+                <li><Link to="/incoloy" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Incoloy</Link></li>
+                <li><Link to="/hastelloy" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Hastelloy</Link></li>
+                <li><Link to="/copper-nickel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Copper Nickel</Link></li>
+                <li><Link to="/titanium" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Titanium</Link></li>
+                <li><Link to="/silicon-bronze" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Silicon Bronze</Link></li>
+                <li><Link to="/phosphor-bronze" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Phosphor Bronze</Link></li>
+                <li><Link to="/aluminium-bronze" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Aluminum Bronze</Link></li>
+                <li><Link to="/brass" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Brass</Link></li>
+                <li><Link to="/tantalum" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Tantalum</Link></li>
+                <li><Link to="/zirconium" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Zirconium</Link></li>
               </ul>
             </li>
 
@@ -237,14 +233,14 @@ const Navbar = () => {
                 <span className="hex_elem_rounded"><i className="icon-flag"></i></span>
                 Standard
               </Link>
-              <ul className="absolute left-0 top-[100%] mt-2 w-48 bg-white border border-gray-100 shadow-2xl rounded-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] flex flex-col">
-                <li><Link to="/asme-standards" className="block px-5 py-2.5 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors">ASME</Link></li>
-                <li><Link to="/din-standards" className="block px-5 py-2.5 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors">DIN</Link></li>
-                <li><Link to="/sae-standards" className="block px-5 py-2.5 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors">SAE</Link></li>
-                <li><Link to="/iso-standards" className="block px-5 py-2.5 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors">ISO</Link></li>
-                <li><Link to="/bs-standards" className="block px-5 py-2.5 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors">BS</Link></li>
-                <li><Link to="/bis-standards" className="block px-5 py-2.5 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors">BIS</Link></li>
-                <li><Link to="/uni-standards" className="block px-5 py-2.5 text-[13px] uppercase tracking-wider font-bold text-gray-600 hover:bg-[#0a192f] hover:text-[#0D8BC5] transition-colors">UNI</Link></li>
+              <ul className="absolute left-0 top-[100%] mt-0 w-48 bg-[#0D8BC5] shadow-2xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] flex flex-col">
+                <li><Link to="/asme-standards" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">ASME</Link></li>
+                <li><Link to="/din-standards" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">DIN</Link></li>
+                <li><Link to="/sae-standards" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">SAE</Link></li>
+                <li><Link to="/iso-standards" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">ISO</Link></li>
+                <li><Link to="/bs-standards" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">BS</Link></li>
+                <li><Link to="/bis-standards" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">BIS</Link></li>
+                <li><Link to="/uni-standards" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">UNI</Link></li>
               </ul>
             </li>
 
