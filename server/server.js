@@ -26,9 +26,9 @@ app.use('/api/enquiry', enquiryRoutes);
 const distPath = path.join(__dirname, '../client/dist');
 app.use(express.static(distPath));
 
-// Wildcard fallback to SPA routing
+// Wildcard fallback to API info
 app.get('*', (req, res) => {
-  res.sendFile(path.join(distPath, 'index.html'));
+  res.json({ message: 'HEX INDIA API Backend is running successfully.' });
 });
 
 // Global Error Handler
