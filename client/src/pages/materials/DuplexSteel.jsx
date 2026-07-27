@@ -1,7 +1,8 @@
 import React from 'react';
+import PageLayout from '../../components/PageLayout';
 import { Link } from 'react-router-dom';
 import HexagonImage from '../../components/HexagonImage';
-import ProductSidebar from '../../components/ProductSidebar';
+
 
 const DuplexSteel = () => {
   return (

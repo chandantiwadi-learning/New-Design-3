@@ -92,21 +92,11 @@ const Navbar = () => {
         { name: 'Stainless Steel', path: '/stainless-steel' },
         { name: 'Carbon Steel', path: '/carbon-steel' },
         { name: 'Alloy Steel', path: '/alloy-steel' },
-        { name: 'Duplex Steel', path: '/duplex-steel' },
-        { name: 'Super Duplex Steel', path: '/super-duplex-steel' },
-        { name: 'Nickel', path: '/nickel-alloy' },
-        { name: 'Monel', path: '/monel' },
-        { name: 'Inconel', path: '/inconel' },
-        { name: 'Incoloy', path: '/incoloy' },
-        { name: 'Hastelloy', path: '/hastelloy' },
-        { name: 'Copper Nickel', path: '/copper-nickel' },
+        { name: 'Duplex', path: '/duplex-steel' },
+        { name: 'Super Duplex', path: '/super-duplex-steel' },
+        { name: 'High Nickel Alloys', path: '/nickel-alloy' },
         { name: 'Titanium', path: '/titanium' },
-        { name: 'Silicon Bronze', path: '/silicon-bronze' },
-        { name: 'Phosphor Bronze', path: '/phosphor-bronze' },
-        { name: 'Aluminum Bronze', path: '/aluminium-bronze' },
-        { name: 'Brass', path: '/brass' },
-        { name: 'Tantalum', path: '/tantalum' },
-        { name: 'Zirconium', path: '/zirconium' }
+        { name: 'Brass', path: '/brass' }
       ]
     },
     { 
@@ -114,13 +104,12 @@ const Navbar = () => {
       path: '/standard',
       icon: 'icon-flag',
       submenu: [
-        { name: 'ASME', path: '/asme-standards' },
         { name: 'DIN', path: '/din-standards' },
-        { name: 'SAE', path: '/sae-standards' },
         { name: 'ISO', path: '/iso-standards' },
+        { name: 'ASTM', path: '/astm-standards' },
         { name: 'BS', path: '/bs-standards' },
-        { name: 'BIS', path: '/bis-standards' },
-        { name: 'UNI', path: '/uni-standards' }
+        { name: 'ANSI', path: '/ansi-standards' },
+        { name: 'JIS', path: '/jis-standards' }
       ]
     },
     { name: 'Contact Us', path: '/contact', icon: 'icon-envelope' },
@@ -176,72 +165,69 @@ const Navbar = () => {
             </li>
 
             <li className={`has-submenu group relative ${location.pathname === '/products' || isActive('/bolts') || isActive('/screw') || isActive('/stud-bolts') || isActive('/nuts') || isActive('/washers') || isActive('/accessories') ? 'current_item' : ''}`}>
-              <Link to="/products">
+              <Link to="/products" className="focus:outline-none">
                 <span className="hex_elem_rounded"><i className="icon-tasks"></i></span>
                 Products
               </Link>
-              <ul className="absolute left-0 top-[100%] mt-0 w-56 bg-[#0D8BC5] shadow-2xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] flex flex-col">
-                <li><Link to="/bolts" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Bolts</Link></li>
-                <li><Link to="/screw" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Screws</Link></li>
-                <li><Link to="/stud-bolts" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Stud Bolts</Link></li>
-                <li><Link to="/nuts" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Nuts</Link></li>
-                <li><Link to="/washers" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Washers</Link></li>
-                <li><Link to="/accessories" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Accessories</Link></li>
-              </ul>
+              <div className="absolute left-0 top-[100%] pt-2 w-[260px] opacity-0 pointer-events-none translate-y-2 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 focus-within:opacity-100 focus-within:pointer-events-auto focus-within:translate-y-0 transition-all duration-300 ease-out z-[100]">
+                <div className="bg-[#0D8BC5] rounded-xl shadow-lg py-2 flex flex-col overflow-hidden border border-[#086a98]">
+                  {navLinks.find(link => link.name === 'Products')?.submenu?.map((product, idx) => (
+                    <div key={idx}>
+                      <Link 
+                        to={product.path} 
+                        onClick={() => document.activeElement.blur()}
+                        className="block px-6 py-3 text-[14px] text-white font-medium hover:bg-[#086a98] transition-colors duration-200 cursor-pointer focus:outline-none focus:bg-[#086a98]"
+                      >
+                        {product.name}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </li>
 
-            <li className={`has-submenu group relative ${location.pathname === '/material' ||
-              isActive('/stainless-steel') || isActive('/carbon-steel') || isActive('/alloy-steel') ||
-              isActive('/duplex-steel') || isActive('/super-duplex-steel') || isActive('/nickel-alloy') ||
-              isActive('/monel') || isActive('/inconel') || isActive('/incoloy') || isActive('/hastelloy') ||
-              isActive('/copper-nickel') || isActive('/titanium') || isActive('/silicon-bronze') ||
-              isActive('/phosphor-bronze') || isActive('/aluminium-bronze') || isActive('/brass') ||
-              isActive('/tantalum') || isActive('/zirconium') ? 'current_item' : ''
-              }`}>
-              <Link to="/material">
+            <li className={`has-submenu group relative ${location.pathname === '/material' || isActive('/stainless-steel') || isActive('/carbon-steel') || isActive('/alloy-steel') || isActive('/duplex-steel') || isActive('/super-duplex-steel') || isActive('/nickel-alloy') || isActive('/titanium') || isActive('/brass') ? 'current_item' : ''}`}>
+              <Link to="/material" className="focus:outline-none">
                 <span className="hex_elem_rounded"><i className="icon-picture"></i></span>
                 Material
               </Link>
-              <ul className="absolute left-0 top-[100%] mt-0 w-[500px] grid grid-cols-2 bg-[#0D8BC5] shadow-2xl py-4 px-0 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] gap-0">
-                <li><Link to="/stainless-steel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Stainless Steel</Link></li>
-                <li><Link to="/carbon-steel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Carbon Steel</Link></li>
-                <li><Link to="/alloy-steel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Alloy Steel</Link></li>
-                <li><Link to="/duplex-steel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Duplex Steel</Link></li>
-                <li><Link to="/super-duplex-steel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Super Duplex Steel</Link></li>
-                <li><Link to="/nickel-alloy" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Nickel</Link></li>
-                <li><Link to="/monel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Monel</Link></li>
-                <li><Link to="/inconel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Inconel</Link></li>
-                <li><Link to="/incoloy" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Incoloy</Link></li>
-                <li><Link to="/hastelloy" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Hastelloy</Link></li>
-                <li><Link to="/copper-nickel" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Copper Nickel</Link></li>
-                <li><Link to="/titanium" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Titanium</Link></li>
-                <li><Link to="/silicon-bronze" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Silicon Bronze</Link></li>
-                <li><Link to="/phosphor-bronze" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Phosphor Bronze</Link></li>
-                <li><Link to="/aluminium-bronze" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Aluminum Bronze</Link></li>
-                <li><Link to="/brass" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Brass</Link></li>
-                <li><Link to="/tantalum" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Tantalum</Link></li>
-                <li><Link to="/zirconium" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">Zirconium</Link></li>
-              </ul>
+              <div className="absolute left-0 top-[100%] pt-2 w-[260px] opacity-0 pointer-events-none translate-y-2 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 focus-within:opacity-100 focus-within:pointer-events-auto focus-within:translate-y-0 transition-all duration-300 ease-out z-[100]">
+                <div className="bg-[#0D8BC5] rounded-xl shadow-lg py-2 flex flex-col overflow-hidden border border-[#086a98]">
+                  {navLinks.find(link => link.name === 'Material')?.submenu?.map((item, idx) => (
+                    <div key={idx}>
+                      <Link 
+                        to={item.path} 
+                        onClick={() => document.activeElement.blur()}
+                        className="block px-6 py-3 text-[14px] text-white font-medium hover:bg-[#086a98] transition-colors duration-200 cursor-pointer focus:outline-none focus:bg-[#086a98]"
+                      >
+                        {item.name}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </li>
 
-            <li className={`has-submenu group relative ${location.pathname === '/standard' ||
-              isActive('/asme-standards') || isActive('/din-standards') || isActive('/sae-standards') ||
-              isActive('/iso-standards') || isActive('/bs-standards') || isActive('/bis-standards') ||
-              isActive('/uni-standards') ? 'current_item' : ''
-              }`}>
-              <Link to="/standard">
+            <li className={`has-submenu group relative ${location.pathname === '/standard' || isActive('/din-standards') || isActive('/iso-standards') || isActive('/astm-standards') || isActive('/bs-standards') || isActive('/ansi-standards') || isActive('/jis-standards') ? 'current_item' : ''}`}>
+              <Link to="/standard" className="focus:outline-none">
                 <span className="hex_elem_rounded"><i className="icon-flag"></i></span>
                 Standard
               </Link>
-              <ul className="absolute left-0 top-[100%] mt-0 w-48 bg-[#0D8BC5] shadow-2xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] flex flex-col">
-                <li><Link to="/asme-standards" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">ASME</Link></li>
-                <li><Link to="/din-standards" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">DIN</Link></li>
-                <li><Link to="/sae-standards" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">SAE</Link></li>
-                <li><Link to="/iso-standards" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">ISO</Link></li>
-                <li><Link to="/bs-standards" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">BS</Link></li>
-                <li><Link to="/bis-standards" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">BIS</Link></li>
-                <li><Link to="/uni-standards" className="block px-5 py-2 text-[14px] text-white hover:bg-[#0a7bb3] transition-colors">UNI</Link></li>
-              </ul>
+              <div className="absolute left-0 top-[100%] pt-2 w-[260px] opacity-0 pointer-events-none translate-y-2 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 focus-within:opacity-100 focus-within:pointer-events-auto focus-within:translate-y-0 transition-all duration-300 ease-out z-[100]">
+                <div className="bg-[#0D8BC5] rounded-xl shadow-lg py-2 flex flex-col overflow-hidden border border-[#086a98]">
+                  {navLinks.find(link => link.name === 'Standard')?.submenu?.map((item, idx) => (
+                    <div key={idx}>
+                      <Link 
+                        to={item.path} 
+                        onClick={() => document.activeElement.blur()}
+                        className="block px-6 py-3 text-[14px] text-white font-medium hover:bg-[#086a98] transition-colors duration-200 cursor-pointer focus:outline-none focus:bg-[#086a98]"
+                      >
+                        {item.name}
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </li>
 
             <li className={isActive('/contact') ? 'current_item' : ''}>

@@ -60,6 +60,9 @@ const IsoStandards = lazy(() => import('./pages/standards/IsoStandards'));
 const BsStandards = lazy(() => import('./pages/standards/BsStandards'));
 const BisStandards = lazy(() => import('./pages/standards/BisStandards'));
 const UniStandards = lazy(() => import('./pages/standards/UniStandards'));
+const AstmStandards = lazy(() => import('./pages/standards/AstmStandards'));
+const AnsiStandards = lazy(() => import('./pages/standards/AnsiStandards'));
+const JisStandards = lazy(() => import('./pages/standards/JisStandards'));
 
 const App = () => {
   return (
@@ -125,6 +128,9 @@ const App = () => {
               <Route path="/bs-standards" element={<BsStandards />} />
               <Route path="/bis-standards" element={<BisStandards />} />
               <Route path="/uni-standards" element={<UniStandards />} />
+              <Route path="/astm-standards" element={<AstmStandards />} />
+              <Route path="/ansi-standards" element={<AnsiStandards />} />
+              <Route path="/jis-standards" element={<JisStandards />} />
             </Routes>
           </Suspense>
         </main>

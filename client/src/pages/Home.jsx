@@ -288,20 +288,20 @@ const Home = () => {
           </div>
         ))}
 
-        {/* Desktop Navigation Arrows */}
+        {/* Navigation Arrows */}
         <button
           onClick={(e) => { e.preventDefault(); prevSlide(); }}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/20 text-white opacity-0 group-hover:opacity-100 hover:bg-[#0D8BC5] transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_16px_rgba(13,139,197,0.4)] z-30 hidden md:flex cursor-pointer"
+          className="absolute left-[25px] top-1/2 -translate-y-1/2 w-[40px] h-[40px] md:w-[48px] md:h-[48px] flex items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white transition-all duration-300 hover:bg-[#0D8BC5] hover:scale-110 hover:border-[#0D8BC5] z-30 cursor-pointer shadow-lg"
           aria-label="Previous Slide"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7"></path></svg>
+          <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7"></path></svg>
         </button>
         <button
           onClick={(e) => { e.preventDefault(); nextSlide(); }}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 flex items-center justify-center rounded-full bg-black/20 text-white opacity-0 group-hover:opacity-100 hover:bg-[#0D8BC5] transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_4px_16px_rgba(13,139,197,0.4)] z-30 hidden md:flex cursor-pointer"
+          className="absolute right-[25px] top-1/2 -translate-y-1/2 w-[40px] h-[40px] md:w-[48px] md:h-[48px] flex items-center justify-center rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white transition-all duration-300 hover:bg-[#0D8BC5] hover:scale-110 hover:border-[#0D8BC5] z-30 cursor-pointer shadow-lg"
           aria-label="Next Slide"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"></path></svg>
+          <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"></path></svg>
         </button>
 
         {/* Custom HUD Animations */}

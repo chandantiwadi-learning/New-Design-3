@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import PageLayout from '../../components/PageLayout';
+import HexagonImage from '../../components/HexagonImage';
 import { Link } from 'react-router-dom';
-import ProductSidebar from '../../components/ProductSidebar';
+
 
 const nutData = [
   { name: 'Hex Nuts', desc: 'The most common type of nut, featuring a six-sided shape that allows for easy wrenching from multiple angles. Ideal for standard industrial fastening.', img: '/images/products/nuts.png' },
@@ -30,45 +32,20 @@ const Nuts = () => {
   const [selectedNut, setSelectedNut] = useState(nutData[0]);
 
   return (
-    <div className="nuts-page bg-white text-gray-700 select-none">
-      {/* Title Breadcrumb */}
-      <div className="bg-gradient-to-r from-primary-dark to-primary text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
-          <div>
-            <h1 className="text-3xl font-extrabold tracking-tight uppercase text-white">Nuts</h1>
-          </div>
-          <div className="text-xs font-bold tracking-wider uppercase text-gray-200">
-            <Link to="/" className="hover:text-accent transition-colors">Home</Link>
-            <span className="mx-2">/</span>
-            <Link to="/products" className="hover:text-accent transition-colors">Products</Link>
-            <span className="mx-2">/</span>
-            <span className="text-white">Nuts</span>
-          </div>
-        </div>
-      </div>
 
-      {/* Main Layout Area */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="flex flex-col md:flex-row gap-8">
-          
-          {/* Main Content Area */}
-          <main className="flex-grow md:w-3/4 space-y-12">
-            <h2 className="text-xl font-extrabold uppercase tracking-wide text-primary border-b border-gray-100 pb-4">
+    <PageLayout title="Nuts" sidebarType="products">
+      <h2 className="text-[#0d8bc5] text-2xl font-bold uppercase tracking-wide mb-6">
               Industrial Nuts
             </h2>
             
-            <div className="flex flex-col md:flex-row gap-8 items-start">
+            <div className="flex flex-col sm:flex-row gap-6 items-start mb-8">
               {/* Product Photo */}
-              <div className="w-full md:w-64 flex-shrink-0">
-                <img 
-                  src={selectedNut.img} 
-                  alt={selectedNut.name} 
-                  className="w-full h-auto object-cover rounded-xl shadow-md border border-gray-100 transition-opacity duration-300"
-                />
+              <div className="flex-shrink-0">
+                <HexagonImage src={selectedNut.img} shape="container" />
               </div>
               
               {/* Intro paragraphs */}
-              <div className="text-sm leading-relaxed text-justify text-gray-600 space-y-4">
+              <div className="text-sm leading-6 text-justify flex flex-col gap-4">
                 <p>
                   Nuts are female-threaded fasteners that serve as the mating partner to bolts or other externally threaded components. Standard joints are clamped by the friction of matching thread profiles and the clamping tension of the assembly.
                 </p>
@@ -84,8 +61,8 @@ const Nuts = () => {
             </div>
 
             {/* Types of Nuts list */}
-            <div className="border-t border-gray-100 pt-8 space-y-6">
-              <h4 className="text-sm font-extrabold text-gray-800 uppercase tracking-wider">
+            <div className="border-t border-gray-100 pt-8 flex flex-col gap-8">
+              <h4 className="text-themeDarkGrey font-bold text-lg mb-4">
                 Available Types of Nuts (Fasteners)
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -95,24 +72,18 @@ const Nuts = () => {
                     onClick={() => setSelectedNut(item)}
                     className={`group flex items-center gap-3 p-3 rounded-lg cursor-pointer transition-all duration-300 border ${selectedNut.name === item.name ? 'bg-white border-[#0D8BC5] shadow-md transform -translate-y-1' : 'bg-white border-gray-100 hover:bg-gray-50 hover:border-[#0D8BC5]/50'}`}
                   >
-                    <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center transition-colors ${selectedNut.name === item.name ? 'bg-[#0D8BC5] text-white' : 'bg-primary/10 text-primary group-hover:bg-[#0D8BC5] group-hover:text-white'}`}>
-                      <i className="icon-angle-right text-[12px] font-bold"></i>
-                    </span>
-                    <span className={`text-xs font-bold transition-colors group-hover:underline group-hover:decoration-[#0D8BC5] group-hover:underline-offset-4 ${selectedNut.name === item.name ? 'text-[#0D8BC5]' : 'text-gray-600'}`}>{item.name}</span>
+                    <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
+                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
+                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
+                          <i className="icon-angle-right"></i>
+                        </div>
+                    <span className="text-xs font-semibold text-themeDarkGrey group-hover:text-themeBlue transition-colors">{item.name}</span>
                   </div>
                 ))}
               </div>
             </div>
-          </main>
+    </PageLayout>
 
-          {/* Sidebar */}
-          <div className="w-full md:w-1/4">
-            <ProductSidebar />
-          </div>
-
-        </div>
-      </section>
-    </div>
   );
 };
 
