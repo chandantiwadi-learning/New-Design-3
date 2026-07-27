@@ -12,6 +12,9 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = env.PORT || 5000;
 
+// Trust the reverse proxy (Render) so rate-limiting and IP detection work
+app.set('trust proxy', 1);
+
 // Set up security middleware (Helmet, CORS, Rate Limit, XSS)
 setupSecurity(app);
 
