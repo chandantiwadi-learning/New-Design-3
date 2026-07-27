@@ -1,0 +1,104 @@
+import { verifyTurnstile } from '../services/turnstile.service.js';
+import { generateReferenceId } from '../services/idGenerator.service.js';
+import { appendToSheet } from '../services/googleSheets.service.js';
+import { sendCompanyAlert, sendCustomerAutoReply } from '../services/email.service.js';
+
+export const submitEnquiry = async (req, res, next) => {
+  const startTime = Date.now();
+  console.log(`\n======================================================`);
+  console.log(`[ENQUIRY] STEP 1: Request received from IP: ${req.ip}`);
+  
+  try {
+    const { name, email, phone, company, subject, message, turnstileToken } = req.body;
+    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+
+    // STEP 2 & 3: Turnstile Verification
+    console.log(`[ENQUIRY] STEP 2: Turnstile verification starting...`);
+    let isValidCaptcha = false;
+    try {
+      isValidCaptcha = await verifyTurnstile(turnstileToken, ip);
+      console.log(`[ENQUIRY] STEP 3: Turnstile verification result: ${isValidCaptcha}`);
+    } catch (turnstileError) {
+      console.error(`[ENQUIRY] ❌ ERROR during Turnstile verification:`, turnstileError.message);
+      console.error(turnstileError.stack);
+      return res.status(500).json({ success: false, message: 'Turnstile service failure: ' + turnstileError.message });
+    }
+
+    if (!isValidCaptcha) {
+      console.warn(`[ENQUIRY] ❌ Invalid CAPTCHA from IP: ${ip}`);
+      return res.status(400).json({ success: false, message: 'Invalid CAPTCHA' });
+    }
+    console.log(`✔ Turnstile verified`);
+
+    // Generate Reference ID & Metadata
+    const referenceId = generateReferenceId();
+    const now = new Date();
+    const date = now.toISOString().split('T')[0];
+    const time = now.toTimeString().split(' ')[0];
+    const userAgent = req.headers['user-agent'] || 'Unknown';
+
+    const enquiryData = {
+      referenceId, date, time, name, email, phone, company: company || '', subject: subject || '', message, ip, userAgent
+    };
+
+    console.log(`[ENQUIRY] 🆔 Generated Reference ID: ${referenceId}`);
+
+    // STEP 4 & 5: Save to Google Sheets
+    console.log(`[ENQUIRY] STEP 4: Google Sheets connection starting...`);
+    try {
+      const sheetResponse = await appendToSheet(enquiryData);
+      console.log(`[ENQUIRY] STEP 5: Google Sheets append response success!`);
+      console.log(`✔ Google Sheet updated`);
+    } catch (sheetError) {
+      console.error(`[ENQUIRY] ❌ Google Sheets insertion failed!`);
+      console.error(`Message:`, sheetError.message);
+      console.error(`Stack:`, sheetError.stack);
+      // If this fails, the system aborts and returns an error.
+      return res.status(500).json({ success: false, message: 'Google Sheets Error: ' + sheetError.message });
+    }
+
+    // STEP 6 & 7: Send Company Email
+    console.log(`[ENQUIRY] STEP 6: Company email sending...`);
+    try {
+      await sendCompanyAlert(enquiryData);
+      console.log(`[ENQUIRY] STEP 7: Company email success!`);
+      console.log(`✔ Company email sent`);
+    } catch (companyEmailError) {
+      console.error(`[ENQUIRY] ❌ Company email failed!`);
+      console.error(`Message:`, companyEmailError.message);
+      console.error(`Stack:`, companyEmailError.stack);
+    }
+
+    // STEP 8 & 9: Send Customer Email
+    console.log(`[ENQUIRY] STEP 8: Customer email sending...`);
+    try {
+      await sendCustomerAutoReply(enquiryData);
+      console.log(`[ENQUIRY] STEP 9: Customer email success!`);
+      console.log(`✔ Customer email sent`);
+    } catch (customerEmailError) {
+      console.error(`[ENQUIRY] ❌ Customer email failed!`);
+      console.error(`Message:`, customerEmailError.message);
+      console.error(`Stack:`, customerEmailError.stack);
+    }
+
+    const processingTime = Date.now() - startTime;
+    console.log(`[ENQUIRY] ⏱️ Completed in ${processingTime}ms`);
+
+    // STEP 10: Return HTTP response
+    console.log(`[ENQUIRY] STEP 10: Returning HTTP response...`);
+    console.log(`✔ API response sent\n======================================================\n`);
+    return res.status(200).json({
+      success: true,
+      message: 'Enquiry submitted successfully.',
+      referenceId,
+    });
+  } catch (error) {
+    const processingTime = Date.now() - startTime;
+    console.error(`[ENQUIRY] ❌ Unexpected Error after ${processingTime}ms:`);
+    console.error(`Message:`, error.message);
+    console.error(`Stack:`, error.stack);
+    
+    // Explicitly return JSON instead of passing to generic next() handler to ensure the frontend gets a readable message
+    return res.status(500).json({ success: false, message: 'Unexpected Error: ' + error.message });
+  }
+};
