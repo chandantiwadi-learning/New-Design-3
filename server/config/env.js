@@ -11,6 +11,8 @@ const envSchema = z.object({
   // Google Sheets
   GOOGLE_SHEET_ID: z.string().min(1, 'Google Sheet ID is required'),
   GOOGLE_SERVICE_ACCOUNT_PATH: z.string().default('./config/service-account.json'),
+  GOOGLE_CLIENT_EMAIL: z.string().optional(),
+  GOOGLE_PRIVATE_KEY: z.string().optional(),
   
   // Turnstile (Optional for local testing if we bypass it, but let's make it optional)
   TURNSTILE_SECRET: z.string().optional(),

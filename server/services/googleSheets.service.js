@@ -5,16 +5,31 @@ import fs from 'fs';
 
 // Initialize the sheets API only if service-account.json exists
 let sheets;
-const SERVICE_ACCOUNT_FILE = path.resolve(process.cwd(), env.GOOGLE_SERVICE_ACCOUNT_PATH);
-
-if (fs.existsSync(SERVICE_ACCOUNT_FILE)) {
+if (env.GOOGLE_CLIENT_EMAIL && env.GOOGLE_PRIVATE_KEY) {
+  // Use environment variables (Render Production)
   const auth = new google.auth.GoogleAuth({
-    keyFile: SERVICE_ACCOUNT_FILE,
+    credentials: {
+      client_email: env.GOOGLE_CLIENT_EMAIL,
+      private_key: env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    },
     scopes: ['https://www.googleapis.com/auth/spreadsheets'],
   });
   sheets = google.sheets({ version: 'v4', auth });
+  console.log('✅ Google Sheets initialized using environment variables.');
 } else {
-  console.warn(`⚠️ ${SERVICE_ACCOUNT_FILE} not found. Google Sheets integration is disabled.`);
+  // Use local file (Local Development)
+  const SERVICE_ACCOUNT_FILE = path.resolve(process.cwd(), env.GOOGLE_SERVICE_ACCOUNT_PATH);
+  
+  if (fs.existsSync(SERVICE_ACCOUNT_FILE)) {
+    const auth = new google.auth.GoogleAuth({
+      keyFile: SERVICE_ACCOUNT_FILE,
+      scopes: ['https://www.googleapis.com/auth/spreadsheets'],
+    });
+    sheets = google.sheets({ version: 'v4', auth });
+    console.log('✅ Google Sheets initialized using service-account.json.');
+  } else {
+    console.warn(`⚠️ Google Sheets credentials not found in env or local file. Integration is disabled.`);
+  }
 }
 
 export const appendToSheet = async (data) => {
