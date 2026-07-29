@@ -64,6 +64,8 @@ const AstmStandards = lazy(() => import('./pages/standards/AstmStandards'));
 const AnsiStandards = lazy(() => import('./pages/standards/AnsiStandards'));
 const JisStandards = lazy(() => import('./pages/standards/JisStandards'));
 
+const ErrorPage = lazy(() => import('./pages/ErrorPage'));
+
 const App = () => {
   return (
     <Router>
@@ -131,6 +133,9 @@ const App = () => {
               <Route path="/astm-standards" element={<AstmStandards />} />
               <Route path="/ansi-standards" element={<AnsiStandards />} />
               <Route path="/jis-standards" element={<JisStandards />} />
+
+              {/* Error/Wildcard Route */}
+              <Route path="*" element={<ErrorPage />} />
             </Routes>
           </Suspense>
         </main>

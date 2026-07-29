@@ -104,12 +104,13 @@ const Navbar = () => {
       path: '/standard',
       icon: 'icon-flag',
       submenu: [
+        { name: 'ASME', path: '/asme-standards' },
+        { name: 'BIS', path: '/bis-standards' },
+        { name: 'BS', path: '/bs-standards' },
         { name: 'DIN', path: '/din-standards' },
         { name: 'ISO', path: '/iso-standards' },
-        { name: 'ASTM', path: '/astm-standards' },
-        { name: 'BS', path: '/bs-standards' },
-        { name: 'ANSI', path: '/ansi-standards' },
-        { name: 'JIS', path: '/jis-standards' }
+        { name: 'SAE', path: '/sae-standards' },
+        { name: 'UNI', path: '/uni-standards' }
       ]
     },
     { name: 'Contact Us', path: '/contact', icon: 'icon-envelope' },

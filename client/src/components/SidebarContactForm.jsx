@@ -1,129 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { Turnstile } from '@marsidev/react-turnstile';
+import { useEnquiryForm } from '../hooks/useEnquiryForm';
 
 const SidebarContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    securityCode: '',
-    message: '',
-  });
+  const {
+    isSuccess,
+    setIsSuccess,
+    referenceId,
+    turnstileSiteKey,
+    formMethods,
+    onSubmit
+  } = useEnquiryForm();
 
-  const [errors, setErrors] = useState({});
-  const [captchaUrl, setCaptchaUrl] = useState('/api/captcha');
-
-  const refreshCaptcha = () => {
-    setCaptchaUrl(`/api/captcha?t=${Date.now()}`);
-    setFormData((prev) => ({ ...prev, securityCode: '' }));
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const validate = () => {
-    const tempErrors = {};
-    if (!formData.name.trim() || formData.name === 'Name') {
-      tempErrors.name = 'Please enter your Name.';
-    }
-    if (!formData.email.trim() || formData.email === 'Email') {
-      tempErrors.email = 'Please enter your Email.';
-    } else {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email)) {
-        tempErrors.email = 'Please enter a valid Email.';
-      }
-    }
-    if (!formData.phone.trim() || formData.phone === 'Phone No.') {
-      tempErrors.phone = 'Please enter your Phone number.';
-    } else if (isNaN(formData.phone)) {
-      tempErrors.phone = 'Please enter a valid numeric phone number.';
-    } else if (formData.phone.length < 10 || formData.phone.length > 11) {
-      tempErrors.phone = 'Phone number must be 10 or 11 digits.';
-    }
-    if (!formData.message.trim() || formData.message === 'Message') {
-      tempErrors.message = 'Please enter your Message.';
-    }
-    if (!formData.securityCode.trim() || formData.securityCode === 'Security Code') {
-      tempErrors.securityCode = 'Please enter the Security Code.';
-    }
-
-    setErrors(tempErrors);
-    return Object.keys(tempErrors).length === 0;
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validate()) {
-      fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify(formData),
-      })
-        .then(async (res) => {
-          if (!res.ok) {
-            const data = await res.json();
-            throw new Error(data.error || 'Failed to send message.');
-          }
-          alert('Message sent successfully!');
-          setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            securityCode: '',
-            message: '',
-          });
-          refreshCaptcha();
-        })
-        .catch((err) => {
-          console.error(err);
-          alert(err.message || 'Failed to send message.');
-          refreshCaptcha();
-        });
-    } else {
-      // Alert first validation error like the legacy site
-      if (!formData.name.trim() || formData.name === 'Name') {
-        alert('Please enter your Name.');
-        return;
-      }
-      if (!formData.email.trim() || formData.email === 'Email') {
-        alert('Please enter your Email.');
-        return;
-      }
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.email)) {
-        alert('Please enter a valid Email.');
-        return;
-      }
-      if (!formData.phone.trim() || formData.phone === 'Phone No.') {
-        alert('Please enter your Phone number.');
-        return;
-      }
-      if (isNaN(formData.phone)) {
-        alert('Please enter a valid numeric phone number.');
-        return;
-      }
-      if (formData.phone.length < 10 || formData.phone.length > 11) {
-        alert('Phone number must be 10 or 11 digits.');
-        return;
-      }
-      if (!formData.message.trim() || formData.message === 'Message') {
-        alert('Please enter your Message.');
-        return;
-      }
-      if (!formData.securityCode.trim() || formData.securityCode === 'Security Code') {
-        alert('Please enter the Security Code.');
-        return;
-      }
-    }
-  };
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors, isSubmitting },
+  } = formMethods;
 
   return (
     <figure className="widget">
@@ -131,71 +25,88 @@ const SidebarContactForm = () => {
         <h4>Contact Us</h4>
       </figcaption>
       <div className="relative">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-1">
-          <div>
-            <input
-              type="text"
-              name="name"
-              placeholder="Name"
-              value={formData.name}
-              onChange={handleChange}
-              className={errors.name ? 'border-red-500' : ''}
-            />
-          </div>
-          <div>
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              value={formData.email}
-              onChange={handleChange}
-              className={errors.email ? 'border-red-500' : ''}
-            />
-          </div>
-          <div>
-            <input
-              type="text"
-              name="phone"
-              placeholder="Phone No."
-              value={formData.phone}
-              onChange={handleChange}
-              className={errors.phone ? 'border-red-500' : ''}
-            />
-          </div>
-          <div className="flex flex-col gap-2 mb-3">
-            <div 
-              className="border border-[#dcdcdc] text-center select-none flex justify-center items-center h-[50px] cursor-pointer bg-white"
-              onClick={refreshCaptcha}
-              title="Click to refresh security code"
-            >
-              <img src={captchaUrl} alt="Security Code" className="h-full object-contain" />
+        {isSuccess ? (
+          <div className="flex flex-col items-center justify-center py-10 px-4 text-center space-y-4 bg-white">
+            <h5 className="text-lg font-bold text-gray-900">Thank you!</h5>
+            <p className="text-sm text-gray-600">Your enquiry has been received.</p>
+            <div className="bg-gray-50 p-3 w-full rounded border border-gray-100">
+              <p className="text-[10px] text-gray-500 uppercase font-bold tracking-wider mb-1">Reference ID</p>
+              <p className="text-xs font-mono font-bold text-[#0D8BC5] break-all">{referenceId}</p>
             </div>
-            <input
-              type="text"
-              name="securityCode"
-              placeholder="Security Code"
-              value={formData.securityCode}
-              onChange={handleChange}
-              className={errors.securityCode ? 'border-red-500' : ''}
-            />
+            <button
+              onClick={() => setIsSuccess(false)}
+              className="text-[#0D8BC5] font-bold text-xs hover:underline mt-2"
+            >
+              Submit another enquiry
+            </button>
           </div>
-          <div>
-            <textarea
-              name="message"
-              placeholder="Message"
-              rows="6"
-              value={formData.message}
-              onChange={handleChange}
-              className={`h-[120px] ${errors.message ? 'border-red-500' : ''}`}
-            ></textarea>
-          </div>
-          <button
-            type="submit"
-            className="bg-themeBlue text-white hover:bg-themeBlueDark transition-all duration-300 font-bold uppercase py-3 w-full text-center cursor-pointer text-[13px]"
-          >
-            Send Message
-          </button>
-        </form>
+        ) : (
+          <form onSubmit={handleSubmit((data) => {
+            data.subject = `Sidebar Enquiry (Path: ${window.location.pathname})`;
+            data.company = 'Not provided';
+            onSubmit(data);
+          })} className="flex flex-col gap-1">
+            <div>
+              <input
+                type="text"
+                placeholder="Name"
+                {...register('name')}
+                className={errors.name ? 'border-red-500' : ''}
+              />
+            </div>
+            <div>
+              <input
+                type="email"
+                placeholder="Email"
+                {...register('email')}
+                className={errors.email ? 'border-red-500' : ''}
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                placeholder="Phone No."
+                {...register('phone')}
+                className={errors.phone ? 'border-red-500' : ''}
+              />
+            </div>
+            
+            {/* Turnstile Captcha */}
+            {turnstileSiteKey && (
+              <div className="flex flex-col gap-2 mb-3 mt-1">
+                <Turnstile 
+                  siteKey={turnstileSiteKey}
+                  onSuccess={(token) => setValue('turnstileToken', token, { shouldValidate: true })}
+                  onError={() => setValue('turnstileToken', '')}
+                  onExpire={() => setValue('turnstileToken', '')}
+                  options={{ theme: 'light', size: 'normal' }}
+                />
+                {errors.turnstileToken && (
+                  <p className="text-xs text-red-500 font-semibold">
+                    {errors.turnstileToken.message}
+                  </p>
+                )}
+              </div>
+            )}
+
+            <div>
+              <textarea
+                placeholder="Message"
+                rows="6"
+                {...register('message')}
+                className={`h-[120px] ${errors.message ? 'border-red-500' : ''}`}
+              ></textarea>
+            </div>
+            
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="!bg-[#0d8bc5] !text-white hover:!bg-[#086a98] transition-all duration-300 font-bold uppercase py-3 w-full text-center cursor-pointer text-[13px] disabled:opacity-70 disabled:cursor-not-allowed border-none"
+            >
+              {isSubmitting ? 'Sending...' : 'Send Message'}
+            </button>
+          </form>
+        )}
       </div>
     </figure>
   );

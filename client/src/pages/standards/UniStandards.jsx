@@ -1,6 +1,7 @@
 import React from 'react';
 import PageLayout from '../../components/PageLayout';
 import { Link } from 'react-router-dom';
+import StandardGrid from '../../components/StandardGrid';
 
 const UniStandards = () => {
   const standards = ["UNI 5737","UNI 5739","UNI 5931","UNI 5933","UNI 6592","UNI 6593","UNI 7473","UNI 7474","UNI 9318","UNI 9319","UNI 9320","UNI 9321"];
@@ -25,27 +26,7 @@ const UniStandards = () => {
             UNI Standards List
           </h2>
 
-          <ul className="faq_nav clearfix">
-            {standards.map((code, idx) => (
-              <li key={idx}>
-                <a 
-                  className="hex_elem_rounded_type_2" 
-                  href="#" 
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <span className="h_el_01"></span>
-                  <span className="h_el_02"></span>
-                  <span className="hex_elem_rounded_type_2 with_border">
-                    <span className="h_el_01"></span>
-                    <span className="h_el_02"></span>
-                    <span className="faq_title">{code}</span>
-                  </span>
-                  <span className="stripe"></span>
-                  <span className="circle"></span>
-                </a>
-              </li>
-            ))}
-          </ul>
+          <StandardGrid standards={standards} />
         </div>
       </section>
     </div>

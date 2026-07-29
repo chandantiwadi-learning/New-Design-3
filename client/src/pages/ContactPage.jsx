@@ -7,16 +7,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { User, Mail, Phone, Building, MessageSquare, Send, CheckCircle, Clock, MapPin, Globe } from 'lucide-react';
+import { useEnquiryForm } from '../hooks/useEnquiryForm';
 
-const enquirySchema = z.object({
-  name: z.string().min(2, 'Name is required').max(100),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().min(10, 'Valid phone required').max(15),
-  company: z.string().max(100).optional(),
-  subject: z.string().max(150).optional(),
-  message: z.string().min(1, 'Message is required').min(10, 'Message must be at least 10 characters').max(2000),
-  turnstileToken: z.string().min(1, 'Please verify you are human'),
-});
 
 // Animation variants
 const fadeUp = {
@@ -33,67 +25,21 @@ const staggerContainer = {
 };
 
 const ContactPage = () => {
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [referenceId, setReferenceId] = useState('');
-  const [turnstileSiteKey, setTurnstileSiteKey] = useState(null);
+  const {
+    isSuccess,
+    setIsSuccess,
+    referenceId,
+    turnstileSiteKey,
+    formMethods,
+    onSubmit
+  } = useEnquiryForm();
 
-  React.useEffect(() => {
-    const fetchConfig = async () => {
-      try {
-        const API_URL = import.meta.env.DEV ? 'http://localhost:5000/api/enquiry/config' : 'https://new-design-3-1.onrender.com/api/enquiry/config';
-        const res = await axios.get(API_URL);
-        if (res.data.turnstileSiteKey) {
-          setTurnstileSiteKey(res.data.turnstileSiteKey);
-        }
-      } catch (err) {
-        console.error('Failed to fetch turnstile config', err);
-        // Fallback for local testing
-        setTurnstileSiteKey('1x00000000000000000000AA');
-      }
-    };
-    fetchConfig();
-  }, []);
-  
   const {
     register,
     handleSubmit,
     setValue,
-    reset,
     formState: { errors, isSubmitting },
-  } = useForm({
-    resolver: zodResolver(enquirySchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      subject: '',
-      message: '',
-      turnstileToken: '',
-    },
-  });
-
-  const onSubmit = async (data) => {
-    try {
-      // Use full URL in dev if backend is running on 5000, and Render URL in production
-      const API_URL = import.meta.env.DEV ? 'http://localhost:5000/api/enquiry' : 'https://new-design-3-1.onrender.com/api/enquiry';
-      
-      const res = await axios.post(API_URL, data);
-      
-      if (res.data.success) {
-        setReferenceId(res.data.referenceId);
-        setIsSuccess(true);
-        reset();
-        toast.success('Enquiry submitted successfully!');
-      }
-    } catch (error) {
-      console.error(error);
-      const errorMessage = error.response?.data?.message || 'Failed to submit enquiry. Please try again.';
-      toast.error(errorMessage);
-      // Reset Turnstile token on failure
-      setValue('turnstileToken', '');
-    }
-  };
+  } = formMethods;
 
   return (
     <div className="contact-page bg-white text-gray-700 select-none">

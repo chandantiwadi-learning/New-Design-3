@@ -763,7 +763,7 @@ const Home = () => {
       {/* Action Banner */}
       <section className="py-16 text-center border-t border-white/10" style={{ background: 'linear-gradient(135deg, #0D8BC5, #0878AA)' }}>
         <div className="max-w-5xl mx-auto px-4">
-          <h1 className="text-lg md:text-xl font-bold text-white leading-relaxed">
+          <h1 className="text-lg md:text-2xl font-bold text-white leading-relaxed">
             Providing Precision-Build Fastening Solutions For Industrial Applications Worldwide.
           </h1>
           <div className="mt-8">

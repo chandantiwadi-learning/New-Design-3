@@ -1,6 +1,7 @@
 import React from 'react';
 import PageLayout from '../../components/PageLayout';
 import { Link } from 'react-router-dom';
+import StandardGrid from '../../components/StandardGrid';
 
 const SaeStandards = () => {
   const standards = ["J105","J429","J461","J463","J502","J995","J2271","J2484","J2485","J2656","J1199"];
@@ -25,27 +26,7 @@ const SaeStandards = () => {
             SAE Standards List
           </h2>
 
-          <ul className="faq_nav clearfix">
-            {standards.map((code, idx) => (
-              <li key={idx}>
-                <a 
-                  className="hex_elem_rounded_type_2" 
-                  href="#" 
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <span className="h_el_01"></span>
-                  <span className="h_el_02"></span>
-                  <span className="hex_elem_rounded_type_2 with_border">
-                    <span className="h_el_01"></span>
-                    <span className="h_el_02"></span>
-                    <span className="faq_title">{code}</span>
-                  </span>
-                  <span className="stripe"></span>
-                  <span className="circle"></span>
-                </a>
-              </li>
-            ))}
-          </ul>
+          <StandardGrid standards={standards} />
         </div>
       </section>
     </div>

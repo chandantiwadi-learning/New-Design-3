@@ -1,4 +1,5 @@
 import React from 'react';
+import SidebarNavigation from '../../components/SidebarNavigation';
 import PageLayout from '../../components/PageLayout';
 import { Link } from 'react-router-dom';
 import HexagonImage from '../../components/HexagonImage';
@@ -187,7 +188,7 @@ const AluminiumBronze = () => {
             </main>
 
             {/* Sidebar (1/4 width) */}
-            <ProductSidebar />
+            <SidebarNavigation type="materials" />
           </div>
         </div>
       </section>

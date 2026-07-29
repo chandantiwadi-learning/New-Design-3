@@ -26,8 +26,10 @@ const ProductSidebar = () => {
             <li key={idx} className="border-b border-gray-100 last:border-none">
               <Link
                 to={prod.path}
-                className={`flex items-center text-xs font-bold py-3 transition-all duration-300 hover:pl-2 ${
-                  location.pathname === prod.path ? 'text-primary' : 'text-gray-600 hover:text-primary'
+                className={`flex items-center text-xs py-3 transition-all duration-300 hover:pl-2 ${
+                  location.pathname === prod.path 
+                    ? '!text-primary !font-extrabold underline decoration-2 underline-offset-[6px]' 
+                    : 'text-gray-600 font-bold hover:!text-primary'
                 }`}
               >
                 <span className="icon-angle-right mr-2 text-xs font-bold"></span>

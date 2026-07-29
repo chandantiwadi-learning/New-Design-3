@@ -52,20 +52,38 @@ const SidebarNavigation = ({ type = 'products' }) => {
         <h4 className="text-primary font-extrabold text-xs uppercase tracking-widest border-b-2 border-primary pb-3 mb-4">
           {currentNav.title}
         </h4>
+        <style>{`
+          .sidebar-link-item {
+            color: #4b5563 !important;
+          }
+          .sidebar-link-item:hover {
+            color: #0d8bc5 !important;
+          }
+          .sidebar-link-item.sidebar-active {
+            color: #0d8bc5 !important;
+            font-weight: 800 !important;
+            text-decoration: underline !important;
+            text-decoration-thickness: 2px !important;
+            text-underline-offset: 6px !important;
+          }
+        `}</style>
         <ul className="flex flex-col">
-          {currentNav.items.map((item, idx) => (
-            <li key={idx} className="border-b border-gray-100 last:border-none">
-              <Link
-                to={item.path}
-                className={`flex items-center text-xs font-bold py-3 transition-all duration-300 hover:pl-2 ${
-                  location.pathname === item.path ? 'text-primary' : 'text-gray-600 hover:text-primary'
-                }`}
-              >
-                <span className="icon-angle-right mr-2 text-xs font-bold"></span>
-                {item.name}
-              </Link>
-            </li>
-          ))}
+          {currentNav.items.map((item, idx) => {
+            const isActive = location.pathname.replace(/\/$/, "") === item.path;
+            return (
+              <li key={idx} className="border-b border-gray-100 last:border-none">
+                <Link
+                  to={item.path}
+                  className={`flex items-center text-xs font-bold py-3 transition-all duration-300 hover:pl-2 sidebar-link-item ${
+                    isActive ? 'sidebar-active' : ''
+                  }`}
+                >
+                  <span className="icon-angle-right mr-2 text-xs font-bold"></span>
+                  {item.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
 
