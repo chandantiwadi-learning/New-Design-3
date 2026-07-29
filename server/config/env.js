@@ -17,11 +17,8 @@ const envSchema = z.object({
   // Turnstile (Optional for local testing if we bypass it, but let's make it optional)
   TURNSTILE_SECRET: z.string().optional(),
   
-  // Email Configuration
-  MAIL_HOST: z.string().min(1, 'MAIL_HOST is required'),
-  MAIL_PORT: z.string().default('587'),
-  MAIL_USER: z.string().min(1, 'MAIL_USER is required'),
-  MAIL_PASS: z.string().min(1, 'MAIL_PASS is required'),
+  // Email Configuration (Resend)
+  RESEND_API_KEY: z.string().min(1, 'RESEND_API_KEY is required'),
   MAIL_FROM: z.string().min(1, 'Valid MAIL_FROM is required'),
   EMAIL_TO: z.string().email('Valid EMAIL_TO is required'),
   EMAIL_BCC: z.string().email().optional(),

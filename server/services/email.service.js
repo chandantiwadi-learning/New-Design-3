@@ -1,24 +1,16 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import { env } from '../config/env.js';
 
-let transporter;
+let resend;
 
-if (env.MAIL_HOST && env.MAIL_USER && env.MAIL_PASS) {
-  transporter = nodemailer.createTransport({
-    host: env.MAIL_HOST,
-    port: parseInt(env.MAIL_PORT),
-    secure: env.MAIL_PORT === '465' || env.MAIL_PORT === '465', // Using port 465 for secure, else false (e.g. 587)
-    auth: {
-      user: env.MAIL_USER,
-      pass: env.MAIL_PASS,
-    },
-  });
+if (env.RESEND_API_KEY) {
+  resend = new Resend(env.RESEND_API_KEY);
 } else {
-  console.warn('⚠️ SMTP not configured. Emails will not be sent.');
+  console.warn('⚠️ RESEND_API_KEY not configured. Emails will not be sent.');
 }
 
 export const sendCompanyAlert = async (data) => {
-  if (!transporter) return;
+  if (!resend) return;
 
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
@@ -35,17 +27,21 @@ export const sendCompanyAlert = async (data) => {
     </div>
   `;
 
-  await transporter.sendMail({
+  const { error } = await resend.emails.send({
     from: env.MAIL_FROM,
-    to: env.EMAIL_TO,
-    bcc: env.EMAIL_BCC,
+    to: [env.EMAIL_TO],
+    bcc: env.EMAIL_BCC ? [env.EMAIL_BCC] : undefined,
     subject: `New Website Enquiry - ${data.referenceId}`,
     html,
   });
+  
+  if (error) {
+    throw new Error(error.message);
+  }
 };
 
 export const sendCustomerAutoReply = async (data) => {
-  if (!transporter) return;
+  if (!resend) return;
 
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
@@ -60,10 +56,14 @@ export const sendCustomerAutoReply = async (data) => {
     </div>
   `;
 
-  await transporter.sendMail({
+  const { error } = await resend.emails.send({
     from: env.MAIL_FROM,
-    to: data.email,
+    to: [data.email],
     subject: `Thank you for your Enquiry (Ref: ${data.referenceId})`,
     html,
   });
+  
+  if (error) {
+    throw new Error(error.message);
+  }
 };
