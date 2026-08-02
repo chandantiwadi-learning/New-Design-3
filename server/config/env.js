@@ -18,10 +18,15 @@ const envSchema = z.object({
   TURNSTILE_SECRET: z.string().optional(),
   
   // Email Configuration (Resend)
-  RESEND_API_KEY: z.string().min(1, 'RESEND_API_KEY is required'),
-  MAIL_FROM: z.string().min(1, 'Valid MAIL_FROM is required'),
-  EMAIL_TO: z.string().email('Valid EMAIL_TO is required'),
-  EMAIL_BCC: z.string().email().optional(),
+  RESEND_API_KEY: z.string().optional(),
+  MAIL_FROM: z.string().optional(),
+  EMAIL_TO: z.string().optional(),
+  EMAIL_BCC: z.string().optional(),
+
+  // Admin & Auth Configuration
+  JWT_SECRET: z.string().default('hex_india_admin_jwt_secret_key_2026'),
+  ADMIN_EMAIL: z.string().email().default('chandan110906@gmail.com'),
+  ADMIN_PASSWORD: z.string().default('Chandan_@11'),
 });
 
 const _env = envSchema.safeParse(process.env);

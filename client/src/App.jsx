@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-// Preloader removed
+
 // Scroll to top on route change to match standard web behavior
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -22,7 +22,8 @@ const Products = lazy(() => import('./pages/Products'));
 const Material = lazy(() => import('./pages/Material'));
 const Standard = lazy(() => import('./pages/Standard'));
 const Blog = lazy(() => import('./pages/Blog'));
-
+const BlogDetails = lazy(() => import('./pages/BlogDetails'));
+const Admin = lazy(() => import('./pages/Admin'));
 
 // Lazy Load Product Pages
 const Bolts = lazy(() => import('./pages/products/Bolts'));
@@ -66,81 +67,96 @@ const JisStandards = lazy(() => import('./pages/standards/JisStandards'));
 
 const ErrorPage = lazy(() => import('./pages/ErrorPage'));
 
+const AppContent = () => {
+  const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
+
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      {!isAdminRoute && <Navbar />}
+      
+      {/* Main Content Area */}
+      <main className={`flex-grow ${isAdminRoute ? 'pt-0' : 'pt-[85px] md:pt-[105px]'}`}>
+        <Suspense
+          fallback={
+            <div className="h-[400px] flex items-center justify-center">
+              <span className="text-gray-400 font-bold uppercase tracking-wider text-xs">Loading...</span>
+            </div>
+          }
+        >
+          <Routes>
+            {/* Core Routes */}
+            <Route path="/" element={<Home />} />
+            <Route path="/about-us" element={<About />} />
+            <Route path="/factory-tour" element={<FactoryTour />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/thank-you" element={<ThankYou />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/material" element={<Material />} />
+            <Route path="/standard" element={<Standard />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogDetails />} />
+
+            {/* Admin Panel Routes */}
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/*" element={<Admin />} />
+
+            {/* Product Routes */}
+            <Route path="/bolts" element={<Bolts />} />
+            <Route path="/screw" element={<Screws />} />
+            <Route path="/stud-bolts" element={<StudBolts />} />
+            <Route path="/nuts" element={<Nuts />} />
+            <Route path="/washers" element={<Washers />} />
+            <Route path="/accessories" element={<Accessories />} />
+
+            {/* Material Routes */}
+            <Route path="/stainless-steel" element={<StainlessSteel />} />
+            <Route path="/carbon-steel" element={<CarbonSteel />} />
+            <Route path="/alloy-steel" element={<AlloySteel />} />
+            <Route path="/duplex-steel" element={<DuplexSteel />} />
+            <Route path="/super-duplex-steel" element={<SuperDuplexSteel />} />
+            <Route path="/nickel-alloy" element={<NickelAlloy />} />
+            <Route path="/monel" element={<Monel />} />
+            <Route path="/inconel" element={<Inconel />} />
+            <Route path="/incoloy" element={<Incoloy />} />
+            <Route path="/hastelloy" element={<Hastelloy />} />
+            <Route path="/copper-nickel" element={<CopperNickel />} />
+            <Route path="/titanium" element={<Titanium />} />
+            <Route path="/silicon-bronze" element={<SiliconBronze />} />
+            <Route path="/phosphor-bronze" element={<PhosphorBronze />} />
+            <Route path="/aluminium-bronze" element={<AluminiumBronze />} />
+            <Route path="/brass" element={<Brass />} />
+            <Route path="/tantalum" element={<Tantalum />} />
+            <Route path="/zirconium" element={<Zirconium />} />
+
+            {/* Standards Routes */}
+            <Route path="/asme-standards" element={<AsmeStandards />} />
+            <Route path="/din-standards" element={<DinStandards />} />
+            <Route path="/sae-standards" element={<SaeStandards />} />
+            <Route path="/iso-standards" element={<IsoStandards />} />
+            <Route path="/bs-standards" element={<BsStandards />} />
+            <Route path="/bis-standards" element={<BisStandards />} />
+            <Route path="/uni-standards" element={<UniStandards />} />
+            <Route path="/astm-standards" element={<AstmStandards />} />
+            <Route path="/ansi-standards" element={<AnsiStandards />} />
+            <Route path="/jis-standards" element={<JisStandards />} />
+
+            {/* Error/Wildcard Route */}
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </Suspense>
+      </main>
+
+      {!isAdminRoute && <Footer />}
+    </div>
+  );
+};
+
 const App = () => {
   return (
     <Router>
       <ScrollToTop />
-      <div className="flex flex-col min-h-screen bg-white">
-        <Navbar />
-        {/* Main Content Area - Adding padding top to prevent content overlap with fixed Navbar */}
-        <main className="flex-grow pt-[85px] md:pt-[105px]">
-          <Suspense
-            fallback={
-              <div className="h-[400px] flex items-center justify-center">
-                <span className="text-gray-400 font-bold uppercase tracking-wider text-xs">Loading...</span>
-              </div>
-            }
-          >
-            <Routes>
-              {/* Core Routes */}
-              <Route path="/" element={<Home />} />
-              <Route path="/about-us" element={<About />} />
-              <Route path="/factory-tour" element={<FactoryTour />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/thank-you" element={<ThankYou />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/material" element={<Material />} />
-              <Route path="/standard" element={<Standard />} />
-              <Route path="/blog" element={<Blog />} />
-
-
-              {/* Product Routes */}
-              <Route path="/bolts" element={<Bolts />} />
-              <Route path="/screw" element={<Screws />} />
-              <Route path="/stud-bolts" element={<StudBolts />} />
-              <Route path="/nuts" element={<Nuts />} />
-              <Route path="/washers" element={<Washers />} />
-              <Route path="/accessories" element={<Accessories />} />
-
-              {/* Material Routes */}
-              <Route path="/stainless-steel" element={<StainlessSteel />} />
-              <Route path="/carbon-steel" element={<CarbonSteel />} />
-              <Route path="/alloy-steel" element={<AlloySteel />} />
-              <Route path="/duplex-steel" element={<DuplexSteel />} />
-              <Route path="/super-duplex-steel" element={<SuperDuplexSteel />} />
-              <Route path="/nickel-alloy" element={<NickelAlloy />} />
-              <Route path="/monel" element={<Monel />} />
-              <Route path="/inconel" element={<Inconel />} />
-              <Route path="/incoloy" element={<Incoloy />} />
-              <Route path="/hastelloy" element={<Hastelloy />} />
-              <Route path="/copper-nickel" element={<CopperNickel />} />
-              <Route path="/titanium" element={<Titanium />} />
-              <Route path="/silicon-bronze" element={<SiliconBronze />} />
-              <Route path="/phosphor-bronze" element={<PhosphorBronze />} />
-              <Route path="/aluminium-bronze" element={<AluminiumBronze />} />
-              <Route path="/brass" element={<Brass />} />
-              <Route path="/tantalum" element={<Tantalum />} />
-              <Route path="/zirconium" element={<Zirconium />} />
-
-              {/* Standards Routes */}
-              <Route path="/asme-standards" element={<AsmeStandards />} />
-              <Route path="/din-standards" element={<DinStandards />} />
-              <Route path="/sae-standards" element={<SaeStandards />} />
-              <Route path="/iso-standards" element={<IsoStandards />} />
-              <Route path="/bs-standards" element={<BsStandards />} />
-              <Route path="/bis-standards" element={<BisStandards />} />
-              <Route path="/uni-standards" element={<UniStandards />} />
-              <Route path="/astm-standards" element={<AstmStandards />} />
-              <Route path="/ansi-standards" element={<AnsiStandards />} />
-              <Route path="/jis-standards" element={<JisStandards />} />
-
-              {/* Error/Wildcard Route */}
-              <Route path="*" element={<ErrorPage />} />
-            </Routes>
-          </Suspense>
-        </main>
-        <Footer />
-      </div>
+      <AppContent />
     </Router>
   );
 };

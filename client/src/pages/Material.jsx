@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import MaterialSidebar from '../components/MaterialSidebar';
+import SidebarContactForm from '../components/SidebarContactForm';
 
 // Animation variants
 const staggerContainer = {
@@ -28,12 +29,33 @@ const fadeRight = {
 };
 
 const Material = () => {
+  const materialsList = [
+    { name: 'Stainless Steel', path: '/stainless-steel', img: '/images/generated/mat_stainless_steel.png' },
+    { name: 'Carbon Steel', path: '/carbon-steel', img: '/images/generated/mat_carbon_steel.png' },
+    { name: 'Alloy Steel', path: '/alloy-steel', img: '/images/generated/mat_alloy_steel.png' },
+    { name: 'Duplex Steel', path: '/duplex-steel', img: '/images/generated/mat_duplex_steel.png' },
+    { name: 'Super Duplex', path: '/super-duplex-steel', img: '/images/generated/mat_super_duplex_steel.png' },
+    { name: 'Nickel Alloy', path: '/nickel-alloy', img: '/images/generated/mat_nickel_alloy.png' },
+    { name: 'Monel', path: '/monel', img: '/images/generated/mat_monel.png' },
+    { name: 'Inconel', path: '/inconel', img: '/images/generated/mat_inconel.png' },
+    { name: 'Incoloy', path: '/incoloy', img: '/images/generated/mat_incoloy.png' },
+    { name: 'Hastelloy', path: '/hastelloy', img: '/images/generated/mat_hastelloy.png' },
+    { name: 'Copper Nickel', path: '/copper-nickel', img: '/images/generated/mat_copper_nickel.png' },
+    { name: 'Titanium', path: '/titanium', img: '/images/generated/mat_titanium.png' },
+    { name: 'Silicon Bronze', path: '/silicon-bronze', img: '/images/generated/mat_silicon_bronze.png' },
+    { name: 'Phosphor Bronze', path: '/phosphor-bronze', img: '/images/homePage/our products/new/materials.png' },
+    { name: 'Aluminum Bronze', path: '/aluminium-bronze', img: '/images/homePage/our products/new/materials.png' },
+    { name: 'Brass', path: '/brass', img: '/images/homePage/our products/new/materials.png' },
+    { name: 'Tantalum', path: '/tantalum', img: '/images/homePage/our products/new/materials.png' },
+    { name: 'Zirconium', path: '/zirconium', img: '/images/homePage/our products/new/materials.png' }
+  ];
+
   return (
     <div className="materials-page bg-white text-gray-700 select-none">
-      
+
       {/* Premium Dark Top Banner matching About.jsx */}
       <section className="relative h-[520px] md:h-[600px] flex items-center justify-center overflow-hidden bg-gray-900">
-        
+
         {/* Custom HUD Animations for Hero */}
         <style>{`
           @keyframes floatLogo {
@@ -66,14 +88,14 @@ const Material = () => {
           .logo-hud-container {
             animation: floatLogo 5s ease-in-out infinite;
             will-change: transform;
-            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.5)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.3));
+            
+            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.2)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.1));
             transition: all 0.3s ease-in-out;
-            cursor: pointer;
+            
           }
-          .logo-hud-container:hover {
-            transform: scale(1.05) translateZ(0) !important;
-            filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.7)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.5));
-          }
+          .logo-hud-container:hover { transform: scale(1.05) translateZ(0) !important; }
+          .logo-hud-container:hover .glow-ring { filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.3)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.2)); }
+          
           .ring-outer {
             animation: spinOuter 24s linear infinite, pulseOpacity 4s ease-in-out infinite;
             transform-origin: center;
@@ -96,9 +118,9 @@ const Material = () => {
           className="absolute top-6 right-6 z-50 w-[100px] h-[100px] md:w-[150px] md:h-[150px] logo-hud-enter"
         >
           <div className="relative w-full h-full logo-hud-container">
-            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer" alt="" />
-            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle" alt="" />
-            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner" alt="" />
+            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer glow-ring" alt="" />
+            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle glow-ring" alt="" />
+            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner glow-ring" alt="" />
             <img src="/images/homePage/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[45%] h-[45%] object-contain z-10" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="" />
           </div>
         </div>
@@ -110,7 +132,7 @@ const Material = () => {
           transition={{ duration: 2, ease: "easeOut" }}
         >
           <img src="/images/generated/materials_hero_1784917955251.png" alt="Material Banner" className="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-center" />
-          
+
           {/* Gradient Overlay & Blur for clarity on right side */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 md:from-black/60 via-black/40 md:via-black/20 to-transparent lg:to-transparent/10 z-10 pointer-events-none"></div>
           <div className="absolute inset-0 backdrop-blur-md z-10 pointer-events-none" style={{ WebkitMaskImage: 'linear-gradient(to right, black 0%, transparent 55%)', maskImage: 'linear-gradient(to right, black 0%, transparent 55%)' }}></div>
@@ -125,7 +147,7 @@ const Material = () => {
           >
             <i className="icon-picture text-4xl text-[#0D8BC5]"></i>
           </motion.div>
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -150,163 +172,194 @@ const Material = () => {
         </div>
       </section>
 
-      {/* Main Content & Sidebar Layout */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="flex flex-col md:flex-row gap-12">
-          
-          {/* Main Content Area (3/4 width) */}
-          <main className="flex-grow md:w-3/4 space-y-16">
-            
-            {/* Intro Text */}
-            <motion.div 
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
-              className="space-y-6 text-gray-600 font-medium leading-[1.9] text-base md:text-lg text-justify"
-            >
-              <motion.p variants={fadeUp}>
-                HEX INDIA Fasteners specializes in supplying and manufacturing high-integrity fasteners across a comprehensive catalog of premium ferrous and non-ferrous alloys. Sourcing raw materials from certified steel mills, we ensure full traceability and grade verification.
-              </motion.p>
-              <motion.p variants={fadeUp}>
-                Our inventory stocks extensive raw material forms (round bars, wires, sheet plates) in specialized grades to feed our forging, hot heading, and thread rolling facilities. This enables rapid lead times for custom fastener requirements in critical engineering platforms.
-              </motion.p>
-            </motion.div>
+      {/* Top Intro & Material Sidebar Row (Aligned Top) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
+        <div className="flex flex-col md:flex-row gap-12 items-start">
 
-            {/* Premium Testimonial Quote */}
-            <motion.div 
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeLeft}
-              className="bg-[#f8fbfe] border-l-4 border-[#0D8BC5] p-6 md:p-10 rounded-r-2xl relative shadow-sm"
-            >
-              <blockquote className="space-y-6 relative z-10">
-                <div className="flex gap-4 md:gap-6">
-                  <i className="icon-quote-left text-[#0D8BC5] text-4xl opacity-40 flex-shrink-0 mt-1"></i>
-                  <p className="text-base md:text-xl text-gray-700 italic leading-relaxed font-medium text-justify">
-                    Chemical composure and mechanical testing are paramount. Our metallurgical checks verify pitting index ratings, yield strength limits, and hardness thresholds before materials are released for production.
-                  </p>
-                </div>
-                <div className="flex items-center gap-4 md:pl-14 pl-12">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center border border-[#0D8BC5]/20 shadow-sm flex-shrink-0">
-                    <i className="icon-flask text-[#0D8BC5] text-lg md:text-xl"></i>
-                  </div>
-                  <div>
-                    <div className="font-extrabold text-gray-900 text-sm md:text-base tracking-wide uppercase">QUALITY ASSURANCE DEPT</div>
-                    <div className="text-[#0D8BC5] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mt-1">Hex India Fasteners</div>
-                  </div>
-                </div>
-              </blockquote>
-            </motion.div>
+          {/* Main Intro Text (3/4 width) */}
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={staggerContainer}
+            className="flex-grow md:w-3/4 space-y-6 text-gray-600 font-medium leading-[1.9] text-base md:text-lg text-justify"
+          >
+            <motion.p variants={fadeUp}>
+              HEX INDIA Fasteners specializes in supplying and manufacturing high-integrity fasteners across a comprehensive catalog of premium ferrous and non-ferrous alloys. Sourcing raw materials from certified steel mills, we ensure full traceability and grade verification.
+            </motion.p>
+            <motion.p variants={fadeUp}>
+              Our inventory stocks extensive raw material forms (round bars, wires, sheet plates) in specialized grades to feed our forging, hot heading, and thread rolling facilities. This enables rapid lead times for custom fastener requirements in critical engineering platforms.
+            </motion.p>
+          </motion.div>
 
-            {/* Featured Alloys Section */}
-            <motion.div 
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={staggerContainer}
-              className="space-y-10"
-            >
-              <motion.div variants={fadeUp} className="space-y-4">
-                <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
-                  Ferrous & Non-Ferrous Alloys Scope
-                </h2>
-                <div className="h-1 w-20 bg-[#0D8BC5] rounded-full"></div>
-                <p className="text-gray-600 font-medium leading-[1.9] text-base md:text-lg">
-                  We supply industrial fasteners in diverse structural configurations to match custom pressure ratings and mechanical loads. Below are the core materials grades available in our inventory:
-                </p>
-              </motion.div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Card 1 */}
-                <motion.div variants={fadeUp} className="group bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#0D8BC5]/5 rounded-bl-[100px] transition-transform duration-500 group-hover:scale-150 z-0"></div>
-                  <div className="relative z-10">
-                    <h4 className="text-lg font-extrabold text-gray-900 uppercase tracking-wider mb-6 pb-4 border-b border-gray-100 flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-[#0D8BC5]/10 flex items-center justify-center text-[#0D8BC5]">
-                        <i className="icon-shield"></i>
-                      </div>
-                      Steel & Duplex Alloys
-                    </h4>
-                    <ul className="space-y-4">
-                      {[
-                        { name: 'Stainless Steel (304, 316, 321, 347, 904L)', path: '/stainless-steel' },
-                        { name: 'Carbon Steel (High-Tensile Gr. 8.8, 10.9, 12.9)', path: '/carbon-steel' },
-                        { name: 'Alloy Steel (ASTM A193 B7, B16, L7)', path: '/alloy-steel' },
-                        { name: 'Duplex & Super Duplex Steel (F51, F53, F55)', path: '/duplex-steel' },
-                      ].map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <i className="icon-angle-right text-[#0D8BC5] text-sm mt-1.5"></i>
-                          <Link to={item.path} className="text-base font-bold text-gray-600 hover:text-[#0D8BC5] transition-colors">{item.name}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
-
-                {/* Card 2 */}
-                <motion.div variants={fadeUp} className="group bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#0D8BC5]/5 rounded-bl-[100px] transition-transform duration-500 group-hover:scale-150 z-0"></div>
-                  <div className="relative z-10">
-                    <h4 className="text-lg font-extrabold text-gray-900 uppercase tracking-wider mb-6 pb-4 border-b border-gray-100 flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-[#0D8BC5]/10 flex items-center justify-center text-[#0D8BC5]">
-                        <i className="icon-beaker"></i>
-                      </div>
-                      Nickel & Specialized
-                    </h4>
-                    <ul className="space-y-4">
-                      {[
-                        { name: 'Nickel Alloys (Nickel 200, Monel 400, K500)', path: '/nickel-alloy' },
-                        { name: 'Inconel & Incoloy (Alloy 600, 625, 718, 825)', path: '/inconel' },
-                        { name: 'Hastelloy & Titanium (C276, Titanium Gr.2)', path: '/hastelloy' },
-                        { name: 'Copper Alloys (Bronze, Brass)', path: '/brass' },
-                      ].map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <i className="icon-angle-right text-[#0D8BC5] text-sm mt-1.5"></i>
-                          <Link to={item.path} className="text-base font-bold text-gray-600 hover:text-[#0D8BC5] transition-colors">{item.name}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
-              </div>
-            </motion.div>
-
-            {/* Material yards info */}
-            <motion.div 
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-50px" }}
-              variants={fadeRight}
-              className="bg-gray-50 rounded-3xl p-8 md:p-12 flex flex-col lg:flex-row gap-8 items-center mt-12 border border-gray-100 shadow-[inset_0_2px_20px_rgba(0,0,0,0.02)]"
-            >
-              <div className="w-full lg:w-1/3 relative rounded-2xl overflow-hidden group shadow-lg">
-                <img src="/images/pages_img_04.jpg" alt="HEX INDIA Material Stock" className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-[#0a192f]/20 group-hover:bg-transparent transition-colors duration-500"></div>
-              </div>
-              
-              <div className="w-full lg:w-2/3 space-y-6">
-                <h6 className="text-[#0D8BC5] font-bold text-xs uppercase tracking-[0.2em]">Large-Scale Inventory</h6>
-                <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">Raw Material Stockist Yard</h3>
-                <p className="text-gray-600 font-medium leading-[1.8] text-base">
-                  Our comprehensive raw material yard houses tons of stock in various sheet plates, round bars, wire coils, and hex bars in the aforementioned grades. This massive inventory volume allows us to rapidly feed raw metals into our hot heading and forging shops, enabling speed delivery of high-quality products.
-                </p>
-                <Link to="/contact" className="inline-flex items-center gap-2 bg-[#0a192f] hover:bg-[#0D8BC5] text-white px-8 py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:shadow-[0_10px_25px_rgba(13,139,197,0.4)] group">
-                  Enquire for Grade Specifications 
-                  <i className="icon-angle-right text-lg transition-transform duration-300 group-hover:translate-x-1"></i>
-                </Link>
-              </div>
-            </motion.div>
-          </main>
-
-          {/* Sidebar Area (1/4 width) */}
-          <aside className="w-full md:w-1/4">
-            <MaterialSidebar />
-          </aside>
+          {/* Material Sidebar Widget - Category list only (1/4 width) */}
+          <div className="w-full md:w-1/4">
+            <MaterialSidebar showContactForm={false} />
+          </div>
 
         </div>
       </section>
+
+      {/* Our Materials Section (Header + 18 Cards Grid - 6 per row) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="text-center mb-10">
+          <h2
+            className="text-3xl md:text-4xl font-extrabold uppercase text-[#0D8BC5]"
+            style={{ textShadow: '0 4px 12px rgba(13, 139, 197, 0.25)' }}
+          >
+            Our Materials
+          </h2>
+          <div className="h-1 w-20 bg-[#0D8BC5] mx-auto mt-3 rounded-full"></div>
+          <p className="text-sm text-gray-500 mt-3 max-w-xl mx-auto">
+            Browse through our certified raw material grades engineered for extreme mechanical strength and corrosion resistance.
+          </p>
+        </div>
+
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={fadeUp}
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {materialsList.map((prod, idx) => (
+              <Link
+                to={prod.path}
+                key={idx}
+                className="group aspect-[4/3] relative rounded-lg overflow-hidden shadow-md border border-gray-100 hover:border-[#0D8BC5] hover:shadow-[0_8px_24px_rgba(13,139,197,0.25)] transition-all duration-300 block"
+              >
+                <img
+                  src={prod.img}
+                  alt={prod.name}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 will-change-transform transform-gpu z-0"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute inset-0 bg-[#0D8BC5]/28 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none"></div>
+                <div className="absolute bottom-3 left-3 right-3 z-30">
+                  <div className="hexagon-tag bg-[#0D8BC5] text-white font-bold text-[9px] uppercase px-3 py-1.5 transition-colors duration-300 shadow-md text-center truncate">
+                    {prod.name}
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Raw Material Stockist Yard & Contact Form Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="flex flex-col lg:flex-row gap-8 items-start">
+
+          {/* Material Stockist Yard Info Banner (Left, ~2/3 width) */}
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeRight}
+            className="w-full lg:w-2/3 bg-gray-50 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center border border-gray-100 shadow-[inset_0_2px_20px_rgba(0,0,0,0.02)]"
+          >
+            <div className="w-full md:w-1/3 relative rounded-2xl overflow-hidden group shadow-lg flex-shrink-0">
+              <img src="/images/pages_img_04.jpg" alt="HEX INDIA Material Stock" className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-[#0a192f]/20 group-hover:bg-transparent transition-colors duration-500"></div>
+            </div>
+
+            <div className="w-full md:w-2/3 space-y-6">
+              <h6 className="text-[#0D8BC5] font-bold text-xs uppercase tracking-[0.2em]">Large-Scale Inventory</h6>
+              <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">Raw Material Stockist Yard</h3>
+              <p className="text-gray-600 font-medium leading-[1.8] text-base">
+                Our comprehensive raw material yard houses tons of stock in various sheet plates, round bars, wire coils, and hex bars in the aforementioned grades. This massive inventory volume allows us to rapidly feed raw metals into our hot heading and forging shops, enabling speed delivery of high-quality products.
+              </p>
+              <Link to="/contact" className="inline-flex items-center gap-2 bg-[#0a192f] hover:bg-[#0D8BC5] text-white px-8 py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:shadow-[0_10px_25px_rgba(13,139,197,0.4)] group">
+                Enquire for Grade Specifications
+                <i className="icon-angle-right text-lg transition-transform duration-300 group-hover:translate-x-1"></i>
+              </Link>
+            </div>
+          </motion.div>
+
+          {/* Sidebar Contact Form Component (Right, ~1/3 width) */}
+          <div className="w-full lg:w-1/3 flex-shrink-0">
+            <SidebarContactForm />
+          </div>
+
+        </div>
+      </section>
+
+      {/* Featured Alloys Section */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20">
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={staggerContainer}
+          className="space-y-10"
+        >
+          <motion.div variants={fadeUp} className="space-y-4">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight">
+              Ferrous & Non-Ferrous Alloys Scope
+            </h2>
+            <div className="h-1 w-20 bg-[#0D8BC5] rounded-full"></div>
+            <p className="text-gray-600 font-medium leading-[1.9] text-base md:text-lg">
+              We supply industrial fasteners in diverse structural configurations to match custom pressure ratings and mechanical loads. Below are the core materials grades available in our inventory:
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Card 1 */}
+            <motion.div variants={fadeUp} className="group bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-[#0D8BC5]/5 rounded-bl-[100px] transition-transform duration-500 group-hover:scale-150 z-0"></div>
+              <div className="relative z-10">
+                <h4 className="text-lg font-extrabold text-gray-900 uppercase tracking-wider mb-6 pb-4 border-b border-gray-100 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-[#0D8BC5]/10 flex items-center justify-center text-[#0D8BC5]">
+                    <i className="icon-shield"></i>
+                  </div>
+                  Steel & Duplex Alloys
+                </h4>
+                <ul className="space-y-4">
+                  {[
+                    { name: 'Stainless Steel (304, 316, 321, 347, 904L)', path: '/stainless-steel' },
+                    { name: 'Carbon Steel (High-Tensile Gr. 8.8, 10.9, 12.9)', path: '/carbon-steel' },
+                    { name: 'Alloy Steel (ASTM A193 B7, B16, L7)', path: '/alloy-steel' },
+                    { name: 'Duplex & Super Duplex Steel (F51, F53, F55)', path: '/duplex-steel' },
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <i className="icon-angle-right text-[#0D8BC5] text-sm mt-1.5"></i>
+                      <Link to={item.path} className="text-base font-bold text-gray-600 hover:text-[#0D8BC5] transition-colors">{item.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+
+            {/* Card 2 */}
+            <motion.div variants={fadeUp} className="group bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-[#0D8BC5]/5 rounded-bl-[100px] transition-transform duration-500 group-hover:scale-150 z-0"></div>
+              <div className="relative z-10">
+                <h4 className="text-lg font-extrabold text-gray-900 uppercase tracking-wider mb-6 pb-4 border-b border-gray-100 flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-[#0D8BC5]/10 flex items-center justify-center text-[#0D8BC5]">
+                    <i className="icon-beaker"></i>
+                  </div>
+                  Nickel & Specialized
+                </h4>
+                <ul className="space-y-4">
+                  {[
+                    { name: 'Nickel Alloys (Nickel 200, Monel 400, K500)', path: '/nickel-alloy' },
+                    { name: 'Inconel & Incoloy (Alloy 600, 625, 718, 825)', path: '/inconel' },
+                    { name: 'Hastelloy & Titanium (C276, Titanium Gr.2)', path: '/hastelloy' },
+                    { name: 'Copper Alloys (Bronze, Brass)', path: '/brass' },
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <i className="icon-angle-right text-[#0D8BC5] text-sm mt-1.5"></i>
+                      <Link to={item.path} className="text-base font-bold text-gray-600 hover:text-[#0D8BC5] transition-colors">{item.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
     </div>
   );
 };

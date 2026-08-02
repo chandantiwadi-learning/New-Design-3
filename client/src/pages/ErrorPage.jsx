@@ -43,7 +43,8 @@ const ErrorPage = () => {
         .logo-hud-container {
           animation: floatLogo 6s ease-in-out infinite;
           will-change: transform;
-          transition: all 0.3s ease-in-out;
+          filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.2)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.1));
+            transition: all 0.3s ease-in-out;
         }
         .ring-outer {
           animation: spinOuter 24s linear infinite, pulseOpacity 4s ease-in-out infinite;
@@ -67,9 +68,9 @@ const ErrorPage = () => {
         {/* Animated HUD Logo */}
         <div className="w-[180px] h-[180px] md:w-[220px] md:h-[220px] logo-hud-enter mb-10">
           <div className="relative w-full h-full logo-hud-container">
-            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer opacity-20" alt="" style={{ filter: 'brightness(0) invert(0) opacity(0.1)' }} />
-            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle opacity-30" alt="" style={{ filter: 'brightness(0) invert(0) opacity(0.15)' }} />
-            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner opacity-40" alt="" style={{ filter: 'brightness(0) invert(0) opacity(0.2)' }} />
+            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer opacity-20 glow-ring" alt="" style={{ filter: 'brightness(0) invert(0) opacity(0.1)' }} />
+            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle opacity-30 glow-ring" alt="" style={{ filter: 'brightness(0) invert(0) opacity(0.15)' }} />
+            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner opacity-40 glow-ring" alt="" style={{ filter: 'brightness(0) invert(0) opacity(0.2)' }} />
             <img src="/images/homePage/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[55%] h-[55%] object-contain z-10 drop-shadow-sm" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="Hex India Logo" />
           </div>
         </div>

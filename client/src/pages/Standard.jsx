@@ -66,14 +66,14 @@ const Standard = () => {
           .logo-hud-container {
             animation: floatLogo 5s ease-in-out infinite;
             will-change: transform;
-            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.5)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.3));
+            
+            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.2)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.1));
             transition: all 0.3s ease-in-out;
-            cursor: pointer;
+            
           }
-          .logo-hud-container:hover {
-            transform: scale(1.05) translateZ(0) !important;
-            filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.7)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.5));
-          }
+          .logo-hud-container:hover { transform: scale(1.05) translateZ(0) !important; }
+          .logo-hud-container:hover .glow-ring { filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.3)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.2)); }
+          
           .ring-outer {
             animation: spinOuter 24s linear infinite, pulseOpacity 4s ease-in-out infinite;
             transform-origin: center;
@@ -96,9 +96,9 @@ const Standard = () => {
           className="absolute top-6 right-6 z-50 w-[100px] h-[100px] md:w-[150px] md:h-[150px] logo-hud-enter"
         >
           <div className="relative w-full h-full logo-hud-container">
-            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer" alt="" />
-            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle" alt="" />
-            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner" alt="" />
+            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer glow-ring" alt="" />
+            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle glow-ring" alt="" />
+            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner glow-ring" alt="" />
             <img src="/images/homePage/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[45%] h-[45%] object-contain z-10" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="" />
           </div>
         </div>
@@ -173,32 +173,6 @@ const Standard = () => {
               </motion.p>
             </motion.div>
 
-            {/* Premium Testimonial Quote */}
-            <motion.div 
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={fadeLeft}
-              className="bg-[#f8fbfe] border-l-4 border-[#0D8BC5] p-6 md:p-10 rounded-r-2xl relative shadow-sm"
-            >
-              <blockquote className="space-y-6 relative z-10">
-                <div className="flex gap-4 md:gap-6">
-                  <i className="icon-quote-left text-[#0D8BC5] text-4xl opacity-40 flex-shrink-0 mt-1"></i>
-                  <p className="text-base md:text-xl text-gray-700 italic leading-relaxed font-medium text-justify">
-                    Thread pitch precision is critical in high-pressure steam lines and piping manifolds. We guarantee dimensional accuracy under ASME B18 and metric DIN specifications to prevent failures.
-                  </p>
-                </div>
-                <div className="flex items-center gap-4 md:pl-14 pl-12">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white flex items-center justify-center border border-[#0D8BC5]/20 shadow-sm flex-shrink-0">
-                    <i className="icon-cogs text-[#0D8BC5] text-lg md:text-xl"></i>
-                  </div>
-                  <div>
-                    <div className="font-extrabold text-gray-900 text-sm md:text-base tracking-wide uppercase">METROLOGY DIVISION</div>
-                    <div className="text-[#0D8BC5] text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] mt-1">Hex India Fasteners</div>
-                  </div>
-                </div>
-              </blockquote>
-            </motion.div>
 
             {/* Featured Standards Section */}
             <motion.div 

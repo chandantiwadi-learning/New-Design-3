@@ -188,14 +188,14 @@ const About = () => {
           .logo-hud-container {
             animation: floatLogo 5s ease-in-out infinite;
             will-change: transform;
-            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.5)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.3));
+            
+            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.2)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.1));
             transition: all 0.3s ease-in-out;
-            cursor: pointer;
+            
           }
-          .logo-hud-container:hover {
-            transform: scale(1.05) translateZ(0) !important;
-            filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.7)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.5));
-          }
+          .logo-hud-container:hover { transform: scale(1.05) translateZ(0) !important; }
+          .logo-hud-container:hover .glow-ring { filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.3)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.2)); }
+          
           .ring-outer {
             animation: spinOuter 24s linear infinite, pulseOpacity 4s ease-in-out infinite;
             transform-origin: center;
@@ -218,9 +218,9 @@ const About = () => {
           className="absolute top-6 right-6 z-50 w-[100px] h-[100px] md:w-[150px] md:h-[150px] logo-hud-enter"
         >
           <div className="relative w-full h-full logo-hud-container">
-            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer" alt="" />
-            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle" alt="" />
-            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner" alt="" />
+            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer glow-ring" alt="" />
+            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle glow-ring" alt="" />
+            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner glow-ring" alt="" />
             <img src="/images/homePage/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[45%] h-[45%] object-contain z-10" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="" />
           </div>
         </div>
@@ -231,7 +231,7 @@ const About = () => {
           animate={{ scale: 1 }}
           transition={{ duration: 2, ease: "easeOut" }}
         >
-          <img src="/images/parallax_bg_04.png" alt="Industrial Fasteners" className="w-full h-full object-cover" />
+          <img src="/images/generated/about_hero_1785667325824.png" alt="Industrial Fasteners Facility" className="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-center" />
           {/* Gradient Overlay & Blur adjusted for clarity on right side */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 md:from-black/60 via-black/40 md:via-black/20 to-transparent lg:to-transparent/10 z-10 pointer-events-none"></div>
           <div className="absolute inset-0 backdrop-blur-md z-10 pointer-events-none" style={{ WebkitMaskImage: 'linear-gradient(to right, black 0%, transparent 55%)', maskImage: 'linear-gradient(to right, black 0%, transparent 55%)' }}></div>
@@ -310,14 +310,14 @@ const About = () => {
           .logo-hud-container {
             animation: floatLogo 5s ease-in-out infinite;
             will-change: transform;
-            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.5)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.3));
+            
+            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.2)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.1));
             transition: all 0.3s ease-in-out;
-            cursor: pointer;
+            
           }
-          .logo-hud-container:hover {
-            transform: scale(1.05) translateZ(0) !important;
-            filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.7)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.5));
-          }
+          .logo-hud-container:hover { transform: scale(1.05) translateZ(0) !important; }
+          .logo-hud-container:hover .glow-ring { filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.3)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.2)); }
+          
           .ring-outer {
             animation: spinOuter 24s linear infinite, pulseOpacity 4s ease-in-out infinite;
             transform-origin: center;
@@ -341,9 +341,9 @@ const About = () => {
                 className="relative z-50 w-[110%] h-[110%] md:w-[115%] md:h-[115%] flex justify-center items-center logo-hud-enter mx-auto"
               >
                 <div className="relative w-full h-full logo-hud-container">
-                  <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer" alt="" />
-                  <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle" alt="" />
-                  <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner" alt="" />
+                  <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer glow-ring" alt="" />
+                  <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle glow-ring" alt="" />
+                  <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner glow-ring" alt="" />
                   <img src="/images/homePage/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[45%] h-[45%] object-contain z-10" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="" />
                 </div>
               </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SidebarContactForm from './SidebarContactForm';
 
-const MaterialSidebar = () => {
+const MaterialSidebar = ({ showContactForm = true }) => {
   const location = useLocation();
 
   const materials = [
@@ -51,7 +51,7 @@ const MaterialSidebar = () => {
       </div>
 
       {/* Reusable contact form widget */}
-      <SidebarContactForm />
+      {showContactForm && <SidebarContactForm />}
     </aside>
   );
 };

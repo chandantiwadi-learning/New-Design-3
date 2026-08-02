@@ -336,14 +336,14 @@ const Home = () => {
           .logo-hud-container {
             animation: floatLogo 5s ease-in-out infinite;
             will-change: transform;
-            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.5)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.3));
+            
+            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.2)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.1));
             transition: all 0.3s ease-in-out;
-            cursor: pointer;
+            
           }
-          .logo-hud-container:hover {
-            transform: scale(1.05) translateZ(0) !important;
-            filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.7)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.5));
-          }
+          .logo-hud-container:hover { transform: scale(1.05) translateZ(0) !important; }
+          .logo-hud-container:hover .glow-ring { filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.3)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.2)); }
+          
           .ring-outer {
             animation: spinOuter 24s linear infinite, pulseOpacity 4s ease-in-out infinite;
             transform-origin: center;
@@ -367,9 +367,9 @@ const Home = () => {
           className="absolute top-6 right-6 z-50 w-[100px] h-[100px] md:w-[150px] md:h-[150px] logo-hud-enter"
         >
           <div className="relative w-full h-full logo-hud-container">
-            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer" alt="" />
-            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle" alt="" />
-            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner" alt="" />
+            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer glow-ring" alt="" />
+            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle glow-ring" alt="" />
+            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner glow-ring" alt="" />
             <img src="/images/homePage/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[45%] h-[45%] object-contain z-10" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="" />
           </div>
         </div>
@@ -466,14 +466,14 @@ const Home = () => {
           .logo-hud-container {
             animation: floatLogo 5s ease-in-out infinite;
             will-change: transform;
-            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.5)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.3));
+            
+            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.2)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.1));
             transition: all 0.3s ease-in-out;
-            cursor: pointer;
+            
           }
-          .logo-hud-container:hover {
-            transform: scale(1.05) translateZ(0) !important;
-            filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.7)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.5));
-          }
+          .logo-hud-container:hover { transform: scale(1.05) translateZ(0) !important; }
+          .logo-hud-container:hover .glow-ring { filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.3)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.2)); }
+          
           .ring-outer {
             animation: spinOuter 24s linear infinite, pulseOpacity 4s ease-in-out infinite;
             transform-origin: center;
@@ -496,9 +496,9 @@ const Home = () => {
           className="relative lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:left-[max(2rem,calc(50%-38rem))] lg:w-[calc((min(100%,80rem)-4rem)*5/12)] lg:h-[380px] lg:mb-0 mx-auto w-[280px] h-[280px] md:w-[340px] md:h-[340px] mb-12 flex justify-center items-center z-50 logo-hud-enter"
         >
           <div className="relative w-full h-full logo-hud-container">
-            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer" alt="" />
-            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle" alt="" />
-            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner" alt="" />
+            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer glow-ring" alt="" />
+            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle glow-ring" alt="" />
+            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner glow-ring" alt="" />
             <img src="/images/homePage/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[45%] h-[45%] object-contain z-10" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="" />
           </div>
         </div>
@@ -710,60 +710,12 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Testimonials section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-2xl font-extrabold uppercase tracking-wider text-[#0D8BC5]">
-              What Our Customers Say
-            </h2>
-            <div className="h-1 w-16 bg-accent mx-auto mt-2 rounded-full"></div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {/* Review 1 */}
-            <div className="p-8 bg-bg-light rounded-2xl border border-gray-100 shadow-sm relative space-y-4">
-              <i className="icon-quote-left text-4xl text-primary/10 absolute top-4 left-4"></i>
-              <p className="text-xs text-gray-600 italic leading-relaxed text-justify relative z-10 pt-4">
-                "The staff at HEX INDIA Fasteners were extremely helpful and possessed an awesome understanding of engineering tolerances. They handled our complex customized bolt request in a timely and professional manner."
-              </p>
-              <div className="flex items-center space-x-4 pt-4 border-t border-gray-200/60">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">
-                  JD
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-gray-800">John Doe</h4>
-                  <p className="text-[10px] text-gray-500 font-medium">Procurement Manager, Global Energy Co.</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Review 2 */}
-            <div className="p-8 bg-bg-light rounded-2xl border border-gray-100 shadow-sm relative space-y-4">
-              <i className="icon-quote-left text-4xl text-primary/10 absolute top-4 left-4"></i>
-              <p className="text-xs text-gray-600 italic leading-relaxed text-justify relative z-10 pt-4">
-                "The engineering team is exceptionally knowledgeable. They delivered our high tensile stud bolts quickly to prevent field shutdowns. I would highly recommend utilizing their custom manufacturing services."
-              </p>
-              <div className="flex items-center space-x-4 pt-4 border-t border-gray-200/60">
-                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-sm">
-                  HS
-                </div>
-                <div>
-                  <h4 className="text-xs font-bold text-gray-800">Henry Smith</h4>
-                  <p className="text-[10px] text-gray-500 font-medium">Operations Lead, Marine Construction</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      </section><br />
 
       {/* Action Banner */}
       <section className="py-16 text-center border-t border-white/10" style={{ background: 'linear-gradient(135deg, #0D8BC5, #0878AA)' }}>
         <div className="max-w-5xl mx-auto px-4">
-          <h1 className="text-lg md:text-2xl font-bold text-white leading-relaxed">
+          <h1 className="text-lg md:text-3xl font-bold text-white leading-relaxed">
             Providing Precision-Build Fastening Solutions For Industrial Applications Worldwide.
           </h1>
           <div className="mt-8">

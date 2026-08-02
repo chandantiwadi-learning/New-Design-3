@@ -4,8 +4,12 @@ import cors from 'cors';
 import xss from 'xss';
 
 export const setupSecurity = (app) => {
-  // Helmet for secure HTTP headers
-  app.use(helmet());
+  // Helmet for secure HTTP headers with cross-origin resource policy allowed for static assets
+  app.use(
+    helmet({
+      crossOriginResourcePolicy: { policy: 'cross-origin' },
+    })
+  );
 
   // CORS
   app.use(
@@ -13,7 +17,7 @@ export const setupSecurity = (app) => {
       origin: process.env.NODE_ENV === 'production' 
         ? ['https://new-design-3-three.vercel.app', 'https://www.new-design-3-three.vercel.app'] 
         : ['http://localhost:5173', 'https://new-design-3-three.vercel.app'], // Vite default and Vercel for testing
-      methods: ['GET', 'POST', 'OPTIONS'],
+      methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
       credentials: true,
     })
   );

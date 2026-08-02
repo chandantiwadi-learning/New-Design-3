@@ -44,29 +44,108 @@ const ContactPage = () => {
   return (
     <div className="contact-page bg-white text-gray-700 select-none">
       <Toaster position="top-right" />
-      {/* Premium Dark Top Banner */}
-      <section className="relative h-[400px] md:h-[500px] flex items-center justify-center overflow-hidden bg-gray-900">
-        <div className="absolute inset-0 z-0">
-          <img src="/images/generated/contact_hero_1784917976666.png" alt="Contact Us Banner" className="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-center opacity-60" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+      {/* Premium Dark Top Banner matching About.jsx and Products.jsx */}
+      <section className="relative h-[520px] md:h-[600px] flex items-center justify-center overflow-hidden bg-gray-900">
+        
+        {/* Custom HUD Animations for Hero */}
+        <style>{`
+          @keyframes floatLogo {
+            0%, 100% { transform: translateY(0) translateZ(0); }
+            50% { transform: translateY(-5px) translateZ(0); }
+          }
+          @keyframes pulseOpacity {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+          }
+          @keyframes spinOuter {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(360deg) translateZ(0); }
+          }
+          @keyframes spinMiddle {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(-360deg) translateZ(0); }
+          }
+          @keyframes spinInner {
+            from { transform: rotate(0deg) translateZ(0); }
+            to { transform: rotate(360deg) translateZ(0); }
+          }
+          @keyframes hudEnter {
+            from { opacity: 0; transform: scale(0.9) translateZ(0); }
+            to { opacity: 1; transform: scale(1) translateZ(0); }
+          }
+          .logo-hud-enter {
+            animation: hudEnter 900ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          }
+          .logo-hud-container {
+            animation: floatLogo 5s ease-in-out infinite;
+            will-change: transform;
+            filter: drop-shadow(0 0 6px rgba(13, 139, 197, 0.2)) drop-shadow(0 0 16px rgba(13, 139, 197, 0.1));
+            transition: all 0.3s ease-in-out;
+          }
+          .logo-hud-container:hover { transform: scale(1.05) translateZ(0) !important; }
+          .logo-hud-container:hover .glow-ring { filter: drop-shadow(0 0 10px rgba(13, 139, 197, 0.3)) drop-shadow(0 0 25px rgba(13, 139, 197, 0.2)); }
+          
+          .ring-outer {
+            animation: spinOuter 24s linear infinite, pulseOpacity 4s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+          }
+          .ring-middle {
+            animation: spinMiddle 16s linear infinite, pulseOpacity 3.5s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+          }
+          .ring-inner {
+            animation: spinInner 30s linear infinite, pulseOpacity 4.5s ease-in-out infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+          }
+        `}</style>
+
+        {/* Animated HUD Logo at Top Right */}
+        <div className="absolute top-6 right-6 z-50 w-[100px] h-[100px] md:w-[150px] md:h-[150px] logo-hud-enter">
+          <div className="relative w-full h-full logo-hud-container">
+            <img src="/images/homePage/ImageAnimation/behind-logo.png" className="absolute inset-0 w-full h-full object-contain ring-outer glow-ring" alt="" />
+            <img src="/images/homePage/ImageAnimation/left%20to%20right.png" className="absolute inset-0 w-full h-full object-contain ring-middle glow-ring" alt="" />
+            <img src="/images/homePage/ImageAnimation/right%20to%20left.png" className="absolute inset-0 w-full h-full object-contain ring-inner glow-ring" alt="" />
+            <img src="/images/homePage/ImageAnimation/logo.png" className="absolute top-1/2 left-1/2 w-[45%] h-[45%] object-contain z-10" style={{ willChange: 'transform', transform: 'translate(-50%, -50%) translateZ(0)' }} alt="" />
+          </div>
         </div>
-        <div className="relative z-10 text-left px-4 max-w-7xl w-full mx-auto group cursor-default">
+
+        <motion.div
+          className="absolute inset-0 z-0"
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+        >
+          <img src="/images/generated/contact_hero_1784917976666.png" alt="Contact Us Banner" className="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-center" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 md:from-black/60 via-black/40 md:via-black/20 to-transparent lg:to-transparent/10 z-10 pointer-events-none"></div>
+          <div className="absolute inset-0 backdrop-blur-md z-10 pointer-events-none" style={{ WebkitMaskImage: 'linear-gradient(to right, black 0%, transparent 55%)', maskImage: 'linear-gradient(to right, black 0%, transparent 55%)' }}></div>
+        </motion.div>
+
+        <div className="relative z-10 text-left px-4 max-w-7xl w-full mx-auto mt-20 group cursor-default">
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white tracking-tight uppercase mb-6 group-hover:text-[#0D8BC5] transition-colors"
+            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white tracking-tight uppercase mb-6 group-hover:scale-105 group-hover:text-[#0D8BC5] transition-all duration-300 origin-left"
           >
             Contact Us
           </motion.h1>
           <motion.p
+            className="text-lg md:text-xl lg:text-2xl text-gray-200 font-light leading-relaxed max-w-2xl group-hover:scale-105 group-hover:text-[#0D8BC5] transition-all duration-300 origin-left"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-lg md:text-xl text-gray-200 max-w-2xl"
+            transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
             Connect with our global operations and engineering teams for custom manufacturing solutions.
           </motion.p>
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0 }}
+            animate={{ opacity: 1, scaleX: 1 }}
+            transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+            className="h-1 w-24 bg-[#0D8BC5] mt-8 origin-left"
+          ></motion.div>
         </div>
       </section>
 

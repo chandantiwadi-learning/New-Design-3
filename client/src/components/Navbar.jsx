@@ -27,7 +27,7 @@ const Navbar = () => {
       } else if (currentScrollY < lastScrollY) {
         setScrollDirection('up');
       }
-      
+
       lastScrollY = currentScrollY > 0 ? currentScrollY : 0;
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -66,41 +66,51 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/', exact: true, icon: 'icon-home' },
-    { 
-      name: 'About Us', 
+    {
+      name: 'About Us',
       path: '/about-us',
       icon: 'icon-cog'
     },
-    { 
-      name: 'Products', 
+    {
+      name: 'Products',
       path: '/products',
       icon: 'icon-tasks',
       submenu: [
         { name: 'Bolts', path: '/bolts' },
-        { name: 'Screws', path: '/screw' },
-        { name: 'Stud Bolts', path: '/stud-bolts' },
         { name: 'Nuts', path: '/nuts' },
+        { name: 'Stud Bolts', path: '/stud-bolts' },
         { name: 'Washers', path: '/washers' },
+        { name: 'Screws', path: '/screw' },
         { name: 'Accessories', path: '/accessories' },
       ]
     },
-    { 
-      name: 'Material', 
+    {
+      name: 'Material',
       path: '/material',
       icon: 'icon-picture',
       submenu: [
         { name: 'Stainless Steel', path: '/stainless-steel' },
         { name: 'Carbon Steel', path: '/carbon-steel' },
         { name: 'Alloy Steel', path: '/alloy-steel' },
-        { name: 'Duplex', path: '/duplex-steel' },
-        { name: 'Super Duplex', path: '/super-duplex-steel' },
-        { name: 'High Nickel Alloys', path: '/nickel-alloy' },
+        { name: 'Duplex Steel', path: '/duplex-steel' },
+        { name: 'Super Duplex Steel', path: '/super-duplex-steel' },
+        { name: 'Nickel', path: '/nickel-alloy' },
+        { name: 'Monel', path: '/monel' },
+        { name: 'Inconel', path: '/inconel' },
+        { name: 'Incoloy', path: '/incoloy' },
+        { name: 'Hastelloy', path: '/hastelloy' },
+        { name: 'Copper Nickel', path: '/copper-nickel' },
         { name: 'Titanium', path: '/titanium' },
-        { name: 'Brass', path: '/brass' }
+        { name: 'Silicon Bronze', path: '/silicon-bronze' },
+        { name: 'Phosphor Bronze', path: '/phosphor-bronze' },
+        { name: 'Aluminum Bronze', path: '/aluminium-bronze' },
+        { name: 'Brass', path: '/brass' },
+        { name: 'Tantalum', path: '/tantalum' },
+        { name: 'Zirconium', path: '/zirconium' }
       ]
     },
-    { 
-      name: 'Standard', 
+    {
+      name: 'Standard',
       path: '/standard',
       icon: 'icon-flag',
       submenu: [
@@ -119,7 +129,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header 
+      <header
         className={`header sticky top-0 w-full z-50 transition-all duration-500 ease-out 
         ${isScrolled ? 'header-small shadow-[0_4px_25px_rgba(0,0,0,0.08)] bg-white/95 backdrop-blur-md' : 'bg-white shadow-sm'} 
         ${scrollDirection === 'down' ? '-translate-y-full' : 'translate-y-0'}`}
@@ -174,8 +184,8 @@ const Navbar = () => {
                 <div className="bg-[#0D8BC5] rounded-xl shadow-lg py-2 flex flex-col overflow-hidden border border-[#086a98]">
                   {navLinks.find(link => link.name === 'Products')?.submenu?.map((product, idx) => (
                     <div key={idx}>
-                      <Link 
-                        to={product.path} 
+                      <Link
+                        to={product.path}
                         onClick={() => document.activeElement.blur()}
                         className="block px-6 py-3 text-[14px] text-white font-medium hover:bg-[#086a98] transition-colors duration-200 cursor-pointer focus:outline-none focus:bg-[#086a98]"
                       >
@@ -196,8 +206,8 @@ const Navbar = () => {
                 <div className="bg-[#0D8BC5] rounded-xl shadow-lg py-2 flex flex-col overflow-hidden border border-[#086a98]">
                   {navLinks.find(link => link.name === 'Material')?.submenu?.map((item, idx) => (
                     <div key={idx}>
-                      <Link 
-                        to={item.path} 
+                      <Link
+                        to={item.path}
                         onClick={() => document.activeElement.blur()}
                         className="block px-6 py-3 text-[14px] text-white font-medium hover:bg-[#086a98] transition-colors duration-200 cursor-pointer focus:outline-none focus:bg-[#086a98]"
                       >
@@ -218,8 +228,8 @@ const Navbar = () => {
                 <div className="bg-[#0D8BC5] rounded-xl shadow-lg py-2 flex flex-col overflow-hidden border border-[#086a98]">
                   {navLinks.find(link => link.name === 'Standard')?.submenu?.map((item, idx) => (
                     <div key={idx}>
-                      <Link 
-                        to={item.path} 
+                      <Link
+                        to={item.path}
                         onClick={() => document.activeElement.blur()}
                         className="block px-6 py-3 text-[14px] text-white font-medium hover:bg-[#086a98] transition-colors duration-200 cursor-pointer focus:outline-none focus:bg-[#086a98]"
                       >
@@ -251,7 +261,7 @@ const Navbar = () => {
       {/* Mobile Drawer using Framer Motion for premium feel */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -264,7 +274,7 @@ const Navbar = () => {
 
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div 
+          <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -276,7 +286,7 @@ const Navbar = () => {
               <Link to="/" onClick={() => setIsMobileMenuOpen(false)}>
                 <img src="/images/hex-india-logo.png" alt="Hex India Fasteners" className="h-10 object-contain" />
               </Link>
-              <button 
+              <button
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="w-11 h-11 flex items-center justify-center rounded-full bg-gray-50 text-gray-500 hover:text-[#0D8BC5] hover:bg-[#0D8BC5]/10 transition-colors"
               >
@@ -292,22 +302,22 @@ const Navbar = () => {
                   const isCurrent = link.exact ? location.pathname === link.path : isActive(link.path);
                   const hasSubmenu = link.submenu && link.submenu.length > 0;
                   const isSubmenuOpen = activeMobileSubmenu === link.name;
-                  
+
                   return (
                     <li key={idx} className="flex flex-col group">
                       <div className="flex items-center justify-between min-h-[52px]">
-                        <Link 
+                        <Link
                           to={link.path}
                           className={`flex-1 flex items-center gap-3.5 py-3 px-3 rounded-xl font-semibold text-[15px] transition-all duration-300 hover:translate-x-1 ${isCurrent ? 'bg-[#0D8BC5]/10 text-[#0D8BC5]' : 'text-gray-700 hover:bg-[#0D8BC5]/5 hover:text-[#0D8BC5]'}`}
                           onClick={hasSubmenu ? undefined : () => setIsMobileMenuOpen(false)}
                         >
                           <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-transform duration-300 group-hover:scale-[1.05] shrink-0 ${isCurrent ? 'bg-[#0D8BC5] text-white shadow-sm shadow-[#0D8BC5]/20' : 'bg-gray-50 text-gray-400 group-hover:bg-[#0D8BC5]/10 group-hover:text-[#0D8BC5]'}`}>
-                             <i className={`${link.icon} text-lg`}></i>
+                            <i className={`${link.icon} text-lg`}></i>
                           </div>
                           <span className="flex-1">{link.name}</span>
                         </Link>
                         {hasSubmenu && (
-                          <button 
+                          <button
                             onClick={(e) => toggleMobileSubmenu(link.name, e)}
                             className={`w-11 h-11 flex items-center justify-center rounded-xl text-gray-400 hover:bg-[#0D8BC5]/5 hover:text-[#0D8BC5] transition-all ${isSubmenuOpen ? 'text-[#0D8BC5] rotate-180 bg-[#0D8BC5]/10' : ''}`}
                           >
@@ -319,7 +329,7 @@ const Navbar = () => {
                       {/* Submenu Drawer with Framer Motion */}
                       <AnimatePresence>
                         {hasSubmenu && isSubmenuOpen && (
-                          <motion.div 
+                          <motion.div
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: 'auto', opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
@@ -331,7 +341,7 @@ const Navbar = () => {
                                 const isSubCurrent = isActive(subItem.path);
                                 return (
                                   <li key={subIdx}>
-                                    <Link 
+                                    <Link
                                       to={subItem.path}
                                       onClick={() => setIsMobileMenuOpen(false)}
                                       className={`block py-2.5 px-4 rounded-md text-sm font-medium transition-colors ${isSubCurrent ? 'text-[#0D8BC5] font-bold bg-[#0D8BC5]/5' : 'text-gray-500 hover:text-[#0D8BC5] hover:bg-gray-50'}`}

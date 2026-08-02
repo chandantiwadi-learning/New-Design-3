@@ -2,15 +2,15 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import SidebarContactForm from './SidebarContactForm';
 
-const ProductSidebar = () => {
+const ProductSidebar = ({ showContactForm = true }) => {
   const location = useLocation();
 
   const products = [
     { name: 'Bolts', path: '/bolts' },
-    { name: 'Screws', path: '/screw' },
-    { name: 'Stud Bolts', path: '/stud-bolts' },
     { name: 'Nuts', path: '/nuts' },
+    { name: 'Stud Bolts', path: '/stud-bolts' },
     { name: 'Washers', path: '/washers' },
+    { name: 'Screws', path: '/screw' },
     { name: 'Accessories', path: '/accessories' },
   ];
 
@@ -26,11 +26,10 @@ const ProductSidebar = () => {
             <li key={idx} className="border-b border-gray-100 last:border-none">
               <Link
                 to={prod.path}
-                className={`flex items-center text-xs py-3 transition-all duration-300 hover:pl-2 ${
-                  location.pathname === prod.path 
-                    ? '!text-primary !font-extrabold underline decoration-2 underline-offset-[6px]' 
-                    : 'text-gray-600 font-bold hover:!text-primary'
-                }`}
+                className={`flex items-center text-xs py-3 transition-all duration-300 hover:pl-2 ${location.pathname === prod.path
+                  ? '!text-primary !font-extrabold underline decoration-2 underline-offset-[6px]'
+                  : 'text-gray-600 font-bold hover:!text-primary'
+                  }`}
               >
                 <span className="icon-angle-right mr-2 text-xs font-bold"></span>
                 {prod.name}
@@ -41,7 +40,7 @@ const ProductSidebar = () => {
       </div>
 
       {/* Reusable contact form widget */}
-      <SidebarContactForm />
+      {showContactForm && <SidebarContactForm />}
     </aside>
   );
 };

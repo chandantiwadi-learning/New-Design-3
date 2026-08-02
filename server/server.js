@@ -4,7 +4,10 @@ import { fileURLToPath } from 'url';
 import { env } from './config/env.js';
 import { setupSecurity } from './middleware/security.js';
 import { errorHandler } from './middleware/errorHandler.js';
+import cookieParser from 'cookie-parser';
 import enquiryRoutes from './routes/enquiry.routes.js';
+import blogRoutes from './routes/blog.routes.js';
+import adminRoutes from './routes/admin.routes.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -19,11 +22,17 @@ app.set('trust proxy', 1);
 setupSecurity(app);
 
 // Parsers
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve uploaded image files publicly
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 // API Routes
 app.use('/api/enquiry', enquiryRoutes);
+app.use('/api/blogs', blogRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Serve frontend static assets in production mode
 const distPath = path.join(__dirname, '../client/dist');
