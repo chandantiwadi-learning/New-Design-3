@@ -9,7 +9,7 @@ const PhosphorBronze = () => {
   return (
     <div className="secondary-page-legacy select-none">
       {/* Title Breadcrumb */}
-      <div className="title_container type_3 t_align_center">
+      <div className="title_container type_3 t_align_center" style={{ backgroundImage: "url('/images/materials/sub section/material_subsection_banner.jpg')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
         <div className="container">
           <ul className="path_list clearfix">
             <li><Link to="/">Material</Link></li>
@@ -28,9 +28,9 @@ const PhosphorBronze = () => {
               
               <div className="flex flex-col sm:flex-row gap-6 items-start mb-8">
                 {/* Hexagon clip image */}
-                {"phosphor-bronze.jpg" && (
+                {true && (
                   <div className="flex-shrink-0">
-                    <HexagonImage src="/images/phosphor-bronze.jpg" shape="container" />
+                    <HexagonImage src="/images/materials/sub section/phosphor-bronze.jpg" shape="container" />
                   </div>
                 )}
                 {/* Intro paragraphs */}

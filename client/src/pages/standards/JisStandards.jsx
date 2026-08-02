@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const JisStandards = () => {
   return (
     <div className="secondary-page-legacy select-none">
-      <div className="title_container type_3 t_align_center">
+      <div className="title_container type_3 t_align_center" style={{ backgroundImage: "url('/images/standards/standards_subsection_banner.jpg')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
         <div className="container">
           <ul className="path_list clearfix">
             <li><Link to="/">Standards</Link></li>

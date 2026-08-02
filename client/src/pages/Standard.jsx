@@ -109,7 +109,7 @@ const Standard = () => {
           animate={{ scale: 1 }}
           transition={{ duration: 2, ease: "easeOut" }}
         >
-          <img src="/images/generated/standards_hero_1784917965419.png" alt="Standard Banner" className="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-center" />
+          <img src="/images/standards/standard.jpg" alt="Standard Banner" className="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-center" />
           
           {/* Gradient Overlay & Blur for clarity on right side */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 md:from-black/60 via-black/40 md:via-black/20 to-transparent lg:to-transparent/10 z-10 pointer-events-none"></div>
@@ -254,7 +254,7 @@ const Standard = () => {
               className="bg-gray-50 rounded-3xl p-8 md:p-12 flex flex-col lg:flex-row gap-8 items-center mt-12 border border-gray-100 shadow-[inset_0_2px_20px_rgba(0,0,0,0.02)]"
             >
               <div className="w-full lg:w-1/3 relative rounded-2xl overflow-hidden group shadow-lg">
-                <img src="/images/pages_img_06.jpg" alt="HEX INDIA Dimensional Gauging" className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src="/images/standards/zero_defect.jpg" alt="HEX INDIA Dimensional Gauging" className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-[#0a192f]/20 group-hover:bg-transparent transition-colors duration-500"></div>
               </div>
               

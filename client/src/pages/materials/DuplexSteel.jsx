@@ -9,7 +9,7 @@ const DuplexSteel = () => {
   return (
     <div className="secondary-page-legacy select-none">
       {/* Title Breadcrumb */}
-      <div className="title_container type_3 t_align_center">
+      <div className="title_container type_3 t_align_center" style={{ backgroundImage: "url('/images/materials/sub section/material_subsection_banner.jpg')", backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
         <div className="container">
           <ul className="path_list clearfix">
             <li><Link to="/">Material</Link></li>
@@ -28,9 +28,9 @@ const DuplexSteel = () => {
               
               <div className="flex flex-col sm:flex-row gap-6 items-start mb-8">
                 {/* Hexagon clip image */}
-                {"duplex-steel.jpg" && (
+                {true && (
                   <div className="flex-shrink-0">
-                    <HexagonImage src="/images/duplex-steel.jpg" shape="container" />
+                    <HexagonImage src="/images/materials/sub section/duplex-steel.jpg" shape="container" />
                   </div>
                 )}
                 {/* Intro paragraphs */}

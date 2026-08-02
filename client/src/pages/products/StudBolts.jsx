@@ -5,12 +5,12 @@ import { Link } from 'react-router-dom';
 
 
 const studData = [
-  { name: 'Full Threaded Studs', desc: 'Threaded over their entire length. Designed for applications requiring high clamping forces across mating parts, often utilized in flange connections and heavily loaded structural assemblies.', img: '/images/products/stud-bolts.png' },
-  { name: 'Tap End Studs', desc: 'Featuring threads on both ends with a short unthreaded shank in the middle. The "tap end" has a shorter thread length and is designed to be screwed directly into a tapped hole in a machined component.', img: '/images/products/stud-bolts.png' },
-  { name: 'Double End Studs', desc: 'Similar to tap end studs, but the thread lengths on both ends are designed to accept nuts rather than being screwed into a tapped hole. Used for clamping components between two nuts.', img: '/images/products/stud-bolts.png' },
-  { name: 'Stud Bolt Reduced Shank', desc: 'The unthreaded shank portion is machined to a diameter smaller than the thread pitch diameter. This design provides increased elasticity, reducing the risk of fatigue failure under dynamic loads.', img: '/images/products/stud-bolts.png' },
-  { name: 'Flange Stud Bolts', desc: 'Studs designed with an integral flange on one end, eliminating the need for a separate washer and ensuring a broad, stable bearing surface for high-pressure applications.', img: '/images/products/stud-bolts.png' },
-  { name: 'Weld Studs', desc: 'Unthreaded or partially threaded studs featuring a specialized tip designed to be rapidly welded to a base metal surface using drawn arc or capacitor discharge stud welding techniques.', img: '/images/products/stud-bolts.png' }
+  { name: 'Full Threaded Studs', desc: 'Threaded over their entire length. Designed for applications requiring high clamping forces across mating parts, often utilized in flange connections and heavily loaded structural assemblies.', img: '/images/products/sub section/stud-bolts.jpg' },
+  { name: 'Tap End Studs', desc: 'Featuring threads on both ends with a short unthreaded shank in the middle. The "tap end" has a shorter thread length and is designed to be screwed directly into a tapped hole in a machined component.', img: '/images/products/sub section/stud-bolts.jpg' },
+  { name: 'Double End Studs', desc: 'Similar to tap end studs, but the thread lengths on both ends are designed to accept nuts rather than being screwed into a tapped hole. Used for clamping components between two nuts.', img: '/images/products/sub section/stud-bolts.jpg' },
+  { name: 'Stud Bolt Reduced Shank', desc: 'The unthreaded shank portion is machined to a diameter smaller than the thread pitch diameter. This design provides increased elasticity, reducing the risk of fatigue failure under dynamic loads.', img: '/images/products/sub section/stud-bolts.jpg' },
+  { name: 'Flange Stud Bolts', desc: 'Studs designed with an integral flange on one end, eliminating the need for a separate washer and ensuring a broad, stable bearing surface for high-pressure applications.', img: '/images/products/sub section/stud-bolts.jpg' },
+  { name: 'Weld Studs', desc: 'Unthreaded or partially threaded studs featuring a specialized tip designed to be rapidly welded to a base metal surface using drawn arc or capacitor discharge stud welding techniques.', img: '/images/products/sub section/stud-bolts.jpg' }
 ];
 
 const StudBolts = () => {
@@ -18,7 +18,8 @@ const StudBolts = () => {
 
   return (
 
-    <PageLayout title="Stud Bolts" sidebarType="products">
+    <PageLayout title="Stud Bolts" sidebarType="products" banner="/images/products/sub section/subsection_banner.jpg">
+
       <h2 className="text-[#0d8bc5] text-2xl font-bold uppercase tracking-wide mb-6">
               Stud Bolts
             </h2>

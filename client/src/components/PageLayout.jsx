@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SidebarNavigation from './SidebarNavigation';
 
-const PageLayout = ({ title, sidebarType, children }) => {
+const PageLayout = ({ title, sidebarType, banner, children }) => {
   // Determine breadcrumb parent based on sidebarType
   const getParentInfo = () => {
     switch (sidebarType) {
@@ -21,7 +21,10 @@ const PageLayout = ({ title, sidebarType, children }) => {
   return (
     <div className="secondary-page-legacy select-none">
       {/* Title Breadcrumb */}
-      <div className="title_container type_3 t_align_center">
+      <div 
+        className="title_container type_3 t_align_center" 
+        style={banner ? { backgroundImage: `url('${banner}')`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' } : {}}
+      >
         <div className="container">
           <ul className="path_list clearfix">
             <li><Link to="/">Home</Link></li>

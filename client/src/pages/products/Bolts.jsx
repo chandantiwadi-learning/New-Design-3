@@ -8,87 +8,87 @@ const boltData = [
   { 
     name: 'Hex Head Bolts', 
     desc: 'Hex head bolts are the industry standard for general industrial and structural fastening applications. Forged for maximum tensile strength, they are designed to be driven with standard wrenches.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'Heavy Hex Head Bolts', 
     desc: 'Featuring a wider head than standard hex bolts, heavy hex bolts offer a larger load-bearing surface and increased torsional strength, making them ideal for high-pressure and heavy construction environments.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'Machine Bolts', 
     desc: 'Machine bolts are manufactured with fine or coarse threads for precision assemblies. Their smooth, uniform bodies guarantee exact alignment in critical mechanical systems.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'Socket Head Bolts', 
     desc: 'Designed for use in confined spaces where external wrenching is not possible. Socket head bolts feature an internal hex drive for secure tightening in recessed counterbores.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'Hex Flange Bolts', 
     desc: 'Integrated with a washer-like flange under the bolt head, hex flange bolts distribute clamping forces over a larger area, reducing the risk of damage to the mating surface.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'Lifting Eye Bolts', 
     desc: 'Engineered specifically for lifting and rigging applications. The closed loop head allows for secure attachment of hooks, cables, and chains under heavy vertical loads.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'Lag Bolts', 
     desc: 'Heavy-duty wood screws designed for securing heavy timbers or attaching metal brackets to wooden structures. Their coarse threads provide exceptional grip and pull-out resistance.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'Foundation Bolts', 
     desc: 'Embedded directly into concrete foundations, foundation bolts provide a secure anchor point for structural steel columns, heavy machinery, and industrial equipment.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'J Bolts', 
     desc: 'Shaped like the letter J, these bolts hook around rebar or structural members before being embedded in concrete, offering a highly secure anchoring solution.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'U Bolts', 
     desc: 'U-shaped bolts featuring threads on both ends. Extensively used for attaching pipes, conduits, and tubes to fixed supports in plumbing, industrial piping, and automotive applications.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'Shoulder Bolts', 
     desc: 'Featuring an unthreaded cylindrical section (shoulder) between the head and the threads, shoulder bolts serve as precision axles or pivot points for rotating or sliding components.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'Elevator Bolts', 
     desc: 'Designed with a large, flat, countersunk head and a square neck underneath to prevent turning. Primarily used in conveyor systems and elevator bucket attachments.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'Hanger Bolts', 
     desc: 'Dual-threaded fasteners with wood screw threads on one end and machine screw threads on the other. Ideal for suspending fixtures or structural members from overhead joists.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'Carriage Bolts', 
     desc: 'Identified by their smooth, dome-shaped head and a square neck. The square section locks into the material, preventing the bolt from turning when tightening the nut.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'Allen Head Bolts', 
     desc: 'A variant of socket head bolts requiring an Allen (hex) key for installation. They provide high torque transfer capabilities and a clean, flush finish when countersunk.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'Anchor Bolts', 
     desc: 'Heavy-duty fasteners designed to attach structural elements to masonry or concrete. They expand or wedge themselves securely upon installation.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   },
   { 
     name: 'Countersunk Bolts', 
     desc: 'Designed to sit flush with or below the surface of the surrounding material, countersunk bolts prevent snagging and create a smooth, aerodynamic finish.',
-    img: '/images/products/bolts.png'
+    img: '/images/products/sub section/bolts.jpg'
   }
 ];
 
@@ -97,7 +97,8 @@ const Bolts = () => {
 
   return (
 
-    <PageLayout title="Bolts" sidebarType="products">
+    <PageLayout title="Bolts" sidebarType="products" banner="/images/products/sub section/subsection_banner.jpg">
+
       <h2 className="text-[#0d8bc5] text-2xl font-bold uppercase tracking-wide mb-6">
               Industrial Bolts
             </h2>

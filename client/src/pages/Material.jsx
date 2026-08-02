@@ -30,24 +30,24 @@ const fadeRight = {
 
 const Material = () => {
   const materialsList = [
-    { name: 'Stainless Steel', path: '/stainless-steel', img: '/images/generated/mat_stainless_steel.png' },
-    { name: 'Carbon Steel', path: '/carbon-steel', img: '/images/generated/mat_carbon_steel.png' },
-    { name: 'Alloy Steel', path: '/alloy-steel', img: '/images/generated/mat_alloy_steel.png' },
-    { name: 'Duplex Steel', path: '/duplex-steel', img: '/images/generated/mat_duplex_steel.png' },
-    { name: 'Super Duplex', path: '/super-duplex-steel', img: '/images/generated/mat_super_duplex_steel.png' },
-    { name: 'Nickel Alloy', path: '/nickel-alloy', img: '/images/generated/mat_nickel_alloy.png' },
-    { name: 'Monel', path: '/monel', img: '/images/generated/mat_monel.png' },
-    { name: 'Inconel', path: '/inconel', img: '/images/generated/mat_inconel.png' },
-    { name: 'Incoloy', path: '/incoloy', img: '/images/generated/mat_incoloy.png' },
-    { name: 'Hastelloy', path: '/hastelloy', img: '/images/generated/mat_hastelloy.png' },
-    { name: 'Copper Nickel', path: '/copper-nickel', img: '/images/generated/mat_copper_nickel.png' },
-    { name: 'Titanium', path: '/titanium', img: '/images/generated/mat_titanium.png' },
-    { name: 'Silicon Bronze', path: '/silicon-bronze', img: '/images/generated/mat_silicon_bronze.png' },
-    { name: 'Phosphor Bronze', path: '/phosphor-bronze', img: '/images/homePage/our products/new/materials.png' },
-    { name: 'Aluminum Bronze', path: '/aluminium-bronze', img: '/images/homePage/our products/new/materials.png' },
-    { name: 'Brass', path: '/brass', img: '/images/homePage/our products/new/materials.png' },
-    { name: 'Tantalum', path: '/tantalum', img: '/images/homePage/our products/new/materials.png' },
-    { name: 'Zirconium', path: '/zirconium', img: '/images/homePage/our products/new/materials.png' }
+    { name: 'Stainless Steel', path: '/stainless-steel', img: '/images/materials/our material/mat_stainless_steel.png' },
+    { name: 'Carbon Steel', path: '/carbon-steel', img: '/images/materials/our material/mat_carbon_steel.png' },
+    { name: 'Alloy Steel', path: '/alloy-steel', img: '/images/materials/our material/mat_alloy_steel.png' },
+    { name: 'Duplex Steel', path: '/duplex-steel', img: '/images/materials/our material/mat_duplex_steel.png' },
+    { name: 'Super Duplex', path: '/super-duplex-steel', img: '/images/materials/our material/mat_super_duplex_steel.png' },
+    { name: 'Nickel Alloy', path: '/nickel-alloy', img: '/images/materials/our material/mat_nickel_alloy.png' },
+    { name: 'Monel', path: '/monel', img: '/images/materials/our material/mat_monel.png' },
+    { name: 'Inconel', path: '/inconel', img: '/images/materials/our material/mat_inconel.png' },
+    { name: 'Incoloy', path: '/incoloy', img: '/images/materials/our material/mat_incoloy.png' },
+    { name: 'Hastelloy', path: '/hastelloy', img: '/images/materials/our material/mat_hastelloy.png' },
+    { name: 'Copper Nickel', path: '/copper-nickel', img: '/images/materials/our material/mat_copper_nickel.png' },
+    { name: 'Titanium', path: '/titanium', img: '/images/materials/our material/mat_titanium.png' },
+    { name: 'Silicon Bronze', path: '/silicon-bronze', img: '/images/materials/our material/mat_silicon_bronze.png' },
+    { name: 'Phosphor Bronze', path: '/phosphor-bronze', img: '/images/materials/our material/mat_phosphor_bronze.png' },
+    { name: 'Aluminum Bronze', path: '/aluminium-bronze', img: '/images/materials/our material/mat_aluminum_bronze.png' },
+    { name: 'Brass', path: '/brass', img: '/images/materials/our material/mat_brass.png' },
+    { name: 'Tantalum', path: '/tantalum', img: '/images/materials/our material/mat_tantalum.png' },
+    { name: 'Zirconium', path: '/zirconium', img: '/images/materials/our material/mat_zirconium.png' }
   ];
 
   return (
@@ -131,7 +131,7 @@ const Material = () => {
           animate={{ scale: 1 }}
           transition={{ duration: 2, ease: "easeOut" }}
         >
-          <img src="/images/generated/materials_hero_1784917955251.png" alt="Material Banner" className="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-center" />
+          <img src="/images/materials/material.png" alt="Material Banner" className="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-center" />
 
           {/* Gradient Overlay & Blur for clarity on right side */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 md:from-black/60 via-black/40 md:via-black/20 to-transparent lg:to-transparent/10 z-10 pointer-events-none"></div>
@@ -260,7 +260,7 @@ const Material = () => {
             className="w-full lg:w-2/3 bg-gray-50 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center border border-gray-100 shadow-[inset_0_2px_20px_rgba(0,0,0,0.02)]"
           >
             <div className="w-full md:w-1/3 relative rounded-2xl overflow-hidden group shadow-lg flex-shrink-0">
-              <img src="/images/pages_img_04.jpg" alt="HEX INDIA Material Stock" className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
+              <img src="/images/materials/large_inventory.jpg" alt="HEX INDIA Material Stock" className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-[#0a192f]/20 group-hover:bg-transparent transition-colors duration-500"></div>
             </div>
 

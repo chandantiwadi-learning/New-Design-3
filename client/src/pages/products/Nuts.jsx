@@ -5,27 +5,27 @@ import { Link } from 'react-router-dom';
 
 
 const nutData = [
-  { name: 'Hex Nuts', desc: 'The most common type of nut, featuring a six-sided shape that allows for easy wrenching from multiple angles. Ideal for standard industrial fastening.', img: '/images/products/nuts.png' },
-  { name: 'Heavy Hex Nuts', desc: 'Thicker and wider than standard hex nuts, providing a larger bearing surface and increased tensile strength for heavy-duty structural applications.', img: '/images/products/nuts.png' },
-  { name: 'Jam Nuts', desc: 'A low-profile hex nut, typically half the thickness of a standard nut. Used as a lock nut by jamming it up against a standard nut to prevent loosening.', img: '/images/products/nuts.png' },
-  { name: 'Coupling Nuts', desc: 'Elongated hex nuts used to connect two pieces of threaded rod or pipe together, providing a continuous threaded assembly.', img: '/images/products/nuts.png' },
-  { name: 'Hex Cap Nuts', desc: 'Also known as acorn nuts, these feature a domed top that covers the exposed threads of a bolt, providing a finished look and protecting the threads.', img: '/images/products/nuts.png' },
-  { name: 'Hex Flange Nuts', desc: 'Featuring an integrated washer-like flange at the base. This distributes the clamping load over a wider area, reducing damage to the mating surface.', img: '/images/products/nuts.png' },
-  { name: 'Hex Weld Nuts', desc: 'Designed with small projections (bosses) that melt during welding, permanently fusing the nut to a metal substrate for a captive fastening point.', img: '/images/products/nuts.png' },
-  { name: 'Square Nuts', desc: 'Four-sided nuts that provide a larger surface area in contact with the part being fastened, increasing resistance to loosening.', img: '/images/products/nuts.png' },
-  { name: 'Square Weld Nuts', desc: 'Square-shaped weld nuts designed for permanent attachment to sheet metal or structural components where a hex shape isn’t required.', img: '/images/products/nuts.png' },
-  { name: 'Square Thin Nuts', desc: 'A lower-profile version of the square nut, designed for applications with limited vertical clearance.', img: '/images/products/nuts.png' },
-  { name: 'Acorn Nuts', desc: 'A specialized type of cap nut with a high, rounded dome that completely conceals the end of the male fastener for safety and aesthetics.', img: '/images/products/nuts.png' },
-  { name: 'T-Slot Nuts', desc: 'Designed to slide into the T-slots of aluminum extrusion profiles or machine tables, providing an adjustable threaded anchor point.', img: '/images/products/nuts.png' },
-  { name: 'Nylock Nuts', desc: 'Hex nuts featuring a nylon collar insert that deforms over the bolt threads, providing a strong, vibration-resistant friction lock.', img: '/images/products/nuts.png' },
-  { name: 'Nylock Jam Nuts', desc: 'A low-profile version of the Nylock nut, combining the space-saving design of a jam nut with the locking capability of a nylon insert.', img: '/images/products/nuts.png' },
-  { name: 'K Lock Nuts', desc: 'Also known as Kep nuts, these feature an attached, free-spinning external tooth lock washer, eliminating the need to handle a separate washer.', img: '/images/products/nuts.png' },
-  { name: '2 Way Lock Nuts', desc: 'Reversible lock nuts that are distorted in the middle of the threads, allowing them to lock in place regardless of which side is threaded first.', img: '/images/products/nuts.png' },
-  { name: 'All Metal Lock', desc: 'Lock nuts that rely on a deformed thread profile rather than a nylon insert, making them suitable for high-temperature applications.', img: '/images/products/nuts.png' },
-  { name: 'Slotted Castle', desc: 'Nuts featuring slots cut into the top. Used with a cotter pin placed through a drilled hole in the bolt to mechanically lock the nut in place.', img: '/images/products/nuts.png' },
-  { name: '12 Point Flange', desc: 'High-strength nuts requiring a 12-point socket. The flange base and 12-point design allow for high torque application in tight spaces.', img: '/images/products/nuts.png' },
-  { name: 'Lifting Eye Nuts', desc: 'Threaded nuts with a looped head, designed to be screwed onto threaded rod or studs to provide a secure lifting point for rigging.', img: '/images/products/nuts.png' },
-  { name: 'Wing Nuts', desc: 'Nuts featuring two large metal "wings," allowing them to be easily tightened or loosened by hand without the need for a wrench.', img: '/images/products/nuts.png' }
+  { name: 'Hex Nuts', desc: 'The most common type of nut, featuring a six-sided shape that allows for easy wrenching from multiple angles. Ideal for standard industrial fastening.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'Heavy Hex Nuts', desc: 'Thicker and wider than standard hex nuts, providing a larger bearing surface and increased tensile strength for heavy-duty structural applications.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'Jam Nuts', desc: 'A low-profile hex nut, typically half the thickness of a standard nut. Used as a lock nut by jamming it up against a standard nut to prevent loosening.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'Coupling Nuts', desc: 'Elongated hex nuts used to connect two pieces of threaded rod or pipe together, providing a continuous threaded assembly.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'Hex Cap Nuts', desc: 'Also known as acorn nuts, these feature a domed top that covers the exposed threads of a bolt, providing a finished look and protecting the threads.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'Hex Flange Nuts', desc: 'Featuring an integrated washer-like flange at the base. This distributes the clamping load over a wider area, reducing damage to the mating surface.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'Hex Weld Nuts', desc: 'Designed with small projections (bosses) that melt during welding, permanently fusing the nut to a metal substrate for a captive fastening point.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'Square Nuts', desc: 'Four-sided nuts that provide a larger surface area in contact with the part being fastened, increasing resistance to loosening.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'Square Weld Nuts', desc: 'Square-shaped weld nuts designed for permanent attachment to sheet metal or structural components where a hex shape isn’t required.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'Square Thin Nuts', desc: 'A lower-profile version of the square nut, designed for applications with limited vertical clearance.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'Acorn Nuts', desc: 'A specialized type of cap nut with a high, rounded dome that completely conceals the end of the male fastener for safety and aesthetics.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'T-Slot Nuts', desc: 'Designed to slide into the T-slots of aluminum extrusion profiles or machine tables, providing an adjustable threaded anchor point.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'Nylock Nuts', desc: 'Hex nuts featuring a nylon collar insert that deforms over the bolt threads, providing a strong, vibration-resistant friction lock.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'Nylock Jam Nuts', desc: 'A low-profile version of the Nylock nut, combining the space-saving design of a jam nut with the locking capability of a nylon insert.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'K Lock Nuts', desc: 'Also known as Kep nuts, these feature an attached, free-spinning external tooth lock washer, eliminating the need to handle a separate washer.', img: '/images/products/sub section/nuts.jpg' },
+  { name: '2 Way Lock Nuts', desc: 'Reversible lock nuts that are distorted in the middle of the threads, allowing them to lock in place regardless of which side is threaded first.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'All Metal Lock', desc: 'Lock nuts that rely on a deformed thread profile rather than a nylon insert, making them suitable for high-temperature applications.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'Slotted Castle', desc: 'Nuts featuring slots cut into the top. Used with a cotter pin placed through a drilled hole in the bolt to mechanically lock the nut in place.', img: '/images/products/sub section/nuts.jpg' },
+  { name: '12 Point Flange', desc: 'High-strength nuts requiring a 12-point socket. The flange base and 12-point design allow for high torque application in tight spaces.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'Lifting Eye Nuts', desc: 'Threaded nuts with a looped head, designed to be screwed onto threaded rod or studs to provide a secure lifting point for rigging.', img: '/images/products/sub section/nuts.jpg' },
+  { name: 'Wing Nuts', desc: 'Nuts featuring two large metal "wings," allowing them to be easily tightened or loosened by hand without the need for a wrench.', img: '/images/products/sub section/nuts.jpg' }
 ];
 
 const Nuts = () => {
@@ -33,7 +33,8 @@ const Nuts = () => {
 
   return (
 
-    <PageLayout title="Nuts" sidebarType="products">
+    <PageLayout title="Nuts" sidebarType="products" banner="/images/products/sub section/subsection_banner.jpg">
+
       <h2 className="text-[#0d8bc5] text-2xl font-bold uppercase tracking-wide mb-6">
               Industrial Nuts
             </h2>

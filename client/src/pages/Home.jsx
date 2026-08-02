@@ -212,14 +212,14 @@ const Home = () => {
   ];
 
   const products = [
-    { name: 'Bolts', path: '/bolts', img: '/images/homePage/our products/new/bolts-nuts.png' },
-    { name: 'Screws', path: '/screw', img: '/images/homePage/our products/new/screws.png' },
-    { name: 'Stud Bolts', path: '/stud-bolts', img: '/images/homePage/our products/new/stud-bolts.png' },
-    { name: 'Nuts', path: '/nuts', img: '/images/homePage/our products/new/nuts.png' },
-    { name: 'Washers', path: '/washers', img: '/images/homePage/our products/new/washers.png' },
-    { name: 'Accessories', path: '/accessories', img: '/images/homePage/our products/new/ublots.png' },
-    { name: 'Materials', path: '/material', img: '/images/homePage/our products/new/materials.png' },
-    { name: 'Custom Made', path: '/contact', img: '/images/homePage/our products/new/about-us.png' }
+    { name: 'Bolts', path: '/bolts', img: '/images/products/our products/bolts-nuts.jpg' },
+    { name: 'Screws', path: '/screw', img: '/images/products/our products/screws.jpg' },
+    { name: 'Stud Bolts', path: '/stud-bolts', img: '/images/products/our products/stud-bolts.jpg' },
+    { name: 'Nuts', path: '/nuts', img: '/images/products/our products/nuts.jpg' },
+    { name: 'Washers', path: '/washers', img: '/images/products/our products/washers.jpg' },
+    { name: 'Accessories', path: '/accessories', img: '/images/products/our products/ublots.jpg' },
+    { name: 'Materials', path: '/material', img: '/images/products/our products/materials.jpg' },
+    { name: 'Custom Made', path: '/contact', img: '/images/products/custom-made.jpg' }
   ];
 
   return (

@@ -102,7 +102,7 @@ const Blog = () => {
           animate={{ scale: 1 }}
           transition={{ duration: 2, ease: "easeOut" }}
         >
-          <img src="/images/generated/blog_hero_1784918006182.png" alt="Blog Banner" className="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-center" />
+          <img src="/images/blogs/blog.jpg" alt="Blog Banner" className="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-center" />
           
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 md:from-black/60 via-black/40 md:via-black/20 to-transparent lg:to-transparent/10 z-10 pointer-events-none"></div>
           <div className="absolute inset-0 backdrop-blur-md z-10 pointer-events-none" style={{ WebkitMaskImage: 'linear-gradient(to right, black 0%, transparent 55%)', maskImage: 'linear-gradient(to right, black 0%, transparent 55%)' }}></div>

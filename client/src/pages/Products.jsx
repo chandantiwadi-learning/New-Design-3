@@ -30,12 +30,12 @@ const fadeRight = {
 
 const Products = () => {
   const productsList = [
-    { name: 'Bolts', path: '/bolts', img: '/images/homePage/our products/new/bolts-nuts.png' },
-    { name: 'Nuts', path: '/nuts', img: '/images/homePage/our products/new/nuts.png' },
-    { name: 'Stud Bolts', path: '/stud-bolts', img: '/images/homePage/our products/new/stud-bolts.png' },
-    { name: 'Washers', path: '/washers', img: '/images/homePage/our products/new/washers.png' },
-    { name: 'Screws', path: '/screw', img: '/images/homePage/our products/new/screws.png' },
-    { name: 'Accessories', path: '/accessories', img: '/images/homePage/our products/new/ublots.png' }
+    { name: 'Bolts', path: '/bolts', img: '/images/products/our products/bolts-nuts.jpg' },
+    { name: 'Nuts', path: '/nuts', img: '/images/products/our products/nuts.jpg' },
+    { name: 'Stud Bolts', path: '/stud-bolts', img: '/images/products/our products/stud-bolts.jpg' },
+    { name: 'Washers', path: '/washers', img: '/images/products/our products/washers.jpg' },
+    { name: 'Screws', path: '/screw', img: '/images/products/our products/screws.jpg' },
+    { name: 'Accessories', path: '/accessories', img: '/images/products/our products/ublots.jpg' }
   ];
 
   return (
@@ -119,7 +119,7 @@ const Products = () => {
           animate={{ scale: 1 }}
           transition={{ duration: 2, ease: "easeOut" }}
         >
-          <img src="/images/generated/products_hero_1784917943604.png" alt="Products Banner" className="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-center" />
+          <img src="/images/products/products_hero.jpg" alt="Products Banner" className="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-center" />
 
           {/* Gradient Overlay & Blur for clarity on right side */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 md:from-black/60 via-black/40 md:via-black/20 to-transparent lg:to-transparent/10 z-10 pointer-events-none"></div>
@@ -248,7 +248,7 @@ const Products = () => {
             className="w-full lg:w-2/3 bg-gray-50 rounded-3xl p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center border border-gray-100 shadow-[inset_0_2px_20px_rgba(0,0,0,0.02)]"
           >
             <div className="w-full md:w-1/3 relative rounded-2xl overflow-hidden group shadow-lg flex-shrink-0">
-              <img src="/images/pages_img_01.jpg" alt="HEX INDIA Fasteners Machining" className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
+              <img src="/images/products/custom-machined-blueprint.jpg" alt="HEX INDIA Fasteners Machining" className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-[#0a192f]/20 group-hover:bg-transparent transition-colors duration-500"></div>
             </div>
 

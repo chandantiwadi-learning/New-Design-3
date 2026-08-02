@@ -231,7 +231,7 @@ const About = () => {
           animate={{ scale: 1 }}
           transition={{ duration: 2, ease: "easeOut" }}
         >
-          <img src="/images/generated/about_hero_1785667325824.png" alt="Industrial Fasteners Facility" className="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-center" />
+          <img src="/images/about us/about us.jpg" alt="Industrial Fasteners Facility" className="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-center" />
           {/* Gradient Overlay & Blur adjusted for clarity on right side */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 md:from-black/60 via-black/40 md:via-black/20 to-transparent lg:to-transparent/10 z-10 pointer-events-none"></div>
           <div className="absolute inset-0 backdrop-blur-md z-10 pointer-events-none" style={{ WebkitMaskImage: 'linear-gradient(to right, black 0%, transparent 55%)', maskImage: 'linear-gradient(to right, black 0%, transparent 55%)' }}></div>
@@ -414,10 +414,10 @@ const About = () => {
 
             <div className="space-y-24">
               {[
-                { year: 'PRECISION', title: 'Precision Engineering & Metallurgy', desc: 'Established state-of-the-art forging and machining facilities in Mumbai focused on high-tensile alloys and strict dimensional tolerances.', img: '/images/homePage/our products/new/materials.png' },
-                { year: 'QUALITY', title: 'International Quality Assurance', desc: 'Achieved complete ISO, DIN, ASTM, and BS quality certifications, enforcing 100% ultrasonic and mechanical testing across all output.', img: '/images/home_img_20.jpg' },
-                { year: 'INNOVATION', title: 'Custom Fastener Engineering', desc: 'Expanded production capabilities to engineer bespoke super-alloy fasteners tailored for high-pressure, extreme-temperature environments.', img: '/images/homePage/our products/new/stud-bolts.png' },
-                { year: 'GLOBAL', title: 'Worldwide Supply Network', desc: 'Established global logistics infrastructure exporting high-integrity fasteners to energy, marine, and construction projects in over 40 countries.', img: '/images/slider1.jpg' },
+                { year: 'PRECISION', title: 'Precision Engineering & Metallurgy', desc: 'Established state-of-the-art forging and machining facilities in Mumbai focused on high-tensile alloys and strict dimensional tolerances.', img: '/images/about us/journey of excellence/precision_engineering.jpg' },
+                { year: 'QUALITY', title: 'International Quality Assurance', desc: 'Achieved complete ISO, DIN, ASTM, and BS quality certifications, enforcing 100% ultrasonic and mechanical testing across all output.', img: '/images/about us/journey of excellence/quality_assurance.jpg' },
+                { year: 'INNOVATION', title: 'Custom Fastener Engineering', desc: 'Expanded production capabilities to engineer bespoke super-alloy fasteners tailored for high-pressure, extreme-temperature environments.', img: '/images/about us/journey of excellence/custom_fasteners.jpg' },
+                { year: 'GLOBAL', title: 'Worldwide Supply Network', desc: 'Established global logistics infrastructure exporting high-integrity fasteners to energy, marine, and construction projects in over 40 countries.', img: '/images/about us/journey of excellence/worldwide_supply.jpg' },
               ].map((item, idx) => {
                 const isEven = idx % 2 === 0;
                 return (
@@ -472,12 +472,12 @@ const About = () => {
             variants={staggerContainer}
           >
             {[
-              { icon: 'icon_quality.png', title: 'Uncompromising Quality', desc: 'Engineered with flawless precision using premium-grade alloys to guarantee maximum structural integrity and resilience.' },
-              { icon: 'icon_globe.png', title: 'International Compliance', desc: 'Strictly adhering to DIN, ISO, ASTM, and BS specifications, ensuring absolute reliability for mission-critical applications globally.' },
-              { icon: 'icon_delivery.png', title: 'Accelerated Logistics', desc: 'Driven by an intelligent supply chain and robust inventory network to guarantee rapid, on-time global fulfillment.' },
-              { icon: 'icon_manufacturing.png', title: 'Precision Engineering', desc: 'Delivering bespoke, high-tolerance fastening solutions custom-manufactured for highly specialized and complex industrial environments.' },
-              { icon: 'icon_team.png', title: 'Engineering Excellence', desc: 'Backed by a seasoned team of metallurgical experts and technicians dedicated to advancing manufacturing innovation.' },
-              { icon: 'icon_clients.png', title: 'Industry Proven Trust', desc: 'A distinguished legacy of engineering partnerships, empowering Fortune 500 companies and critical infrastructure projects worldwide.' },
+              { icon: 'icon_quality.jpg', title: 'Uncompromising Quality', desc: 'Engineered with flawless precision using premium-grade alloys to guarantee maximum structural integrity and resilience.' },
+              { icon: 'icon_globe.jpg', title: 'International Compliance', desc: 'Strictly adhering to DIN, ISO, ASTM, and BS specifications, ensuring absolute reliability for mission-critical applications globally.' },
+              { icon: 'icon_delivery.jpg', title: 'Accelerated Logistics', desc: 'Driven by an intelligent supply chain and robust inventory network to guarantee rapid, on-time global fulfillment.' },
+              { icon: 'icon_manufacturing.jpg', title: 'Precision Engineering', desc: 'Delivering bespoke, high-tolerance fastening solutions custom-manufactured for highly specialized and complex industrial environments.' },
+              { icon: 'icon_team.jpg', title: 'Engineering Excellence', desc: 'Backed by a seasoned team of metallurgical experts and technicians dedicated to advancing manufacturing innovation.' },
+              { icon: 'icon_clients.jpg', title: 'Industry Proven Trust', desc: 'A distinguished legacy of engineering partnerships, empowering Fortune 500 companies and critical infrastructure projects worldwide.' },
             ].map((feature, idx) => (
               <ParallaxCard key={idx}>
                 <motion.div
@@ -492,7 +492,7 @@ const About = () => {
 
                   <div className="relative z-10">
                     <div className="w-24 h-24 bg-transparent rounded-2xl flex items-center justify-center mb-8 group-hover:scale-[1.15] group-hover:rotate-6 transition-transform duration-500 group-hover:drop-shadow-[0_15px_15px_rgba(13,139,197,0.3)]">
-                      <img src={`/images/about us/${feature.icon}`} alt={feature.title} className="w-[110%] h-[110%] max-w-none object-contain mix-blend-multiply transition-all duration-300" style={{ filter: 'contrast(1.1)' }} />
+                      <img src={`/images/about us/why choose hex india/${feature.icon}`} alt={feature.title} className="w-[110%] h-[110%] max-w-none object-contain mix-blend-multiply transition-all duration-300" style={{ filter: 'contrast(1.1)' }} />
                     </div>
                     <div className="overflow-hidden mb-4">
                       <h3 className="text-2xl font-bold text-gray-900 group-hover:-translate-y-1 transition-transform duration-300">{feature.title}</h3>
@@ -569,10 +569,10 @@ const About = () => {
             variants={staggerContainer}
           >
             {[
-              { name: 'Oil & Gas', img: '/images/industry_oil_gas.png', icon: 'fa-oil-can', desc: 'High-pressure, corrosion-resistant alloy fasteners engineered for offshore drilling rigs, subsea pipelines, and refinery processing units.' },
-              { name: 'Power Generation', img: '/images/industry_power.png', icon: 'fa-bolt', desc: 'Thermal-resistant stud bolts and specialized hardware manufactured for power generation turbines, nuclear plants, and substations.' },
-              { name: 'Infrastructure', img: '/images/industry_infra.png', icon: 'fa-building', desc: 'Structural high-tensile fasteners built for skyscrapers, mega-suspension bridges, metro rail networks, and heavy commercial developments.' },
-              { name: 'Marine & Naval', img: '/images/industry_marine.png', icon: 'fa-ship', desc: 'Marine-grade stainless steel and Monel hardware delivering total saltwater corrosion immunity for shipyards and commercial vessels.' },
+              { name: 'Oil & Gas', img: '/images/about us/industries we serve/industry_oil_gas.jpg', icon: 'fa-oil-can', desc: 'High-pressure, corrosion-resistant alloy fasteners engineered for offshore drilling rigs, subsea pipelines, and refinery processing units.' },
+              { name: 'Power Generation', img: '/images/about us/industries we serve/industry_power.jpg', icon: 'fa-bolt', desc: 'Thermal-resistant stud bolts and specialized hardware manufactured for power generation turbines, nuclear plants, and substations.' },
+              { name: 'Infrastructure', img: '/images/about us/industries we serve/industry_infra.jpg', icon: 'fa-building', desc: 'Structural high-tensile fasteners built for skyscrapers, mega-suspension bridges, metro rail networks, and heavy commercial developments.' },
+              { name: 'Marine & Naval', img: '/images/about us/industries we serve/industry_marine.jpg', icon: 'fa-ship', desc: 'Marine-grade stainless steel and Monel hardware delivering total saltwater corrosion immunity for shipyards and commercial vessels.' },
             ].map((industry, idx) => (
               <motion.div
                 key={idx}

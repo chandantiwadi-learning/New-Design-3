@@ -23,11 +23,21 @@ const SidebarNavigation = ({ type = 'products' }) => {
         { name: 'Stainless Steel', path: '/stainless-steel' },
         { name: 'Carbon Steel', path: '/carbon-steel' },
         { name: 'Alloy Steel', path: '/alloy-steel' },
-        { name: 'Duplex', path: '/duplex-steel' },
-        { name: 'Super Duplex', path: '/super-duplex-steel' },
-        { name: 'High Nickel Alloys', path: '/nickel-alloy' },
+        { name: 'Duplex Steel', path: '/duplex-steel' },
+        { name: 'Super Duplex Steel', path: '/super-duplex-steel' },
+        { name: 'Nickel', path: '/nickel-alloy' },
+        { name: 'Monel', path: '/monel' },
+        { name: 'Inconel', path: '/inconel' },
+        { name: 'Incoloy', path: '/incoloy' },
+        { name: 'Hastelloy', path: '/hastelloy' },
+        { name: 'Copper Nickel', path: '/copper-nickel' },
         { name: 'Titanium', path: '/titanium' },
+        { name: 'Silicon Bronze', path: '/silicon-bronze' },
+        { name: 'Phosphor Bronze', path: '/phosphor-bronze' },
+        { name: 'Aluminum Bronze', path: '/aluminium-bronze' },
         { name: 'Brass', path: '/brass' },
+        { name: 'Tantalum', path: '/tantalum' },
+        { name: 'Zirconium', path: '/zirconium' },
       ],
     },
     standards: {
@@ -67,7 +77,7 @@ const SidebarNavigation = ({ type = 'products' }) => {
             text-underline-offset: 6px !important;
           }
         `}</style>
-        <ul className="flex flex-col">
+        <ul className={type === 'materials' ? "flex flex-col h-[400px] overflow-y-auto scrollbar-thin" : "flex flex-col"}>
           {currentNav.items.map((item, idx) => {
             const isActive = location.pathname.replace(/\/$/, "") === item.path;
             return (

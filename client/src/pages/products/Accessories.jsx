@@ -5,15 +5,15 @@ import { Link } from 'react-router-dom';
 
 
 const accData = [
-  { name: 'Blind Rivets', desc: 'Tubular fasteners with a mandrel through the center. Used to join materials when you only have access to one side of the assembly.', img: '/images/products/accessories.png' },
-  { name: 'Pins and Clips', desc: 'A broad category including dowel pins, cotter pins, and retaining clips, used for precise alignment or to secure components on shafts.', img: '/images/products/accessories.png' },
-  { name: 'Quick Couplers', desc: 'Fittings designed for fast, frequent connection and disconnection of fluid or pneumatic lines without the use of tools.', img: '/images/products/accessories.png' },
-  { name: 'Extension Springs', desc: 'Coiled springs designed to operate with a tension load, so the spring stretches as the load is applied to it.', img: '/images/products/accessories.png' },
-  { name: 'Compression Springs', desc: 'Open-coil helical springs that offer resistance to a compressive force applied axially. The most common type of spring.', img: '/images/products/accessories.png' },
-  { name: 'Screw Thread Inserts', desc: 'Also known as Helicoils. Coiled wire inserts used to create stronger, permanent internal threads in soft materials or repair damaged threads.', img: '/images/products/accessories.png' },
-  { name: 'Retaining Rings', desc: 'Also known as circlips. Fasteners that snap into a machined groove on a dowel pin or shaft to hold assemblies laterally in place.', img: '/images/products/accessories.png' },
-  { name: 'Screw Driver Bits', desc: 'Hardened steel tool inserts designed to mate precisely with various screw drive types (Phillips, Torx, Hex) for efficient installation.', img: '/images/products/accessories.png' },
-  { name: 'Thread Gauges', desc: 'Precision metrology tools used to check the pitch and dimensional accuracy of internal and external threads against standard specifications.', img: '/images/products/accessories.png' }
+  { name: 'Blind Rivets', desc: 'Tubular fasteners with a mandrel through the center. Used to join materials when you only have access to one side of the assembly.', img: '/images/products/sub section/accessories.jpg' },
+  { name: 'Pins and Clips', desc: 'A broad category including dowel pins, cotter pins, and retaining clips, used for precise alignment or to secure components on shafts.', img: '/images/products/sub section/accessories.jpg' },
+  { name: 'Quick Couplers', desc: 'Fittings designed for fast, frequent connection and disconnection of fluid or pneumatic lines without the use of tools.', img: '/images/products/sub section/accessories.jpg' },
+  { name: 'Extension Springs', desc: 'Coiled springs designed to operate with a tension load, so the spring stretches as the load is applied to it.', img: '/images/products/sub section/accessories.jpg' },
+  { name: 'Compression Springs', desc: 'Open-coil helical springs that offer resistance to a compressive force applied axially. The most common type of spring.', img: '/images/products/sub section/accessories.jpg' },
+  { name: 'Screw Thread Inserts', desc: 'Also known as Helicoils. Coiled wire inserts used to create stronger, permanent internal threads in soft materials or repair damaged threads.', img: '/images/products/sub section/accessories.jpg' },
+  { name: 'Retaining Rings', desc: 'Also known as circlips. Fasteners that snap into a machined groove on a dowel pin or shaft to hold assemblies laterally in place.', img: '/images/products/sub section/accessories.jpg' },
+  { name: 'Screw Driver Bits', desc: 'Hardened steel tool inserts designed to mate precisely with various screw drive types (Phillips, Torx, Hex) for efficient installation.', img: '/images/products/sub section/accessories.jpg' },
+  { name: 'Thread Gauges', desc: 'Precision metrology tools used to check the pitch and dimensional accuracy of internal and external threads against standard specifications.', img: '/images/products/sub section/accessories.jpg' }
 ];
 
 const Accessories = () => {
@@ -21,7 +21,8 @@ const Accessories = () => {
 
   return (
 
-    <PageLayout title="Accessories" sidebarType="products">
+    <PageLayout title="Accessories" sidebarType="products" banner="/images/products/sub section/subsection_banner.jpg">
+
       <h2 className="text-[#0d8bc5] text-2xl font-bold uppercase tracking-wide mb-6">
               Fastener Accessories
             </h2>
