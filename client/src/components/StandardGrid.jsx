@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, FileText } from 'lucide-react';
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -13,8 +12,8 @@ const containerVariants = {
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+  hidden: { opacity: 0, scale: 0.95 },
+  show: { opacity: 1, scale: 1, transition: { duration: 0.3, ease: "easeOut" } }
 };
 
 const StandardGrid = ({ standards }) => {
@@ -24,43 +23,29 @@ const StandardGrid = ({ standards }) => {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: "-50px" }}
-      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pb-16 px-4 max-w-7xl mx-auto"
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-16"
     >
-      {standards.map((code, idx) => (
-        <motion.div 
-          key={idx} 
-          variants={itemVariants}
-          className="group relative bg-white border border-gray-100 p-6 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer overflow-hidden flex flex-col justify-between min-h-[140px]"
-          style={{
-            clipPath: 'polygon(0 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%)'
-          }}
-        >
-          {/* Subtle Hexagon Watermark / Background Accent */}
-          <div className="absolute -right-8 -top-8 text-gray-50 opacity-[0.03] group-hover:text-[#0D8BC5] group-hover:opacity-10 transition-colors duration-500 pointer-events-none">
-            <svg width="140" height="140" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2L22 7.77V16.23L12 22L2 16.23V7.77L12 2Z" />
-            </svg>
-          </div>
+      {standards.map((item, idx) => {
+        const isObj = typeof item === 'object' && item !== null;
+        const displayCode = isObj ? (item.code || item.name) : (item || 'Unknown');
 
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent to-gray-50/50 group-hover:to-[#0D8BC5]/5 transition-colors duration-500 z-0"></div>
-
-          <div className="relative z-10 flex flex-col h-full">
-            <div className="flex justify-between items-start mb-4">
-              <div className="w-10 h-10 rounded bg-gray-50 group-hover:bg-[#0D8BC5] flex items-center justify-center transition-colors duration-300">
-                <FileText className="text-gray-400 group-hover:text-white transition-colors duration-300" size={20} />
-              </div>
-              <ArrowRight className="text-gray-300 group-hover:text-[#0D8BC5] transform group-hover:translate-x-1 transition-all duration-300" size={20} />
+        return (
+          <motion.div 
+            key={idx} 
+            variants={itemVariants}
+            className="group flex items-center gap-3 p-3 rounded-lg border bg-white border-gray-100 hover:bg-gray-50 hover:border-[#0D8BC5]/50 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
+          >
+            <div className="w-6 h-8 bg-[#0D8BC5] text-white rounded-[4px] flex items-center justify-center relative shrink-0">
+              <span className="absolute top-0 left-0 w-full h-full rotate-[60deg] bg-inherit rounded-[inherit] -z-10"></span>
+              <span className="absolute top-0 left-0 w-full h-full -rotate-[60deg] bg-inherit rounded-[inherit] -z-10"></span>
+              <i className="icon-angle-right text-sm"></i>
             </div>
-            
-            <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#0D8BC5] transition-colors duration-300 leading-snug">
-              {code}
-            </h3>
-          </div>
-          
-          {/* Bottom border highlight on hover */}
-          <div className="absolute bottom-0 left-0 w-full h-1 bg-[#0D8BC5] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-20"></div>
-        </motion.div>
-      ))}
+            <span className="text-xs font-bold text-gray-700 group-hover:text-[#0D8BC5] transition-colors leading-snug">
+              {displayCode}
+            </span>
+          </motion.div>
+        );
+      })}
     </motion.div>
   );
 };

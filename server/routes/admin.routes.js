@@ -1,5 +1,5 @@
 import express from 'express';
-import { loginAdmin, logoutAdmin, checkAuth } from '../controllers/admin.controller.js';
+import { loginAdmin, logoutAdmin, checkAuth, requestOtp, resetPassword } from '../controllers/admin.controller.js';
 import { createBlog, updateBlog, deleteBlog } from '../controllers/blog.controller.js';
 import { requireAdmin } from '../middleware/auth.middleware.js';
 import { uploadBlogImage } from '../middleware/upload.middleware.js';
@@ -10,6 +10,8 @@ const router = express.Router();
 router.post('/login', loginAdmin);
 router.post('/logout', logoutAdmin);
 router.get('/me', requireAdmin, checkAuth);
+router.post('/forgot-password', requestOtp);
+router.post('/reset-password', resetPassword);
 
 // Protected Blog Management routes
 router.post('/blogs', requireAdmin, uploadBlogImage, createBlog);

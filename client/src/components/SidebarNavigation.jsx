@@ -10,10 +10,10 @@ const SidebarNavigation = ({ type = 'products' }) => {
       title: 'Products',
       items: [
         { name: 'Bolts', path: '/bolts' },
-        { name: 'Screws', path: '/screw' },
-        { name: 'Stud Bolts', path: '/stud-bolts' },
         { name: 'Nuts', path: '/nuts' },
+        { name: 'Stud Bolts', path: '/stud-bolts' },
         { name: 'Washers', path: '/washers' },
+        { name: 'Screws', path: '/screw' },
         { name: 'Accessories', path: '/accessories' },
       ],
     },
@@ -43,12 +43,14 @@ const SidebarNavigation = ({ type = 'products' }) => {
     standards: {
       title: 'Standards',
       items: [
+        { name: 'ASME', path: '/asme-standards' },
+        { name: 'BIS', path: '/bis-standards' },
+        { name: 'BS', path: '/bs-standards' },
         { name: 'DIN', path: '/din-standards' },
         { name: 'ISO', path: '/iso-standards' },
-        { name: 'ASTM', path: '/astm-standards' },
-        { name: 'BS', path: '/bs-standards' },
-        { name: 'ANSI', path: '/ansi-standards' },
-        { name: 'JIS', path: '/jis-standards' },
+        { name: 'SAE', path: '/sae-standards' },
+        { name: 'UNI', path: '/uni-standards' },
+
       ],
     },
   };
@@ -84,9 +86,8 @@ const SidebarNavigation = ({ type = 'products' }) => {
               <li key={idx} className="border-b border-gray-100 last:border-none">
                 <Link
                   to={item.path}
-                  className={`flex items-center text-xs font-bold py-3 transition-all duration-300 hover:pl-2 sidebar-link-item ${
-                    isActive ? 'sidebar-active' : ''
-                  }`}
+                  className={`flex items-center text-xs font-bold py-3 transition-all duration-300 hover:pl-2 sidebar-link-item ${isActive ? 'sidebar-active' : ''
+                    }`}
                 >
                   <span className="icon-angle-right mr-2 text-xs font-bold"></span>
                   {item.name}

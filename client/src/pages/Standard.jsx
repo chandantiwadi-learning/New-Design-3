@@ -30,10 +30,10 @@ const fadeRight = {
 const Standard = () => {
   return (
     <div className="standards-page bg-white text-gray-700 select-none">
-      
+
       {/* Premium Dark Top Banner matching About.jsx */}
       <section className="relative h-[520px] md:h-[600px] flex items-center justify-center overflow-hidden bg-gray-900">
-        
+
         {/* Custom HUD Animations for Hero */}
         <style>{`
           @keyframes floatLogo {
@@ -110,7 +110,7 @@ const Standard = () => {
           transition={{ duration: 2, ease: "easeOut" }}
         >
           <img src="/images/standards/standard.jpg" alt="Standard Banner" className="w-full h-full object-cover object-[80%_center] md:object-[75%_center] lg:object-center" />
-          
+
           {/* Gradient Overlay & Blur for clarity on right side */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/80 md:from-black/60 via-black/40 md:via-black/20 to-transparent lg:to-transparent/10 z-10 pointer-events-none"></div>
           <div className="absolute inset-0 backdrop-blur-md z-10 pointer-events-none" style={{ WebkitMaskImage: 'linear-gradient(to right, black 0%, transparent 55%)', maskImage: 'linear-gradient(to right, black 0%, transparent 55%)' }}></div>
@@ -125,7 +125,7 @@ const Standard = () => {
           >
             <i className="icon-flag text-4xl text-[#0D8BC5]"></i>
           </motion.div>
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -153,12 +153,12 @@ const Standard = () => {
       {/* Main Content & Sidebar Layout */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="flex flex-col md:flex-row gap-12">
-          
+
           {/* Main Content Area (3/4 width) */}
           <main className="flex-grow md:w-3/4 space-y-16">
-            
+
             {/* Intro Text */}
-            <motion.div 
+            <motion.div
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: "-100px" }}
@@ -175,7 +175,7 @@ const Standard = () => {
 
 
             {/* Featured Standards Section */}
-            <motion.div 
+            <motion.div
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: "-100px" }}
@@ -192,61 +192,46 @@ const Standard = () => {
                 </p>
               </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Card 1 */}
-                <motion.div variants={fadeUp} className="group bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#0D8BC5]/5 rounded-bl-[100px] transition-transform duration-500 group-hover:scale-150 z-0"></div>
-                  <div className="relative z-10">
-                    <h4 className="text-lg font-extrabold text-gray-900 uppercase tracking-wider mb-6 pb-4 border-b border-gray-100 flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-[#0D8BC5]/10 flex items-center justify-center text-[#0D8BC5]">
-                        <i className="icon-wrench"></i>
-                      </div>
-                      Imperial Standards
-                    </h4>
-                    <ul className="space-y-4">
-                      {[
-                        { name: 'ASME Standards (B18.2.1, B18.2.2, B18.3)', path: '/asme-standards' },
-                        { name: 'SAE Standards (Aerospace & Auto)', path: '/sae-standards' },
-                        { name: 'BS Standards (British Standard)', path: '/bs-standards' },
-                      ].map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <i className="icon-angle-right text-[#0D8BC5] text-sm mt-1.5"></i>
-                          <Link to={item.path} className="text-base font-bold text-gray-600 hover:text-[#0D8BC5] transition-colors">{item.name}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {[
+                  { name: 'ASME Standards', desc: 'American Society of Mechanical Engineers - Key dimensional codes for industrial fasteners.', path: '/asme-standards', icon: 'icon-cogs' },
 
-                {/* Card 2 */}
-                <motion.div variants={fadeUp} className="group bg-white border border-gray-100 p-8 rounded-2xl shadow-sm hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#0D8BC5]/5 rounded-bl-[100px] transition-transform duration-500 group-hover:scale-150 z-0"></div>
-                  <div className="relative z-10">
-                    <h4 className="text-lg font-extrabold text-gray-900 uppercase tracking-wider mb-6 pb-4 border-b border-gray-100 flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-lg bg-[#0D8BC5]/10 flex items-center justify-center text-[#0D8BC5]">
-                        <i className="icon-globe"></i>
+                  { name: 'BIS Standards', desc: 'Bureau of Indian Standards - National requirements for domestic infrastructure.', path: '/bis-standards', icon: 'icon-check' },
+
+                  { name: 'BS Standards', desc: 'British Standards - Historic and modern fastener specifications used in the UK.', path: '/bs-standards', icon: 'icon-briefcase' },
+
+                  { name: 'DIN Standards', desc: 'Deutsches Institut für Normung - German standard for fasteners commonly used globally.', path: '/din-standards', icon: 'icon-globe' },
+
+                  { name: 'ISO Standards', desc: 'International Organization for Standardization - Global metric fastener dimensions.', path: '/iso-standards', icon: 'icon-flag' },
+
+                  { name: 'SAE Standards', desc: 'Society of Automotive Engineers - Crucial specifications for automotive fasteners.', path: '/sae-standards', icon: 'icon-truck' },
+
+                  { name: 'UNI Standards', desc: 'Ente Nazionale Italiano di Unificazione - Italian standard equivalents.', path: '/uni-standards', icon: 'icon-building' }
+
+                ].map((std, idx) => (
+                  <motion.div key={idx} variants={fadeUp} className="group bg-white border border-gray-100 p-6 rounded-2xl shadow-sm hover:shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden flex flex-col h-full">
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-[#0D8BC5]/5 rounded-bl-[100px] transition-transform duration-500 group-hover:scale-150 z-0"></div>
+                    <div className="relative z-10 flex flex-col h-full">
+                      <div className="w-12 h-12 rounded-xl bg-[#0D8BC5]/10 flex items-center justify-center text-[#0D8BC5] mb-4 group-hover:bg-[#0D8BC5] group-hover:text-white transition-colors duration-300">
+                        <i className={`${std.icon} text-xl`}></i>
                       </div>
-                      Metric Standards
-                    </h4>
-                    <ul className="space-y-4">
-                      {[
-                        { name: 'DIN Standards (DIN 931, 933, 912, 934)', path: '/din-standards' },
-                        { name: 'ISO Standards (Global Metric Fasteners)', path: '/iso-standards' },
-                        { name: 'UNI & BIS (Italian & Indian Templates)', path: '/uni-standards' },
-                      ].map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <i className="icon-angle-right text-[#0D8BC5] text-sm mt-1.5"></i>
-                          <Link to={item.path} className="text-base font-bold text-gray-600 hover:text-[#0D8BC5] transition-colors">{item.name}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
+                      <h4 className="text-lg font-extrabold text-gray-900 uppercase tracking-wider mb-2">
+                        {std.name}
+                      </h4>
+                      <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
+                        {std.desc}
+                      </p>
+                      <Link to={std.path} className="inline-flex items-center gap-2 text-[#0D8BC5] font-bold text-xs uppercase tracking-widest hover:text-[#0a192f] transition-colors mt-auto">
+                        View Standards <i className="icon-angle-right"></i>
+                      </Link>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
             </motion.div>
 
             {/* Metrology lab info */}
-            <motion.div 
+            <motion.div
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, margin: "-50px" }}
@@ -257,7 +242,7 @@ const Standard = () => {
                 <img src="/images/standards/zero_defect.jpg" alt="HEX INDIA Dimensional Gauging" className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-[#0a192f]/20 group-hover:bg-transparent transition-colors duration-500"></div>
               </div>
-              
+
               <div className="w-full lg:w-2/3 space-y-6">
                 <h6 className="text-[#0D8BC5] font-bold text-xs uppercase tracking-[0.2em]">Zero Defect Conformance</h6>
                 <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">Calibration & Metrology Lab</h3>
@@ -265,7 +250,7 @@ const Standard = () => {
                   Our calibrating laboratories maintain high quality standards. We regularly calibrate our micrometer scales, thread check templates, ring gauges, and coordinate measurement tools against national testing benchmarks. This ensures metric and imperial tolerances remain precise and zero-defect throughout fabrication.
                 </p>
                 <Link to="/contact" className="inline-flex items-center gap-2 bg-[#0a192f] hover:bg-[#0D8BC5] text-white px-8 py-4 rounded-xl font-bold uppercase tracking-wider text-sm transition-all duration-300 hover:shadow-[0_10px_25px_rgba(13,139,197,0.4)] group">
-                  Enquire for Metrology Data 
+                  Enquire for Metrology Data
                   <i className="icon-angle-right text-lg transition-transform duration-300 group-hover:translate-x-1"></i>
                 </Link>
               </div>

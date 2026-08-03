@@ -42,371 +42,53 @@ const StainlessSteel = () => {
               </div>
 
               {/* Lists and sections */}
-              <div className="border-t border-gray-100 pt-8 flex flex-col gap-8">
+              <div className="border-t border-gray-100 pt-8 flex flex-col gap-10">
                 <div>
                   <h4 className="text-themeDarkGrey font-bold text-lg mb-4">Stainless Steel Fastener Grades :</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <ul className="flex flex-col gap-3">
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {[
+                      'Stainless Steel 304', 'Stainless Steel 304L', 'Stainless Steel 304H',
+                      'Stainless Steel 309', 'Stainless Steel 309s', 'Stainless Steel 310',
+                      'Stainless Steel 310s', 'Stainless Steel 316', 'Stainless Steel 316L',
+                      'Stainless Steel 316Ti', 'Stainless Steel 316H', 'Stainless Steel 317',
+                      'Stainless Steel 317L', 'Stainless Steel 321', 'Stainless Steel 321H',
+                      'Stainless Steel 347', 'Stainless Steel 347H', 'Stainless Steel 348H',
+                      'Stainless Steel 409', 'Stainless Steel 410', 'Stainless Steel 416',
+                      'Stainless Steel 420', 'Stainless Steel 429', 'Stainless Steel 430',
+                      'Stainless Steel 430F', 'Stainless Steel 43', 'Stainless Steel 440C',
+                      'Stainless Steel 446', 'Stainless Steel 904L', '15-5ph',
+                      '17-4ph', 'Alloy 20', 'Alloy A286', 'Alloy 254smo',
+                      'Nitronic 50', 'Nitronic 60'
+                    ].map((grade, idx) => (
+                      <div key={idx} className="group flex items-center gap-3 p-3 rounded-lg border bg-white border-gray-100 hover:bg-gray-50 hover:border-[#0D8BC5]/50 transition-all duration-300">
+                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative shrink-0">
                           <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
                           <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
                           <i className="icon-angle-right"></i>
                         </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 304</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 304L</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 304H</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 309</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 309s</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 310</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 310s</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 316</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 316L</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 316Ti</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 316H</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 317</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 317L</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 321</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 321H</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 347</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 347H</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 348H</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 409</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 410</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 416</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 420</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 429</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 430</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 430F</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 43</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 440C</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 446</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel 904L</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">15-5ph</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">17-4ph</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Alloy 20</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Alloy A286</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Alloy 254smo</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Nitronic 50</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Nitronic 60</span>
-                      </li>
-                    </ul>
+                        <span className="text-xs font-semibold text-themeDarkGrey group-hover:text-themeBlue transition-colors">{grade}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
+
                 <div>
-                  <h4 className="text-themeDarkGrey font-bold text-lg mb-4">Stainless Steel Fastener Grades :</h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <ul className="flex flex-col gap-3">
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
+                  <h4 className="text-themeDarkGrey font-bold text-lg mb-4">Types of Stainless Steel Fasteners :</h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {[
+                      'Stainless Steel Bolts', 'Stainless Steel Screws', 'Stainless Steel Stud Bolts',
+                      'Stainless Steel Threaded Rod', 'Stainless Steel Nuts', 'Stainless Steel Washers',
+                      'Stainless Steel Dowel Pins', 'Stainless Steel Custom Fasteners'
+                    ].map((type, idx) => (
+                      <div key={idx} className="group flex items-center gap-3 p-3 rounded-lg border bg-white border-gray-100 hover:bg-gray-50 hover:border-[#0D8BC5]/50 transition-all duration-300">
+                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative shrink-0">
                           <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
                           <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
                           <i className="icon-angle-right"></i>
                         </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel Bolts</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel Screws</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel Stud Bolts</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel Threaded Rod</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel Nuts</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel Washers</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel Dowel Pins</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <div className="w-6 h-8 bg-themeBlue text-white rounded-[4px] flex items-center justify-center relative">
-                          <span className="absolute top-0 left-0 w-full h-full rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <span className="absolute top-0 left-0 w-full h-full -rotate(60deg) bg-inherit rounded-[inherit] -z-10"></span>
-                          <i className="icon-angle-right"></i>
-                        </div>
-                        <span className="text-xs font-semibold text-themeDarkGrey">Stainless Steel Components</span>
-                      </li>
-                    </ul>
+                        <span className="text-xs font-semibold text-themeDarkGrey group-hover:text-themeBlue transition-colors">{type}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

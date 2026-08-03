@@ -20,10 +20,10 @@ const SidebarContactForm = () => {
   } = formMethods;
 
   return (
-    <figure className="widget">
-      <figcaption>
-        <h4>Contact Us</h4>
-      </figcaption>
+    <div className="bg-[#f9fafd] border border-gray-100 rounded-xl p-6 shadow-sm w-full">
+      <h4 className="text-primary font-extrabold text-xs uppercase tracking-widest border-b-2 border-primary pb-3 mb-4">
+        Contact Us
+      </h4>
       <div className="relative">
         {isSuccess ? (
           <div className="flex flex-col items-center justify-center py-10 px-4 text-center space-y-4 bg-white">
@@ -73,14 +73,16 @@ const SidebarContactForm = () => {
             
             {/* Turnstile Captcha */}
             {turnstileSiteKey && (
-              <div className="flex flex-col gap-2 mb-3 mt-1">
-                <Turnstile 
-                  siteKey={turnstileSiteKey}
-                  onSuccess={(token) => setValue('turnstileToken', token, { shouldValidate: true })}
-                  onError={() => setValue('turnstileToken', '')}
-                  onExpire={() => setValue('turnstileToken', '')}
-                  options={{ theme: 'light', size: 'normal' }}
-                />
+              <div className="flex flex-col gap-2 mb-3 mt-1 overflow-hidden">
+                <div className="w-full flex justify-center scale-95 origin-left sm:scale-100 sm:origin-center">
+                  <Turnstile 
+                    siteKey={turnstileSiteKey}
+                    onSuccess={(token) => setValue('turnstileToken', token, { shouldValidate: true })}
+                    onError={() => setValue('turnstileToken', '')}
+                    onExpire={() => setValue('turnstileToken', '')}
+                    options={{ theme: 'light', size: 'flexible' }}
+                  />
+                </div>
                 {errors.turnstileToken && (
                   <p className="text-xs text-red-500 font-semibold">
                     {errors.turnstileToken.message}
@@ -108,7 +110,7 @@ const SidebarContactForm = () => {
           </form>
         )}
       </div>
-    </figure>
+    </div>
   );
 };
 

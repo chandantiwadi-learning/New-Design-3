@@ -67,3 +67,37 @@ export const sendCustomerAutoReply = async (data) => {
     throw new Error(error.message);
   }
 };
+
+export const sendAdminOTPEmail = async (email, otp) => {
+  if (!resend) {
+    console.log(`[MOCK EMAIL] OTP for ${email} is ${otp}`);
+    return;
+  }
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+      <h2 style="color: #0D8BC5;">Password Reset Request</h2>
+      <p>Hello,</p>
+      <p>You requested to reset your admin password for HEX INDIA Blog Management Portal.</p>
+      <p>Your One-Time Password (OTP) is:</p>
+      <div style="background-color: #f4f4f4; padding: 15px; font-size: 24px; font-weight: bold; text-align: center; letter-spacing: 5px; margin: 20px 0;">
+        ${otp}
+      </div>
+      <p>This OTP is valid for 10 minutes. If you did not request this, please ignore this email.</p>
+      <br/>
+      <p>Best Regards,</p>
+      <p><strong>The HEX INDIA Team</strong></p>
+    </div>
+  `;
+
+  const { error } = await resend.emails.send({
+    from: env.MAIL_FROM,
+    to: [email],
+    subject: `Admin Password Reset OTP: ${otp}`,
+    html,
+  });
+  
+  if (error) {
+    throw new Error(error.message);
+  }
+};

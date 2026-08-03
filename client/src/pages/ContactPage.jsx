@@ -357,6 +357,7 @@ const ContactPage = () => {
                             onExpire={() => setValue('turnstileToken', '')}
                             options={{
                               theme: 'light',
+                              size: 'flexible'
                             }}
                           />
                           <AnimatePresence>

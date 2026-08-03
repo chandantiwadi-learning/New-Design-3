@@ -335,7 +335,7 @@ const About = () => {
           }
         `}</style>
 
-            <div className="relative w-[300px] h-[300px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] flex items-center justify-center" style={{ animation: 'hudPulse 6s ease-in-out infinite' }}>
+            <div className="relative w-[280px] h-[280px] sm:w-[300px] sm:h-[300px] md:w-[360px] md:h-[360px] lg:w-[400px] lg:h-[400px] flex items-center justify-center" style={{ animation: 'hudPulse 6s ease-in-out infinite' }}>
               {/* Animated HUD Logo at Top Right */}
               <div
                 className="relative z-50 w-[110%] h-[110%] md:w-[115%] md:h-[115%] flex justify-center items-center logo-hud-enter mx-auto"

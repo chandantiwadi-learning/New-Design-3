@@ -147,7 +147,7 @@ const Navbar = () => {
 
           {/* Mobile Hamburger Toggle */}
           <button
-            className="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-md hover:bg-gray-50 transition-colors z-[60] mr-4 relative"
+            className="md:hidden flex flex-col justify-center items-center w-11 h-11 rounded-md hover:bg-gray-50 transition-colors z-[60] mr-4 relative"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle Menu"
           >
@@ -203,7 +203,7 @@ const Navbar = () => {
                 Material
               </Link>
               <div className="absolute left-0 top-[100%] pt-2 w-[260px] opacity-0 pointer-events-none translate-y-2 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 focus-within:opacity-100 focus-within:pointer-events-auto focus-within:translate-y-0 transition-all duration-300 ease-out z-[100]">
-                <div className="bg-[#0D8BC5] rounded-xl shadow-lg py-2 flex flex-col overflow-hidden border border-[#086a98]">
+                <div className="bg-[#0D8BC5] rounded-xl shadow-lg py-2 flex flex-col overflow-y-auto max-h-[400px] scrollbar-thin border border-[#086a98]">
                   {navLinks.find(link => link.name === 'Material')?.submenu?.map((item, idx) => (
                     <div key={idx}>
                       <Link
