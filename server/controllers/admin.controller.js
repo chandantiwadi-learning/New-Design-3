@@ -154,12 +154,13 @@ export const requestOtp = async (req, res) => {
     const expiresAt = Date.now() + 10 * 60 * 1000; // 10 minutes
 
     otpStore.set(trimmedEmail, { otp, expiresAt });
+    console.log(`[OTP GENERATED] OTP generated for admin email: ${trimmedEmail}`);
 
     await sendAdminOTPEmail(trimmedEmail, otp);
 
     return res.status(200).json({ success: true, message: 'OTP sent successfully.' });
   } catch (error) {
-    console.error('Error sending OTP:', error);
+    console.error('Error sending OTP:', error.message);
     return res.status(500).json({ success: false, message: 'Failed to send OTP.' });
   }
 };
@@ -187,6 +188,8 @@ export const resetPassword = async (req, res) => {
       return res.status(400).json({ success: false, message: 'OTP has expired.' });
     }
 
+    console.log(`[OTP VERIFIED] OTP verified successfully for admin email: ${trimmedEmail}`);
+
     // OTP is valid, update password
     const admins = getAdmins();
     const adminIndex = admins.findIndex(a => a.email.toLowerCase() === trimmedEmail);
@@ -198,12 +201,14 @@ export const resetPassword = async (req, res) => {
     admins[adminIndex].password = bcrypt.hashSync(newPassword, 10);
     saveAdmins(admins);
     
-    // Clear OTP
+    console.log(`[PASSWORD RESET] Password successfully reset for admin email: ${trimmedEmail}`);
+    
+    // Clear OTP immediately after successful use
     otpStore.delete(trimmedEmail);
 
     return res.status(200).json({ success: true, message: 'Password reset successfully. You can now login.' });
   } catch (error) {
-    console.error('Error resetting password:', error);
+    console.error('Error resetting password:', error.message);
     return res.status(500).json({ success: false, message: 'Failed to reset password.' });
   }
 };

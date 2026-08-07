@@ -5,6 +5,7 @@ export const enquirySchema = z.object({
   email: z.string().email('Invalid email address').trim(),
   phone: z.string().min(10, 'Phone number must be at least 10 characters').max(20, 'Phone number is too long').trim(),
   company: z.string().max(100, 'Company name is too long').trim().optional(),
+  country: z.string().max(100, 'Country name is too long').trim().optional(),
   subject: z.string().max(150, 'Subject is too long').trim().optional(),
   message: z.string().min(10, 'Message must be at least 10 characters').max(2000, 'Message is too long').trim(),
   turnstileToken: z.string().min(1, 'CAPTCHA verification is required'),

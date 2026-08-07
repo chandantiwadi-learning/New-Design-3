@@ -35,13 +35,25 @@ export const setupSecurity = (app) => {
   });
 };
 
-// Rate limiter for enquiry submissions
+// Rate limiter for enquiry submissions (5 per minute)
 export const enquiryRateLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
+  windowMs: 1 * 60 * 1000, // 1 minute
   max: 5, // Limit each IP to 5 requests per windowMs
   message: {
     success: false,
-    message: 'Too many requests from this IP, please try again after 15 minutes.',
+    message: 'Too many requests from this IP, please try again after 1 minute.',
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Rate limiter for OTP requests (3 per hour)
+export const otpRateLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 3, // Limit each IP to 3 requests per hour
+  message: {
+    success: false,
+    message: 'Too many OTP requests from this IP, please try again after an hour.',
   },
   standardHeaders: true,
   legacyHeaders: false,

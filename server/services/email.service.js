@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import { env } from '../config/env.js';
+import { renderEmailTemplate } from '../utils/emailHelpers.js';
 
 let resend;
 
@@ -12,59 +13,51 @@ if (env.RESEND_API_KEY) {
 export const sendCompanyAlert = async (data) => {
   if (!resend) return;
 
-  const html = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
-      <h2 style="color: #0D8BC5;">New Website Enquiry</h2>
-      <p><strong>Reference ID:</strong> ${data.referenceId}</p>
-      <p><strong>Date/Time:</strong> ${data.date} ${data.time}</p>
-      <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;" />
-      <p><strong>Name:</strong> ${data.name}</p>
-      <p><strong>Email:</strong> ${data.email}</p>
-      <p><strong>Phone:</strong> ${data.phone}</p>
-      <p><strong>Company:</strong> ${data.company || 'N/A'}</p>
-      <p><strong>Subject:</strong> ${data.subject || 'N/A'}</p>
-      <p><strong>Message:</strong><br/>${data.message.replace(/\n/g, '<br/>')}</p>
-    </div>
-  `;
+  try {
+    const html = renderEmailTemplate('companyNotification.html', data);
 
-  const { error } = await resend.emails.send({
-    from: env.MAIL_FROM,
-    to: [env.EMAIL_TO],
-    bcc: env.EMAIL_BCC ? [env.EMAIL_BCC] : undefined,
-    subject: `New Website Enquiry - ${data.referenceId}`,
-    html,
-  });
-  
-  if (error) {
-    throw new Error(error.message);
+    const { error } = await resend.emails.send({
+      from: env.EMAIL_FROM,
+      to: [env.COMPANY_EMAIL],
+      bcc: env.EMAIL_BCC ? [env.EMAIL_BCC] : undefined,
+      subject: `New Website Enquiry - ${data.referenceId}`,
+      html,
+    });
+    
+    if (error) {
+      console.error(`[EMAIL FAILED] Company alert for Ref ${data.referenceId} failed:`, error.message);
+      throw new Error(error.message);
+    }
+    
+    console.log(`[EMAIL SENT] Company alert for Ref ${data.referenceId} sent successfully.`);
+  } catch (error) {
+    console.error(`[EMAIL FAILED] Error processing company alert for Ref ${data.referenceId}:`, error.message);
+    throw error;
   }
 };
 
 export const sendCustomerAutoReply = async (data) => {
   if (!resend) return;
 
-  const html = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
-      <h2 style="color: #0D8BC5;">Thank you for contacting HEX INDIA</h2>
-      <p>Dear ${data.name},</p>
-      <p>We have successfully received your enquiry. Our team will review your message and get back to you shortly.</p>
-      <p><strong>Your Reference ID:</strong> ${data.referenceId}</p>
-      <p>If you have any urgent queries, please reply to this email or call us directly.</p>
-      <br/>
-      <p>Best Regards,</p>
-      <p><strong>The HEX INDIA Team</strong></p>
-    </div>
-  `;
+  try {
+    const html = renderEmailTemplate('customerThankYou.html', data);
 
-  const { error } = await resend.emails.send({
-    from: env.MAIL_FROM,
-    to: [data.email],
-    subject: `Thank you for your Enquiry (Ref: ${data.referenceId})`,
-    html,
-  });
-  
-  if (error) {
-    throw new Error(error.message);
+    const { error } = await resend.emails.send({
+      from: env.EMAIL_FROM,
+      to: [data.email],
+      subject: `Thank you for your Enquiry (Ref: ${data.referenceId})`,
+      html,
+    });
+    
+    if (error) {
+      console.error(`[EMAIL FAILED] Customer auto-reply to ${data.email} failed:`, error.message);
+      throw new Error(error.message);
+    }
+
+    console.log(`[EMAIL SENT] Customer auto-reply to ${data.email} sent successfully.`);
+  } catch (error) {
+    console.error(`[EMAIL FAILED] Error processing customer auto-reply to ${data.email}:`, error.message);
+    throw error;
   }
 };
 
@@ -74,30 +67,24 @@ export const sendAdminOTPEmail = async (email, otp) => {
     return;
   }
 
-  const html = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
-      <h2 style="color: #0D8BC5;">Password Reset Request</h2>
-      <p>Hello,</p>
-      <p>You requested to reset your admin password for HEX INDIA Blog Management Portal.</p>
-      <p>Your One-Time Password (OTP) is:</p>
-      <div style="background-color: #f4f4f4; padding: 15px; font-size: 24px; font-weight: bold; text-align: center; letter-spacing: 5px; margin: 20px 0;">
-        ${otp}
-      </div>
-      <p>This OTP is valid for 10 minutes. If you did not request this, please ignore this email.</p>
-      <br/>
-      <p>Best Regards,</p>
-      <p><strong>The HEX INDIA Team</strong></p>
-    </div>
-  `;
+  try {
+    const html = renderEmailTemplate('otp.html', { otp });
 
-  const { error } = await resend.emails.send({
-    from: env.MAIL_FROM,
-    to: [email],
-    subject: `Admin Password Reset OTP: ${otp}`,
-    html,
-  });
-  
-  if (error) {
-    throw new Error(error.message);
+    const { error } = await resend.emails.send({
+      from: env.EMAIL_FROM,
+      to: [email],
+      subject: `Admin Password Reset OTP: ${otp}`,
+      html,
+    });
+    
+    if (error) {
+      console.error(`[EMAIL FAILED] OTP email to ${email} failed:`, error.message);
+      throw new Error(error.message);
+    }
+
+    console.log(`[EMAIL SENT] OTP email to ${email} sent successfully.`);
+  } catch (error) {
+    console.error(`[EMAIL FAILED] Error processing OTP email to ${email}:`, error.message);
+    throw error;
   }
 };

@@ -9,7 +9,7 @@ export const submitEnquiry = async (req, res, next) => {
   console.log(`[ENQUIRY] STEP 1: Request received from IP: ${req.ip}`);
   
   try {
-    const { name, email, phone, company, subject, message, turnstileToken } = req.body;
+    const { name, email, phone, company, country, subject, message, turnstileToken } = req.body;
     const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
 
     // STEP 2 & 3: Turnstile Verification
@@ -20,8 +20,7 @@ export const submitEnquiry = async (req, res, next) => {
       console.log(`[ENQUIRY] STEP 3: Turnstile verification result: ${isValidCaptcha}`);
     } catch (turnstileError) {
       console.error(`[ENQUIRY] ❌ ERROR during Turnstile verification:`, turnstileError.message);
-      console.error(turnstileError.stack);
-      return res.status(500).json({ success: false, message: 'Turnstile service failure: ' + turnstileError.message });
+      return res.status(500).json({ success: false, message: 'Turnstile service failure.' });
     }
 
     if (!isValidCaptcha) {
@@ -38,7 +37,7 @@ export const submitEnquiry = async (req, res, next) => {
     const userAgent = req.headers['user-agent'] || 'Unknown';
 
     const enquiryData = {
-      referenceId, date, time, name, email, phone, company: company || '', subject: subject || '', message, ip, userAgent
+      referenceId, date, time, name, email, phone, company: company || 'N/A', country: country || 'N/A', subject: subject || 'N/A', message, ip, userAgent
     };
 
     console.log(`[ENQUIRY] 🆔 Generated Reference ID: ${referenceId}`);
@@ -47,14 +46,12 @@ export const submitEnquiry = async (req, res, next) => {
     console.log(`[ENQUIRY] STEP 4: Google Sheets connection starting...`);
     try {
       const sheetResponse = await appendToSheet(enquiryData);
-      console.log(`[ENQUIRY] STEP 5: Google Sheets append response success!`);
+      console.log(`[GOOGLE SHEETS SUCCESS] Data appended for Ref ${referenceId}`);
       console.log(`✔ Google Sheet updated`);
     } catch (sheetError) {
-      console.error(`[ENQUIRY] ❌ Google Sheets insertion failed!`);
-      console.error(`Message:`, sheetError.message);
-      console.error(`Stack:`, sheetError.stack);
+      console.error(`[GOOGLE SHEETS FAILED] Insertion failed for Ref ${referenceId}:`, sheetError.message);
       // If this fails, the system aborts and returns an error.
-      return res.status(500).json({ success: false, message: 'Google Sheets Error: ' + sheetError.message });
+      return res.status(500).json({ success: false, message: 'Failed to save enquiry data.' });
     }
 
     // STEP 6 & 7: Send Company Email
@@ -64,9 +61,7 @@ export const submitEnquiry = async (req, res, next) => {
       console.log(`[ENQUIRY] STEP 7: Company email success!`);
       console.log(`✔ Company email sent`);
     } catch (companyEmailError) {
-      console.error(`[ENQUIRY] ❌ Company email failed!`);
-      console.error(`Message:`, companyEmailError.message);
-      console.error(`Stack:`, companyEmailError.stack);
+      console.error(`[ENQUIRY] ❌ Company email failed:`, companyEmailError.message);
     }
 
     // STEP 8 & 9: Send Customer Email
@@ -76,9 +71,7 @@ export const submitEnquiry = async (req, res, next) => {
       console.log(`[ENQUIRY] STEP 9: Customer email success!`);
       console.log(`✔ Customer email sent`);
     } catch (customerEmailError) {
-      console.error(`[ENQUIRY] ❌ Customer email failed!`);
-      console.error(`Message:`, customerEmailError.message);
-      console.error(`Stack:`, customerEmailError.stack);
+      console.error(`[ENQUIRY] ❌ Customer email failed:`, customerEmailError.message);
     }
 
     const processingTime = Date.now() - startTime;
@@ -94,11 +87,9 @@ export const submitEnquiry = async (req, res, next) => {
     });
   } catch (error) {
     const processingTime = Date.now() - startTime;
-    console.error(`[ENQUIRY] ❌ Unexpected Error after ${processingTime}ms:`);
-    console.error(`Message:`, error.message);
-    console.error(`Stack:`, error.stack);
+    console.error(`[ENQUIRY] ❌ Unexpected Error after ${processingTime}ms:`, error.message);
     
     // Explicitly return JSON instead of passing to generic next() handler to ensure the frontend gets a readable message
-    return res.status(500).json({ success: false, message: 'Unexpected Error: ' + error.message });
+    return res.status(500).json({ success: false, message: 'An unexpected error occurred.' });
   }
 };

@@ -319,6 +319,19 @@ const ContactPage = () => {
                           />
                         </div>
                       </div>
+
+                      {/* Country */}
+                      <div className="space-y-1">
+                        <label className="text-xs font-bold text-gray-700 uppercase">Country</label>
+                        <div className="relative">
+                          <Globe className="absolute left-4 top-3.5 text-gray-400" size={18} />
+                          <input
+                            {...register('country')}
+                            className="w-full !pl-12 !pr-4 !py-3 bg-gray-50 border border-gray-200 focus:border-[#0D8BC5] rounded-xl outline-none focus:ring-4 focus:ring-[#0D8BC5]/10 placeholder-gray-400"
+                            placeholder="Country Name"
+                          />
+                        </div>
+                      </div>
                     </div>
 
                     {/* Subject */}

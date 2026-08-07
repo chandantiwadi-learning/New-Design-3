@@ -19,8 +19,8 @@ const envSchema = z.object({
   
   // Email Configuration (Resend)
   RESEND_API_KEY: z.string().optional(),
-  MAIL_FROM: z.string().optional(),
-  EMAIL_TO: z.string().optional(),
+  EMAIL_FROM: z.string().optional(),
+  COMPANY_EMAIL: z.string().optional(),
   EMAIL_BCC: z.string().optional(),
 
   // Admin & Auth Configuration
