@@ -70,18 +70,20 @@ const SidebarContactForm = () => {
                 className={errors.phone ? 'border-red-500' : ''}
               />
             </div>
-            
+
             {/* Turnstile Captcha */}
             {turnstileSiteKey && (
-              <div className="flex flex-col gap-2 mb-3 mt-1 overflow-hidden">
-                <div className="w-full flex justify-center scale-95 origin-left sm:scale-100 sm:origin-center">
-                  <Turnstile 
-                    siteKey={turnstileSiteKey}
-                    onSuccess={(token) => setValue('turnstileToken', token, { shouldValidate: true })}
-                    onError={() => setValue('turnstileToken', '')}
-                    onExpire={() => setValue('turnstileToken', '')}
-                    options={{ theme: 'light', size: 'flexible' }}
-                  />
+              <div className="flex flex-col gap-2 mb-3 mt-1">
+                <div className="w-full h-[70px] relative overflow-hidden rounded">
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-[0.85] xl:scale-95">
+                    <Turnstile
+                      siteKey={turnstileSiteKey}
+                      onSuccess={(token) => setValue('turnstileToken', token, { shouldValidate: true })}
+                      onError={() => setValue('turnstileToken', '')}
+                      onExpire={() => setValue('turnstileToken', '')}
+                      options={{ theme: 'light', size: 'normal' }}
+                    />
+                  </div>
                 </div>
                 {errors.turnstileToken && (
                   <p className="text-xs text-red-500 font-semibold">
@@ -99,7 +101,7 @@ const SidebarContactForm = () => {
                 className={`h-[120px] ${errors.message ? 'border-red-500' : ''}`}
               ></textarea>
             </div>
-            
+
             <button
               type="submit"
               disabled={isSubmitting}
