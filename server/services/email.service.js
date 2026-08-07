@@ -13,13 +13,19 @@ if (env.RESEND_API_KEY) {
 export const sendCompanyAlert = async (data) => {
   if (!resend) return;
 
+  if (!env.EMAIL_FROM) {
+    throw new Error("Validation Error: EMAIL_FROM is missing.");
+  }
+  if (!env.COMPANY_EMAIL) {
+    throw new Error("Validation Error: COMPANY_EMAIL is missing.");
+  }
+
   try {
     const html = renderEmailTemplate('companyNotification.html', data);
 
     const { error } = await resend.emails.send({
       from: env.EMAIL_FROM,
-      to: [env.COMPANY_EMAIL],
-      bcc: env.EMAIL_BCC ? [env.EMAIL_BCC] : undefined,
+      to: env.COMPANY_EMAIL,
       subject: `New Website Enquiry - ${data.referenceId}`,
       html,
     });
@@ -39,12 +45,19 @@ export const sendCompanyAlert = async (data) => {
 export const sendCustomerAutoReply = async (data) => {
   if (!resend) return;
 
+  if (!env.EMAIL_FROM) {
+    throw new Error("Validation Error: EMAIL_FROM is missing.");
+  }
+  if (!data.email) {
+    throw new Error("Validation Error: enquiry.email (customer email) is missing.");
+  }
+
   try {
     const html = renderEmailTemplate('customerThankYou.html', data);
 
     const { error } = await resend.emails.send({
       from: env.EMAIL_FROM,
-      to: [data.email],
+      to: data.email,
       subject: `Thank you for your Enquiry (Ref: ${data.referenceId})`,
       html,
     });
@@ -67,12 +80,19 @@ export const sendAdminOTPEmail = async (email, otp) => {
     return;
   }
 
+  if (!env.EMAIL_FROM) {
+    throw new Error("Validation Error: EMAIL_FROM is missing.");
+  }
+  if (!email) {
+    throw new Error("Validation Error: Admin email is missing.");
+  }
+
   try {
     const html = renderEmailTemplate('otp.html', { otp });
 
     const { error } = await resend.emails.send({
       from: env.EMAIL_FROM,
-      to: [email],
+      to: email,
       subject: `Admin Password Reset OTP: ${otp}`,
       html,
     });

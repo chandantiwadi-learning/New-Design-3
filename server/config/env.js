@@ -18,10 +18,9 @@ const envSchema = z.object({
   TURNSTILE_SECRET: z.string().optional(),
   
   // Email Configuration (Resend)
-  RESEND_API_KEY: z.string().optional(),
-  EMAIL_FROM: z.string().optional(),
-  COMPANY_EMAIL: z.string().optional(),
-  EMAIL_BCC: z.string().optional(),
+  RESEND_API_KEY: z.string().min(1, 'RESEND_API_KEY is missing. Required for email services.'),
+  EMAIL_FROM: z.string().min(1, 'EMAIL_FROM is missing. Required for email services.'),
+  COMPANY_EMAIL: z.string().min(1, 'COMPANY_EMAIL is missing. Required for email services.'),
 
   // Admin & Auth Configuration
   JWT_SECRET: z.string().default('hex_india_admin_jwt_secret_key_2026'),
