@@ -13,7 +13,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = env.PORT || 5000;
+const PORT = env.PORT || 5001;
 
 // Trust the reverse proxy (Render) so rate-limiting and IP detection work
 app.set('trust proxy', 1);

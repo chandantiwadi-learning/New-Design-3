@@ -171,6 +171,8 @@ const Home = () => {
     return () => observer.disconnect();
   }, []);
 
+  
+
 
   const slides = [
     {
@@ -387,6 +389,28 @@ const Home = () => {
           ))}
         </div>
       </div>
+
+      {/* Exotic Material Fasteners */}
+      <section className="bg-white px-4 py-14 sm:px-6 md:py-20 lg:px-8">
+        <div className="mx-auto max-w-5xl overflow-hidden rounded-2xl border border-[#0D8BC5]/10 bg-white shadow-[0_18px_45px_rgba(10,25,47,0.12)]">
+          <div className="group relative aspect-[16/8] overflow-hidden bg-[#0a192f] sm:aspect-[16/7]">
+            <img src="/images/homePage/exotic-material-fasteners.png" alt="HEX India exotic material fasteners including titanium, Hastelloy, Inconel and duplex steel fasteners" className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy" decoding="async" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a192f]/35 via-transparent to-transparent" aria-hidden="true" />
+          </div>
+          <div className="p-7 sm:p-9 md:p-11">
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#0D8BC5]">Advanced Alloy Solutions</p>
+            <h2 className="text-3xl font-extrabold tracking-tight text-[#0a192f] sm:text-4xl">Exotic Material Fasteners</h2>
+            <p className="mt-3 text-sm font-bold tracking-wide text-[#0D8BC5] sm:text-base">Titanium, Hastelloy, Inconel, Duplex Steel.</p>
+            <p className="mt-5 max-w-3xl text-sm leading-7 text-gray-600 sm:text-base">High-performance fasteners engineered for demanding applications, superior corrosion resistance, high-temperature environments, and critical industrial requirements.</p>
+            <div className="mt-7">
+              <Link to="/contact" className="group inline-flex items-center rounded-sm bg-[#0a192f] px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0D8BC5] hover:shadow-[0_8px_18px_rgba(13,139,197,0.3)] focus:outline-none focus:ring-2 focus:ring-[#0D8BC5] focus:ring-offset-2">
+                Request Quote
+                <svg className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0-7 7m7-7H3" /></svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Product Categories Grid (GEBO card style redesign) */}
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
