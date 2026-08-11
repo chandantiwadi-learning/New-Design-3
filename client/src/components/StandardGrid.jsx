@@ -35,9 +35,10 @@ const StandardGrid = ({ standards }) => {
             variants={itemVariants}
             className="group flex items-center gap-3 p-3 rounded-lg border bg-white border-gray-100 hover:bg-gray-50 hover:border-[#0D8BC5]/50 transition-all duration-300 shadow-sm hover:shadow-md cursor-pointer"
           >
-            <div className="w-6 h-8 bg-[#0D8BC5] text-white rounded-[4px] flex items-center justify-center relative shrink-0">
-              <span className="absolute top-0 left-0 w-full h-full rotate-[60deg] bg-inherit rounded-[inherit] -z-10"></span>
-              <span className="absolute top-0 left-0 w-full h-full -rotate-[60deg] bg-inherit rounded-[inherit] -z-10"></span>
+            <div 
+              className="w-8 h-9 bg-[#0D8BC5] text-white flex items-center justify-center shrink-0"
+              style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }}
+            >
               <i className="icon-angle-right text-sm"></i>
             </div>
             <span className="text-xs font-bold text-gray-700 group-hover:text-[#0D8BC5] transition-colors leading-snug">
