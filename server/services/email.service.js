@@ -4,8 +4,11 @@ import { renderEmailTemplate } from '../utils/emailHelpers.js';
 
 let resend;
 
+console.log(`[PASSWORD RESET] RESEND_API_KEY configured: ${Boolean(env.RESEND_API_KEY)}`);
+
 if (env.RESEND_API_KEY) {
-  resend = new Resend(env.RESEND_API_KEY);
+  resend = new Resend(env.RESEND_API_KEY.trim());
+  console.log('[PASSWORD RESET] Resend client initialized');
 } else {
   console.warn('⚠️ RESEND_API_KEY not configured. Emails will not be sent.');
 }

@@ -2,6 +2,7 @@ import { verifyTurnstile } from '../services/turnstile.service.js';
 import { generateReferenceId } from '../services/idGenerator.service.js';
 import { appendToSheet } from '../services/googleSheets.service.js';
 import { sendCompanyAlert, sendCustomerAutoReply } from '../services/email.service.js';
+import { Enquiry } from '../models/Enquiry.model.js';
 
 export const submitEnquiry = async (req, res, next) => {
   const startTime = Date.now();
@@ -29,8 +30,8 @@ export const submitEnquiry = async (req, res, next) => {
     }
     console.log(`✔ Turnstile verified`);
 
-    // Generate Reference ID & Metadata
-    const referenceId = generateReferenceId();
+    // Generate Atomic Reference ID from MongoDB Sequence
+    const referenceId = await generateReferenceId();
     const now = new Date();
     const date = now.toISOString().split('T')[0];
     const time = now.toTimeString().split(' ')[0];
@@ -42,10 +43,19 @@ export const submitEnquiry = async (req, res, next) => {
 
     console.log(`[ENQUIRY] 🆔 Generated Reference ID: ${referenceId}`);
 
-    // STEP 4 & 5: Save to Google Sheets
-    console.log(`[ENQUIRY] STEP 4: Google Sheets connection starting...`);
+    // STEP 4: Store in MongoDB Database
+    console.log(`[ENQUIRY] STEP 4: Saving enquiry to MongoDB...`);
     try {
-      const sheetResponse = await appendToSheet(enquiryData);
+      await Enquiry.create(enquiryData);
+      console.log(`✔ Enquiry stored in MongoDB: ${referenceId}`);
+    } catch (dbError) {
+      console.error(`[ENQUIRY DB ERROR] Failed to save enquiry to MongoDB:`, dbError.message);
+    }
+
+    // STEP 5: Save to Google Sheets
+    console.log(`[ENQUIRY] STEP 5: Google Sheets connection starting...`);
+    try {
+      await appendToSheet(enquiryData);
       console.log(`[GOOGLE SHEETS SUCCESS] Data appended for Ref ${referenceId}`);
       console.log(`✔ Google Sheet updated`);
     } catch (sheetError) {
@@ -54,7 +64,7 @@ export const submitEnquiry = async (req, res, next) => {
       return res.status(500).json({ success: false, message: 'Failed to save enquiry data.' });
     }
 
-    // STEP 6 & 7: Send Company Email
+    // STEP 6: Send Company Email
     console.log(`[ENQUIRY] STEP 6: Company email sending...`);
     try {
       await sendCompanyAlert(enquiryData);
@@ -64,7 +74,7 @@ export const submitEnquiry = async (req, res, next) => {
       console.error(`[ENQUIRY] ❌ Company email failed:`, companyEmailError.message);
     }
 
-    // STEP 8 & 9: Send Customer Email
+    // STEP 7: Send Customer Email
     console.log(`[ENQUIRY] STEP 8: Customer email sending...`);
     try {
       await sendCustomerAutoReply(enquiryData);
@@ -77,7 +87,7 @@ export const submitEnquiry = async (req, res, next) => {
     const processingTime = Date.now() - startTime;
     console.log(`[ENQUIRY] ⏱️ Completed in ${processingTime}ms`);
 
-    // STEP 10: Return HTTP response
+    // STEP 8: Return HTTP response
     console.log(`[ENQUIRY] STEP 10: Returning HTTP response...`);
     console.log(`✔ API response sent\n======================================================\n`);
     return res.status(200).json({
@@ -89,7 +99,6 @@ export const submitEnquiry = async (req, res, next) => {
     const processingTime = Date.now() - startTime;
     console.error(`[ENQUIRY] ❌ Unexpected Error after ${processingTime}ms:`, error.message);
     
-    // Explicitly return JSON instead of passing to generic next() handler to ensure the frontend gets a readable message
     return res.status(500).json({ success: false, message: 'An unexpected error occurred.' });
   }
 };

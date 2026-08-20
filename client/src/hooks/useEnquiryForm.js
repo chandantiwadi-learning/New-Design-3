@@ -24,7 +24,7 @@ export const useEnquiryForm = () => {
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const API_URL = import.meta.env.DEV ? 'http://localhost:5000/api/enquiry/config' : 'https://new-design-3-1.onrender.com/api/enquiry/config';
+        const API_URL = import.meta.env.DEV ? 'http://localhost:5001/api/enquiry/config' : 'https://new-design-3-1.onrender.com/api/enquiry/config';
         const res = await axios.get(API_URL);
         if (res.data.turnstileSiteKey) {
           setTurnstileSiteKey(res.data.turnstileSiteKey);
@@ -53,7 +53,7 @@ export const useEnquiryForm = () => {
 
   const onSubmit = async (data) => {
     try {
-      const API_URL = import.meta.env.DEV ? 'http://localhost:5000/api/enquiry' : 'https://new-design-3-1.onrender.com/api/enquiry';
+      const API_URL = import.meta.env.DEV ? 'http://localhost:5001/api/enquiry' : 'https://new-design-3-1.onrender.com/api/enquiry';
       const res = await axios.post(API_URL, data);
       
       if (res.data.success) {

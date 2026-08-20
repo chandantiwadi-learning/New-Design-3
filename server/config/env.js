@@ -1,7 +1,13 @@
 import { z } from 'zod';
 import dotenv from 'dotenv';
 import path from 'path';
+import { fileURLToPath } from 'url';
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Load from server/.env first, then process.cwd()/.env
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
 const envSchema = z.object({
@@ -21,6 +27,9 @@ const envSchema = z.object({
   RESEND_API_KEY: z.string().min(1, 'RESEND_API_KEY is missing. Required for email services.'),
   EMAIL_FROM: z.string().min(1, 'EMAIL_FROM is missing. Required for email services.'),
   COMPANY_EMAIL: z.string().min(1, 'COMPANY_EMAIL is missing. Required for email services.'),
+
+  // Database Configuration
+  MONGODB_URI: z.string().min(1, 'MONGODB_URI is required'),
 
   // Admin & Auth Configuration
   JWT_SECRET: z.string().default('hex_india_admin_jwt_secret_key_2026'),

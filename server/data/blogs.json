@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "id": "blog_1787236133988_76yd0st",
+    "title": "Dummy 2",
+    "slug": "dummy-2",
+    "shortDescription": "Hello its dummy testing 2",
+    "content": "just to check whether after changing the env its working properly or not",
+    "image": "/uploads/blogs/blog-1787236133930-42045276.jpg",
+    "date": "20 August 2026",
+    "readingTime": "1 min read",
+    "createdAt": "2026-08-20T14:28:53.957Z",
+    "updatedAt": "2026-08-20T14:28:53.957Z"
+  },
+  {
+    "id": "blog_1787233529385_69yux45",
+    "title": "Dummy Blog 1",
+    "slug": "dummy-blog-1",
+    "shortDescription": "hey its just a dummy blog to check that its working or not",
+    "content": "Hello Its just a simple data of the content check our products",
+    "image": "/uploads/blogs/blog-1787233529191-897864575.jpg",
+    "date": "20 August 2026",
+    "readingTime": "1 min read",
+    "createdAt": "2026-08-20T13:45:29.316Z",
+    "updatedAt": "2026-08-20T13:45:29.316Z"
+  }
+]

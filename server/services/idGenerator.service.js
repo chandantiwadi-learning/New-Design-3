@@ -1,32 +1,29 @@
-import fs from 'fs';
-import path from 'path';
+import { Sequence } from '../models/Sequence.model.js';
 
-// Store sequence in a local JSON file to ensure continuity across server restarts
-const SEQUENCE_FILE = path.join(process.cwd(), 'sequence.json');
-
-export const generateReferenceId = () => {
+/**
+ * Generates an atomic, monotonically increasing daily reference ID using MongoDB.
+ * Format: HX{YYYYMMDD}{0001}
+ */
+export const generateReferenceId = async () => {
   const date = new Date();
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const day = String(date.getDate()).padStart(2, '0');
   const datePrefix = `HX${year}${month}${day}`;
 
-  let currentSequence = 1;
+  try {
+    const seqDoc = await Sequence.findOneAndUpdate(
+      { datePrefix },
+      { $inc: { sequence: 1 } },
+      { upsert: true, returnDocument: 'after', setDefaultsOnInsert: true }
+    );
 
-  if (fs.existsSync(SEQUENCE_FILE)) {
-    try {
-      const data = JSON.parse(fs.readFileSync(SEQUENCE_FILE, 'utf-8'));
-      if (data.date === datePrefix) {
-        currentSequence = data.sequence + 1;
-      }
-    } catch (err) {
-      console.error('Error reading sequence file:', err);
-    }
+    const sequenceStr = String(seqDoc.sequence).padStart(4, '0');
+    return `${datePrefix}${sequenceStr}`;
+  } catch (error) {
+    console.error('Error generating MongoDB reference sequence:', error.message);
+    // Secure fallback in case of connection edge-case
+    const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+    return `${datePrefix}${randomSuffix}`;
   }
-
-  // Save new sequence
-  fs.writeFileSync(SEQUENCE_FILE, JSON.stringify({ date: datePrefix, sequence: currentSequence }));
-
-  const sequenceStr = String(currentSequence).padStart(4, '0');
-  return `${datePrefix}${sequenceStr}`;
 };

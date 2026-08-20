@@ -5,9 +5,13 @@ import { env } from './config/env.js';
 import { setupSecurity } from './middleware/security.js';
 import { errorHandler } from './middleware/errorHandler.js';
 import cookieParser from 'cookie-parser';
+import { connectDB } from './config/db.js';
 import enquiryRoutes from './routes/enquiry.routes.js';
 import blogRoutes from './routes/blog.routes.js';
 import adminRoutes from './routes/admin.routes.js';
+
+// Connect to MongoDB
+connectDB();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
