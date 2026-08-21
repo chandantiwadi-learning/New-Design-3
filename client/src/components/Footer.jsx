@@ -172,7 +172,7 @@ const Footer = () => {
           {/* Copyright */}
           <div className="text-gray-400 text-xs font-medium tracking-wide text-center md:text-left">
             © {new Date().getFullYear()} <span className="text-white font-bold">HEX INDIA FASTENERS</span>. All Rights Reserved.<br className="md:hidden" />
-            <span className="hidden md:inline"> | </span> Designed by <a href="https://chandan-tiwadi.pages.dev/" target="_blank" rel="noopener noreferrer" className="text-black hover:text-white transition-colors">Chandan Tiwadi</a>
+            <span className="hidden md:inline"> | </span> Designed by <a href="https://chandan-tiwadi.pages.dev/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-black transition-colors">Chandan Tiwadi</a>
           </div>
 
           {/* Center Links & Badges */}
