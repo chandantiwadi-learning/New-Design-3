@@ -23,7 +23,7 @@ export const useEnquiryForm = () => {
 
   useEffect(() => {
     const fetchConfig = async () => {
-      const BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5001' : '');
+      const BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5001' : 'https://hex-india-main-backend.onrender.com');
       const API_URL = `${BASE_URL}/api/enquiry/config`;
       try {
         const res = await axios.get(API_URL);
@@ -57,7 +57,7 @@ export const useEnquiryForm = () => {
   });
 
   const onSubmit = async (data) => {
-    const BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5001' : '');
+    const BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5001' : 'https://hex-india-main-backend.onrender.com');
     const API_URL = `${BASE_URL}/api/enquiry`;
     try {
       const res = await axios.post(API_URL, data);
