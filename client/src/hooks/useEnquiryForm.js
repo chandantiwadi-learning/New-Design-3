@@ -23,14 +23,19 @@ export const useEnquiryForm = () => {
 
   useEffect(() => {
     const fetchConfig = async () => {
+      const BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5001' : '');
+      const API_URL = `${BASE_URL}/api/enquiry/config`;
       try {
-        const API_URL = import.meta.env.DEV ? 'http://localhost:5001/api/enquiry/config' : 'https://new-design-3-1.onrender.com/api/enquiry/config';
         const res = await axios.get(API_URL);
         if (res.data.turnstileSiteKey) {
           setTurnstileSiteKey(res.data.turnstileSiteKey);
         }
       } catch (err) {
-        console.error('Failed to fetch turnstile config', err);
+        console.error('Failed to fetch turnstile config. Details:');
+        console.error('URL:', API_URL);
+        console.error('Status:', err.response?.status);
+        console.error('Response Body:', err.response?.data);
+        console.error('Message:', err.message);
         setTurnstileSiteKey('1x00000000000000000000AA');
       }
     };
@@ -52,8 +57,9 @@ export const useEnquiryForm = () => {
   });
 
   const onSubmit = async (data) => {
+    const BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5001' : '');
+    const API_URL = `${BASE_URL}/api/enquiry`;
     try {
-      const API_URL = import.meta.env.DEV ? 'http://localhost:5001/api/enquiry' : 'https://new-design-3-1.onrender.com/api/enquiry';
       const res = await axios.post(API_URL, data);
       
       if (res.data.success) {
@@ -63,7 +69,11 @@ export const useEnquiryForm = () => {
         toast.success('Enquiry submitted successfully!');
       }
     } catch (error) {
-      console.error(error);
+      console.error('Failed to submit enquiry. Details:');
+      console.error('URL:', API_URL);
+      console.error('Status:', error.response?.status);
+      console.error('Response Body:', error.response?.data);
+      console.error('Error Message:', error.message);
       const errorMessage = error.response?.data?.message || 'Failed to submit enquiry. Please try again.';
       toast.error(errorMessage);
       formMethods.setValue('turnstileToken', '');
