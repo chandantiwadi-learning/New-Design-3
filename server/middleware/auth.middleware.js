@@ -36,3 +36,13 @@ export const requireAdmin = async (req, res, next) => {
     });
   }
 };
+
+export const requireSuperAdmin = async (req, res, next) => {
+  if (!req.admin || req.admin.role !== 'superadmin') {
+    return res.status(403).json({
+      success: false,
+      message: 'Forbidden: Superadmin access required.',
+    });
+  }
+  next();
+};

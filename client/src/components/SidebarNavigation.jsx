@@ -42,16 +42,7 @@ const SidebarNavigation = ({ type = 'products' }) => {
     },
     standards: {
       title: 'Standards',
-      items: [
-        { name: 'ASME', path: '/asme-standards' },
-        { name: 'BIS', path: '/bis-standards' },
-        { name: 'BS', path: '/bs-standards' },
-        { name: 'DIN', path: '/din-standards' },
-        { name: 'ISO', path: '/iso-standards' },
-        { name: 'SAE', path: '/sae-standards' },
-        { name: 'UNI', path: '/uni-standards' },
-
-      ],
+      items: [],
     },
   };
 

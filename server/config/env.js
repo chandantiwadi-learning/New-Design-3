@@ -35,6 +35,15 @@ const envSchema = z.object({
   JWT_SECRET: z.string().default('hex_india_admin_jwt_secret_key_2026'),
   ADMIN_EMAIL: z.string().email().default('chandan110906@gmail.com'),
   ADMIN_PASSWORD: z.string().default('Chandan_@11'),
+
+  // WhatsApp Automation Configuration
+  META_APP_ID: z.string().optional(),
+  META_APP_SECRET: z.string().min(1, 'META_APP_SECRET is required'),
+  WHATSAPP_ACCESS_TOKEN: z.string().min(1, 'WHATSAPP_ACCESS_TOKEN is required'),
+  WHATSAPP_PHONE_NUMBER_ID: z.string().min(1, 'WHATSAPP_PHONE_NUMBER_ID is required'),
+  WHATSAPP_BUSINESS_ACCOUNT_ID: z.string().min(1, 'WHATSAPP_BUSINESS_ACCOUNT_ID is required'),
+  WHATSAPP_API_VERSION: z.string().default('v20.0'),
+  WHATSAPP_WEBHOOK_VERIFY_TOKEN: z.string().min(1, 'WHATSAPP_WEBHOOK_VERIFY_TOKEN is required'),
 });
 
 const _env = envSchema.safeParse(process.env);

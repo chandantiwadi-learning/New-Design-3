@@ -219,26 +219,11 @@ const Navbar = () => {
               </div>
             </li>
 
-            <li className={`has-submenu group relative ${location.pathname === '/standard' || isActive('/din-standards') || isActive('/iso-standards') || isActive('/astm-standards') || isActive('/bs-standards') || isActive('/ansi-standards') || isActive('/jis-standards') ? 'current_item' : ''}`}>
+            <li className={location.pathname === '/standard' ? 'current_item' : ''}>
               <Link to="/standard" className="focus:outline-none">
                 <span className="hex_elem_rounded"><i className="icon-flag"></i></span>
                 Standard
               </Link>
-              <div className="absolute left-0 top-[100%] pt-2 w-[260px] opacity-0 pointer-events-none translate-y-2 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 focus-within:opacity-100 focus-within:pointer-events-auto focus-within:translate-y-0 transition-all duration-300 ease-out z-[100]">
-                <div className="bg-[#0D8BC5] rounded-xl shadow-lg py-2 flex flex-col overflow-hidden border border-[#086a98]">
-                  {navLinks.find(link => link.name === 'Standard')?.submenu?.map((item, idx) => (
-                    <div key={idx}>
-                      <Link
-                        to={item.path}
-                        onClick={() => document.activeElement.blur()}
-                        className="block px-6 py-3 text-[14px] text-white font-medium hover:bg-[#086a98] transition-colors duration-200 cursor-pointer focus:outline-none focus:bg-[#086a98]"
-                      >
-                        {item.name}
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-              </div>
             </li>
 
             <li className={isActive('/contact') ? 'current_item' : ''}>

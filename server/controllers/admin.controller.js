@@ -265,3 +265,65 @@ export const resetPassword = async (req, res) => {
     return res.status(500).json({ success: false, message: 'Failed to reset password.' });
   }
 };
+
+// ============================================
+// Member Management (Superadmin Only)
+// ============================================
+
+export const getMembers = async (req, res) => {
+  try {
+    const members = await Admin.find({}).select('-password');
+    res.status(200).json({ success: true, members });
+  } catch (error) {
+    console.error('Error fetching members:', error);
+    res.status(500).json({ success: false, message: 'Server Error' });
+  }
+};
+
+export const addMember = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).json({ success: false, message: 'Email and password are required' });
+    }
+
+    const existingAdmin = await Admin.findOne({ email: email.toLowerCase() });
+    if (existingAdmin) {
+      return res.status(400).json({ success: false, message: 'Admin already exists' });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newAdmin = new Admin({
+      email: email.toLowerCase(),
+      password: hashedPassword,
+      role: 'admin',
+    });
+
+    await newAdmin.save();
+    res.status(201).json({ success: true, message: 'Admin member added successfully' });
+  } catch (error) {
+    console.error('Error adding member:', error);
+    res.status(500).json({ success: false, message: 'Server Error' });
+  }
+};
+
+export const removeMember = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const adminToRemove = await Admin.findById(id);
+
+    if (!adminToRemove) {
+      return res.status(404).json({ success: false, message: 'Member not found' });
+    }
+
+    if (adminToRemove.role === 'superadmin') {
+      return res.status(403).json({ success: false, message: 'Cannot remove superadmin' });
+    }
+
+    await Admin.findByIdAndDelete(id);
+    res.status(200).json({ success: true, message: 'Member removed successfully' });
+  } catch (error) {
+    console.error('Error removing member:', error);
+    res.status(500).json({ success: false, message: 'Server Error' });
+  }
+};

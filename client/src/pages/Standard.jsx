@@ -151,11 +151,11 @@ const Standard = () => {
       </section>
 
       {/* Main Content & Sidebar Layout */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="flex flex-col md:flex-row gap-12">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-8">
+        <div className="flex flex-col gap-12">
 
-          {/* Main Content Area (3/4 width) */}
-          <main className="flex-grow md:w-3/4 space-y-16">
+          {/* Main Content Area */}
+          <main className="w-full space-y-16">
 
             {/* Intro Text */}
             <motion.div
@@ -194,22 +194,14 @@ const Standard = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
-                  { name: 'ASME Standards', desc: 'American Society of Mechanical Engineers - Key dimensional codes for industrial fasteners.', path: '/asme-standards', icon: 'icon-cogs' },
-
-                  { name: 'BIS Standards', desc: 'Bureau of Indian Standards - National requirements for domestic infrastructure.', path: '/bis-standards', icon: 'icon-check' },
-
-                  { name: 'BS Standards', desc: 'British Standards - Historic and modern fastener specifications used in the UK.', path: '/bs-standards', icon: 'icon-briefcase' },
-
-                  { name: 'DIN Standards', desc: 'Deutsches Institut für Normung - German standard for fasteners commonly used globally.', path: '/din-standards', icon: 'icon-globe' },
-
-                  { name: 'ISO Standards', desc: 'International Organization for Standardization - Global metric fastener dimensions.', path: '/iso-standards', icon: 'icon-flag' },
-
-                  { name: 'SAE Standards', desc: 'Society of Automotive Engineers - Crucial specifications for automotive fasteners.', path: '/sae-standards', icon: 'icon-truck' },
-
-                  { name: 'UNI Standards', desc: 'Ente Nazionale Italiano di Unificazione - Italian standard equivalents.', path: '/uni-standards', icon: 'icon-building' }
-
+                  { name: 'ASME Standards', desc: 'American Society of Mechanical Engineers - Key dimensional codes for industrial fasteners.', icon: 'icon-cogs' },
+                  { name: 'ASTM Standards', desc: 'American Society for Testing and Materials - International standards for materials and products.', icon: 'icon-check' },
+                  { name: 'BS Standards', desc: 'British Standards - Historic and modern fastener specifications used in the UK.', icon: 'icon-briefcase' },
+                  { name: 'DIN Standards', desc: 'Deutsches Institut für Normung - German standard for fasteners commonly used globally.', icon: 'icon-globe' },
+                  { name: 'IS Standards', desc: 'Indian Standards - National requirements for domestic infrastructure.', icon: 'icon-building' },
+                  { name: 'ISO Standards', desc: 'International Organization for Standardization - Global metric fastener dimensions.', icon: 'icon-flag' }
                 ].map((std, idx) => (
-                  <motion.div key={idx} variants={fadeUp} className="group bg-white border border-gray-100 p-6 rounded-2xl shadow-sm hover:shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden flex flex-col h-full">
+                  <motion.div key={idx} variants={fadeUp} className="group bg-white border border-gray-100 p-6 rounded-2xl shadow-sm hover:shadow-[0_15px_30px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 relative overflow-hidden flex flex-col h-full cursor-default">
                     <div className="absolute top-0 right-0 w-24 h-24 bg-[#0D8BC5]/5 rounded-bl-[100px] transition-transform duration-500 group-hover:scale-150 z-0"></div>
                     <div className="relative z-10 flex flex-col h-full">
                       <div className="w-12 h-12 rounded-xl bg-[#0D8BC5]/10 flex items-center justify-center text-[#0D8BC5] mb-4 group-hover:bg-[#0D8BC5] group-hover:text-white transition-colors duration-300">
@@ -218,12 +210,9 @@ const Standard = () => {
                       <h4 className="text-lg font-extrabold text-gray-900 uppercase tracking-wider mb-2">
                         {std.name}
                       </h4>
-                      <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-grow">
+                      <p className="text-gray-500 text-sm leading-relaxed flex-grow">
                         {std.desc}
                       </p>
-                      <Link to={std.path} className="inline-flex items-center gap-2 text-[#0D8BC5] font-bold text-xs uppercase tracking-widest hover:text-[#0a192f] transition-colors mt-auto">
-                        View Standards <i className="icon-angle-right"></i>
-                      </Link>
                     </div>
                   </motion.div>
                 ))}
@@ -236,14 +225,14 @@ const Standard = () => {
               whileInView="show"
               viewport={{ once: true, margin: "-50px" }}
               variants={fadeRight}
-              className="bg-gray-50 rounded-3xl p-8 md:p-12 flex flex-col lg:flex-row gap-8 items-center mt-12 border border-gray-100 shadow-[inset_0_2px_20px_rgba(0,0,0,0.02)]"
+              className="bg-gray-50 rounded-3xl p-8 md:p-12 flex flex-col lg:flex-row gap-12 items-center mt-12 border border-gray-100 shadow-[inset_0_2px_20px_rgba(0,0,0,0.02)]"
             >
-              <div className="w-full lg:w-1/3 relative rounded-2xl overflow-hidden group shadow-lg">
-                <img src="/images/standards/zero_defect.jpg" alt="HEX INDIA Dimensional Gauging" className="w-full h-48 md:h-64 object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="w-full lg:w-1/2 relative rounded-2xl overflow-hidden group shadow-lg">
+                <img src="/images/standards/zero_defect.jpg" alt="HEX INDIA Dimensional Gauging" className="w-full h-64 md:h-96 lg:h-[400px] object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-[#0a192f]/20 group-hover:bg-transparent transition-colors duration-500"></div>
               </div>
 
-              <div className="w-full lg:w-2/3 space-y-6">
+              <div className="w-full lg:w-1/2 space-y-6 pl-0 lg:pl-4">
                 <h6 className="text-[#0D8BC5] font-bold text-xs uppercase tracking-[0.2em]">Zero Defect Conformance</h6>
                 <h3 className="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">Calibration & Metrology Lab</h3>
                 <p className="text-gray-600 font-medium leading-[1.8] text-base">
@@ -256,11 +245,6 @@ const Standard = () => {
               </div>
             </motion.div>
           </main>
-
-          {/* Sidebar Area (1/4 width) */}
-          <aside className="w-full md:w-1/4">
-            <StandardSidebar />
-          </aside>
 
         </div>
       </section>

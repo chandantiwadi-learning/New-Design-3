@@ -1,7 +1,7 @@
 import express from 'express';
-import { loginAdmin, logoutAdmin, checkAuth, requestOtp, verifyOtp, resetPassword } from '../controllers/admin.controller.js';
+import { loginAdmin, logoutAdmin, checkAuth, requestOtp, verifyOtp, resetPassword, getMembers, addMember, removeMember } from '../controllers/admin.controller.js';
 import { createBlog, updateBlog, deleteBlog } from '../controllers/blog.controller.js';
-import { requireAdmin } from '../middleware/auth.middleware.js';
+import { requireAdmin, requireSuperAdmin } from '../middleware/auth.middleware.js';
 import { uploadBlogImage } from '../middleware/upload.middleware.js';
 import { otpRateLimiter } from '../middleware/security.js';
 
@@ -22,5 +22,10 @@ router.post('/reset-password', resetPassword);
 router.post('/blogs', requireAdmin, uploadBlogImage, createBlog);
 router.put('/blogs/:id', requireAdmin, uploadBlogImage, updateBlog);
 router.delete('/blogs/:id', requireAdmin, deleteBlog);
+
+// Member Management routes (Superadmin Only)
+router.get('/members', requireAdmin, requireSuperAdmin, getMembers);
+router.post('/members', requireAdmin, requireSuperAdmin, addMember);
+router.delete('/members/:id', requireAdmin, requireSuperAdmin, removeMember);
 
 export default router;

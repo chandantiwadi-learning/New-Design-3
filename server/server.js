@@ -9,6 +9,7 @@ import { connectDB } from './config/db.js';
 import enquiryRoutes from './routes/enquiry.routes.js';
 import blogRoutes from './routes/blog.routes.js';
 import adminRoutes from './routes/admin.routes.js';
+import whatsappRoutes from './routes/whatsapp.routes.js';
 
 // Connect to MongoDB
 connectDB();
@@ -27,7 +28,12 @@ setupSecurity(app);
 
 // Parsers
 app.use(cookieParser());
-app.use(express.json());
+app.use(express.json({
+  verify: (req, res, buf) => {
+    // Save raw body for Meta webhook signature validation
+    req.rawBody = buf;
+  }
+}));
 app.use(express.urlencoded({ extended: true }));
 
 // Serve uploaded image files publicly
@@ -37,6 +43,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api/enquiry', enquiryRoutes);
 app.use('/api/blogs', blogRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/whatsapp', whatsappRoutes);
 
 // Serve frontend static assets in production mode
 const distPath = path.join(__dirname, '../client/dist');

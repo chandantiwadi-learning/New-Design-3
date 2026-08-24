@@ -53,14 +53,7 @@ const Brass = lazy(() => import('./pages/materials/Brass'));
 const Tantalum = lazy(() => import('./pages/materials/Tantalum'));
 const Zirconium = lazy(() => import('./pages/materials/Zirconium'));
 
-// Lazy Load Standards Pages
-const AsmeStandards = lazy(() => import('./pages/standards/AsmeStandards'));
-const DinStandards = lazy(() => import('./pages/standards/DinStandards'));
-const SaeStandards = lazy(() => import('./pages/standards/SaeStandards'));
-const IsoStandards = lazy(() => import('./pages/standards/IsoStandards'));
-const BsStandards = lazy(() => import('./pages/standards/BsStandards'));
-const BisStandards = lazy(() => import('./pages/standards/BisStandards'));
-const UniStandards = lazy(() => import('./pages/standards/UniStandards'));
+// Removed Standards Pages (Sub-sections deleted)
 
 const ErrorPage = lazy(() => import('./pages/ErrorPage'));
 
@@ -126,14 +119,7 @@ const AppContent = () => {
             <Route path="/tantalum" element={<Tantalum />} />
             <Route path="/zirconium" element={<Zirconium />} />
 
-            {/* Standards Routes */}
-            <Route path="/asme-standards" element={<AsmeStandards />} />
-            <Route path="/din-standards" element={<DinStandards />} />
-            <Route path="/sae-standards" element={<SaeStandards />} />
-            <Route path="/iso-standards" element={<IsoStandards />} />
-            <Route path="/bs-standards" element={<BsStandards />} />
-            <Route path="/bis-standards" element={<BisStandards />} />
-            <Route path="/uni-standards" element={<UniStandards />} />
+            {/* Standards Routes Removed (Sub-sections deleted) */}
 
             {/* Error/Wildcard Route */}
             <Route path="*" element={<ErrorPage />} />
