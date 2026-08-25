@@ -2,9 +2,7 @@ import { env } from '../config/env.js';
 import { WhatsappSession } from '../models/WhatsappSession.model.js';
 import { sendWhatsAppTextMessage } from '../services/whatsapp.service.js';
 
-const WELCOME_MESSAGE = `Thank you for connecting with Hex India Fasteners.
-
-We have received your message. Our team will get in touch with you within 24 hours.`;
+const WELCOME_MESSAGE = `Hello, thank you for reaching out to HEX INDIA Fasteners. We have received your inquiry and appreciate your interest. Our team will review your request and get in touch with you within 24 hours.`;
 
 /**
  * Handles Meta Webhook Verification (GET)
