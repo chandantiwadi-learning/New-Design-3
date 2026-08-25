@@ -46,10 +46,12 @@ export const receiveWebhook = async (req, res) => {
 
     // Parse the payload (handles multiple entries if sent in batch)
     for (const entry of body.entry) {
+      console.log('[WhatsApp] Processing entry:', JSON.stringify(entry, null, 2));
       const changes = entry.changes;
       if (!changes || !changes.length) continue;
 
       for (const change of changes) {
+        console.log('[WhatsApp] Processing change:', JSON.stringify(change, null, 2));
         if (change.field !== 'messages') {
           continue;
         }
@@ -77,7 +79,7 @@ export const receiveWebhook = async (req, res) => {
             }
 
             // Validate the incoming phone_number_id
-            if (phoneNumberId !== env.WHATSAPP_PHONE_NUMBER_ID) {
+            if (String(phoneNumberId) !== String(env.WHATSAPP_PHONE_NUMBER_ID)) {
               console.warn(`[WhatsApp] Phone Number ID mismatch. Expected: ${env.WHATSAPP_PHONE_NUMBER_ID}, Got: ${phoneNumberId}`);
               continue;
             }
@@ -86,6 +88,7 @@ export const receiveWebhook = async (req, res) => {
             let session = await WhatsappSession.findOne({ customerPhone });
 
             if (session && session.processedMessageIds.includes(messageId)) {
+              console.log(`[WhatsApp] Message is a duplicate (ID: ${messageId}). Skipping.`);
               continue; // Skip already processed message
             }
 
@@ -100,6 +103,7 @@ export const receiveWebhook = async (req, res) => {
 
             // Add message ID to prevent duplicate processing on retries
             session.processedMessageIds.push(messageId);
+            console.log(`[WhatsApp] Message is new. Added ID ${messageId} to session.`);
 
             // Send automated welcome response
             console.log(`[WhatsApp] Attempting automatic reply to: ${customerPhone}`);
