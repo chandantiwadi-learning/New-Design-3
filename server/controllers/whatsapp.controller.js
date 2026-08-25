@@ -45,18 +45,35 @@ export const receiveWebhook = async (req, res) => {
       if (!changes || !changes.length) continue;
 
       for (const change of changes) {
+        if (change.field !== 'messages') {
+          continue;
+        }
+        
         if (change.value && change.value.messages) {
           const messages = change.value.messages;
+          const phoneNumberId = change.value.metadata?.phone_number_id;
 
           for (const message of messages) {
             const customerPhone = message.from; // Customer's WhatsApp ID
             const messageId = message.id;       // Meta Message ID
             const messageType = message.type;   // text, image, document, etc.
+            const incomingText = messageType === 'text' ? message.text?.body : '[non-text WhatsApp message]';
 
-            console.log(`[WhatsApp] Incoming message received. Type: ${messageType}, Customer: masked-number, ID: ${messageId}`);
+            console.log(`[WHATSAPP WEBHOOK] Incoming message received`);
+            console.log(`[WHATSAPP WEBHOOK] Message ID: ${messageId}`);
+            console.log(`[WHATSAPP WEBHOOK] Customer: ${customerPhone}`);
+            console.log(`[WHATSAPP WEBHOOK] Type: ${messageType}`);
+            console.log(`[WHATSAPP WEBHOOK] Text: ${incomingText}`);
+            console.log(`[WHATSAPP WEBHOOK] Phone Number ID: ${phoneNumberId}`);
 
             // Skip processing non-user messages (e.g., system messages) safely
             if (!customerPhone || !messageId) {
+              continue;
+            }
+
+            // Validate the incoming phone_number_id
+            if (phoneNumberId !== env.WHATSAPP_PHONE_NUMBER_ID) {
+              console.warn(`[WHATSAPP WEBHOOK] Phone Number ID mismatch. Got: ${phoneNumberId}`);
               continue;
             }
 
@@ -64,7 +81,6 @@ export const receiveWebhook = async (req, res) => {
             let session = await WhatsappSession.findOne({ customerPhone });
 
             if (session && session.processedMessageIds.includes(messageId)) {
-              console.log(`[WhatsApp] duplicate message ignored (ID: ${messageId})`);
               continue; // Skip already processed message
             }
 
@@ -80,19 +96,18 @@ export const receiveWebhook = async (req, res) => {
             // Add message ID to prevent duplicate processing on retries
             session.processedMessageIds.push(messageId);
 
-            // First-Conversation Logic
-            if (!session.hasReceivedWelcomeMessage) {
-              try {
-                // Send automated welcome response
-                await sendWhatsAppTextMessage(customerPhone, WELCOME_MESSAGE);
-                console.log(`[WhatsApp] automatic welcome sent to masked-number`);
-                
-                // Mark as successfully sent
-                session.hasReceivedWelcomeMessage = true;
-              } catch (sendError) {
-                console.error(`[WhatsApp] WhatsApp API error: Failed to send welcome message`, sendError.message);
-                // We do NOT set hasReceivedWelcomeMessage = true so we can retry on next message
-              }
+            // Send automated welcome response
+            console.log(`[WHATSAPP BOT] Sending acknowledgement`);
+            try {
+              await sendWhatsAppTextMessage(customerPhone, WELCOME_MESSAGE);
+              console.log(`[WHATSAPP BOT] Acknowledgement sent successfully`);
+              
+              // Mark as successfully sent
+              session.hasReceivedWelcomeMessage = true;
+            } catch (sendError) {
+              console.error(`[WHATSAPP BOT] Failed to send acknowledgement`);
+              console.error(sendError.message);
+              // We do NOT set hasReceivedWelcomeMessage = true so we can retry on next message
             }
 
             // Save the session state
