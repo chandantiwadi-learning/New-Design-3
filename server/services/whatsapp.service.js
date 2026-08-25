@@ -42,13 +42,28 @@ export const sendWhatsAppTextMessage = async (to, text) => {
 
     const data = await response.json();
 
+    console.log(`[WhatsApp] Reply API status: ${response.status}`);
+    console.log(`[WhatsApp] Reply API response:`, JSON.stringify(data, null, 2));
+
     if (!response.ok) {
-      console.error('[WhatsApp] Meta API Error:', data);
+      console.error('[WhatsApp] Complete error response:', JSON.stringify({
+        status: response.status,
+        'response.data': data,
+        'response.data.error': data.error,
+        'error.code': data.error?.code,
+        'error.message': data.error?.message
+      }, null, 2));
       throw new Error(data.error?.message || 'Failed to send WhatsApp message');
     }
 
     return data;
   } catch (error) {
+    if (!error.message || (!error.message.includes('Failed to send') && !error.message.includes(error.message))) {
+       console.error('[WhatsApp] Complete error response:', JSON.stringify({
+        'error.code': error.code,
+        'error.message': error.message
+      }, null, 2));
+    }
     console.error('[WhatsApp] sendWhatsAppTextMessage failed:', error.message);
     throw error;
   }
