@@ -3,6 +3,7 @@ import toast from 'react-hot-toast';
 import api from '../../utils/api';
 import AdminDashboard from './AdminDashboard';
 import AdminMembers from './AdminMembers';
+import AdminResponses from './AdminResponses';
 
 const AdminLayout = ({ user, onLogout }) => {
   const [activeTab, setActiveTab] = useState('blogs'); // 'blogs' or 'create'
@@ -108,6 +109,21 @@ const AdminLayout = ({ user, onLogout }) => {
                 <span>Create Blog</span>
               </button>
 
+              <button
+                onClick={() => {
+                  setActiveTab('responses');
+                  setSidebarOpen(false);
+                }}
+                className={`w-full flex items-center gap-3.5 px-4 py-3.5 rounded-xl font-bold text-xs uppercase tracking-wider transition-all duration-200 cursor-pointer box-border text-left ${
+                  activeTab === 'responses'
+                    ? 'bg-[#0D8BC5] text-white shadow-lg shadow-[#0D8BC5]/30 ring-1 ring-white/20'
+                    : 'text-slate-400 hover:text-white hover:bg-slate-800/60'
+                }`}
+              >
+                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                <span>Responses</span>
+              </button>
+
               {user?.role === 'superadmin' && (
                 <button
                   onClick={() => {
@@ -168,10 +184,11 @@ const AdminLayout = ({ user, onLogout }) => {
         </div>
       </aside>
 
-      {/* Main Content View */}
       <main className="flex-1 p-6 md:p-10 overflow-y-auto max-w-7xl">
         {activeTab === 'members' ? (
           <AdminMembers />
+        ) : activeTab === 'responses' ? (
+          <AdminResponses user={user} />
         ) : (
           <AdminDashboard activeTab={activeTab} setActiveTab={setActiveTab} />
         )}

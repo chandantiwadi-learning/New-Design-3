@@ -1,8 +1,9 @@
 import express from 'express';
 import { validateEnquiry } from '../validators/enquiry.validator.js';
-import { submitEnquiry } from '../controllers/enquiry.controller.js';
+import { submitEnquiry, getEnquiries, updateEnquiry } from '../controllers/enquiry.controller.js';
 import { enquiryRateLimiter } from '../middleware/security.js';
 import { env } from '../config/env.js';
+import { requireAdmin, requireSuperAdmin } from '../middleware/auth.middleware.js';
 
 const router = express.Router();
 
@@ -13,5 +14,9 @@ router.get('/config', (req, res) => {
 });
 
 router.post('/', enquiryRateLimiter, validateEnquiry, submitEnquiry);
+
+// Admin routes
+router.get('/', requireAdmin, getEnquiries);
+router.put('/:id', requireAdmin, requireSuperAdmin, updateEnquiry);
 
 export default router;

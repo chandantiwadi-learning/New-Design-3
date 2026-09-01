@@ -1,6 +1,5 @@
 import { verifyTurnstile } from '../services/turnstile.service.js';
 import { generateReferenceId } from '../services/idGenerator.service.js';
-import { appendToSheet } from '../services/googleSheets.service.js';
 import { sendCompanyAlert, sendCustomerAutoReply } from '../services/email.service.js';
 import { Enquiry } from '../models/Enquiry.model.js';
 
@@ -52,19 +51,7 @@ export const submitEnquiry = async (req, res, next) => {
       console.error(`[ENQUIRY DB ERROR] Failed to save enquiry to MongoDB:`, dbError.message);
     }
 
-    // STEP 5: Save to Google Sheets
-    console.log(`[ENQUIRY] STEP 5: Google Sheets connection starting...`);
-    try {
-      await appendToSheet(enquiryData);
-      console.log(`[GOOGLE SHEETS SUCCESS] Data appended for Ref ${referenceId}`);
-      console.log(`✔ Google Sheet updated`);
-    } catch (sheetError) {
-      console.error(`[GOOGLE SHEETS FAILED] Insertion failed for Ref ${referenceId}:`, sheetError.message);
-      // If this fails, the system aborts and returns an error.
-      return res.status(500).json({ success: false, message: 'Failed to save enquiry data.' });
-    }
-
-    // STEP 6: Send Company Email
+    // STEP 5: Send Company Email
     console.log(`[ENQUIRY] STEP 6: Company email sending...`);
     try {
       await sendCompanyAlert(enquiryData);
@@ -100,5 +87,35 @@ export const submitEnquiry = async (req, res, next) => {
     console.error(`[ENQUIRY] ❌ Unexpected Error after ${processingTime}ms:`, error.message);
     
     return res.status(500).json({ success: false, message: 'An unexpected error occurred.' });
+  }
+};
+
+// Fetch all enquiries (Admin & Super Admin)
+export const getEnquiries = async (req, res) => {
+  try {
+    const enquiries = await Enquiry.find().sort({ createdAt: -1 });
+    res.status(200).json({ success: true, data: enquiries });
+  } catch (error) {
+    console.error(`[ENQUIRY] ❌ Error fetching enquiries:`, error.message);
+    res.status(500).json({ success: false, message: 'Failed to fetch enquiries.' });
+  }
+};
+
+// Update an enquiry (Super Admin only)
+export const updateEnquiry = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updateData = req.body;
+
+    const enquiry = await Enquiry.findByIdAndUpdate(id, updateData, { new: true });
+    
+    if (!enquiry) {
+      return res.status(404).json({ success: false, message: 'Enquiry not found.' });
+    }
+
+    res.status(200).json({ success: true, message: 'Enquiry updated successfully.', data: enquiry });
+  } catch (error) {
+    console.error(`[ENQUIRY] ❌ Error updating enquiry:`, error.message);
+    res.status(500).json({ success: false, message: 'Failed to update enquiry.' });
   }
 };
