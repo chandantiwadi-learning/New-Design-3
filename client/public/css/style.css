@@ -27,7 +27,7 @@
 	20. Retina Ready
 */
 
-@import url(http://fonts.googleapis.com/css?family=Raleway:400,700,200);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700,200);
 @import url(font-awesome.min.css);
 
 *{
@@ -7767,7 +7767,7 @@ only screen and (max-width:479px){
 /* 20. Retina Ready */
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (min-resolution: 144 dpi){
+only screen and (min-resolution: 144dpi){
 .address_list > li:before,.social_icons_type_01 > li > a > .default,.social_icons_type_01 > li > a > div > .clean_cornice_2,
 .list_style_01 > li > .hex_elem_rounded > span,[class$="_alert_box"]:after,[class$="_alert_box_type_2"]:after,
 [class*="icon_part_"] span,

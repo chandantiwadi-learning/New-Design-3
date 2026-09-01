@@ -70,7 +70,8 @@ export const createBlog = async (req, res) => {
     // Determine image path
     let imagePath = imageUrl || '';
     if (req.file) {
-      imagePath = `/uploads/blogs/${req.file.filename}`;
+      const b64 = Buffer.from(req.file.buffer).toString('base64');
+      imagePath = `data:${req.file.mimetype};base64,${b64}`;
     }
 
     // Generate slug, reading time, date, ID
@@ -143,7 +144,8 @@ export const updateBlog = async (req, res) => {
     }
 
     if (req.file) {
-      updatedFields.image = `/uploads/blogs/${req.file.filename}`;
+      const b64 = Buffer.from(req.file.buffer).toString('base64');
+      updatedFields.image = `data:${req.file.mimetype};base64,${b64}`;
     } else if (imageUrl !== undefined) {
       updatedFields.image = imageUrl;
     }
