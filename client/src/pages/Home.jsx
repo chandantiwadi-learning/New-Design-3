@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import CategoryCard from '../components/CategoryCard';
+import ImageLightbox from '../components/ImageLightbox';
 
 const EngineeringCard = ({ title, description, value, subtitle, icon, delay, isVisible }) => {
   return (
@@ -61,6 +63,13 @@ const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [aboutSlide, setAboutSlide] = useState(0);
   const [isAboutVisible, setIsAboutVisible] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
+  const handlePreviewProduct = (product) => {
+    setSelectedProduct(product);
+    setIsLightboxOpen(true);
+  };
   const aboutSectionRef = React.useRef(null);
 
   const [isPaused, setIsPaused] = useState(false);
@@ -429,29 +438,11 @@ const Home = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {products.map((prod, idx) => (
-            <Link
-              to={prod.path}
+            <CategoryCard
               key={idx}
-              className="group aspect-[4/3] relative rounded-lg overflow-hidden shadow-md border border-gray-100 hover:border-[#0D8BC5] hover:shadow-[0_8px_24px_rgba(13,139,197,0.25)] transition-all duration-300 block"
-            >
-              {/* Optimized Responsive Product Image */}
-              <img
-                src={prod.img}
-                alt={prod.name}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 will-change-transform transform-gpu z-0"
-                loading="lazy"
-                decoding="async"
-              />
-              {/* Brand Blue Hover Overlay */}
-              <div className="absolute inset-0 bg-[#0D8BC5]/28 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none"></div>
-
-              {/* Hexagon Label */}
-              <div className="absolute bottom-4 left-4 z-30">
-                <div className="hexagon-tag bg-[#0D8BC5] text-white font-bold text-[10px] uppercase px-7 py-2 transition-colors duration-300 shadow-md">
-                  {prod.name}
-                </div>
-              </div>
-            </Link>
+              product={prod}
+              onPreview={handlePreviewProduct}
+            />
           ))}
         </div>
       </section>
@@ -749,6 +740,15 @@ const Home = () => {
           </div>
         </div>
       </section >
+
+      {/* Product Image Lightbox Modal */}
+      <ImageLightbox
+        isOpen={isLightboxOpen}
+        onClose={() => setIsLightboxOpen(false)}
+        image={selectedProduct?.img}
+        title={selectedProduct ? `${selectedProduct.name} - Product Catalogue` : ''}
+        categoryPath={selectedProduct?.path}
+      />
     </div >
   );
 };

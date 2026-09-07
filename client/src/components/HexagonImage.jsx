@@ -1,7 +1,10 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
+import { ZoomIn } from 'lucide-react';
+import ImageLightbox from './ImageLightbox';
 
-const HexagonImage = ({ src, shape = 'container', alt = '', className = '' }) => {
+const HexagonImage = ({ src, shape = 'container', alt = '', className = '', enableLightbox = true }) => {
   const canvasRef = useRef(null);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -15,12 +18,7 @@ const HexagonImage = ({ src, shape = 'container', alt = '', className = '' }) =>
       // Clear previous canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw the image first
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-
-      // Apply the hexagonal or triangular clip mask
       ctx.save();
-      ctx.globalCompositeOperation = 'destination-in';
       ctx.beginPath();
 
       if (shape === 'container') {
@@ -80,7 +78,25 @@ const HexagonImage = ({ src, shape = 'container', alt = '', className = '' }) =>
       }
 
       ctx.closePath();
-      ctx.fill();
+      ctx.clip();
+
+      // Calculate object-cover aspect ratio crop coordinates to prevent any compression/stretching
+      const imgRatio = img.width / img.height;
+      const canvasRatio = canvas.width / canvas.height;
+      let renderWidth = canvas.width;
+      let renderHeight = canvas.height;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      if (imgRatio > canvasRatio) {
+        renderWidth = canvas.height * imgRatio;
+        offsetX = (canvas.width - renderWidth) / 2;
+      } else {
+        renderHeight = canvas.width / imgRatio;
+        offsetY = (canvas.height - renderHeight) / 2;
+      }
+
+      ctx.drawImage(img, offsetX, offsetY, renderWidth, renderHeight);
       ctx.restore();
     };
   }, [src, shape]);
@@ -117,9 +133,39 @@ const HexagonImage = ({ src, shape = 'container', alt = '', className = '' }) =>
   }
 
   return (
-    <div className={`${wrapperClass} ${className}`}>
-      <canvas ref={canvasRef} width={width} height={height} alt={alt} />
-    </div>
+    <>
+      <div
+        onClick={enableLightbox ? () => setIsLightboxOpen(true) : undefined}
+        className={`${wrapperClass} ${className} relative group cursor-pointer transition-transform duration-300 hover:scale-105 inline-block`}
+        title={alt || 'Click to preview high-resolution image'}
+      >
+        <canvas ref={canvasRef} width={width} height={height} alt={alt} className="block transition-transform duration-300 group-hover:scale-105" />
+
+        {enableLightbox && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsLightboxOpen(true);
+            }}
+            className="absolute top-2 right-2 z-20 w-8 h-8 rounded-full bg-slate-900/80 hover:bg-[#0D8BC5] text-white flex items-center justify-center transition-all duration-300 shadow-md hover:scale-110 border border-white/30 cursor-pointer"
+            title="Preview image"
+            aria-label="Preview image"
+          >
+            <ZoomIn className="w-4 h-4 text-white" />
+          </button>
+        )}
+      </div>
+
+      {enableLightbox && (
+        <ImageLightbox
+          isOpen={isLightboxOpen}
+          onClose={() => setIsLightboxOpen(false)}
+          image={src}
+          title={alt || 'HEX INDIA - Product Photo Preview'}
+        />
+      )}
+    </>
   );
 };
 
