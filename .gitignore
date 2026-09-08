@@ -82,6 +82,7 @@ web_modules/
 server/.env
 client/.env
 client/.env.local
+!uploads/.gitkeep
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache

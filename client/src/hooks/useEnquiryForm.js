@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import axios from 'axios';
+import api from '../utils/api';
 import toast from 'react-hot-toast';
 
 export const enquirySchema = z.object({
@@ -23,16 +23,13 @@ export const useEnquiryForm = () => {
 
   useEffect(() => {
     const fetchConfig = async () => {
-      const BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5001' : 'https://hex-india-main-backend.onrender.com');
-      const API_URL = `${BASE_URL}/api/enquiry/config`;
       try {
-        const res = await axios.get(API_URL);
+        const res = await api.get('/enquiry/config');
         if (res.data.turnstileSiteKey) {
           setTurnstileSiteKey(res.data.turnstileSiteKey);
         }
       } catch (err) {
         console.error('Failed to fetch turnstile config. Details:');
-        console.error('URL:', API_URL);
         console.error('Status:', err.response?.status);
         console.error('Response Body:', err.response?.data);
         console.error('Message:', err.message);
@@ -57,10 +54,8 @@ export const useEnquiryForm = () => {
   });
 
   const onSubmit = async (data) => {
-    const BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5001' : 'https://hex-india-main-backend.onrender.com');
-    const API_URL = `${BASE_URL}/api/enquiry`;
     try {
-      const res = await axios.post(API_URL, data);
+      const res = await api.post('/enquiry', data);
       
       if (res.data.success) {
         setReferenceId(res.data.referenceId);
@@ -70,7 +65,6 @@ export const useEnquiryForm = () => {
       }
     } catch (error) {
       console.error('Failed to submit enquiry. Details:');
-      console.error('URL:', API_URL);
       console.error('Status:', error.response?.status);
       console.error('Response Body:', error.response?.data);
       console.error('Error Message:', error.message);

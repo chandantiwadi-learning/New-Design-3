@@ -2,13 +2,9 @@ import axios from 'axios';
 
 // Get API base URL depending on environment
 const getBaseUrl = () => {
-  if (import.meta.env.VITE_API_URL) {
-    return import.meta.env.VITE_API_URL;
-  }
-  if (import.meta.env.DEV) {
-    return 'http://localhost:5001/api';
-  }
-  return 'https://new-design-3.onrender.com/api';
+  const rawUrl = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5001' : 'https://dt4uwmivmo.c36.airoapp.ai');
+  const cleanUrl = rawUrl.replace(/\/+$/, '');
+  return cleanUrl.endsWith('/api') ? cleanUrl : `${cleanUrl}/api`;
 };
 
 const api = axios.create({

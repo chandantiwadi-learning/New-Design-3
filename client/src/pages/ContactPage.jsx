@@ -4,7 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Turnstile } from '@marsidev/react-turnstile';
 import toast, { Toaster } from 'react-hot-toast';
-import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { User, Mail, Phone, Building, MessageSquare, Send, CheckCircle, Clock, MapPin, Globe } from 'lucide-react';
 import { useEnquiryForm } from '../hooks/useEnquiryForm';
