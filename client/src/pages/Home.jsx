@@ -180,7 +180,7 @@ const Home = () => {
     return () => observer.disconnect();
   }, []);
 
-  
+
 
 
   const slides = [
@@ -224,10 +224,10 @@ const Home = () => {
 
   const products = [
     { name: 'Bolts', path: '/bolts', img: '/images/products/our products/bolts-nuts.jpg' },
-    { name: 'Screws', path: '/screw', img: '/images/products/our products/screws.jpg' },
-    { name: 'Stud Bolts', path: '/stud-bolts', img: '/images/products/our products/stud-bolts.jpg' },
     { name: 'Nuts', path: '/nuts', img: '/images/products/our products/nuts.jpg' },
+    { name: 'Stud Bolts', path: '/stud-bolts', img: '/images/products/our products/stud-bolts.jpg' },
     { name: 'Washers', path: '/washers', img: '/images/products/our products/washers.jpg' },
+    { name: 'Screws', path: '/screw', img: '/images/products/our products/screws.jpg' },
     { name: 'Accessories', path: '/accessories', img: '/images/products/our products/ublots.jpg' },
     { name: 'Materials', path: '/material', img: '/images/products/our products/materials.jpg' },
     { name: 'Custom Made', path: '/contact', img: '/images/products/custom-made.jpg' }
