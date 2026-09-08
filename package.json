@@ -1,4 +1,12 @@
 {
+  "name": "hex-india",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm --prefix client run build",
+    "client": "npm --prefix client run dev",
+    "server": "npm --prefix server run start",
+    "dev": "npm --prefix server run dev"
+  },
   "dependencies": {
     "@google/genai": "^2.18.0",
     "cheerio": "^1.2.0",
