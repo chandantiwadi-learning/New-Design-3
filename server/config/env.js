@@ -29,6 +29,9 @@ const envSchema = z.object({
 
   // Database Configuration
   MONGODB_URI: z.string().min(1, 'MONGODB_URI is required'),
+
+  // Frontend Configuration
+  CLIENT_URL: z.string().optional(),
 });
 
 const _env = envSchema.safeParse(process.env);

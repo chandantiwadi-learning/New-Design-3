@@ -12,11 +12,17 @@ export const setupSecurity = (app) => {
   );
 
   // CORS
+  const allowedOrigins = [
+    'http://localhost:5173',
+    'https://salmon-albatross-431725.hostingersite.com'
+  ];
+  if (process.env.CLIENT_URL && !allowedOrigins.includes(process.env.CLIENT_URL)) {
+    allowedOrigins.push(process.env.CLIENT_URL);
+  }
+
   app.use(
     cors({
-      origin: process.env.NODE_ENV === 'production' 
-        ? ['https://new-design-3-three.vercel.app', 'https://www.new-design-3-three.vercel.app'] 
-        : ['http://localhost:5173', 'https://new-design-3-three.vercel.app'], // Vite default and Vercel for testing
+      origin: allowedOrigins,
       methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
       credentials: true,
     })
